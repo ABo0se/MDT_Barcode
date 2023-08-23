@@ -54,9 +54,9 @@
             this.label1.Location = new System.Drawing.Point(14, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 15);
+            this.label1.Size = new System.Drawing.Size(99, 15);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Recent Barcode :";
+            this.label1.Text = "Search Barcode :";
             // 
             // label2
             // 

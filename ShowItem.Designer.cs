@@ -28,162 +28,200 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PictureBox = new System.Windows.Forms.PictureBox();
-            this.BarcodeID = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Barcode_ID = new System.Windows.Forms.Label();
             this.Product_Name = new System.Windows.Forms.Label();
             this.Created_Time = new System.Windows.Forms.Label();
             this.Price = new System.Windows.Forms.Label();
             this.Attendant = new System.Windows.Forms.Label();
             this.Room = new System.Windows.Forms.Label();
-            this.BarcodeID_TXT = new System.Windows.Forms.Label();
-            this.ProductName_TXT = new System.Windows.Forms.Label();
-            this.CreatedTime_TXT = new System.Windows.Forms.Label();
+            this.BarcodeID_TB = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ModelName_TXT = new System.Windows.Forms.Label();
+            this.Model_TXT = new System.Windows.Forms.Label();
+            this.SN_TXT = new System.Windows.Forms.Label();
             this.Price_TXT = new System.Windows.Forms.Label();
-            this.Attentdant_TXT = new System.Windows.Forms.Label();
-            this.Room_TXT = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            this.Stay_TXT = new System.Windows.Forms.Label();
+            this.Note_TXT = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // PictureBox
+            // pictureBox1
             // 
-            this.PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PictureBox.Location = new System.Drawing.Point(125, 15);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(300, 225);
-            this.PictureBox.TabIndex = 0;
-            this.PictureBox.TabStop = false;
+            this.pictureBox1.Location = new System.Drawing.Point(125, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(300, 225);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // BarcodeID
+            // Barcode_ID
             // 
-            this.BarcodeID.AutoSize = true;
-            this.BarcodeID.Location = new System.Drawing.Point(13, 255);
-            this.BarcodeID.Name = "BarcodeID";
-            this.BarcodeID.Size = new System.Drawing.Size(81, 15);
-            this.BarcodeID.TabIndex = 1;
-            this.BarcodeID.Text = "Barcode-ID : ";
-            this.BarcodeID.Click += new System.EventHandler(this.label1_Click);
+            this.Barcode_ID.AutoSize = true;
+            this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Barcode_ID.Location = new System.Drawing.Point(13, 250);
+            this.Barcode_ID.Name = "Barcode_ID";
+            this.Barcode_ID.Size = new System.Drawing.Size(120, 27);
+            this.Barcode_ID.TabIndex = 1;
+            this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ : ";
+            this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
             // 
             // Product_Name
             // 
             this.Product_Name.AutoSize = true;
-            this.Product_Name.Location = new System.Drawing.Point(13, 280);
+            this.Product_Name.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Product_Name.Location = new System.Drawing.Point(13, 277);
             this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Size = new System.Drawing.Size(94, 15);
+            this.Product_Name.Size = new System.Drawing.Size(48, 27);
             this.Product_Name.TabIndex = 2;
-            this.Product_Name.Text = "Product name : ";
+            this.Product_Name.Text = "ยี่ห้อ : ";
             // 
             // Created_Time
             // 
             this.Created_Time.AutoSize = true;
-            this.Created_Time.Location = new System.Drawing.Point(13, 305);
+            this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Created_Time.Location = new System.Drawing.Point(13, 300);
             this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(86, 15);
+            this.Created_Time.Size = new System.Drawing.Size(39, 27);
             this.Created_Time.TabIndex = 3;
-            this.Created_Time.Text = "Created time : ";
+            this.Created_Time.Text = "รุ่น : ";
+            this.Created_Time.Click += new System.EventHandler(this.Created_Time_Click);
             // 
             // Price
             // 
             this.Price.AutoSize = true;
-            this.Price.Location = new System.Drawing.Point(13, 330);
+            this.Price.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Price.Location = new System.Drawing.Point(13, 327);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(43, 15);
+            this.Price.Size = new System.Drawing.Size(110, 27);
             this.Price.TabIndex = 4;
-            this.Price.Text = "Price : ";
+            this.Price.Text = "Serial Number : ";
             // 
             // Attendant
             // 
             this.Attendant.AutoSize = true;
-            this.Attendant.Location = new System.Drawing.Point(13, 355);
+            this.Attendant.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Attendant.Location = new System.Drawing.Point(13, 351);
             this.Attendant.Name = "Attendant";
-            this.Attendant.Size = new System.Drawing.Size(71, 15);
+            this.Attendant.Size = new System.Drawing.Size(50, 27);
             this.Attendant.TabIndex = 5;
-            this.Attendant.Text = "Attendant : ";
+            this.Attendant.Text = "ราคา : ";
             // 
             // Room
             // 
             this.Room.AutoSize = true;
-            this.Room.Location = new System.Drawing.Point(13, 380);
+            this.Room.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Room.Location = new System.Drawing.Point(13, 377);
             this.Room.Name = "Room";
-            this.Room.Size = new System.Drawing.Size(49, 15);
+            this.Room.Size = new System.Drawing.Size(84, 27);
             this.Room.TabIndex = 6;
-            this.Room.Text = "Room : ";
+            this.Room.Text = "ประจำอยู่ที่ : ";
+            this.Room.Click += new System.EventHandler(this.Room_Click);
             // 
-            // BarcodeID_TXT
+            // BarcodeID_TB
             // 
-            this.BarcodeID_TXT.AutoSize = true;
-            this.BarcodeID_TXT.Location = new System.Drawing.Point(95, 255);
-            this.BarcodeID_TXT.Name = "BarcodeID_TXT";
-            this.BarcodeID_TXT.Size = new System.Drawing.Size(12, 15);
-            this.BarcodeID_TXT.TabIndex = 7;
-            this.BarcodeID_TXT.Text = "-";
+            this.BarcodeID_TB.Location = new System.Drawing.Point(129, 252);
+            this.BarcodeID_TB.Name = "BarcodeID_TB";
+            this.BarcodeID_TB.ReadOnly = true;
+            this.BarcodeID_TB.Size = new System.Drawing.Size(416, 23);
+            this.BarcodeID_TB.TabIndex = 8;
             // 
-            // ProductName_TXT
+            // label1
             // 
-            this.ProductName_TXT.AutoSize = true;
-            this.ProductName_TXT.Location = new System.Drawing.Point(108, 280);
-            this.ProductName_TXT.Name = "ProductName_TXT";
-            this.ProductName_TXT.Size = new System.Drawing.Size(12, 15);
-            this.ProductName_TXT.TabIndex = 8;
-            this.ProductName_TXT.Text = "-";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 401);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 27);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "หมายเหตุ : ";
             // 
-            // CreatedTime_TXT
+            // ModelName_TXT
             // 
-            this.CreatedTime_TXT.AutoSize = true;
-            this.CreatedTime_TXT.Location = new System.Drawing.Point(95, 305);
-            this.CreatedTime_TXT.Name = "CreatedTime_TXT";
-            this.CreatedTime_TXT.Size = new System.Drawing.Size(12, 15);
-            this.CreatedTime_TXT.TabIndex = 9;
-            this.CreatedTime_TXT.Text = "-";
+            this.ModelName_TXT.AutoSize = true;
+            this.ModelName_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelName_TXT.Location = new System.Drawing.Point(55, 277);
+            this.ModelName_TXT.Name = "ModelName_TXT";
+            this.ModelName_TXT.Size = new System.Drawing.Size(16, 27);
+            this.ModelName_TXT.TabIndex = 16;
+            this.ModelName_TXT.Text = "-";
+            // 
+            // Model_TXT
+            // 
+            this.Model_TXT.AutoSize = true;
+            this.Model_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Model_TXT.Location = new System.Drawing.Point(45, 300);
+            this.Model_TXT.Name = "Model_TXT";
+            this.Model_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Model_TXT.TabIndex = 17;
+            this.Model_TXT.Text = "-";
+            // 
+            // SN_TXT
+            // 
+            this.SN_TXT.AutoSize = true;
+            this.SN_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SN_TXT.Location = new System.Drawing.Point(117, 327);
+            this.SN_TXT.Name = "SN_TXT";
+            this.SN_TXT.Size = new System.Drawing.Size(16, 27);
+            this.SN_TXT.TabIndex = 18;
+            this.SN_TXT.Text = "-";
             // 
             // Price_TXT
             // 
             this.Price_TXT.AutoSize = true;
-            this.Price_TXT.Location = new System.Drawing.Point(53, 330);
+            this.Price_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Price_TXT.Location = new System.Drawing.Point(57, 350);
             this.Price_TXT.Name = "Price_TXT";
-            this.Price_TXT.Size = new System.Drawing.Size(12, 15);
-            this.Price_TXT.TabIndex = 10;
+            this.Price_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Price_TXT.TabIndex = 19;
             this.Price_TXT.Text = "-";
             // 
-            // Attentdant_TXT
+            // Stay_TXT
             // 
-            this.Attentdant_TXT.AutoSize = true;
-            this.Attentdant_TXT.Location = new System.Drawing.Point(85, 355);
-            this.Attentdant_TXT.Name = "Attentdant_TXT";
-            this.Attentdant_TXT.Size = new System.Drawing.Size(12, 15);
-            this.Attentdant_TXT.TabIndex = 11;
-            this.Attentdant_TXT.Text = "-";
+            this.Stay_TXT.AutoSize = true;
+            this.Stay_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stay_TXT.Location = new System.Drawing.Point(90, 377);
+            this.Stay_TXT.Name = "Stay_TXT";
+            this.Stay_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Stay_TXT.TabIndex = 20;
+            this.Stay_TXT.Text = "-";
             // 
-            // Room_TXT
+            // Note_TXT
             // 
-            this.Room_TXT.AutoSize = true;
-            this.Room_TXT.Location = new System.Drawing.Point(63, 380);
-            this.Room_TXT.Name = "Room_TXT";
-            this.Room_TXT.Size = new System.Drawing.Size(12, 15);
-            this.Room_TXT.TabIndex = 12;
-            this.Room_TXT.Text = "-";
+            this.Note_TXT.AutoSize = true;
+            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Note_TXT.Location = new System.Drawing.Point(83, 401);
+            this.Note_TXT.Name = "Note_TXT";
+            this.Note_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Note_TXT.TabIndex = 21;
+            this.Note_TXT.Text = "-";
             // 
             // ShowItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 408);
-            this.Controls.Add(this.Room_TXT);
-            this.Controls.Add(this.Attentdant_TXT);
+            this.ClientSize = new System.Drawing.Size(557, 434);
+            this.Controls.Add(this.Note_TXT);
+            this.Controls.Add(this.Stay_TXT);
             this.Controls.Add(this.Price_TXT);
-            this.Controls.Add(this.CreatedTime_TXT);
-            this.Controls.Add(this.ProductName_TXT);
-            this.Controls.Add(this.BarcodeID_TXT);
+            this.Controls.Add(this.SN_TXT);
+            this.Controls.Add(this.Model_TXT);
+            this.Controls.Add(this.ModelName_TXT);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BarcodeID_TB);
             this.Controls.Add(this.Room);
             this.Controls.Add(this.Attendant);
             this.Controls.Add(this.Price);
             this.Controls.Add(this.Created_Time);
             this.Controls.Add(this.Product_Name);
-            this.Controls.Add(this.BarcodeID);
-            this.Controls.Add(this.PictureBox);
+            this.Controls.Add(this.Barcode_ID);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "ShowItem";
-            this.Text = "Add barcode Item";
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
+            this.Text = "Show Item";
+            this.Load += new System.EventHandler(this.AddItemP2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,18 +229,20 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox PictureBox;
-        private System.Windows.Forms.Label BarcodeID;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label Barcode_ID;
         private System.Windows.Forms.Label Product_Name;
         private System.Windows.Forms.Label Created_Time;
         private System.Windows.Forms.Label Price;
         private System.Windows.Forms.Label Attendant;
         private System.Windows.Forms.Label Room;
-        private System.Windows.Forms.Label BarcodeID_TXT;
-        private System.Windows.Forms.Label ProductName_TXT;
-        private System.Windows.Forms.Label CreatedTime_TXT;
+        private System.Windows.Forms.TextBox BarcodeID_TB;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ModelName_TXT;
+        private System.Windows.Forms.Label Model_TXT;
+        private System.Windows.Forms.Label SN_TXT;
         private System.Windows.Forms.Label Price_TXT;
-        private System.Windows.Forms.Label Attentdant_TXT;
-        private System.Windows.Forms.Label Room_TXT;
+        private System.Windows.Forms.Label Stay_TXT;
+        private System.Windows.Forms.Label Note_TXT;
     }
 }

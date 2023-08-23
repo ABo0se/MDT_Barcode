@@ -1,0 +1,48 @@
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\USB Barcode Scanner Tutorial - C-Sharp.exe.config
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\USB Barcode Scanner Tutorial - C-Sharp.exe
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\USB Barcode Scanner Tutorial - C-Sharp.pdb
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Crypto.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Hash.xxHash.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MySql.Data.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\NuGet.Frameworks.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Buffers.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.IO.Pipelines.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Memory.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Numerics.Vectors.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\ZstdSharp.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Crypto.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.pdb
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Hash.xxHash.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MySql.Data.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Buffers.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.IO.Pipelines.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Memory.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Numerics.Vectors.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.AssemblyReference.cache
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.AddItemP1.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.EditItem.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.AddItemP2.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.MainMenu.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.ManageQR.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Search.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.GenerateResource.cache
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.CoreCompileInputs.cache
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.CopyComplete
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB Barcode Scanner Tutorial - C-Sharp.exe
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB Barcode Scanner Tutorial - C-Sharp.pdb

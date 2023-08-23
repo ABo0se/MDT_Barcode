@@ -21,13 +21,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public ManageQR()
         {
             InitializeComponent();
-            BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeSearchBox);
-            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
         }
         public List<string> barcodedata = new List<string>();
         /////////////////////////////////////////////////////////////
-
-        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+        private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
         {
             BarcodeSearchBox.Text = e.Barcode;
             AddDataToDatabase(e.Barcode);
@@ -121,6 +118,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void Form1_Load(object sender, EventArgs e)
         {
             InitializeApplication();
+            BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeSearchBox);
+            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
         }
 
         private void Search_Func(object sender, EventArgs e)

@@ -39,7 +39,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddItem.AutoSize = true;
-            this.AddItem.Font = new System.Drawing.Font("Garena_Onmyoji_UI1", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.AddItem.Location = new System.Drawing.Point(12, 12);
             this.AddItem.Name = "AddItem";
             this.AddItem.Size = new System.Drawing.Size(777, 110);
@@ -54,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Search.AutoSize = true;
-            this.Search.Font = new System.Drawing.Font("Garena_Onmyoji_UI1", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Search.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Search.Location = new System.Drawing.Point(13, 128);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(777, 110);
@@ -69,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Manage.AutoSize = true;
-            this.Manage.Font = new System.Drawing.Font("Garena_Onmyoji_UI1", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Manage.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Manage.Location = new System.Drawing.Point(13, 244);
             this.Manage.Name = "Manage";
             this.Manage.Size = new System.Drawing.Size(777, 110);
