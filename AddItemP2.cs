@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using MySql.Data.MySqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class AddItemP2 : Form
     {
+        string PicFilePath = null;
+        /// ///////////////////////////////////////////
         public AddItemP2()
         {
             InitializeComponent();
@@ -28,7 +31,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void AddItemP2_Load(object sender, EventArgs e)
         {
-
+            InitializePage();
         }
 
         private void Created_Time_Click(object sender, EventArgs e)
@@ -55,6 +58,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Load the selected image into the PictureBox
                 Image selectedImage = Image.FromFile(selectedFilePath);
                 pictureBox1.Image = selectedImage;
+                PicFilePath = selectedFilePath;
             }
         }
 
@@ -70,7 +74,56 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Add_Item_toDB_Click(object sender, EventArgs e)
         {
+            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
 
+            try
+            {
+                mySqlConnection.Open();
+
+                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
+                               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
+                {
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+                    cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
+                    cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
+                    cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
+                    cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
+                    cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
+                    cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                    cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Barcode Data inserted successfully!");
+                        //PullDataFromDB();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to insert data.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+                AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
+                if (AddItemForm != null)
+                {
+                    AddItemForm.Hide();
+                }
+            }
+        }
+        private void InitializePage()
+        {
+            PicFilePath = null;
         }
     }
 }

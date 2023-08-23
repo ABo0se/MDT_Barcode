@@ -36,10 +36,10 @@
             // BarcodeID
             // 
             this.BarcodeID.AutoSize = true;
-            this.BarcodeID.Font = new System.Drawing.Font("Garena_Onmyoji_UI1", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeID.Location = new System.Drawing.Point(12, 21);
+            this.BarcodeID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.BarcodeID.Location = new System.Drawing.Point(12, 16);
             this.BarcodeID.Name = "BarcodeID";
-            this.BarcodeID.Size = new System.Drawing.Size(87, 17);
+            this.BarcodeID.Size = new System.Drawing.Size(89, 27);
             this.BarcodeID.TabIndex = 0;
             this.BarcodeID.Text = "Barcode-ID : ";
             // 
@@ -52,9 +52,10 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(513, 19);
+            this.SearchButton.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SearchButton.Location = new System.Drawing.Point(513, 17);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(94, 23);
+            this.SearchButton.Size = new System.Drawing.Size(94, 26);
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;

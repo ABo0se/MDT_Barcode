@@ -89,6 +89,7 @@
             this.Name = "MainMenu";
             this.Text = "MDT Inventory";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Exit_Application);
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

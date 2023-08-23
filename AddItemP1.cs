@@ -49,7 +49,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //InitializeBarcode
             BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeText);
             barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
-            QRText.Text = "Please kindly scan barcode on your desired product.";
+            QRText.Text = "กรุณาสแกน Barcode ครุภัณฑ์ของท่าน.";
             BarcodeText.Text = "";
         }
         private void AddItemP1_Load(object sender, EventArgs e)

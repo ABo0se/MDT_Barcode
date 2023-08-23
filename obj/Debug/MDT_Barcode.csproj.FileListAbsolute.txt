@@ -46,3 +46,4 @@ D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.CoreCompileInput
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT_Barcode.csproj.CopyComplete
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB Barcode Scanner Tutorial - C-Sharp.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB Barcode Scanner Tutorial - C-Sharp.pdb
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.ShowItem.resources

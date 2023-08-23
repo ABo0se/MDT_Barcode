@@ -37,8 +37,8 @@
             this.Room = new System.Windows.Forms.Label();
             this.Add_Pic = new System.Windows.Forms.Button();
             this.BarcodeID_TB = new System.Windows.Forms.TextBox();
-            this.Product_Name_TB = new System.Windows.Forms.TextBox();
             this.Model_TB = new System.Windows.Forms.TextBox();
+            this.Brand_TB = new System.Windows.Forms.TextBox();
             this.Serial_TB = new System.Windows.Forms.TextBox();
             this.Price_TB = new System.Windows.Forms.TextBox();
             this.Room_TB = new System.Windows.Forms.TextBox();
@@ -55,6 +55,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(125, 15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(300, 225);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -142,19 +143,19 @@
             this.BarcodeID_TB.TabIndex = 8;
             this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
             // 
-            // Product_Name_TB
-            // 
-            this.Product_Name_TB.Location = new System.Drawing.Point(55, 277);
-            this.Product_Name_TB.Name = "Product_Name_TB";
-            this.Product_Name_TB.Size = new System.Drawing.Size(490, 23);
-            this.Product_Name_TB.TabIndex = 9;
-            // 
             // Model_TB
             // 
-            this.Model_TB.Location = new System.Drawing.Point(46, 302);
+            this.Model_TB.Location = new System.Drawing.Point(55, 277);
             this.Model_TB.Name = "Model_TB";
-            this.Model_TB.Size = new System.Drawing.Size(500, 23);
-            this.Model_TB.TabIndex = 10;
+            this.Model_TB.Size = new System.Drawing.Size(490, 23);
+            this.Model_TB.TabIndex = 9;
+            // 
+            // Brand_TB
+            // 
+            this.Brand_TB.Location = new System.Drawing.Point(46, 302);
+            this.Brand_TB.Name = "Brand_TB";
+            this.Brand_TB.Size = new System.Drawing.Size(500, 23);
+            this.Brand_TB.TabIndex = 10;
             // 
             // Serial_TB
             // 
@@ -216,8 +217,8 @@
             this.Controls.Add(this.Room_TB);
             this.Controls.Add(this.Price_TB);
             this.Controls.Add(this.Serial_TB);
+            this.Controls.Add(this.Brand_TB);
             this.Controls.Add(this.Model_TB);
-            this.Controls.Add(this.Product_Name_TB);
             this.Controls.Add(this.BarcodeID_TB);
             this.Controls.Add(this.Add_Pic);
             this.Controls.Add(this.Room);
@@ -247,8 +248,8 @@
         private System.Windows.Forms.Label Room;
         private System.Windows.Forms.Button Add_Pic;
         private System.Windows.Forms.TextBox BarcodeID_TB;
-        private System.Windows.Forms.TextBox Product_Name_TB;
         private System.Windows.Forms.TextBox Model_TB;
+        private System.Windows.Forms.TextBox Brand_TB;
         private System.Windows.Forms.TextBox Serial_TB;
         private System.Windows.Forms.TextBox Price_TB;
         private System.Windows.Forms.TextBox Room_TB;

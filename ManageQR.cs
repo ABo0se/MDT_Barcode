@@ -27,7 +27,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
         {
             BarcodeSearchBox.Text = e.Barcode;
-            AddDataToDatabase(e.Barcode);
+            //AddDataToDatabase(e.Barcode);
             //StoreData(e.Barcode);
         }
         private void InitializeApplication()
