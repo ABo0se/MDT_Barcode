@@ -61,6 +61,7 @@
             this.Controls.Add(this.QRText);
             this.Name = "AddItemP1";
             this.Text = "Add your item";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddItemFormClosed);
             this.Load += new System.EventHandler(this.AddItemP1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

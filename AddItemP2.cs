@@ -57,6 +57,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // You can call a method to process the file with the selectedFilePath
                 // Load the selected image into the PictureBox
                 Image selectedImage = Image.FromFile(selectedFilePath);
+                
                 pictureBox1.Image = selectedImage;
                 PicFilePath = selectedFilePath;
             }

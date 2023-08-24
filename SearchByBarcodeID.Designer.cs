@@ -71,6 +71,7 @@
             this.Controls.Add(this.BarcodeID);
             this.Name = "Search";
             this.Text = "Search barcode";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing);
             this.Load += new System.EventHandler(this.Search_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

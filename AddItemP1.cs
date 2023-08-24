@@ -27,9 +27,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             QRText.Text = "Retrieving barcode product data.";
             BarcodeText.Text = e.Barcode;
+            List<string> dbData = new List<string>();
 
             string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            List<string> dbData = new List<string>();
+            
 
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
@@ -78,7 +79,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             AddItemP1 AddItemForm1 = MainMenu.initializedForms.Find(f => f is AddItemP1) as AddItemP1;
             AddItemP2 AddItemForm2 = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
-            if (AddItemForm2 != null)
+            if (AddItemForm2 != null && AddItemForm1 != null)
             {
                 AddItemForm1.Hide();
                 AddItemForm2.Show();
@@ -109,7 +110,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         }
 
-        private void FormClosing(object sender, FormClosingEventArgs e)
+
+        private void AddItemFormClosed(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {

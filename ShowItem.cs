@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,19 +20,88 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         public void AssignBarcodeText(string barcodetext)
         {
-            BarcodeID_TB.Text = barcodetext;
+            if (TryFetchDataBySerialCode(barcodetext, out SRResults data))
+            {
+                //DisplayData
+                BarcodeID_TXT.Text = data.BarcodeNumber;
+                ModelName_TXT.Text = data.ModelNumber;
+                Brand_TXT.Text = data.Brand;
+                SN_TXT.Text = data.SerialNum;
+                Price_TXT.Text = data.Price;
+                Stay_TXT.Text = data.Room;
+                Note_TXT.Text = data.Description;
+                Image selectedImage = Image.FromFile(data.FilePath);
+
+                pictureBox1.Image = selectedImage;
+                pictureBox1.Refresh();
+            }
+        }
+
+        private bool TryFetchDataBySerialCode(string serialCode, out SRResults data)
+        {
+            data = null;
+            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
+            try
+            {
+                mySqlConnection.Open();
+                string selectQuery = "SELECT * FROM information WHERE BarcodeNumber = @BarcodeNumber";
+
+                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+                {
+                    command.Parameters.AddWithValue("@BarcodeNumber", serialCode);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    {
+
+                        while (reader.Read())
+                        {
+                            data = new SRResults
+                            {
+                                BarcodeNumber = reader["BarcodeNumber"].ToString(),
+                                ModelNumber = reader["Model_Name"].ToString(),
+                                Brand = reader["Brand"].ToString(),
+                                SerialNum = reader["Serial_Number"].ToString(),
+                                Price = reader["Price"].ToString(),
+                                Room = reader["Room"].ToString(),
+                                FilePath = reader["Pic"].ToString(),
+                                Description = reader["Note"].ToString(),
+                                // ... and so on for other properties
+                            };
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                
+            }
+            if (data != null)
+                return true;
+            else
+                return false;
+        }
+
+        public class SRResults
+        {
+            public string BarcodeNumber { get; set; }
+            public string ModelNumber { get; set; }
+            public string Brand { get; set; }
+            public string SerialNum { get; set; }
+            public string Price { get; set; }
+            public string Room { get; set; }
+            public string FilePath { get; set; }
+            public string Description { get; set; }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void AddItemP2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void Created_Time_Click(object sender, EventArgs e)
         {
 
@@ -40,25 +111,55 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
 
         }
-
-        private void Add_Pic_Click(object sender, EventArgs e)
+        public void InitializePage()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Files (*.*)|*.*"; // Set the file filter if needed
-            openFileDialog.Title = "Select a File to Upload";
+            BarcodeID_TXT.Text = string.Empty;
+            ModelName_TXT.Text = string.Empty;
+            Brand_TXT.Text = string.Empty;
+            SN_TXT.Text = string.Empty;
+            Price_TXT.Text = string.Empty;
+            Stay_TXT.Text = string.Empty;
+            Note_TXT.Text = string.Empty;
+            //pictureBox1.Image = null;
+        }
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-                // Handle the selected file path (e.g., upload it or process it)
-                // You can call a method to process the file with the selectedFilePath
-                // Load the selected image into the PictureBox
-                Image selectedImage = Image.FromFile(selectedFilePath);
-                pictureBox1.Image = selectedImage;
-            }
+        public void ShowItemDetail(string Barcodetext)
+        {
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "All Files (*.*)|*.*"; // Set the file filter if needed
+            //openFileDialog.Title = "Select a File to Upload";
+
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    string selectedFilePath = openFileDialog.FileName;
+            //    // Handle the selected file path (e.g., upload it or process it)
+            //    // You can call a method to process the file with the selectedFilePath
+            //    // Load the selected image into the PictureBox
+            //    Image selectedImage = Image.FromFile(selectedFilePath);
+
+            //    pictureBox1.Image = selectedImage;
+            //}
+        }
+        private void ShowItem_Load(object sender, EventArgs e)
+        {
+            InitializePage();
+        }
+
+        private void ShowForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void BarcodeID_TXT_Click(object sender, EventArgs e)
         {
 
         }

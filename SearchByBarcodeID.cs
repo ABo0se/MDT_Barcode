@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using USB_Barcode_Scanner;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -21,14 +22,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Search_Load(object sender, EventArgs e)
         {
-
+            InitializeApplication();
         }
-
+        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+        {
+            BarcodeText.Text = e.Barcode;
+            SearchBarcodeData(BarcodeText.Text);
+        }
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            SearchBarcodeData(BarcodeText.Text);
+        }
+        private void SearchBarcodeData(string barcode)
+        {
             List<string> dbData = new List<string>();
-
+            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
             try
@@ -49,11 +57,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
 
                 // Compare the data
-                bool isDataSame = dbData.Contains(BarcodeText.Text); // Check if the barcode is already in the database
+                bool isDataSame = dbData.Contains(barcode); // Check if the barcode is already in the database
 
                 if (isDataSame)
                 {
-                    
+                    ShowmyBarcodeItem(barcode);
                 }
                 else
                 {
@@ -68,6 +76,34 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 mySqlConnection.Close(); // Make sure to close the connection when done
             }
+        }
+        private void ShowmyBarcodeItem(string barcode)
+        {
+            Search SearchForm = MainMenu.initializedForms.Find(f => f is Search) as Search;
+            ShowItem ShowItemForm = MainMenu.initializedForms.Find(f => f is ShowItem) as ShowItem;
+            if (ShowItemForm != null)
+            {
+                SearchForm.Hide();
+                ShowItemForm.Show();
+                ShowItemForm.InitializePage();
+                ShowItemForm.AssignBarcodeText(barcode);
+            }
+        }
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
+        }
+        public void InitializeApplication()
+        {
+            //InitializeBarcode
+            BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeText);
+            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            //QRText.Text = "กรุณาสแกน Barcode ครุภัณฑ์ของท่าน.";
+            BarcodeText.Text = "";
         }
     }
 }
