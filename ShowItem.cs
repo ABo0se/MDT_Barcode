@@ -78,7 +78,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             finally
             {
-                
+                mySqlConnection.Close();
             }
             if (data != null)
                 return true;
@@ -120,7 +120,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Price_TXT.Text = string.Empty;
             Stay_TXT.Text = string.Empty;
             Note_TXT.Text = string.Empty;
-            //pictureBox1.Image = null;
+            pictureBox1.Image = null;
         }
 
         public void ShowItemDetail(string Barcodetext)
@@ -130,20 +130,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "All Files (*.*)|*.*"; // Set the file filter if needed
-            //openFileDialog.Title = "Select a File to Upload";
 
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    string selectedFilePath = openFileDialog.FileName;
-            //    // Handle the selected file path (e.g., upload it or process it)
-            //    // You can call a method to process the file with the selectedFilePath
-            //    // Load the selected image into the PictureBox
-            //    Image selectedImage = Image.FromFile(selectedFilePath);
-
-            //    pictureBox1.Image = selectedImage;
-            //}
         }
         private void ShowItem_Load(object sender, EventArgs e)
         {

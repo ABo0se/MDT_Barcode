@@ -35,6 +35,12 @@
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stay_At = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Search = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
@@ -74,7 +80,13 @@
             this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Tag,
             this.Time,
-            this.BCNumber});
+            this.BCNumber,
+            this.Model,
+            this.Brand,
+            this.Serial_Number,
+            this.Price,
+            this.Stay_At,
+            this.Note});
             this.BarcodenumberCollector.Location = new System.Drawing.Point(17, 71);
             this.BarcodenumberCollector.Name = "BarcodenumberCollector";
             this.BarcodenumberCollector.ReadOnly = true;
@@ -89,13 +101,13 @@
             this.Tag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Tag.FillWeight = 32.43243F;
             this.Tag.HeaderText = "#";
-            this.Tag.MinimumWidth = 6;
+            this.Tag.MinimumWidth = 30;
             this.Tag.Name = "Tag";
             this.Tag.ReadOnly = true;
             // 
             // Time
             // 
-            this.Time.HeaderText = "Time";
+            this.Time.HeaderText = "เวลาที่เพิ่มข้อมูล";
             this.Time.MinimumWidth = 6;
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
@@ -105,10 +117,58 @@
             // 
             this.BCNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.BCNumber.FillWeight = 167.5676F;
-            this.BCNumber.HeaderText = "BarcodeNumber";
+            this.BCNumber.HeaderText = "หมายเลขครุภัณฑ์";
             this.BCNumber.MinimumWidth = 6;
             this.BCNumber.Name = "BCNumber";
             this.BCNumber.ReadOnly = true;
+            // 
+            // Model
+            // 
+            this.Model.HeaderText = "ยี่ห้อ";
+            this.Model.MinimumWidth = 6;
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 125;
+            // 
+            // Brand
+            // 
+            this.Brand.HeaderText = "รุ่น";
+            this.Brand.MinimumWidth = 6;
+            this.Brand.Name = "Brand";
+            this.Brand.ReadOnly = true;
+            this.Brand.Width = 125;
+            // 
+            // Serial_Number
+            // 
+            this.Serial_Number.HeaderText = "Serial Number";
+            this.Serial_Number.MinimumWidth = 6;
+            this.Serial_Number.Name = "Serial_Number";
+            this.Serial_Number.ReadOnly = true;
+            this.Serial_Number.Width = 125;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "ราคา";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 125;
+            // 
+            // Stay_At
+            // 
+            this.Stay_At.HeaderText = "ประจำอยู่ที่";
+            this.Stay_At.MinimumWidth = 6;
+            this.Stay_At.Name = "Stay_At";
+            this.Stay_At.ReadOnly = true;
+            this.Stay_At.Width = 125;
+            // 
+            // Note
+            // 
+            this.Note.HeaderText = "หมายเหตุ";
+            this.Note.MinimumWidth = 6;
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            this.Note.Width = 125;
             // 
             // Search
             // 
@@ -134,6 +194,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ManageQR";
             this.Text = "USB Barcode Scanner Tutorial";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Manage_Close);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).EndInit();
             this.ResumeLayout(false);
@@ -147,10 +208,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView BarcodenumberCollector;
+        private System.Windows.Forms.Button Search;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn BCNumber;
-        private System.Windows.Forms.Button Search;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serial_Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stay_At;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
     }
 }
 

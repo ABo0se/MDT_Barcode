@@ -12,6 +12,9 @@ using Google.Protobuf.WellKnownTypes;
 using MySqlX.XDevAPI.Relational;
 using System.Collections;
 using Org.BouncyCastle.Utilities;
+using System.Management;
+using System.Data.SqlClient;
+using static USB_Barcode_Scanner_Tutorial___C_Sharp.ShowItem;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -34,85 +37,52 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             //barcodedata.Clear();
             BarcodenumberCollector.Rows.Clear();
-            PullDataFromDB();
+            SearchDatainDB();
+            //PullDataFromDB();
             ////////////////////////////////////
             //PullDataFromDatabase
         }
-        private void PullDataFromDB()
-        {
-            string mysqlCon = "server=127.0.0.1; user=root; database=barcodedatacollector; password =";
-            MySqlConnection mySqlConnection = new MySqlConnection(mysqlCon);
-            try
-            {
-                string query = "SELECT Time, BarcodeNumber FROM information";
-                mySqlConnection.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
-                {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Clear any existing rows
-                        BarcodenumberCollector.Rows.Clear();
-                        int numberofsortedItem = 1;
-                        // Read and load data into DataGridView
-                        while (reader.Read())
-                        {
-                            DateTime time = reader.GetDateTime("Time");
-                            string qrCodeText = reader.GetString("BarcodeNumber");
+        //private void PullDataFromDB()
+        //{
+        //    string mysqlCon = "server=127.0.0.1; user=root; database=barcodedatacollector; password =";
+        //    MySqlConnection mySqlConnection = new MySqlConnection(mysqlCon);
+        //    try
+        //    {
+        //        string query = "SELECT Time, BarcodeNumber FROM information";
+        //        mySqlConnection.Open();
+        //        using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
+        //        {
+        //            using (MySqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                // Clear any existing rows
+        //                BarcodenumberCollector.Rows.Clear();
+        //                int numberofsortedItem = 1;
+        //                // Read and load data into DataGridView
+        //                while (reader.Read())
+        //                {
+        //                    DateTime time = reader.GetDateTime("Time");
+        //                    string qrCodeText = reader.GetString("BarcodeNumber");
 
-                            // Add a new row to the DataGridView
-                            BarcodenumberCollector.Rows.Add(numberofsortedItem, time, qrCodeText);
-                            numberofsortedItem++;
-                        }
-                    }
-                }
-                //MessageBox.Show("Connection succeed.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                mySqlConnection.Close();
-            }
-        }
+        //                    // Add a new row to the DataGridView
+        //                    BarcodenumberCollector.Rows.Add(numberofsortedItem, time, qrCodeText);
+        //                    numberofsortedItem++;
+        //                }
+        //            }
+        //        }
+        //        //MessageBox.Show("Connection succeed.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        mySqlConnection.Close();
+        //    }
+        //}
         private void AddDataToDatabase(string barcodetext)
         {
-            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
-
-            try
-            {
-                mySqlConnection.Open();
-
-                string query = "INSERT INTO information (BarcodeNumber) " +
-                               "VALUES (@BarcodeNumber)";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
-                {
-                    cmd.Parameters.AddWithValue("@BarcodeNumber", barcodetext);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Barcode Data inserted successfully!");
-                        PullDataFromDB();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to insert data.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
-            finally
-            {
-                mySqlConnection.Close();
-            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -128,7 +98,87 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void BarcodeSearchBox_TextChanged(object sender, EventArgs e)
         {
-
+            SearchDatainDB();
         }
+        private void SearchDatainDB()
+        {
+            List<SRResults2> ResultDataList = new List<SRResults2>();
+            ResultDataList.Clear();
+            /////////////////
+            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
+
+            try
+            {
+                mySqlConnection.Open();
+
+                string query = "SELECT * FROM information WHERE BarcodeNumber LIKE @searchCriteria";
+
+                using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
+                {
+                    command.Parameters.AddWithValue("@searchCriteria", BarcodeSearchBox.Text + "%");
+                    MySqlDataReader reader = command.ExecuteReader();
+                    {
+                        while (reader.Read())
+                        {
+                            SRResults2 data2 = new SRResults2
+                            {
+                                Date = reader.GetDateTime("Time"),
+                                BarcodeNumber = reader["BarcodeNumber"].ToString(),
+                                ModelNumber = reader["Model_Name"].ToString(),
+                                Brand = reader["Brand"].ToString(),
+                                SerialNum = reader["Serial_Number"].ToString(),
+                                Price = reader["Price"].ToString(),
+                                Room = reader["Room"].ToString(),
+                                Description = reader["Note"].ToString(),
+                            };
+                            ResultDataList.Add(data2);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                //AddDataToGridView
+                BarcodenumberCollector.Rows.Clear();
+                int numberofsortedItem = 0;
+                foreach (SRResults2 result in ResultDataList)
+                {
+                    BarcodenumberCollector.Rows.Add
+                    (numberofsortedItem, result.Date, result.BarcodeNumber, result.ModelNumber,
+                     result.Brand, result.SerialNum, result.Price, result.Room,
+                     result.Description);
+                    numberofsortedItem++;
+                }
+
+                // Add a new row to the DataGridView
+
+                ///////////////////////////
+                mySqlConnection.Close();
+            }
+        }
+        private void Manage_Close(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
+        }
+    }
+    public class SRResults2
+    {
+        public DateTime Date { get; set; }
+        public string BarcodeNumber { get; set; }
+        public string ModelNumber { get; set; }
+        public string Brand { get; set; }
+        public string SerialNum { get; set; }
+        public string Price { get; set; }
+        public string Room { get; set; }
+        public string Description { get; set; }
     }
 }
