@@ -230,6 +230,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "AddItemP2";
             this.Text = "Add barcode Item";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

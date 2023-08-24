@@ -12,6 +12,7 @@ using Google.Protobuf.WellKnownTypes;
 using MySqlX.XDevAPI.Relational;
 using System.Collections;
 using Org.BouncyCastle.Utilities;
+using System.Data.SqlClient;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -26,8 +27,53 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             QRText.Text = "Retrieving barcode product data.";
             BarcodeText.Text = e.Barcode;
-            AddItem2(e.Barcode);
+
+            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            List<string> dbData = new List<string>();
+
+            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
+
+            try
+            {
+                mySqlConnection.Open();
+                string selectQuery = "SELECT BarcodeNumber FROM information";
+
+                // Use MySqlCommand instead of SqlCommand for MySQL
+                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+
+                // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string rowData = reader["BarcodeNumber"].ToString();
+                    dbData.Add(rowData);
+                }
+
+                // Compare the data
+                bool isDataSame = dbData.Contains(e.Barcode); // Check if the barcode is already in the database
+
+                if (isDataSame)
+                {
+                    MessageBox.Show("การเพิ่มครุภัณฑ์ล้มเหลว! เนื่องจากซ้ำกับข้อมูลที่มีอยู่ในฐานข้อมูล");
+                }
+                else
+                {
+                    AddItem2(e.Barcode);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close(); // Make sure to close the connection when done
+            }
         }
+
+
+
         private void AddItem2(string barcode)
         {
             AddItemP1 AddItemForm1 = MainMenu.initializedForms.Find(f => f is AddItemP1) as AddItemP1;
@@ -36,6 +82,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 AddItemForm1.Hide();
                 AddItemForm2.Show();
+                AddItemForm2.InitializePage();
                 AddItemForm2.AssignBarcodeText(barcode);
             }
         }
@@ -44,7 +91,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
 
         }
-        private void InitializeApplication()
+        public void InitializeApplication()
         {
             //InitializeBarcode
             BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeText);
@@ -60,6 +107,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void BarcodeText_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
         }
     }
 }

@@ -59,6 +59,7 @@
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // Search
             // 
@@ -70,6 +71,7 @@
             this.Controls.Add(this.BarcodeID);
             this.Name = "Search";
             this.Text = "Search barcode";
+            this.Load += new System.EventHandler(this.Search_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

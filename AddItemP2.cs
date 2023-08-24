@@ -121,9 +121,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
         }
-        private void InitializePage()
+        public void InitializePage()
         {
             PicFilePath = null;
+            BarcodeID_TB.Text = "";
+            Model_TB.Text = "";
+            Brand_TB.Text = "";
+            Serial_TB.Text = "";
+            Price_TB.Text = "";
+            Room_TB.Text = "";
+            Note_TB.Text = "";
+        }
+
+        private void Form_Closing3(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
         }
     }
 }
