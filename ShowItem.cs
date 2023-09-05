@@ -12,47 +12,71 @@ using System.Windows.Forms;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
-    public partial class ShowItem : Form
+    public partial class ShowItem : Form, IDisposable
     {
+        private bool disposed = false;
+        private MySqlConnection mySqlConnection;
+
+        private class SRResults
+        {
+            public string BarcodeNumber { get; set; }
+            public string ModelNumber { get; set; }
+            public string Brand { get; set; }
+            public string SerialNum { get; set; }
+            public string Price { get; set; }
+            public string Room { get; set; }
+            public string FilePath { get; set; }
+            public string Description { get; set; }
+        }
+
         public ShowItem()
         {
             InitializeComponent();
+            mySqlConnection = new MySqlConnection("server=127.0.0.1; user=root; database=barcodedatacollector; password=");
         }
-        public void AssignBarcodeText(string barcodetext)
-        {
-            if (TryFetchDataBySerialCode(barcodetext, out SRResults data))
-            {
-                //DisplayData
-                BarcodeID_TXT.Text = data.BarcodeNumber;
-                ModelName_TXT.Text = data.ModelNumber;
-                Brand_TXT.Text = data.Brand;
-                SN_TXT.Text = data.SerialNum;
-                Price_TXT.Text = data.Price;
-                Stay_TXT.Text = data.Room;
-                Note_TXT.Text = data.Description;
-                Image selectedImage = Image.FromFile(data.FilePath);
 
-                pictureBox1.Image = selectedImage;
-                pictureBox1.Refresh();
+        private void ShowItem_Load(object sender, EventArgs e)
+        {
+            InitializePage();
+        }
+
+        private void ShowForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
+
+        public void ShowItemDetail(string barcodeText)
+        {
+            AssignBarcodeText(barcodeText);
+        }
+
+        public void AssignBarcodeText(string barcodeText)
+        {
+            if (TryFetchDataBySerialCode(barcodeText, out SRResults data))
+            {
+                DisplayData(data);
             }
         }
 
         private bool TryFetchDataBySerialCode(string serialCode, out SRResults data)
         {
             data = null;
-            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
+
             try
             {
                 mySqlConnection.Open();
                 string selectQuery = "SELECT * FROM information WHERE BarcodeNumber = @BarcodeNumber";
 
-                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+                using (MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection))
                 {
                     command.Parameters.AddWithValue("@BarcodeNumber", serialCode);
-                    MySqlDataReader reader = command.ExecuteReader();
-                    {
 
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
                         while (reader.Read())
                         {
                             data = new SRResults
@@ -65,88 +89,84 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 Room = reader["Room"].ToString(),
                                 FilePath = reader["Pic"].ToString(),
                                 Description = reader["Note"].ToString(),
-                                // ... and so on for other properties
                             };
                             return true;
                         }
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
                 mySqlConnection.Close();
             }
-            if (data != null)
-                return true;
-            else
-                return false;
+            return false;
         }
 
-        public class SRResults
+        private void DisplayData(SRResults data)
         {
-            public string BarcodeNumber { get; set; }
-            public string ModelNumber { get; set; }
-            public string Brand { get; set; }
-            public string SerialNum { get; set; }
-            public string Price { get; set; }
-            public string Room { get; set; }
-            public string FilePath { get; set; }
-            public string Description { get; set; }
+            BarcodeID_TXT.Text = data.BarcodeNumber;
+            ModelName_TXT.Text = data.ModelNumber;
+            Brand_TXT.Text = data.Brand;
+            SN_TXT.Text = data.SerialNum;
+            Price_TXT.Text = data.Price;
+            Stay_TXT.Text = data.Room;
+            Note_TXT.Text = data.Description;
+
+            // Dispose of previous image (if any)
+            pictureBox1.Image?.Dispose();
+
+            // Load and display the new image
+            pictureBox1.Image = Image.FromFile(data.FilePath);
+            pictureBox1.Refresh();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void Created_Time_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Room_Click(object sender, EventArgs e)
-        {
-
-        }
         public void InitializePage()
         {
-            BarcodeID_TXT.Text = string.Empty;
-            ModelName_TXT.Text = string.Empty;
-            Brand_TXT.Text = string.Empty;
-            SN_TXT.Text = string.Empty;
-            Price_TXT.Text = string.Empty;
-            Stay_TXT.Text = string.Empty;
-            Note_TXT.Text = string.Empty;
+            BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = string.Empty;
+
+            // Dispose of previous image (if any)
+            pictureBox1.Image?.Dispose();
             pictureBox1.Image = null;
         }
 
-        public void ShowItemDetail(string Barcodetext)
+        protected override void Dispose(bool disposing)
         {
+            if (disposing)
+            {
+                // Release any managed resources here
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+                pictureBox1.Image?.Dispose();
+            }
 
+            base.Dispose(disposing);
+        }
+
+        public new void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~ShowItem()
+        {
+            Dispose(false);
+        }
+
+        // Other event handler methods...
+
+        private void BarcodeID_TXT_Click(object sender, EventArgs e)
+        {
+            // You can add logic here if needed
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void ShowItem_Load(object sender, EventArgs e)
-        {
-            InitializePage();
-        }
-
-        private void ShowForm_Closing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                e.Cancel = true; // Prevent the form from closing
-                this.Hide();      // Hide the form instead
-            }
-        }
-
-        private void BarcodeID_TXT_Click(object sender, EventArgs e)
         {
 
         }

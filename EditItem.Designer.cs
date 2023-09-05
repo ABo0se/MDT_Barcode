@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BarcodeID = new System.Windows.Forms.Label();
+            this.Barcode_ID = new System.Windows.Forms.Label();
             this.Product_Name = new System.Windows.Forms.Label();
             this.Created_Time = new System.Windows.Forms.Label();
             this.Price = new System.Windows.Forms.Label();
@@ -37,12 +37,14 @@
             this.Room = new System.Windows.Forms.Label();
             this.Add_Pic = new System.Windows.Forms.Button();
             this.BarcodeID_TB = new System.Windows.Forms.TextBox();
-            this.Product_Name_TB = new System.Windows.Forms.TextBox();
-            this.Created_Time_TB = new System.Windows.Forms.TextBox();
+            this.Model_TB = new System.Windows.Forms.TextBox();
+            this.Brand_TB = new System.Windows.Forms.TextBox();
+            this.Serial_TB = new System.Windows.Forms.TextBox();
             this.Price_TB = new System.Windows.Forms.TextBox();
-            this.Attendant_TB = new System.Windows.Forms.TextBox();
             this.Room_TB = new System.Windows.Forms.TextBox();
             this.Edit_Item_toDB = new System.Windows.Forms.Button();
+            this.Note_TB = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,136 +55,179 @@
             this.pictureBox1.Location = new System.Drawing.Point(125, 15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(300, 225);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // BarcodeID
+            // Barcode_ID
             // 
-            this.BarcodeID.AutoSize = true;
-            this.BarcodeID.Location = new System.Drawing.Point(13, 255);
-            this.BarcodeID.Name = "BarcodeID";
-            this.BarcodeID.Size = new System.Drawing.Size(81, 15);
-            this.BarcodeID.TabIndex = 1;
-            this.BarcodeID.Text = "Barcode-ID : ";
-            this.BarcodeID.Click += new System.EventHandler(this.label1_Click);
+            this.Barcode_ID.AutoSize = true;
+            this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Barcode_ID.Location = new System.Drawing.Point(13, 255);
+            this.Barcode_ID.Name = "Barcode_ID";
+            this.Barcode_ID.Size = new System.Drawing.Size(120, 27);
+            this.Barcode_ID.TabIndex = 1;
+            this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ : ";
+            this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
             // 
             // Product_Name
             // 
             this.Product_Name.AutoSize = true;
-            this.Product_Name.Location = new System.Drawing.Point(13, 280);
+            this.Product_Name.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Product_Name.Location = new System.Drawing.Point(13, 298);
             this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Size = new System.Drawing.Size(94, 15);
+            this.Product_Name.Size = new System.Drawing.Size(48, 27);
             this.Product_Name.TabIndex = 2;
-            this.Product_Name.Text = "Product name : ";
+            this.Product_Name.Text = "ยี่ห้อ : ";
             // 
             // Created_Time
             // 
             this.Created_Time.AutoSize = true;
-            this.Created_Time.Location = new System.Drawing.Point(13, 305);
+            this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Created_Time.Location = new System.Drawing.Point(13, 341);
             this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(86, 15);
+            this.Created_Time.Size = new System.Drawing.Size(39, 27);
             this.Created_Time.TabIndex = 3;
-            this.Created_Time.Text = "Created time : ";
+            this.Created_Time.Text = "รุ่น : ";
+            this.Created_Time.Click += new System.EventHandler(this.Created_Time_Click);
             // 
             // Price
             // 
             this.Price.AutoSize = true;
-            this.Price.Location = new System.Drawing.Point(13, 330);
+            this.Price.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Price.Location = new System.Drawing.Point(13, 384);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(43, 15);
+            this.Price.Size = new System.Drawing.Size(110, 27);
             this.Price.TabIndex = 4;
-            this.Price.Text = "Price : ";
+            this.Price.Text = "Serial Number : ";
             // 
             // Attendant
             // 
             this.Attendant.AutoSize = true;
-            this.Attendant.Location = new System.Drawing.Point(13, 355);
+            this.Attendant.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Attendant.Location = new System.Drawing.Point(13, 427);
             this.Attendant.Name = "Attendant";
-            this.Attendant.Size = new System.Drawing.Size(71, 15);
+            this.Attendant.Size = new System.Drawing.Size(50, 27);
             this.Attendant.TabIndex = 5;
-            this.Attendant.Text = "Attendant : ";
+            this.Attendant.Text = "ราคา : ";
             // 
             // Room
             // 
             this.Room.AutoSize = true;
-            this.Room.Location = new System.Drawing.Point(13, 380);
+            this.Room.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Room.Location = new System.Drawing.Point(13, 470);
             this.Room.Name = "Room";
-            this.Room.Size = new System.Drawing.Size(49, 15);
+            this.Room.Size = new System.Drawing.Size(84, 27);
             this.Room.TabIndex = 6;
-            this.Room.Text = "Room : ";
+            this.Room.Text = "ประจำอยู่ที่ : ";
+            this.Room.Click += new System.EventHandler(this.Room_Click);
             // 
             // Add_Pic
             // 
-            this.Add_Pic.Location = new System.Drawing.Point(12, 406);
+            this.Add_Pic.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Add_Pic.Location = new System.Drawing.Point(18, 550);
             this.Add_Pic.Name = "Add_Pic";
-            this.Add_Pic.Size = new System.Drawing.Size(115, 25);
+            this.Add_Pic.Size = new System.Drawing.Size(115, 35);
             this.Add_Pic.TabIndex = 7;
-            this.Add_Pic.Text = "+ Upload picture";
+            this.Add_Pic.Text = "+ อัพโหลดรูปภาพ";
             this.Add_Pic.UseVisualStyleBackColor = true;
+            this.Add_Pic.Click += new System.EventHandler(this.Add_Pic_Click);
             // 
             // BarcodeID_TB
             // 
-            this.BarcodeID_TB.Location = new System.Drawing.Point(100, 252);
+            this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.BarcodeID_TB.Location = new System.Drawing.Point(129, 252);
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.ReadOnly = true;
-            this.BarcodeID_TB.Size = new System.Drawing.Size(445, 23);
+            this.BarcodeID_TB.Size = new System.Drawing.Size(416, 34);
             this.BarcodeID_TB.TabIndex = 8;
+            this.BarcodeID_TB.TabStop = false;
+            this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
             // 
-            // Product_Name_TB
+            // Model_TB
             // 
-            this.Product_Name_TB.Location = new System.Drawing.Point(113, 277);
-            this.Product_Name_TB.Name = "Product_Name_TB";
-            this.Product_Name_TB.Size = new System.Drawing.Size(432, 23);
-            this.Product_Name_TB.TabIndex = 9;
+            this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Model_TB.Location = new System.Drawing.Point(55, 295);
+            this.Model_TB.Name = "Model_TB";
+            this.Model_TB.Size = new System.Drawing.Size(490, 34);
+            this.Model_TB.TabIndex = 1;
+            this.Model_TB.TextChanged += new System.EventHandler(this.Model_TB_TextChanged);
             // 
-            // Created_Time_TB
+            // Brand_TB
             // 
-            this.Created_Time_TB.Location = new System.Drawing.Point(100, 302);
-            this.Created_Time_TB.Name = "Created_Time_TB";
-            this.Created_Time_TB.Size = new System.Drawing.Size(445, 23);
-            this.Created_Time_TB.TabIndex = 10;
+            this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Brand_TB.Location = new System.Drawing.Point(45, 338);
+            this.Brand_TB.Name = "Brand_TB";
+            this.Brand_TB.Size = new System.Drawing.Size(500, 34);
+            this.Brand_TB.TabIndex = 2;
+            // 
+            // Serial_TB
+            // 
+            this.Serial_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Serial_TB.Location = new System.Drawing.Point(117, 381);
+            this.Serial_TB.Name = "Serial_TB";
+            this.Serial_TB.Size = new System.Drawing.Size(428, 34);
+            this.Serial_TB.TabIndex = 3;
             // 
             // Price_TB
             // 
-            this.Price_TB.Location = new System.Drawing.Point(62, 327);
+            this.Price_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Price_TB.Location = new System.Drawing.Point(59, 424);
             this.Price_TB.Name = "Price_TB";
-            this.Price_TB.Size = new System.Drawing.Size(483, 23);
-            this.Price_TB.TabIndex = 11;
-            // 
-            // Attendant_TB
-            // 
-            this.Attendant_TB.Location = new System.Drawing.Point(90, 352);
-            this.Attendant_TB.Name = "Attendant_TB";
-            this.Attendant_TB.Size = new System.Drawing.Size(455, 23);
-            this.Attendant_TB.TabIndex = 12;
+            this.Price_TB.Size = new System.Drawing.Size(486, 34);
+            this.Price_TB.TabIndex = 4;
             // 
             // Room_TB
             // 
-            this.Room_TB.Location = new System.Drawing.Point(62, 377);
+            this.Room_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Room_TB.Location = new System.Drawing.Point(92, 467);
             this.Room_TB.Name = "Room_TB";
-            this.Room_TB.Size = new System.Drawing.Size(483, 23);
-            this.Room_TB.TabIndex = 13;
+            this.Room_TB.Size = new System.Drawing.Size(453, 34);
+            this.Room_TB.TabIndex = 5;
             // 
             // Edit_Item_toDB
             // 
-            this.Edit_Item_toDB.Location = new System.Drawing.Point(430, 406);
+            this.Edit_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Edit_Item_toDB.Location = new System.Drawing.Point(430, 550);
             this.Edit_Item_toDB.Name = "Edit_Item_toDB";
-            this.Edit_Item_toDB.Size = new System.Drawing.Size(115, 25);
+            this.Edit_Item_toDB.Size = new System.Drawing.Size(115, 35);
             this.Edit_Item_toDB.TabIndex = 14;
-            this.Edit_Item_toDB.Text = "Edit item";
+            this.Edit_Item_toDB.Text = "แก้ไขสิ่งของ";
             this.Edit_Item_toDB.UseVisualStyleBackColor = true;
+            this.Edit_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
+            // 
+            // Note_TB
+            // 
+            this.Note_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Note_TB.Location = new System.Drawing.Point(83, 510);
+            this.Note_TB.Name = "Note_TB";
+            this.Note_TB.Size = new System.Drawing.Size(462, 34);
+            this.Note_TB.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 513);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 27);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "หมายเหตุ : ";
             // 
             // EditItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 438);
+            this.ClientSize = new System.Drawing.Size(557, 593);
+            this.Controls.Add(this.Note_TB);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Edit_Item_toDB);
             this.Controls.Add(this.Room_TB);
-            this.Controls.Add(this.Attendant_TB);
             this.Controls.Add(this.Price_TB);
-            this.Controls.Add(this.Created_Time_TB);
-            this.Controls.Add(this.Product_Name_TB);
+            this.Controls.Add(this.Serial_TB);
+            this.Controls.Add(this.Brand_TB);
+            this.Controls.Add(this.Model_TB);
             this.Controls.Add(this.BarcodeID_TB);
             this.Controls.Add(this.Add_Pic);
             this.Controls.Add(this.Room);
@@ -190,10 +235,12 @@
             this.Controls.Add(this.Price);
             this.Controls.Add(this.Created_Time);
             this.Controls.Add(this.Product_Name);
-            this.Controls.Add(this.BarcodeID);
+            this.Controls.Add(this.Barcode_ID);
             this.Controls.Add(this.pictureBox1);
             this.Name = "EditItem";
             this.Text = "Edit barcode Item";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
+            this.Load += new System.EventHandler(this.AddItemP2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -203,7 +250,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label BarcodeID;
+        private System.Windows.Forms.Label Barcode_ID;
         private System.Windows.Forms.Label Product_Name;
         private System.Windows.Forms.Label Created_Time;
         private System.Windows.Forms.Label Price;
@@ -211,11 +258,13 @@
         private System.Windows.Forms.Label Room;
         private System.Windows.Forms.Button Add_Pic;
         private System.Windows.Forms.TextBox BarcodeID_TB;
-        private System.Windows.Forms.TextBox Product_Name_TB;
-        private System.Windows.Forms.TextBox Created_Time_TB;
+        private System.Windows.Forms.TextBox Model_TB;
+        private System.Windows.Forms.TextBox Brand_TB;
+        private System.Windows.Forms.TextBox Serial_TB;
         private System.Windows.Forms.TextBox Price_TB;
-        private System.Windows.Forms.TextBox Attendant_TB;
         private System.Windows.Forms.TextBox Room_TB;
         private System.Windows.Forms.Button Edit_Item_toDB;
+        private System.Windows.Forms.TextBox Note_TB;
+        private System.Windows.Forms.Label label1;
     }
 }

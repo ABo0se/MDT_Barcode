@@ -11,14 +11,14 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposing && (components != null))
+        //    {
+        //        components.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         #region Windows Form Designer generated code
 
@@ -55,7 +55,6 @@
             this.Barcode_ID.Size = new System.Drawing.Size(116, 27);
             this.Barcode_ID.TabIndex = 1;
             this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ :";
-            this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
             // 
             // Product_Name
             // 
@@ -76,7 +75,6 @@
             this.Created_Time.Size = new System.Drawing.Size(35, 27);
             this.Created_Time.TabIndex = 3;
             this.Created_Time.Text = "รุ่น :";
-            this.Created_Time.Click += new System.EventHandler(this.Created_Time_Click);
             // 
             // Price
             // 
@@ -107,7 +105,6 @@
             this.Room.Size = new System.Drawing.Size(80, 27);
             this.Room.TabIndex = 6;
             this.Room.Text = "ประจำอยู่ที่ :";
-            this.Room.Click += new System.EventHandler(this.Room_Click);
             // 
             // label1
             // 

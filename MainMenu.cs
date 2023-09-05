@@ -41,6 +41,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (AddItemForm != null)
             {
                 AddItemForm.Show();
+                AddItemForm.InitializeApplication();
             }
         }
         private void Search_Click(object sender, EventArgs e)
@@ -57,6 +58,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (ManageQRForm != null)
             {
                 ManageQRForm.Show();
+                ManageQRForm.SearchDatainDB();
             }
         }
         private void Exit_Application(object sender, FormClosedEventArgs e)

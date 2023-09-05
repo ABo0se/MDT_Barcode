@@ -45,17 +45,18 @@
             // 
             // BarcodeText
             // 
-            this.BarcodeText.Location = new System.Drawing.Point(99, 18);
+            this.BarcodeText.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.BarcodeText.Location = new System.Drawing.Point(99, 13);
             this.BarcodeText.Name = "BarcodeText";
-            this.BarcodeText.Size = new System.Drawing.Size(408, 23);
+            this.BarcodeText.Size = new System.Drawing.Size(408, 34);
             this.BarcodeText.TabIndex = 1;
             // 
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SearchButton.Location = new System.Drawing.Point(513, 17);
+            this.SearchButton.Location = new System.Drawing.Point(513, 14);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(94, 26);
+            this.SearchButton.Size = new System.Drawing.Size(95, 30);
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -65,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 53);
+            this.ClientSize = new System.Drawing.Size(617, 58);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.BarcodeText);
             this.Controls.Add(this.BarcodeID);
