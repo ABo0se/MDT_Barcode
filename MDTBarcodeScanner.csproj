@@ -208,6 +208,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\THSarabunNew.ttf" />
+    <None Include="Resources\TH_Sarabun_New_Font.bmp" />
     <None Include="Images\search.png" />
     <None Include="Images\EditIcon.png" />
     <None Include="Images\DeleteIcon.png" />

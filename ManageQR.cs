@@ -131,7 +131,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
                         {
                             string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            EditBarcode(barcodevalue);
+                            SearchBarcode(barcodevalue);
                         }
                         break;
                     case 1:
