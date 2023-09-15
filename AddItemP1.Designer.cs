@@ -36,7 +36,8 @@
             // 
             this.QRText.AutoSize = true;
             this.QRText.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.QRText.Location = new System.Drawing.Point(19, 18);
+            this.QRText.Location = new System.Drawing.Point(14, 20);
+            this.QRText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.QRText.Name = "QRText";
             this.QRText.Size = new System.Drawing.Size(225, 27);
             this.QRText.TabIndex = 0;
@@ -46,20 +47,23 @@
             // BarcodeText
             // 
             this.BarcodeText.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeText.Location = new System.Drawing.Point(20, 54);
+            this.BarcodeText.Location = new System.Drawing.Point(14, 61);
+            this.BarcodeText.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.BarcodeText.Name = "BarcodeText";
             this.BarcodeText.ReadOnly = true;
-            this.BarcodeText.Size = new System.Drawing.Size(240, 34);
+            this.BarcodeText.Size = new System.Drawing.Size(243, 34);
             this.BarcodeText.TabIndex = 1;
             this.BarcodeText.TextChanged += new System.EventHandler(this.BarcodeText_TextChanged);
             // 
             // AddItemP1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 103);
+            this.ClientSize = new System.Drawing.Size(268, 117);
             this.Controls.Add(this.BarcodeText);
             this.Controls.Add(this.QRText);
+            this.Font = new System.Drawing.Font("TH Sarabun New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "AddItemP1";
             this.Text = "Add your item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddItemFormClosed);

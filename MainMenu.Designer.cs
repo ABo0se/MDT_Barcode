@@ -40,9 +40,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddItem.AutoSize = true;
             this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.AddItem.Location = new System.Drawing.Point(12, 12);
+            this.AddItem.Location = new System.Drawing.Point(9, 14);
+            this.AddItem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.AddItem.Name = "AddItem";
-            this.AddItem.Size = new System.Drawing.Size(777, 110);
+            this.AddItem.Size = new System.Drawing.Size(555, 125);
             this.AddItem.TabIndex = 0;
             this.AddItem.Text = "Add Item";
             this.AddItem.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Search.AutoSize = true;
             this.Search.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(13, 128);
+            this.Search.Location = new System.Drawing.Point(9, 145);
+            this.Search.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(777, 110);
+            this.Search.Size = new System.Drawing.Size(555, 125);
             this.Search.TabIndex = 1;
             this.Search.Text = "Search";
             this.Search.UseVisualStyleBackColor = true;
@@ -70,9 +72,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Manage.AutoSize = true;
             this.Manage.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Manage.Location = new System.Drawing.Point(13, 244);
+            this.Manage.Location = new System.Drawing.Point(9, 277);
+            this.Manage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Manage.Name = "Manage";
-            this.Manage.Size = new System.Drawing.Size(777, 110);
+            this.Manage.Size = new System.Drawing.Size(555, 125);
             this.Manage.TabIndex = 2;
             this.Manage.Text = "Manage";
             this.Manage.UseVisualStyleBackColor = true;
@@ -80,12 +83,14 @@
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 368);
+            this.ClientSize = new System.Drawing.Size(573, 417);
             this.Controls.Add(this.Manage);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.AddItem);
+            this.Font = new System.Drawing.Font("TH Sarabun New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainMenu";
             this.Text = "MDT Inventory";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Exit_Application);

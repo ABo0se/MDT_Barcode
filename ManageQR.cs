@@ -120,49 +120,59 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (e.RowIndex >= 0 && e.ColumnIndex == 9)
             {
                 int buttonWidth = BarcodenumberCollector.Columns[e.ColumnIndex].Width / 3;
-                int relativeX = MousePosition.X - BarcodenumberCollector.PointToScreen
-                    (BarcodenumberCollector.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location).X;
-
-                int clickedButtonIndex = relativeX / buttonWidth;
-
-                switch (clickedButtonIndex)
+                if (e.RowIndex >= 0 && e.RowIndex < BarcodenumberCollector.RowCount)
                 {
-                    case 0:
-                        if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                        {
-                            string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            SearchBarcode(barcodevalue);
-                        }
-                        break;
-                    case 1:
-                        if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                        {
-                            string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            EditBarcode(barcodevalue);
-                        }
-                        break;
-                    case 2:
-                        if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                        {
-                            //Confirmation Box
-                            DialogResult result = MessageBox.Show
-                            ("Are you sure to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    // The row index is valid, proceed with your code
+                    int relativeX = MousePosition.X - BarcodenumberCollector.PointToScreen(
+                        BarcodenumberCollector.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location).X;
+                    int clickedButtonIndex = relativeX / buttonWidth;
 
-                            // Check the user's response
-                            if (result == DialogResult.Yes)
+                    // Rest of your code here
+                    switch (clickedButtonIndex)
+                    {
+                        case 0:
+                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
                             {
-                                // User clicked "Yes," perform the action
                                 string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                                DeleteBarcode(barcodevalue);
+                                SearchBarcode(barcodevalue);
                             }
-                            else
+                            break;
+                        case 1:
+                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
                             {
-                                // User clicked "No" or closed the dialog, do nothing or handle as needed
+                                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
+                                EditBarcode(barcodevalue);
                             }
-                            ///////////
-                        }
-                        break;
+                            break;
+                        case 2:
+                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
+                            {
+                                //Confirmation Box
+                                DialogResult result = MessageBox.Show
+                                ("Are you sure to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                // Check the user's response
+                                if (result == DialogResult.Yes)
+                                {
+                                    // User clicked "Yes," perform the action
+                                    string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
+                                    DeleteBarcode(barcodevalue);
+                                }
+                                else
+                                {
+                                    // User clicked "No" or closed the dialog, do nothing or handle as needed
+                                }
+                                ///////////
+                            }
+                            break;
+                    }
                 }
+                //int relativeX = MousePosition.X - BarcodenumberCollector.PointToScreen
+                //    (BarcodenumberCollector.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location).X;
+
+                
+
+                
             }
         }
 
@@ -319,15 +329,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 e.Handled = true;
 
-                Bitmap buffer = new Bitmap(e.CellBounds.Width, e.CellBounds.Height);
-                Graphics g = Graphics.FromImage(buffer);
-
                 int buttonWidth = e.CellBounds.Width / 3;
                 int buttonHeight = e.CellBounds.Height;
 
                 for (int i = 0; i < 3; i++)
                 {
-                    Rectangle buttonRect = new Rectangle(i * buttonWidth, 0, buttonWidth, buttonHeight);
+                    Rectangle buttonRect = new Rectangle(e.CellBounds.Left + i * buttonWidth, e.CellBounds.Top, buttonWidth, buttonHeight);
                     Image buttonImage = null;
 
                     if (i == 0) buttonImage = Properties.Resources.search;
@@ -336,16 +343,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (buttonImage != null)
                     {
-                        g.DrawImage(buttonImage, buttonRect);
-                        ControlPaint.DrawButton(g, buttonRect, ButtonState.Flat);
+                        e.Graphics.DrawImage(buttonImage, buttonRect);
+                        ControlPaint.DrawButton(e.Graphics, buttonRect, ButtonState.Flat);
                     }
                 }
-
-                g.Dispose();
-                e.Graphics.DrawImage(buffer, e.CellBounds.Location);
-                buffer.Dispose();
             }
         }
+
 
         public class SRResults2
         {

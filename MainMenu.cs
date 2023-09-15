@@ -77,29 +77,29 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             InitializeAllForms();
         }
-        public void Font_Load()
-        {
-            // Load the embedded font
-            PrivateFontCollection privateFonts = new PrivateFontCollection();
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            Stream fontStream = assembly.GetManifestResourceStream("YourAppName.Properties.Resources.THSarabunNew_Font");// Replace with the correct resource name
-            byte[] fontData = new byte[fontStream.Length];
-            fontStream.Read(fontData, 0, (int)fontStream.Length);
-            fontStream.Close();
-            IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
-            Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            privateFonts.AddMemoryFont(fontPtr, fontData.Length);
+        //public void Font_Load()
+        //{
+        //    // Load the embedded font
+        //    PrivateFontCollection privateFonts = new PrivateFontCollection();
+        //    Assembly assembly = Assembly.GetExecutingAssembly();
+        //    Stream fontStream = assembly.GetManifestResourceStream("YourAppName.Properties.Resources.THSarabunNew_Font");// Replace with the correct resource name
+        //    byte[] fontData = new byte[fontStream.Length];
+        //    fontStream.Read(fontData, 0, (int)fontStream.Length);
+        //    fontStream.Close();
+        //    IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
+        //    Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+        //    privateFonts.AddMemoryFont(fontPtr, fontData.Length);
 
-            // Set the form's font to the loaded custom font
-            Font customFont = new Font(privateFonts.Families[0], 12.0f); // Replace 12.0f with your desired font size
-            this.Font = customFont;
+        //    // Set the form's font to the loaded custom font
+        //    Font customFont = new Font(privateFonts.Families[0], 12.0f); // Replace 12.0f with your desired font size
+        //    this.Font = customFont;
 
-            // Use the FontManager to store original font sizes
-            FontManager.Instance.StoreOriginalFontSizes(this);
+        //    // Use the FontManager to store original font sizes
+        //    FontManager.Instance.StoreOriginalFontSizes(this);
 
-            // Set the custom font for individual controls (e.g., myLabel)
-            myLabel.Font = customFont;
-        }
+        //    // Set the custom font for individual controls (e.g., myLabel)
+        //    myLabel.Font = customFont;
+        //}
 
     }
 }
