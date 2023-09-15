@@ -43,7 +43,7 @@
             this.AddItem.Location = new System.Drawing.Point(9, 14);
             this.AddItem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.AddItem.Name = "AddItem";
-            this.AddItem.Size = new System.Drawing.Size(555, 125);
+            this.AddItem.Size = new System.Drawing.Size(614, 126);
             this.AddItem.TabIndex = 0;
             this.AddItem.Text = "Add Item";
             this.AddItem.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.Search.Location = new System.Drawing.Point(9, 145);
             this.Search.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(555, 125);
+            this.Search.Size = new System.Drawing.Size(614, 126);
             this.Search.TabIndex = 1;
             this.Search.Text = "Search";
             this.Search.UseVisualStyleBackColor = true;
@@ -75,7 +75,7 @@
             this.Manage.Location = new System.Drawing.Point(9, 277);
             this.Manage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Manage.Name = "Manage";
-            this.Manage.Size = new System.Drawing.Size(555, 125);
+            this.Manage.Size = new System.Drawing.Size(614, 126);
             this.Manage.TabIndex = 2;
             this.Manage.Text = "Manage";
             this.Manage.UseVisualStyleBackColor = true;
@@ -83,9 +83,9 @@
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 417);
+            this.ClientSize = new System.Drawing.Size(632, 418);
             this.Controls.Add(this.Manage);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.AddItem);
