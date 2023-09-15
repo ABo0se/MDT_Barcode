@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
 
@@ -16,7 +17,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public ManageQR()
         {
             InitializeComponent();
-            InitializeDataGridView();
+            //InitializeDataGridView();
             _barcodeScanner = new BarcodeScanner(BarcodeSearchBox);
             _barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
         }
@@ -31,11 +32,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             SearchDatainDB();
         }
 
-        private void InitializeDataGridView()
-        {
-            BarcodenumberCollector.CellPainting += BarcodenumberCollector_CellPainting;
-            BarcodenumberCollector.CellContentClick += BarcodenumberCollector_CellContentClick;
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -117,62 +113,36 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void BarcodenumberCollector_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 9)
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
             {
-                int buttonWidth = BarcodenumberCollector.Columns[e.ColumnIndex].Width / 3;
-                if (e.RowIndex >= 0 && e.RowIndex < BarcodenumberCollector.RowCount)
+                // Your custom logic when the button is clicked
+                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
+                SearchBarcode(barcodevalue);
+            }
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            {
+                // Your custom logic when the button is clicked
+                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
+                EditBarcode(barcodevalue);
+            }
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            {
+                //Your custom logic when the button is clicked
+                //Confirmation Box
+                DialogResult result = MessageBox.Show
+                ("Are you sure to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Check the user's response
+                if (result == DialogResult.Yes)
                 {
-                    // The row index is valid, proceed with your code
-                    int relativeX = MousePosition.X - BarcodenumberCollector.PointToScreen(
-                        BarcodenumberCollector.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location).X;
-                    int clickedButtonIndex = relativeX / buttonWidth;
-
-                    // Rest of your code here
-                    switch (clickedButtonIndex)
-                    {
-                        case 0:
-                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                            {
-                                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                                SearchBarcode(barcodevalue);
-                            }
-                            break;
-                        case 1:
-                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                            {
-                                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                                EditBarcode(barcodevalue);
-                            }
-                            break;
-                        case 2:
-                            if (BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value != null)
-                            {
-                                //Confirmation Box
-                                DialogResult result = MessageBox.Show
-                                ("Are you sure to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                                // Check the user's response
-                                if (result == DialogResult.Yes)
-                                {
-                                    // User clicked "Yes," perform the action
-                                    string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                                    DeleteBarcode(barcodevalue);
-                                }
-                                else
-                                {
-                                    // User clicked "No" or closed the dialog, do nothing or handle as needed
-                                }
-                                ///////////
-                            }
-                            break;
-                    }
+                    // User clicked "Yes," perform the action
+                    string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    DeleteBarcode(barcodevalue);
                 }
-                //int relativeX = MousePosition.X - BarcodenumberCollector.PointToScreen
-                //    (BarcodenumberCollector.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false).Location).X;
-
-                
-
-                
+                else
+                {
+                    // User clicked "No" or closed the dialog, do nothing or handle as needed
+                }
             }
         }
 
@@ -325,29 +295,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void BarcodenumberCollector_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 9)
-            {
-                e.Handled = true;
 
-                int buttonWidth = e.CellBounds.Width / 3;
-                int buttonHeight = e.CellBounds.Height;
-
-                for (int i = 0; i < 3; i++)
-                {
-                    Rectangle buttonRect = new Rectangle(e.CellBounds.Left + i * buttonWidth, e.CellBounds.Top, buttonWidth, buttonHeight);
-                    Image buttonImage = null;
-
-                    if (i == 0) buttonImage = Properties.Resources.search;
-                    else if (i == 1) buttonImage = Properties.Resources.EditIcon;
-                    else if (i == 2) buttonImage = Properties.Resources.DeleteIcon;
-
-                    if (buttonImage != null)
-                    {
-                        e.Graphics.DrawImage(buttonImage, buttonRect);
-                        ControlPaint.DrawButton(e.Graphics, buttonRect, ButtonState.Flat);
-                    }
-                }
-            }
         }
 
 
@@ -369,6 +317,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 e.Cancel = true; // Prevent the form from closing
                 this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void BarcodenumberCollector_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            {
+                // Replace 'yourImage' with the image you want to assign to the button
+                e.Value = "🔍";
+                //e.FormattingApplied = true;
+            }
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            {
+                // Replace 'yourImage' with the image you want to assign to the button
+                e.Value = "📝";
+                //e.FormattingApplied = true;
+            }
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            {
+                // Replace 'yourImage' with the image you want to assign to the button
+                e.Value = "🗑️";
+                //e.FormattingApplied = true;
             }
         }
     }
