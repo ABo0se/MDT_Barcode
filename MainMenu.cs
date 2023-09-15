@@ -28,12 +28,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             Type[] formTypes = assembly.GetTypes();
+            FontUtility.ApplyEmbeddedFont(this);
 
             foreach (Type type in formTypes)
             {
                 if (type.IsSubclassOf(typeof(Form)) && type != typeof(MainMenu))
                 {
                     Form form = (Form)Activator.CreateInstance(type);
+                    FontUtility.ApplyEmbeddedFont(form);
                     initializedForms.Add(form);
                     form.Hide();
                 }
@@ -77,9 +79,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void MainMenu_Load(object sender, EventArgs e)
         {
             InitializeAllForms();
-            //
-            FontUtility.LoadFont();
-            FontUtility.AllocatemyFont(FontUtility.font, AddItem, AddItem.Font.Size);
         }
     }
     public static class FontUtility
@@ -88,8 +87,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private static extern IntPtr AddFontMemResourceEx
             (IntPtr pbfont, uint cbfont, IntPtr pdv, [In] ref uint pcFonts);
 
-        static FontFamily ff;
-        public static Font font;
+        private static FontFamily ff;
+        private static Font embeddedFont;
+        private static Dictionary<Control, Font> originalFonts = new Dictionary<Control, Font>();
 
         public static void LoadFont()
         {
@@ -106,13 +106,44 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             pfc.AddMemoryFont(ptrData, datalength);
             Marshal.FreeCoTaskMem(ptrData);
+
             ff = pfc.Families[0];
-            font = new Font(ff, 15f, FontStyle.Regular);
+            embeddedFont = new Font(ff, 15f, FontStyle.Regular);
         }
-        public static void AllocatemyFont(Font f, Control c, float size)
+
+        public static void ApplyEmbeddedFont(Control control)
         {
-            FontStyle fontStyle = FontStyle.Regular;
-            c.Font = new Font(ff, 20, fontStyle);
+            if (embeddedFont == null)
+            {
+                LoadFont();
+            }
+
+            // Store the original font for the control
+            originalFonts[control] = control.Font;
+
+            // Set the control's font using the embedded font
+            control.Font = new Font(ff, control.Font.Size, FontStyle.Regular);
+
+            // Recursively apply the font to child controls
+            foreach (Control childControl in control.Controls)
+            {
+                ApplyEmbeddedFont(childControl);
+            }
+        }
+
+        public static void RestoreOriginalFonts(Control control)
+        {
+            // Restore the original font for the control
+            if (originalFonts.TryGetValue(control, out Font originalFont))
+            {
+                control.Font = originalFont;
+            }
+
+            // Recursively restore original fonts for child controls
+            foreach (Control childControl in control.Controls)
+            {
+                RestoreOriginalFonts(childControl);
+            }
         }
     }
 }
