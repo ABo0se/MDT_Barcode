@@ -93,9 +93,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] THSarabunNew_Font {
+        internal static byte[] THSarabunNew {
             get {
-                object obj = ResourceManager.GetObject("THSarabunNew_Font", resourceCulture);
+                object obj = ResourceManager.GetObject("THSarabunNew", resourceCulture);
                 return ((byte[])(obj));
             }
         }

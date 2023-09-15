@@ -22,6 +22,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             InitializeComponent();
             InitializeAllForms();
+            //FontUtility.ApplyEmbeddedFont(this);
         }
         private void InitializeAllForms()
         {
@@ -76,30 +77,42 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void MainMenu_Load(object sender, EventArgs e)
         {
             InitializeAllForms();
+            //
+            FontUtility.LoadFont();
+            FontUtility.AllocatemyFont(FontUtility.font, AddItem, AddItem.Font.Size);
         }
-        //public void Font_Load()
-        //{
-        //    // Load the embedded font
-        //    PrivateFontCollection privateFonts = new PrivateFontCollection();
-        //    Assembly assembly = Assembly.GetExecutingAssembly();
-        //    Stream fontStream = assembly.GetManifestResourceStream("YourAppName.Properties.Resources.THSarabunNew_Font");// Replace with the correct resource name
-        //    byte[] fontData = new byte[fontStream.Length];
-        //    fontStream.Read(fontData, 0, (int)fontStream.Length);
-        //    fontStream.Close();
-        //    IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
-        //    Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-        //    privateFonts.AddMemoryFont(fontPtr, fontData.Length);
+    }
+    public static class FontUtility
+    {
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx
+            (IntPtr pbfont, uint cbfont, IntPtr pdv, [In] ref uint pcFonts);
 
-        //    // Set the form's font to the loaded custom font
-        //    Font customFont = new Font(privateFonts.Families[0], 12.0f); // Replace 12.0f with your desired font size
-        //    this.Font = customFont;
+        static FontFamily ff;
+        public static Font font;
 
-        //    // Use the FontManager to store original font sizes
-        //    FontManager.Instance.StoreOriginalFontSizes(this);
+        public static void LoadFont()
+        {
+            byte[] fontArray = Properties.Resources.THSarabunNew;
+            int datalength = Properties.Resources.THSarabunNew.Length;
 
-        //    // Set the custom font for individual controls (e.g., myLabel)
-        //    myLabel.Font = customFont;
-        //}
+            IntPtr ptrData = Marshal.AllocCoTaskMem(datalength);
+            Marshal.Copy(fontArray, 0, ptrData, datalength);
 
+            uint cFonts = 0;
+
+            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
+            PrivateFontCollection pfc = new PrivateFontCollection();
+
+            pfc.AddMemoryFont(ptrData, datalength);
+            Marshal.FreeCoTaskMem(ptrData);
+            ff = pfc.Families[0];
+            font = new Font(ff, 15f, FontStyle.Regular);
+        }
+        public static void AllocatemyFont(Font f, Control c, float size)
+        {
+            FontStyle fontStyle = FontStyle.Regular;
+            c.Font = new Font(ff, 20, fontStyle);
+        }
     }
 }
