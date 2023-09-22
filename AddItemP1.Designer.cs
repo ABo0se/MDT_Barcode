@@ -57,8 +57,7 @@
             // 
             // AddItemP1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(341, 117);
             this.Controls.Add(this.BarcodeText);
             this.Controls.Add(this.QRText);

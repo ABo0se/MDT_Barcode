@@ -53,7 +53,7 @@
             this.Barcode_ID.Location = new System.Drawing.Point(9, 283);
             this.Barcode_ID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Barcode_ID.Name = "Barcode_ID";
-            this.Barcode_ID.Size = new System.Drawing.Size(116, 27);
+            this.Barcode_ID.Size = new System.Drawing.Size(114, 27);
             this.Barcode_ID.TabIndex = 1;
             this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ :";
             // 
@@ -64,7 +64,7 @@
             this.Product_Name.Location = new System.Drawing.Point(9, 314);
             this.Product_Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Size = new System.Drawing.Size(44, 27);
+            this.Product_Name.Size = new System.Drawing.Size(42, 27);
             this.Product_Name.TabIndex = 2;
             this.Product_Name.Text = "ยี่ห้อ :";
             // 
@@ -75,7 +75,7 @@
             this.Created_Time.Location = new System.Drawing.Point(9, 340);
             this.Created_Time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(35, 27);
+            this.Created_Time.Size = new System.Drawing.Size(33, 27);
             this.Created_Time.TabIndex = 3;
             this.Created_Time.Text = "รุ่น :";
             // 
@@ -86,7 +86,7 @@
             this.Price.Location = new System.Drawing.Point(9, 371);
             this.Price.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(106, 27);
+            this.Price.Size = new System.Drawing.Size(104, 27);
             this.Price.TabIndex = 4;
             this.Price.Text = "Serial Number :";
             // 
@@ -97,7 +97,7 @@
             this.Attendant.Location = new System.Drawing.Point(9, 398);
             this.Attendant.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Attendant.Name = "Attendant";
-            this.Attendant.Size = new System.Drawing.Size(46, 27);
+            this.Attendant.Size = new System.Drawing.Size(44, 27);
             this.Attendant.TabIndex = 5;
             this.Attendant.Text = "ราคา :";
             // 
@@ -108,7 +108,7 @@
             this.Room.Location = new System.Drawing.Point(9, 427);
             this.Room.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Room.Name = "Room";
-            this.Room.Size = new System.Drawing.Size(80, 27);
+            this.Room.Size = new System.Drawing.Size(78, 27);
             this.Room.TabIndex = 6;
             this.Room.Text = "ประจำอยู่ที่ :";
             // 
@@ -119,7 +119,7 @@
             this.label1.Location = new System.Drawing.Point(9, 454);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 27);
+            this.label1.Size = new System.Drawing.Size(71, 27);
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ :";
             // 
@@ -209,8 +209,7 @@
             // 
             // ShowItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(557, 492);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BarcodeID_TXT);
