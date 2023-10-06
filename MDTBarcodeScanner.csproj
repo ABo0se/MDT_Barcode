@@ -213,6 +213,7 @@
     <None Include="Images\search.png" />
     <None Include="Images\EditIcon.png" />
     <None Include="Images\DeleteIcon.png" />
+    <None Include="Images\No_image_available.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\search.png" />

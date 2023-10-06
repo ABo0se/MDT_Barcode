@@ -53,7 +53,7 @@
             this.Barcode_ID.Location = new System.Drawing.Point(9, 283);
             this.Barcode_ID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Barcode_ID.Name = "Barcode_ID";
-            this.Barcode_ID.Size = new System.Drawing.Size(114, 27);
+            this.Barcode_ID.Size = new System.Drawing.Size(116, 27);
             this.Barcode_ID.TabIndex = 1;
             this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ :";
             // 
@@ -64,7 +64,7 @@
             this.Product_Name.Location = new System.Drawing.Point(9, 314);
             this.Product_Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Size = new System.Drawing.Size(42, 27);
+            this.Product_Name.Size = new System.Drawing.Size(44, 27);
             this.Product_Name.TabIndex = 2;
             this.Product_Name.Text = "ยี่ห้อ :";
             // 
@@ -75,7 +75,7 @@
             this.Created_Time.Location = new System.Drawing.Point(9, 340);
             this.Created_Time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(33, 27);
+            this.Created_Time.Size = new System.Drawing.Size(35, 27);
             this.Created_Time.TabIndex = 3;
             this.Created_Time.Text = "รุ่น :";
             // 
@@ -86,7 +86,7 @@
             this.Price.Location = new System.Drawing.Point(9, 371);
             this.Price.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(104, 27);
+            this.Price.Size = new System.Drawing.Size(106, 27);
             this.Price.TabIndex = 4;
             this.Price.Text = "Serial Number :";
             // 
@@ -97,7 +97,7 @@
             this.Attendant.Location = new System.Drawing.Point(9, 398);
             this.Attendant.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Attendant.Name = "Attendant";
-            this.Attendant.Size = new System.Drawing.Size(44, 27);
+            this.Attendant.Size = new System.Drawing.Size(46, 27);
             this.Attendant.TabIndex = 5;
             this.Attendant.Text = "ราคา :";
             // 
@@ -108,7 +108,7 @@
             this.Room.Location = new System.Drawing.Point(9, 427);
             this.Room.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Room.Name = "Room";
-            this.Room.Size = new System.Drawing.Size(78, 27);
+            this.Room.Size = new System.Drawing.Size(80, 27);
             this.Room.TabIndex = 6;
             this.Room.Text = "ประจำอยู่ที่ :";
             // 
@@ -119,7 +119,7 @@
             this.label1.Location = new System.Drawing.Point(9, 454);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 27);
+            this.label1.Size = new System.Drawing.Size(73, 27);
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ :";
             // 
@@ -127,7 +127,7 @@
             // 
             this.Note_TXT.AutoSize = true;
             this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Note_TXT.Location = new System.Drawing.Point(59, 454);
+            this.Note_TXT.Location = new System.Drawing.Point(82, 454);
             this.Note_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Note_TXT.Name = "Note_TXT";
             this.Note_TXT.Size = new System.Drawing.Size(0, 27);
@@ -137,7 +137,7 @@
             // 
             this.Stay_TXT.AutoSize = true;
             this.Stay_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stay_TXT.Location = new System.Drawing.Point(64, 427);
+            this.Stay_TXT.Location = new System.Drawing.Point(90, 427);
             this.Stay_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Stay_TXT.Name = "Stay_TXT";
             this.Stay_TXT.Size = new System.Drawing.Size(0, 27);
@@ -147,7 +147,7 @@
             // 
             this.Price_TXT.AutoSize = true;
             this.Price_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Price_TXT.Location = new System.Drawing.Point(41, 397);
+            this.Price_TXT.Location = new System.Drawing.Point(55, 397);
             this.Price_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Price_TXT.Name = "Price_TXT";
             this.Price_TXT.Size = new System.Drawing.Size(0, 27);
@@ -157,7 +157,7 @@
             // 
             this.SN_TXT.AutoSize = true;
             this.SN_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SN_TXT.Location = new System.Drawing.Point(84, 371);
+            this.SN_TXT.Location = new System.Drawing.Point(115, 371);
             this.SN_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SN_TXT.Name = "SN_TXT";
             this.SN_TXT.Size = new System.Drawing.Size(0, 27);
@@ -167,7 +167,7 @@
             // 
             this.Brand_TXT.AutoSize = true;
             this.Brand_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brand_TXT.Location = new System.Drawing.Point(32, 340);
+            this.Brand_TXT.Location = new System.Drawing.Point(45, 340);
             this.Brand_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Brand_TXT.Name = "Brand_TXT";
             this.Brand_TXT.Size = new System.Drawing.Size(0, 27);
@@ -177,7 +177,7 @@
             // 
             this.ModelName_TXT.AutoSize = true;
             this.ModelName_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelName_TXT.Location = new System.Drawing.Point(39, 314);
+            this.ModelName_TXT.Location = new System.Drawing.Point(55, 314);
             this.ModelName_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ModelName_TXT.Name = "ModelName_TXT";
             this.ModelName_TXT.Size = new System.Drawing.Size(0, 27);
@@ -187,7 +187,7 @@
             // 
             this.BarcodeID_TXT.AutoSize = true;
             this.BarcodeID_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarcodeID_TXT.Location = new System.Drawing.Point(92, 283);
+            this.BarcodeID_TXT.Location = new System.Drawing.Point(125, 283);
             this.BarcodeID_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BarcodeID_TXT.Name = "BarcodeID_TXT";
             this.BarcodeID_TXT.Size = new System.Drawing.Size(0, 27);
