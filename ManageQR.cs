@@ -15,12 +15,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             InitializeComponent();
             //InitializeDataGridView();
             _barcodeScanner = new BarcodeScanner2(BarcodeSearchBox);
+            /////////////////////////////////////////////////////////////////
             _barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
         }
 
         private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
         {
-            BarcodeSearchBox.Text = e.Barcode;
+            if (sender == BarcodeSearchBox)
+            {
+                BarcodeSearchBox.Text = e.Barcode;
+            }
         }
 
         private void InitializeApplication()
@@ -105,6 +109,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                  result.Description);
                 numberofsortedItem++;
             }
+            FontUtility.ApplyEmbeddedFont(this);
         }
 
         private void BarcodenumberCollector_CellContentClick(object sender, DataGridViewCellEventArgs e)

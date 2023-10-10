@@ -50,7 +50,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             if (TryFetchDataBySerialCode(barcodeText, out SRResults data))
             {
-                DisplayData(data);
+                //DisplayData
+                BarcodeID_TXT.Text = data.BarcodeNumber;
+                ModelName_TXT.Text = data.ModelNumber;
+                Brand_TXT.Text = data.Brand;
+                SN_TXT.Text = data.SerialNum;
+                Price_TXT.Text = data.Price;
+                Stay_TXT.Text = data.Room;
+                Note_TXT.Text = data.Description;
+                MessageBox.Show(data.FilePath);
+                //Image selectedImage = Image.FromFile(data.FilePath);
+
+                if (data.FilePath != null || data.FilePath != "")
+                {
+                    pictureBox1.Image = Image.FromFile(data.FilePath);
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.NoImage;
+                }
+                pictureBox1.Refresh();
             }
         }
 
@@ -99,40 +118,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             return false;
         }
 
-        private void DisplayData(SRResults data)
-        {
-            BarcodeID_TXT.Text = data.BarcodeNumber;
-            ModelName_TXT.Text = data.ModelNumber;
-            Brand_TXT.Text = data.Brand;
-            SN_TXT.Text = data.SerialNum;
-            Price_TXT.Text = data.Price;
-            Stay_TXT.Text = data.Room;
-            Note_TXT.Text = data.Description;
-
-            // Dispose of previous image (if any)
-            //pictureBox1.Image?.Dispose();
-
-            // Load and display the new image
-            if (data.FilePath != null)
-            {
-                pictureBox1.Image = Image.FromFile(data.FilePath);
-                MessageBox.Show("FileShowed");
-            }
-            else
-            {
-                pictureBox1.Image = Properties.Resources.NoImage;
-                MessageBox.Show("NoFileShowed");
-            }
-            pictureBox1.Refresh();
-        }
+    
 
         public void InitializePage()
         {
             BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = string.Empty;
-
-            // Dispose of previous image (if any)
-            pictureBox1.Image?.Dispose();
-            pictureBox1.Image = null;
+            pictureBox1.Image = Properties.Resources.NoImage;
         }
 
         // Other event handler methods...

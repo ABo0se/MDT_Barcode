@@ -54,8 +54,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
         {
-            BarcodeID_TB.Text = e.Barcode;
-            MessageBox.Show(e.Barcode);
+            if (sender == BarcodeID_TB)
+            {
+                BarcodeID_TB.Text = e.Barcode;
+                //MessageBox.Show("Matched");
+            }
+            else
+            {
+                BarcodeID_TB.Text = e.Barcode;
+                ///
+                Model_TB.Text = "";
+                Brand_TB.Text = "";
+                Serial_TB.Text = "";
+                Price_TB.Text = "";
+                Room_TB.Text = "";
+                Note_TB.Text = "";
+            }
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -78,6 +92,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
                                "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+
+                if (PicFilePath == null)
+                {
+                    PicFilePath = "";
+                }
+
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
                 {
                     cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
@@ -118,8 +138,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         public void InitializePage()
         {
-            BarcodeScanner2 barcodeScanner = new BarcodeScanner2(BarcodeID_TB);
-            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            BarcodeScanner2 barcodeScanner1 = new BarcodeScanner2(BarcodeID_TB);
+            BarcodeScanner2 barcodeScanner2 = new BarcodeScanner2(Model_TB);
+            BarcodeScanner2 barcodeScanner3 = new BarcodeScanner2(Brand_TB);
+            BarcodeScanner2 barcodeScanner4 = new BarcodeScanner2(Serial_TB);
+            BarcodeScanner2 barcodeScanner5 = new BarcodeScanner2(Price_TB);
+            BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Room_TB);
+            BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Note_TB);
+            barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             /////////////////////////////////
             PicFilePath = "";
             pictureBox1.Image = Properties.Resources.NoImage;
