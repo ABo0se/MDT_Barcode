@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -54,22 +55,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
         {
-            if (sender == BarcodeID_TB)
-            {
-                BarcodeID_TB.Text = e.Barcode;
-                //MessageBox.Show("Matched");
-            }
-            else
-            {
-                BarcodeID_TB.Text = e.Barcode;
-                ///
-                Model_TB.Text = "";
-                Brand_TB.Text = "";
-                Serial_TB.Text = "";
-                Price_TB.Text = "";
-                Room_TB.Text = "";
-                Note_TB.Text = "";
-            }
+            SearchBarcodeData(e.Barcode, sender);
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -83,57 +69,161 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Add_Item_toDB_Click(object sender, EventArgs e)
         {
-            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
+            //Serach before we do something.
+            List<string> dbData = new List<string>();
+            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
             try
             {
                 mySqlConnection.Open();
+                string selectQuery = "SELECT BarcodeNumber FROM information";
 
-                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
-                               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+                // Use MySqlCommand instead of SqlCommand for MySQL
+                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
 
-                if (PicFilePath == null)
+                // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    PicFilePath = "";
+                    string rowData = reader["BarcodeNumber"].ToString();
+                    dbData.Add(rowData);
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
+                // Compare the data
+                bool isDataSame = dbData.Contains(BarcodeID_TB.Text); // Check if the barcode is already in the database
+
+                if (isDataSame)
                 {
-                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
-                    cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
-                    cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
-                    cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
-                    cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
-                    cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-                    cmd.Parameters.AddWithValue("@Pic", PicFilePath);
-                    cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
+                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
+                    this.Hide();
+                }
+                else
+                {
+                    string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+                    MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
+                    try
                     {
-                        MessageBox.Show("Barcode Data inserted successfully!");
-                        //PullDataFromDB();
+                        mySqlConnection2.Open();
+
+                        string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
+                                       "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+
+                        if (PicFilePath == null)
+                        {
+                            PicFilePath = "";
+                        }
+
+                        using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
+                        {
+                            cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+                            cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
+                            cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
+                            cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
+                            cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
+                            cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
+                            cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                            cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
+
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Barcode Data inserted successfully!");
+                                //PullDataFromDB();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to insert data.");
+                            }
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to insert data.");
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                    finally
+                    {
+                        mySqlConnection.Close();
+                        AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
+                        if (AddItemForm != null)
+                        {
+                            AddItemForm.Hide();
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
-                mySqlConnection.Close();
-                AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
-                if (AddItemForm != null)
+                mySqlConnection.Close(); // Make sure to close the connection when done
+            }
+            /////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        private void SearchBarcodeData(string barcode, object sender)
+        {
+            List<string> dbData = new List<string>();
+            string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
+
+            try
+            {
+                mySqlConnection.Open();
+                string selectQuery = "SELECT BarcodeNumber FROM information";
+
+                // Use MySqlCommand instead of SqlCommand for MySQL
+                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+
+                // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    AddItemForm.Hide();
+                    string rowData = reader["BarcodeNumber"].ToString();
+                    dbData.Add(rowData);
                 }
+
+                // Compare the data
+                bool isDataSame = dbData.Contains(barcode); // Check if the barcode is already in the database
+
+                if (isDataSame)
+                {
+                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
+                    this.Hide();
+                }
+                else
+                {
+                    //
+                    if (sender == BarcodeID_TB)
+                    {
+                        BarcodeID_TB.Text = barcode;
+                        //MessageBox.Show("Matched");
+                    }
+                    else
+                    {
+                        BarcodeID_TB.Text = barcode;
+                        ///
+                        Model_TB.Text = "";
+                        Brand_TB.Text = "";
+                        Serial_TB.Text = "";
+                        Price_TB.Text = "";
+                        Room_TB.Text = "";
+                        Note_TB.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close(); // Make sure to close the connection when done
             }
         }
         public void InitializePage()

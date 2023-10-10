@@ -58,18 +58,27 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Price_TXT.Text = data.Price;
                 Stay_TXT.Text = data.Room;
                 Note_TXT.Text = data.Description;
-                MessageBox.Show(data.FilePath);
+                //MessageBox.Show(data.FilePath);
                 //Image selectedImage = Image.FromFile(data.FilePath);
-
-                if (data.FilePath != null || data.FilePath != "")
+                try
                 {
-                    pictureBox1.Image = Image.FromFile(data.FilePath);
+                    if (data.FilePath != null || data.FilePath != "")
+                    {
+                        pictureBox1.Image = Image.FromFile(data.FilePath);
+                    }
+                    else
+                    {
+                        pictureBox1.Image = Properties.Resources.NoImage;
+                    }
                 }
-                else
+                catch (Exception ex) 
                 {
-                    pictureBox1.Image = Properties.Resources.NoImage;
+                    
                 }
-                pictureBox1.Refresh();
+                finally
+                {
+                    pictureBox1.Refresh();
+                }
             }
         }
 
