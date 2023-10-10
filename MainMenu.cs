@@ -75,6 +75,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             InitializeAllForms();
         }
     }
+
     public static class FontUtility
     {
         [DllImport("gdi32.dll")]
@@ -122,6 +123,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             foreach (Control childControl in control.Controls)
             {
                 ApplyEmbeddedFont(childControl);
+            }
+
+            // If the control is a DataGridView, apply the font to its cells
+            if (control is DataGridView dataGridView)
+            {
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Style != null && cell.Style.Font != null)
+                        {
+                            cell.Style.Font = new Font(ff, cell.Style.Font.Size, FontStyle.Regular);
+                        }
+                    }
+                }
             }
         }
 

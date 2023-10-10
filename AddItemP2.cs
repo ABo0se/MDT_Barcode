@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -97,62 +98,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (isDataSame)
                 {
                     MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
-                    this.Hide();
                 }
                 else
                 {
-                    string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-                    MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
-
-                    try
-                    {
-                        mySqlConnection2.Open();
-
-                        string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
-                                       "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
-
-                        if (PicFilePath == null)
-                        {
-                            PicFilePath = "";
-                        }
-
-                        using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection))
-                        {
-                            cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
-                            cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
-                            cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
-                            cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
-                            cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
-                            cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-                            cmd.Parameters.AddWithValue("@Pic", PicFilePath);
-                            cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
-
-                            int rowsAffected = cmd.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Barcode Data inserted successfully!");
-                                //PullDataFromDB();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to insert data.");
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occurred: " + ex.Message);
-                    }
-                    finally
-                    {
-                        mySqlConnection.Close();
-                        AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
-                        if (AddItemForm != null)
-                        {
-                            AddItemForm.Hide();
-                        }
-                    }
+                    AddItemToDB();
                 }
             }
             catch (Exception ex)
@@ -164,6 +113,61 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 mySqlConnection.Close(); // Make sure to close the connection when done
             }
             /////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
+        private void AddItemToDB()
+        {
+            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
+
+            try
+            {
+                mySqlConnection2.Open();
+
+                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
+                               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+
+                if (PicFilePath == null)
+                {
+                    PicFilePath = "";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
+                {
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+                    cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
+                    cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
+                    cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
+                    cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
+                    cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
+                    cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                    cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Barcode Data inserted successfully!");
+                        //PullDataFromDB();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to insert data.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                mySqlConnection2.Close();
+                AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
+                if (AddItemForm != null)
+                {
+                    AddItemForm.Hide();
+                }
+            }
         }
         private void SearchBarcodeData(string barcode, object sender)
         {
@@ -190,7 +194,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 // Compare the data
                 bool isDataSame = dbData.Contains(barcode); // Check if the barcode is already in the database
-
+                mySqlConnection.Close();
                 if (isDataSame)
                 {
                     MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
@@ -202,7 +206,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     if (sender == BarcodeID_TB)
                     {
                         BarcodeID_TB.Text = barcode;
-                        //MessageBox.Show("Matched");
                     }
                     else
                     {
@@ -220,10 +223,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                mySqlConnection.Close(); // Make sure to close the connection when done
             }
         }
         public void InitializePage()

@@ -109,7 +109,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                  result.Description);
                 numberofsortedItem++;
             }
-            FontUtility.ApplyEmbeddedFont(this);
+            FontUtility.ApplyEmbeddedFont(BarcodenumberCollector);
         }
 
         private void BarcodenumberCollector_CellContentClick(object sender, DataGridViewCellEventArgs e)
