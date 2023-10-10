@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -43,11 +37,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void AddItem_Click(object sender, EventArgs e)
         {
-            AddItemP1 AddItemForm = initializedForms.Find(f => f is AddItemP1) as AddItemP1;
+            AddItemP2 AddItemForm = initializedForms.Find(f => f is AddItemP2) as AddItemP2;
             if (AddItemForm != null)
             {
                 AddItemForm.Show();
-                AddItemForm.InitializeApplication();
+                AddItemForm.InitializePage();
             }
         }
         private void Search_Click(object sender, EventArgs e)

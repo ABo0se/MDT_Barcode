@@ -1,10 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
 
@@ -12,13 +8,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class ManageQR : Form
     {
-        private BarcodeScanner _barcodeScanner;
+        private BarcodeScanner2 _barcodeScanner;
 
         public ManageQR()
         {
             InitializeComponent();
             //InitializeDataGridView();
-            _barcodeScanner = new BarcodeScanner(BarcodeSearchBox);
+            _barcodeScanner = new BarcodeScanner2(BarcodeSearchBox);
             _barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
         }
 

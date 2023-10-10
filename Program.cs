@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
 using System.Windows.Forms;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {

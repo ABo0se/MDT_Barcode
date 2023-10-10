@@ -1,13 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
 
@@ -100,7 +93,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public void InitializeApplication()
         {
             //InitializeBarcode
-            BarcodeScanner barcodeScanner = new BarcodeScanner(BarcodeText);
+            BarcodeScanner2 barcodeScanner = new BarcodeScanner2(BarcodeText);
             barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             //QRText.Text = "กรุณาสแกน Barcode ครุภัณฑ์ของท่าน.";
             BarcodeText.Text = "";

@@ -7,7 +7,7 @@
     <ProjectGuid>{90D625DA-6531-484B-AA83-CC2AFC688CC2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>USB_Barcode_Scanner_Tutorial___C_Sharp</RootNamespace>
-    <AssemblyName>USB Barcode Scanner Tutorial - C-Sharp</AssemblyName>
+    <AssemblyName>MDT Barcode Scanner</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -50,6 +50,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeScannerClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BarcodeScannerClass.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -120,12 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddItemP1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddItemP1.Designer.cs">
-      <DependentUpon>AddItemP1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="BarcodeScanner2.cs" />
     <Compile Include="EditItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,9 +163,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddItemP1.resx">
-      <DependentUpon>AddItemP1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditItem.resx">
       <DependentUpon>EditItem.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Drawing;
-using MySql.Data.MySqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static USB_Barcode_Scanner_Tutorial___C_Sharp.ShowItem;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -34,7 +27,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Note_TB.Text = data.Description;
                 Image selectedImage = Image.FromFile(data.FilePath);
 
-                pictureBox1.Image = selectedImage;
+                if (data.FilePath != null || data.FilePath != "")
+                {
+                    pictureBox1.Image = selectedImage;
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.NoImage;
+                }
                 pictureBox1.Refresh();
             }
         }
@@ -72,7 +72,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // You can call a method to process the file with the selectedFilePath
                 // Load the selected image into the PictureBox
                 Image selectedImage = Image.FromFile(selectedFilePath);
-                
+
                 pictureBox1.Image = selectedImage;
                 PicFilePath = selectedFilePath;
             }
@@ -149,6 +149,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public void InitializePage()
         {
             PicFilePath = null;
+            pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
             Brand_TB.Text = "";

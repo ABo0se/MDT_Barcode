@@ -1,20 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
-    public partial class ShowItem : Form, IDisposable
+    public partial class ShowItem : Form
     {
-        private bool disposed = false;
         private MySqlConnection mySqlConnection;
 
         private class SRResults
@@ -97,7 +89,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                // Handle exceptions as needed
+                // MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -117,10 +110,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Note_TXT.Text = data.Description;
 
             // Dispose of previous image (if any)
-            pictureBox1.Image?.Dispose();
+            //pictureBox1.Image?.Dispose();
 
             // Load and display the new image
-            pictureBox1.Image = Image.FromFile(data.FilePath);
+            if (data.FilePath != null)
+            {
+                pictureBox1.Image = Image.FromFile(data.FilePath);
+                MessageBox.Show("FileShowed");
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.NoImage;
+                MessageBox.Show("NoFileShowed");
+            }
             pictureBox1.Refresh();
         }
 
@@ -131,32 +133,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             // Dispose of previous image (if any)
             pictureBox1.Image?.Dispose();
             pictureBox1.Image = null;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // Release any managed resources here
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-                pictureBox1.Image?.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        public new void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~ShowItem()
-        {
-            Dispose(false);
         }
 
         // Other event handler methods...

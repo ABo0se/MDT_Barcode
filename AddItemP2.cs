@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Drawing;
-using MySql.Data.MySqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -18,10 +12,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public AddItemP2()
         {
             InitializeComponent();
-        }
-        public void AssignBarcodeText(string barcodetext)
-        {
-            BarcodeID_TB.Text = barcodetext;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -57,12 +47,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // You can call a method to process the file with the selectedFilePath
                 // Load the selected image into the PictureBox
                 Image selectedImage = Image.FromFile(selectedFilePath);
-                
+
                 pictureBox1.Image = selectedImage;
                 PicFilePath = selectedFilePath;
             }
         }
-
+        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+        {
+            BarcodeID_TB.Text = e.Barcode;
+            MessageBox.Show(e.Barcode);
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -124,7 +118,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         public void InitializePage()
         {
-            PicFilePath = null;
+            BarcodeScanner2 barcodeScanner = new BarcodeScanner2(BarcodeID_TB);
+            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            /////////////////////////////////
+            PicFilePath = "";
+            pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
             Brand_TB.Text = "";

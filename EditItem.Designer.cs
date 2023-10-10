@@ -66,7 +66,7 @@
             this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Barcode_ID.Location = new System.Drawing.Point(13, 255);
             this.Barcode_ID.Name = "Barcode_ID";
-            this.Barcode_ID.Size = new System.Drawing.Size(121, 23);
+            this.Barcode_ID.Size = new System.Drawing.Size(120, 27);
             this.Barcode_ID.TabIndex = 1;
             this.Barcode_ID.Text = "หมายเลขครุภัณฑ์ : ";
             this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
@@ -77,7 +77,7 @@
             this.Product_Name.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Product_Name.Location = new System.Drawing.Point(13, 298);
             this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Size = new System.Drawing.Size(46, 23);
+            this.Product_Name.Size = new System.Drawing.Size(48, 27);
             this.Product_Name.TabIndex = 2;
             this.Product_Name.Text = "ยี่ห้อ : ";
             // 
@@ -87,7 +87,7 @@
             this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Created_Time.Location = new System.Drawing.Point(13, 341);
             this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(36, 23);
+            this.Created_Time.Size = new System.Drawing.Size(39, 27);
             this.Created_Time.TabIndex = 3;
             this.Created_Time.Text = "รุ่น : ";
             this.Created_Time.Click += new System.EventHandler(this.Created_Time_Click);
@@ -98,7 +98,7 @@
             this.Price.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Price.Location = new System.Drawing.Point(13, 384);
             this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(152, 23);
+            this.Price.Size = new System.Drawing.Size(110, 27);
             this.Price.TabIndex = 4;
             this.Price.Text = "Serial Number : ";
             // 
@@ -108,7 +108,7 @@
             this.Attendant.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Attendant.Location = new System.Drawing.Point(13, 427);
             this.Attendant.Name = "Attendant";
-            this.Attendant.Size = new System.Drawing.Size(50, 23);
+            this.Attendant.Size = new System.Drawing.Size(50, 27);
             this.Attendant.TabIndex = 5;
             this.Attendant.Text = "ราคา : ";
             // 
@@ -118,7 +118,7 @@
             this.Room.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Room.Location = new System.Drawing.Point(13, 470);
             this.Room.Name = "Room";
-            this.Room.Size = new System.Drawing.Size(81, 23);
+            this.Room.Size = new System.Drawing.Size(84, 27);
             this.Room.TabIndex = 6;
             this.Room.Text = "ประจำอยู่ที่ : ";
             this.Room.Click += new System.EventHandler(this.Room_Click);
@@ -211,7 +211,7 @@
             this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 513);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 23);
+            this.label1.Size = new System.Drawing.Size(77, 27);
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ : ";
             // 
