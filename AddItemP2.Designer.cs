@@ -45,7 +45,14 @@
             this.Add_Item_toDB = new System.Windows.Forms.Button();
             this.Note_TB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Status = new System.Windows.Forms.Label();
+            this.Quality = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.S_Have = new System.Windows.Forms.RadioButton();
+            this.S_Donthave = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -133,7 +140,7 @@
             // Add_Pic
             // 
             this.Add_Pic.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Add_Pic.Location = new System.Drawing.Point(13, 623);
+            this.Add_Pic.Location = new System.Drawing.Point(16, 723);
             this.Add_Pic.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Pic.Name = "Add_Pic";
             this.Add_Pic.Size = new System.Drawing.Size(116, 40);
@@ -201,7 +208,7 @@
             // Add_Item_toDB
             // 
             this.Add_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Add_Item_toDB.Location = new System.Drawing.Point(430, 623);
+            this.Add_Item_toDB.Location = new System.Drawing.Point(430, 723);
             this.Add_Item_toDB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Item_toDB.Name = "Add_Item_toDB";
             this.Add_Item_toDB.Size = new System.Drawing.Size(117, 40);
@@ -230,10 +237,86 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ : ";
             // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status.Location = new System.Drawing.Point(11, 629);
+            this.Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(61, 27);
+            this.Status.TabIndex = 16;
+            this.Status.Text = "สถานะ : ";
+            // 
+            // Quality
+            // 
+            this.Quality.AutoSize = true;
+            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quality.Location = new System.Drawing.Point(11, 677);
+            this.Quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Quality.Name = "Quality";
+            this.Quality.Size = new System.Drawing.Size(55, 27);
+            this.Quality.TabIndex = 19;
+            this.Quality.Text = "สภาพ : ";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "ใช้งานได้",
+            "ชำรุดรอซ่อม",
+            "สิ้นสภาพ",
+            "สูญหาย",
+            "จำหน่ายแล้ว",
+            "โอนแล้ว",
+            "อื่นๆ"});
+            this.comboBox1.Location = new System.Drawing.Point(64, 673);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(267, 35);
+            this.comboBox1.TabIndex = 20;
+            // 
+            // S_Have
+            // 
+            this.S_Have.AutoSize = true;
+            this.S_Have.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_Have.Location = new System.Drawing.Point(13, 3);
+            this.S_Have.Name = "S_Have";
+            this.S_Have.Size = new System.Drawing.Size(111, 31);
+            this.S_Have.TabIndex = 17;
+            this.S_Have.TabStop = true;
+            this.S_Have.Text = "มีให้ตรวจสอบ";
+            this.S_Have.UseVisualStyleBackColor = true;
+            // 
+            // S_Donthave
+            // 
+            this.S_Donthave.AutoSize = true;
+            this.S_Donthave.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_Donthave.Location = new System.Drawing.Point(130, 3);
+            this.S_Donthave.Name = "S_Donthave";
+            this.S_Donthave.Size = new System.Drawing.Size(126, 31);
+            this.S_Donthave.TabIndex = 18;
+            this.S_Donthave.TabStop = true;
+            this.S_Donthave.Text = "ไม่มีให้ตรวจสอบ";
+            this.S_Donthave.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.S_Donthave);
+            this.panel1.Controls.Add(this.S_Have);
+            this.panel1.Location = new System.Drawing.Point(69, 624);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(262, 38);
+            this.panel1.TabIndex = 21;
+            // 
             // AddItemP2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(557, 673);
+            this.ClientSize = new System.Drawing.Size(557, 775);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.Quality);
+            this.Controls.Add(this.Status);
             this.Controls.Add(this.Note_TB);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Add_Item_toDB);
@@ -258,6 +341,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +367,11 @@
         private System.Windows.Forms.Button Add_Item_toDB;
         private System.Windows.Forms.TextBox Note_TB;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.Label Quality;
+        private System.Windows.Forms.RadioButton S_Have;
+        private System.Windows.Forms.RadioButton S_Donthave;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

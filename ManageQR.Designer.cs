@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
+            this.Search = new System.Windows.Forms.Button();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,10 +47,9 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stay_At = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action_Search = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Action_Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Action_Remove = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Search = new System.Windows.Forms.Button();
+            this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,6 +144,16 @@
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
             this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
+            // 
+            // Search
+            // 
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Search.Location = new System.Drawing.Point(1128, 6);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(92, 34);
+            this.Search.TabIndex = 6;
+            this.Search.Text = "Search";
+            this.Search.UseVisualStyleBackColor = true;
             // 
             // Tag
             // 
@@ -240,6 +250,7 @@
             // 
             this.Action_Search.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_Search.HeaderText = "";
+            this.Action_Search.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_Search.MinimumWidth = 45;
             this.Action_Search.Name = "Action_Search";
             this.Action_Search.ReadOnly = true;
@@ -250,6 +261,7 @@
             // 
             this.Action_Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_Edit.HeaderText = "";
+            this.Action_Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_Edit.MinimumWidth = 45;
             this.Action_Edit.Name = "Action_Edit";
             this.Action_Edit.ReadOnly = true;
@@ -260,21 +272,12 @@
             // 
             this.Action_Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_Remove.HeaderText = "";
+            this.Action_Remove.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_Remove.MinimumWidth = 45;
             this.Action_Remove.Name = "Action_Remove";
             this.Action_Remove.ReadOnly = true;
             this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_Remove.Width = 45;
-            // 
-            // Search
-            // 
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(1128, 6);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(92, 34);
-            this.Search.TabIndex = 6;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
             // 
             // ManageQR
             // 
@@ -314,9 +317,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stay_At;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
-        private System.Windows.Forms.DataGridViewButtonColumn Action_Search;
-        private System.Windows.Forms.DataGridViewButtonColumn Action_Edit;
-        private System.Windows.Forms.DataGridViewButtonColumn Action_Remove;
+        private System.Windows.Forms.DataGridViewImageColumn Action_Search;
+        private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
+        private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
     }
 }
 

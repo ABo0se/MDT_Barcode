@@ -325,22 +325,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             if (e.ColumnIndex == 9 && e.RowIndex >= 0)
             {
-                // Replace 'yourImage' with the image you want to assign to the button
-                e.Value = "🔍";
-                //e.FormattingApplied = true;
+                e.Value = Properties.Resources.search;
+                e.FormattingApplied = true; // Add this line
             }
             if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
-                // Replace 'yourImage' with the image you want to assign to the button
-                e.Value = "📝";
-                //e.FormattingApplied = true;
+                e.Value = Properties.Resources.EditIcon;
+                e.FormattingApplied = true; // Add this line
             }
             if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
-                // Replace 'yourImage' with the image you want to assign to the button
-                e.Value = "🗑️";
-                //e.FormattingApplied = true;
+                e.Value = Properties.Resources.DeleteIcon;
+                e.FormattingApplied = true; // Add this line
             }
         }
+
     }
 }
