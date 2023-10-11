@@ -315,7 +315,7 @@
             // AddItemP2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(557, 775);
+            this.ClientSize = new System.Drawing.Size(557, 778);
             this.Controls.Add(this.StatsPanel);
             this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.Quality);

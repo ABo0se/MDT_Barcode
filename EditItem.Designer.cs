@@ -45,7 +45,16 @@
             this.Edit_Item_toDB = new System.Windows.Forms.Button();
             this.Note_TB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.S_Donthave = new System.Windows.Forms.RadioButton();
+            this.S_Have = new System.Windows.Forms.RadioButton();
+            this.ConditionBox = new System.Windows.Forms.ComboBox();
+            this.Quality = new System.Windows.Forms.Label();
+            this.Status = new System.Windows.Forms.Label();
+            this.StatsPanel = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.StatsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -126,7 +135,7 @@
             // Add_Pic
             // 
             this.Add_Pic.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Add_Pic.Location = new System.Drawing.Point(18, 550);
+            this.Add_Pic.Location = new System.Drawing.Point(18, 731);
             this.Add_Pic.Name = "Add_Pic";
             this.Add_Pic.Size = new System.Drawing.Size(115, 35);
             this.Add_Pic.TabIndex = 7;
@@ -189,7 +198,7 @@
             // Edit_Item_toDB
             // 
             this.Edit_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Edit_Item_toDB.Location = new System.Drawing.Point(430, 550);
+            this.Edit_Item_toDB.Location = new System.Drawing.Point(430, 731);
             this.Edit_Item_toDB.Name = "Edit_Item_toDB";
             this.Edit_Item_toDB.Size = new System.Drawing.Size(115, 35);
             this.Edit_Item_toDB.TabIndex = 14;
@@ -215,10 +224,112 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ : ";
             // 
+            // S_Donthave
+            // 
+            this.S_Donthave.AutoSize = true;
+            this.S_Donthave.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_Donthave.Location = new System.Drawing.Point(135, -73);
+            this.S_Donthave.Name = "S_Donthave";
+            this.S_Donthave.Size = new System.Drawing.Size(126, 31);
+            this.S_Donthave.TabIndex = 23;
+            this.S_Donthave.TabStop = true;
+            this.S_Donthave.Text = "ไม่มีให้ตรวจสอบ";
+            this.S_Donthave.UseVisualStyleBackColor = true;
+            // 
+            // S_Have
+            // 
+            this.S_Have.AutoSize = true;
+            this.S_Have.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_Have.Location = new System.Drawing.Point(18, -73);
+            this.S_Have.Name = "S_Have";
+            this.S_Have.Size = new System.Drawing.Size(111, 31);
+            this.S_Have.TabIndex = 22;
+            this.S_Have.TabStop = true;
+            this.S_Have.Text = "มีให้ตรวจสอบ";
+            this.S_Have.UseVisualStyleBackColor = true;
+            // 
+            // ConditionBox
+            // 
+            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.ConditionBox.FormattingEnabled = true;
+            this.ConditionBox.Items.AddRange(new object[] {
+            "ใช้งานได้",
+            "ชำรุดรอซ่อม",
+            "สิ้นสภาพ",
+            "สูญหาย",
+            "จำหน่ายแล้ว",
+            "โอนแล้ว",
+            "อื่นๆ"});
+            this.ConditionBox.Location = new System.Drawing.Point(76, 594);
+            this.ConditionBox.Name = "ConditionBox";
+            this.ConditionBox.Size = new System.Drawing.Size(267, 35);
+            this.ConditionBox.TabIndex = 25;
+            // 
+            // Quality
+            // 
+            this.Quality.AutoSize = true;
+            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quality.Location = new System.Drawing.Point(16, 597);
+            this.Quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Quality.Name = "Quality";
+            this.Quality.Size = new System.Drawing.Size(55, 27);
+            this.Quality.TabIndex = 24;
+            this.Quality.Text = "สภาพ : ";
+            // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status.Location = new System.Drawing.Point(16, 555);
+            this.Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(61, 27);
+            this.Status.TabIndex = 21;
+            this.Status.Text = "สถานะ : ";
+            // 
+            // StatsPanel
+            // 
+            this.StatsPanel.Controls.Add(this.radioButton1);
+            this.StatsPanel.Controls.Add(this.radioButton2);
+            this.StatsPanel.Location = new System.Drawing.Point(76, 550);
+            this.StatsPanel.Name = "StatsPanel";
+            this.StatsPanel.Size = new System.Drawing.Size(262, 38);
+            this.StatsPanel.TabIndex = 26;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.radioButton1.Location = new System.Drawing.Point(130, 3);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(126, 31);
+            this.radioButton1.TabIndex = 18;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "ไม่มีให้ตรวจสอบ";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.radioButton2.Location = new System.Drawing.Point(13, 3);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(111, 31);
+            this.radioButton2.TabIndex = 17;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "มีให้ตรวจสอบ";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // EditItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(557, 593);
+            this.ClientSize = new System.Drawing.Size(557, 778);
+            this.Controls.Add(this.StatsPanel);
+            this.Controls.Add(this.S_Donthave);
+            this.Controls.Add(this.S_Have);
+            this.Controls.Add(this.ConditionBox);
+            this.Controls.Add(this.Quality);
+            this.Controls.Add(this.Status);
             this.Controls.Add(this.Note_TB);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Edit_Item_toDB);
@@ -241,6 +352,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.StatsPanel.ResumeLayout(false);
+            this.StatsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,5 +378,13 @@
         private System.Windows.Forms.Button Edit_Item_toDB;
         private System.Windows.Forms.TextBox Note_TB;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton S_Donthave;
+        private System.Windows.Forms.RadioButton S_Have;
+        private System.Windows.Forms.ComboBox ConditionBox;
+        private System.Windows.Forms.Label Quality;
+        private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.Panel StatsPanel;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

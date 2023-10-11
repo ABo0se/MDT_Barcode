@@ -43,6 +43,10 @@
             this.ModelName_TXT = new System.Windows.Forms.Label();
             this.BarcodeID_TXT = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Status = new System.Windows.Forms.Label();
+            this.Condition = new System.Windows.Forms.Label();
+            this.Status_TXT = new System.Windows.Forms.Label();
+            this.Condition_TXT = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,13 +211,59 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status.Location = new System.Drawing.Point(9, 481);
+            this.Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(57, 27);
+            this.Status.TabIndex = 24;
+            this.Status.Text = "สถานะ :";
+            // 
+            // Condition
+            // 
+            this.Condition.AutoSize = true;
+            this.Condition.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Condition.Location = new System.Drawing.Point(9, 508);
+            this.Condition.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Condition.Name = "Condition";
+            this.Condition.Size = new System.Drawing.Size(51, 27);
+            this.Condition.TabIndex = 25;
+            this.Condition.Text = "สภาพ :";
+            // 
+            // Status_TXT
+            // 
+            this.Status_TXT.AutoSize = true;
+            this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status_TXT.Location = new System.Drawing.Point(64, 481);
+            this.Status_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Status_TXT.Name = "Status_TXT";
+            this.Status_TXT.Size = new System.Drawing.Size(0, 27);
+            this.Status_TXT.TabIndex = 26;
+            // 
+            // Condition_TXT
+            // 
+            this.Condition_TXT.AutoSize = true;
+            this.Condition_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Condition_TXT.Location = new System.Drawing.Point(55, 508);
+            this.Condition_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Condition_TXT.Name = "Condition_TXT";
+            this.Condition_TXT.Size = new System.Drawing.Size(0, 27);
+            this.Condition_TXT.TabIndex = 27;
+            // 
             // ShowItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(557, 492);
+            this.ClientSize = new System.Drawing.Size(557, 548);
+            this.Controls.Add(this.Condition_TXT);
+            this.Controls.Add(this.Condition);
+            this.Controls.Add(this.Status);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BarcodeID_TXT);
             this.Controls.Add(this.Note_TXT);
+            this.Controls.Add(this.Status_TXT);
             this.Controls.Add(this.Stay_TXT);
             this.Controls.Add(this.Price_TXT);
             this.Controls.Add(this.SN_TXT);
@@ -254,5 +304,9 @@
         private System.Windows.Forms.Label ModelName_TXT;
         private System.Windows.Forms.Label BarcodeID_TXT;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.Label Condition;
+        private System.Windows.Forms.Label Status_TXT;
+        private System.Windows.Forms.Label Condition_TXT;
     }
 }
