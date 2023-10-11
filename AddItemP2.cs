@@ -10,8 +10,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public partial class AddItemP2 : Form
     {
         string PicFilePath = null;
-        int checkstate = 0;
-        int conditionstate = 0;
+        int checkstate = -1;
+        int conditionstate = -1;
         /// ///////////////////////////////////////////
         public AddItemP2()
         {
@@ -102,8 +102,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
                          Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
-                         Room_TB.Text == "" || Note_TB.Text == "")// ||
-                         //checkstate == -1 || conditionstate == -1)
+                         Room_TB.Text == "" || Note_TB.Text == "" || conditionstate == -1 || checkstate == -1)
                 {
                     MessageBox.Show("กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่มเข้ามา");
                 }
@@ -229,6 +228,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         Note_TB.Text = "";
                         S_Have.Checked = false;
                         S_Donthave.Checked = false;
+                        ConditionBox.DataSource = null;
                         checkstate = -1;
                         conditionstate = -1;
                     }
@@ -265,6 +265,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             S_Have.Checked = false;
             S_Donthave.Checked = false;
+            ConditionBox.DataSource = null;
         }
 
         private void Form_Closing3(object sender, FormClosingEventArgs e)
@@ -278,71 +279,34 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void S_Have_CheckedChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(S_Have.Checked.ToString());
-            if (S_Have.Checked)
+            if (S_Have.Checked || !S_Donthave.Checked)
             {
-                conditionstate = 0; //มี
+                checkstate = 0; //มี
             }
             else
             {
-                conditionstate = 1; //ไม่มี
+                checkstate = 1; //ไม่มี
             }
+            //MessageBox.Show(S_Have.Checked.ToString() + " " + conditionstate);
         }
 
         private void S_Donthave_CheckedChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(S_Donthave.Checked.ToString());
-            if (S_Donthave.Checked)
+            
+            if (S_Have.Checked || !S_Donthave.Checked)
             {
-                conditionstate = 1; //มี
+                checkstate = 0; //มี
             }
             else
             {
-                conditionstate = 0; //ไม่มี
+                checkstate = 1; //ไม่มี
             }
+            //MessageBox.Show(S_Have.Checked.ToString() + " " + conditionstate);
         }
 
         private void ConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             conditionstate = ConditionBox.SelectedIndex;
-            //switch (ConditionBox.SelectedIndex)
-            //{
-            //    case -1:
-            //    {
-            //        conditionstate = -1;
-            //        break;
-            //    }
-            //    case 0:
-            //    {
-            //        conditionstate = 0;
-            //        break;
-            //    }
-            //    case 1:
-            //    {
-            //        conditionstate = 1;
-            //        break;
-            //    }
-            //    case 2:
-            //    {
-            //        conditionstate = 2;
-            //        break;
-            //    }
-            //    case 3:
-            //    {
-            //        conditionstate = 3;
-            //        break;
-            //    }
-            //    case 4:
-            //    {
-            //        conditionstate = 4;
-            //        break;
-            //    }
-            //    case 5:
-            //    {
-            //        conditionstate = 5;
-            //        break;
-            //    }
-            //}
         }
     }
 }
