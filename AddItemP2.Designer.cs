@@ -47,12 +47,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
             this.Quality = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ConditionBox = new System.Windows.Forms.ComboBox();
             this.S_Have = new System.Windows.Forms.RadioButton();
             this.S_Donthave = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.StatsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.StatsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -259,11 +259,11 @@
             this.Quality.TabIndex = 19;
             this.Quality.Text = "สภาพ : ";
             // 
-            // comboBox1
+            // ConditionBox
             // 
-            this.comboBox1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.ConditionBox.FormattingEnabled = true;
+            this.ConditionBox.Items.AddRange(new object[] {
             "ใช้งานได้",
             "ชำรุดรอซ่อม",
             "สิ้นสภาพ",
@@ -271,10 +271,11 @@
             "จำหน่ายแล้ว",
             "โอนแล้ว",
             "อื่นๆ"});
-            this.comboBox1.Location = new System.Drawing.Point(64, 673);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(267, 35);
-            this.comboBox1.TabIndex = 20;
+            this.ConditionBox.Location = new System.Drawing.Point(64, 673);
+            this.ConditionBox.Name = "ConditionBox";
+            this.ConditionBox.Size = new System.Drawing.Size(267, 35);
+            this.ConditionBox.TabIndex = 20;
+            this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
             // S_Have
             // 
@@ -287,6 +288,7 @@
             this.S_Have.TabStop = true;
             this.S_Have.Text = "มีให้ตรวจสอบ";
             this.S_Have.UseVisualStyleBackColor = true;
+            this.S_Have.CheckedChanged += new System.EventHandler(this.S_Have_CheckedChanged);
             // 
             // S_Donthave
             // 
@@ -299,22 +301,23 @@
             this.S_Donthave.TabStop = true;
             this.S_Donthave.Text = "ไม่มีให้ตรวจสอบ";
             this.S_Donthave.UseVisualStyleBackColor = true;
+            this.S_Donthave.CheckedChanged += new System.EventHandler(this.S_Donthave_CheckedChanged);
             // 
-            // panel1
+            // StatsPanel
             // 
-            this.panel1.Controls.Add(this.S_Donthave);
-            this.panel1.Controls.Add(this.S_Have);
-            this.panel1.Location = new System.Drawing.Point(69, 624);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 38);
-            this.panel1.TabIndex = 21;
+            this.StatsPanel.Controls.Add(this.S_Donthave);
+            this.StatsPanel.Controls.Add(this.S_Have);
+            this.StatsPanel.Location = new System.Drawing.Point(69, 624);
+            this.StatsPanel.Name = "StatsPanel";
+            this.StatsPanel.Size = new System.Drawing.Size(262, 38);
+            this.StatsPanel.TabIndex = 21;
             // 
             // AddItemP2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(557, 775);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.StatsPanel);
+            this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.Quality);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.Note_TB);
@@ -341,8 +344,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.StatsPanel.ResumeLayout(false);
+            this.StatsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,7 +374,7 @@
         private System.Windows.Forms.Label Quality;
         private System.Windows.Forms.RadioButton S_Have;
         private System.Windows.Forms.RadioButton S_Donthave;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel StatsPanel;
+        private System.Windows.Forms.ComboBox ConditionBox;
     }
 }
