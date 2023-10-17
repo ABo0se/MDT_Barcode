@@ -265,7 +265,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             S_Have.Checked = false;
             S_Donthave.Checked = false;
-            ConditionBox.DataSource = null;
+            ConditionBox.SelectedIndex = -1;
         }
 
         private void Form_Closing3(object sender, FormClosingEventArgs e)

@@ -59,7 +59,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ///
                 if (conditionX == -1)
                 {
-                    ConditionBox.
+                    ConditionBox.SelectedIndex = -1;
                 }
                 else
                 {
