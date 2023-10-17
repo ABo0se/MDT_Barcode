@@ -47,12 +47,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.S_Donthave = new System.Windows.Forms.RadioButton();
             this.S_Have = new System.Windows.Forms.RadioButton();
-            this.ConditionBox = new System.Windows.Forms.ComboBox();
+            this.ConditionBoxEdit = new System.Windows.Forms.ComboBox();
             this.Quality = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
             this.StatsPanel = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.S_DonthaveEdit = new System.Windows.Forms.RadioButton();
+            this.S_HaveEdit = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -248,11 +248,11 @@
             this.S_Have.Text = "มีให้ตรวจสอบ";
             this.S_Have.UseVisualStyleBackColor = true;
             // 
-            // ConditionBox
+            // ConditionBoxEdit
             // 
-            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.ConditionBox.FormattingEnabled = true;
-            this.ConditionBox.Items.AddRange(new object[] {
+            this.ConditionBoxEdit.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.ConditionBoxEdit.FormattingEnabled = true;
+            this.ConditionBoxEdit.Items.AddRange(new object[] {
             "ใช้งานได้",
             "ชำรุดรอซ่อม",
             "สิ้นสภาพ",
@@ -260,10 +260,11 @@
             "จำหน่ายแล้ว",
             "โอนแล้ว",
             "อื่นๆ"});
-            this.ConditionBox.Location = new System.Drawing.Point(76, 615);
-            this.ConditionBox.Name = "ConditionBox";
-            this.ConditionBox.Size = new System.Drawing.Size(267, 35);
-            this.ConditionBox.TabIndex = 25;
+            this.ConditionBoxEdit.Location = new System.Drawing.Point(76, 615);
+            this.ConditionBoxEdit.Name = "ConditionBoxEdit";
+            this.ConditionBoxEdit.Size = new System.Drawing.Size(267, 35);
+            this.ConditionBoxEdit.TabIndex = 25;
+            this.ConditionBoxEdit.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
             // Quality
             // 
@@ -289,36 +290,38 @@
             // 
             // StatsPanel
             // 
-            this.StatsPanel.Controls.Add(this.radioButton1);
-            this.StatsPanel.Controls.Add(this.radioButton2);
+            this.StatsPanel.Controls.Add(this.S_DonthaveEdit);
+            this.StatsPanel.Controls.Add(this.S_HaveEdit);
             this.StatsPanel.Location = new System.Drawing.Point(76, 571);
             this.StatsPanel.Name = "StatsPanel";
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
             this.StatsPanel.TabIndex = 26;
             // 
-            // radioButton1
+            // S_DonthaveEdit
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.radioButton1.Location = new System.Drawing.Point(130, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(126, 31);
-            this.radioButton1.TabIndex = 18;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "ไม่มีให้ตรวจสอบ";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.S_DonthaveEdit.AutoSize = true;
+            this.S_DonthaveEdit.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_DonthaveEdit.Location = new System.Drawing.Point(130, 3);
+            this.S_DonthaveEdit.Name = "S_DonthaveEdit";
+            this.S_DonthaveEdit.Size = new System.Drawing.Size(126, 31);
+            this.S_DonthaveEdit.TabIndex = 18;
+            this.S_DonthaveEdit.TabStop = true;
+            this.S_DonthaveEdit.Text = "ไม่มีให้ตรวจสอบ";
+            this.S_DonthaveEdit.UseVisualStyleBackColor = true;
+            this.S_DonthaveEdit.CheckedChanged += new System.EventHandler(this.S_Donthave_CheckedChanged);
             // 
-            // radioButton2
+            // S_HaveEdit
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.radioButton2.Location = new System.Drawing.Point(13, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(111, 31);
-            this.radioButton2.TabIndex = 17;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "มีให้ตรวจสอบ";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.S_HaveEdit.AutoSize = true;
+            this.S_HaveEdit.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.S_HaveEdit.Location = new System.Drawing.Point(13, 3);
+            this.S_HaveEdit.Name = "S_HaveEdit";
+            this.S_HaveEdit.Size = new System.Drawing.Size(111, 31);
+            this.S_HaveEdit.TabIndex = 17;
+            this.S_HaveEdit.TabStop = true;
+            this.S_HaveEdit.Text = "มีให้ตรวจสอบ";
+            this.S_HaveEdit.UseVisualStyleBackColor = true;
+            this.S_HaveEdit.CheckedChanged += new System.EventHandler(this.S_Have_CheckedChanged);
             // 
             // EditItem
             // 
@@ -327,7 +330,7 @@
             this.Controls.Add(this.StatsPanel);
             this.Controls.Add(this.S_Donthave);
             this.Controls.Add(this.S_Have);
-            this.Controls.Add(this.ConditionBox);
+            this.Controls.Add(this.ConditionBoxEdit);
             this.Controls.Add(this.Quality);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.Note_TB);
@@ -380,11 +383,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton S_Donthave;
         private System.Windows.Forms.RadioButton S_Have;
-        private System.Windows.Forms.ComboBox ConditionBox;
+        private System.Windows.Forms.ComboBox ConditionBoxEdit;
         private System.Windows.Forms.Label Quality;
         private System.Windows.Forms.Label Status;
         private System.Windows.Forms.Panel StatsPanel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton S_DonthaveEdit;
+        private System.Windows.Forms.RadioButton S_HaveEdit;
     }
 }

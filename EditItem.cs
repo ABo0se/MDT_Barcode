@@ -12,6 +12,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         string PicFilePath = null;
         int checkstate = -1;
         int conditionstate = -1;
+        SRResults TemporaryData = null;
         ////////////////////////////////////////////////////
         public EditItem()
         {
@@ -22,49 +23,41 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (TryFetchDataBySerialCode(barcodetext, out SRResults data))
             {
                 //DisplayData
-                BarcodeID_TB.Text = data.BarcodeNumber;
-                Model_TB.Text = data.ModelNumber;
-                Brand_TB.Text = data.Brand;
-                Serial_TB.Text = data.SerialNum;
-                Price_TB.Text = data.Price;
-                Room_TB.Text = data.Room;
-                Note_TB.Text = data.Description;
+                TemporaryData = data;
+                BarcodeID_TB.Text = TemporaryData.BarcodeNumber;
+                Model_TB.Text = TemporaryData.ModelNumber;
+                Brand_TB.Text = TemporaryData.Brand;
+                Serial_TB.Text = TemporaryData.SerialNum;
+                Price_TB.Text = TemporaryData.Price;
+                Room_TB.Text = TemporaryData.Room;
+                Note_TB.Text = TemporaryData.Description;
                 ////////////////////////////////////
-                sbyte statusX, conditionX;
-                statusX = sbyte.Parse(data.Status);
-                conditionX = sbyte.Parse(data.Condition);
-                switch (statusX)
+                checkstate = TemporaryData.Status;
+                conditionstate = TemporaryData.Condition;
+                
+                switch (checkstate)
                 {
                     case -1:
                         {
-                            S_Have.Checked = false;
-                            S_Donthave.Checked = false;
+                            S_HaveEdit.Checked = false;
+                            S_DonthaveEdit.Checked = false;
                             break;
                         }
                     case 0:
                         {
-                            S_Have.Checked = true;
-                            S_Donthave.Checked = false;
+                            S_HaveEdit.Checked = true;
+                            S_DonthaveEdit.Checked = false;
                             break;
                         }
                     case 1:
                         {
-                            S_Have.Checked = false;
-                            S_Donthave.Checked = true;
+                            S_HaveEdit.Checked = false;
+                            S_DonthaveEdit.Checked = true;
                             break;
                         }
                 }
-                checkstate = statusX;
-                /////////////////////////////////////
+                ConditionBoxEdit.SelectedIndex = conditionstate;
                 ///
-                if (conditionX == -1)
-                {
-                    ConditionBox.SelectedIndex = -1;
-                }
-                else
-                {
-
-                }
                 ////////////////////////////////////
                 try
                 {
@@ -139,7 +132,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Add_Item_toDB_Click(object sender, EventArgs e)
         {
-            //Serach before we do something.
+            //Check if we own data beforehand.
+            if (TemporaryData == null)
+            {
+                MessageBox.Show("ไม่มีข้อมูลที่เก็บไว้ชั่วคราว");
+                this.Hide();
+                return;
+            }
+            ////////////////////////////////////////////////////////////
+            ///Serach before we do something.
             List<string> dbData = new List<string>();
             string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
@@ -162,16 +163,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
 
                 // Compare the data
-                bool isDataSame = dbData.Contains(BarcodeID_TB.Text); // Check if the barcode is already in the database
+                bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
                 mySqlConnection.Close();
                 if (isDataSame)
                 {
-                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
-                    this.Hide();
+                    EditmyDataBase();
                 }
                 else
                 {
-                    AddToDataBase();
+                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากไม่สามารถดึงรหัสครุภัณฑ์เก่าได้");
+                    this.Hide();
                 }
             }
             catch (Exception ex)
@@ -179,7 +180,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 MessageBox.Show(ex.Message);
             }
         }
-        private void AddToDataBase()
+        private void EditmyDataBase()
         {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
@@ -188,8 +189,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 mySqlConnection2.Open();
 
-                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note) " +
-                               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note)";
+                string query = "UPDATE information SET " +
+               "Model_Name = @Model_Name, " +
+               "Brand = @Brand, " +
+               "Serial_Number = @Serial_Number, " +
+               "Price = @Price, " +
+               "Room = @Room, " +
+               "Pic = @Pic, " +
+               "Note = @Note, " + // Add a comma here
+               "Status = @Status, " + // Add a comma here
+               "ITEM_CONDITION = @ITEM_CONDITION " + // Add a space here
+
+               "WHERE BarcodeNumber = @BarcodeNumber";
+
 
                 if (PicFilePath == null)
                 {
@@ -198,7 +210,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
-                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
                     cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
@@ -206,17 +217,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
                     cmd.Parameters.AddWithValue("@Pic", PicFilePath);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+                    cmd.Parameters.AddWithValue("@Status", checkstate);
+                    cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Barcode Data inserted successfully!");
+                        MessageBox.Show("Barcode Data updated successfully!");
                         //PullDataFromDB();
                     }
                     else
                     {
-                        MessageBox.Show("Failed to insert data.");
+                        MessageBox.Show("Failed to update data.");
                     }
                 }
             }
@@ -227,13 +241,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             finally
             {
                 mySqlConnection2.Close();
-                AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
-                if (AddItemForm != null)
+                EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
+                if (EditItemForm != null)
                 {
-                    AddItemForm.Hide();
+                    EditItemForm.Hide();
                 }
             }
         }
+
 
         public void InitializePage()
         {
@@ -259,9 +274,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             checkstate = -1;
             conditionstate = -1;
 
-            S_Have.Checked = false;
-            S_Donthave.Checked = false;
-            ConditionBox.DataSource = null;
+            S_HaveEdit.Checked = false;
+            S_DonthaveEdit.Checked = false;
+            ConditionBoxEdit.SelectedIndex = conditionstate;
+
+            TemporaryData = null;
         }
 
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
@@ -373,7 +390,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 Room = reader["Room"].ToString(),
                                 FilePath = reader["Pic"].ToString(),
                                 Description = reader["Note"].ToString(),
-                                // ... and so on for other properties
+                                Status = int.Parse(reader["Status"].ToString()),
+                                Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                             };
                             return true;
                         }
@@ -393,6 +411,35 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             else
                 return false;
         }
+
+        private void S_Have_CheckedChanged(object sender, EventArgs e)
+        {
+            if (S_HaveEdit.Checked || !S_DonthaveEdit.Checked)
+            {
+                checkstate = 0; //มี
+            }
+            else
+            {
+                checkstate = 1; //ไม่มี
+            }
+        }
+
+        private void S_Donthave_CheckedChanged(object sender, EventArgs e)
+        {
+            if (S_HaveEdit.Checked || !S_DonthaveEdit.Checked)
+            {
+                checkstate = 0; //มี
+            }
+            else
+            {
+                checkstate = 1; //ไม่มี
+            }
+        }
+
+        private void ConditionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            conditionstate = ConditionBoxEdit.SelectedIndex;
+        }
     }
     public class SRResults
     {
@@ -405,7 +452,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public string Room { get; set; }
         public string FilePath { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; }
-        public string Condition { get; set; }
+        public int Status { get; set; }
+        public int Condition { get; set; }
     }
 }

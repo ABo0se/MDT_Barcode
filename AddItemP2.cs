@@ -265,7 +265,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             S_Have.Checked = false;
             S_Donthave.Checked = false;
-            ConditionBox.SelectedIndex = -1;
+            ConditionBox.SelectedIndex = conditionstate;
         }
 
         private void Form_Closing3(object sender, FormClosingEventArgs e)
@@ -292,7 +292,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void S_Donthave_CheckedChanged(object sender, EventArgs e)
         {
-            
             if (S_Have.Checked || !S_Donthave.Checked)
             {
                 checkstate = 0; //มี

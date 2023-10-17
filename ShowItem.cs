@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -47,9 +48,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Stay_TXT.Text = data.Room;
                 Note_TXT.Text = data.Description;
                 ////////////////////////////////////
-                sbyte statusX, conditionX;
-                statusX = sbyte.Parse(data.Status);
-                conditionX = sbyte.Parse(data.Condition);
+                int statusX, conditionX;
+                statusX = data.Status;
+                conditionX = data.Condition;
                 switch (statusX)
                 {
                     case -1:
@@ -162,7 +163,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 Room = reader["Room"].ToString(),
                                 FilePath = reader["Pic"].ToString(),
                                 Description = reader["Note"].ToString(),
+                                Status = int.Parse(reader["Status"].ToString()),
+                                Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                             };
+                            MessageBox.Show(reader["Status"].ToString());
+                            MessageBox.Show(reader["ITEM_CONDITION"].ToString());
                             return true;
                         }
                     }
