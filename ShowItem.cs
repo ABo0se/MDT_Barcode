@@ -9,20 +9,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     {
         private MySqlConnection mySqlConnection;
 
-        private class SRResults
-        {
-            public string BarcodeNumber { get; set; }
-            public string ModelNumber { get; set; }
-            public string Brand { get; set; }
-            public string SerialNum { get; set; }
-            public string Price { get; set; }
-            public string Room { get; set; }
-            public string FilePath { get; set; }
-            public string Description { get; set; }
-            public string Status { get; set; }
-            public string Condition { get; set; }
-        }
-
         public ShowItem()
         {
             InitializeComponent();
@@ -167,6 +153,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             data = new SRResults
                             {
+                                Date = reader.GetDateTime("Time"),
                                 BarcodeNumber = reader["BarcodeNumber"].ToString(),
                                 ModelNumber = reader["Model_Name"].ToString(),
                                 Brand = reader["Brand"].ToString(),

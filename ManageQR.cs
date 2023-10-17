@@ -45,7 +45,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void SearchDatainDB()
         {
-            List<SRResults2> ResultDataList = new List<SRResults2>();
+            List<SRResults> ResultDataList = new List<SRResults>();
 
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
 
@@ -67,7 +67,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             while (reader.Read())
                             {
-                                SRResults2 data2 = new SRResults2
+                                SRResults data2 = new SRResults
                                 {
                                     Date = reader.GetDateTime("Time"),
                                     BarcodeNumber = reader["BarcodeNumber"].ToString(),
@@ -96,12 +96,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             PopulateDataGridView(ResultDataList);
         }
 
-        private void PopulateDataGridView(List<SRResults2> data)
+        private void PopulateDataGridView(List<SRResults> data)
         {
             BarcodenumberCollector.Rows.Clear();
 
             int numberofsortedItem = 0;
-            foreach (SRResults2 result in data)
+            foreach (SRResults result in data)
             {
                 BarcodenumberCollector.Rows.Add
                 (numberofsortedItem, result.Date, result.BarcodeNumber, result.ModelNumber,
@@ -300,17 +300,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
 
 
-        public class SRResults2
-        {
-            public DateTime Date { get; set; }
-            public string BarcodeNumber { get; set; }
-            public string ModelNumber { get; set; }
-            public string Brand { get; set; }
-            public string SerialNum { get; set; }
-            public string Price { get; set; }
-            public string Room { get; set; }
-            public string Description { get; set; }
-        }
+        //public class SRResults2
+        //{
+
+        //    public string BarcodeNumber { get; set; }
+        //    public string ModelNumber { get; set; }
+        //    public string Brand { get; set; }
+        //    public string SerialNum { get; set; }
+        //    public string Price { get; set; }
+        //    public string Room { get; set; }
+        //    public string Description { get; set; }
+
 
         private void ManageQR_Closing(object sender, FormClosingEventArgs e)
         {
@@ -339,6 +339,5 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 e.FormattingApplied = true; // Add this line
             }
         }
-
     }
 }

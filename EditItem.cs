@@ -29,6 +29,43 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Price_TB.Text = data.Price;
                 Room_TB.Text = data.Room;
                 Note_TB.Text = data.Description;
+                ////////////////////////////////////
+                sbyte statusX, conditionX;
+                statusX = sbyte.Parse(data.Status);
+                conditionX = sbyte.Parse(data.Condition);
+                switch (statusX)
+                {
+                    case -1:
+                        {
+                            S_Have.Checked = false;
+                            S_Donthave.Checked = false;
+                            break;
+                        }
+                    case 0:
+                        {
+                            S_Have.Checked = true;
+                            S_Donthave.Checked = false;
+                            break;
+                        }
+                    case 1:
+                        {
+                            S_Have.Checked = false;
+                            S_Donthave.Checked = true;
+                            break;
+                        }
+                }
+                checkstate = statusX;
+                /////////////////////////////////////
+                ///
+                if (conditionX == -1)
+                {
+                    ConditionBox.
+                }
+                else
+                {
+
+                }
+                ////////////////////////////////////
                 try
                 {
                     if (data.FilePath != null || data.FilePath != "")
@@ -327,6 +364,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             data = new SRResults
                             {
+                                Date = reader.GetDateTime("Time"),
                                 BarcodeNumber = reader["BarcodeNumber"].ToString(),
                                 ModelNumber = reader["Model_Name"].ToString(),
                                 Brand = reader["Brand"].ToString(),
@@ -358,6 +396,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     }
     public class SRResults
     {
+        public DateTime Date { get; set; }
         public string BarcodeNumber { get; set; }
         public string ModelNumber { get; set; }
         public string Brand { get; set; }
@@ -366,5 +405,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public string Room { get; set; }
         public string FilePath { get; set; }
         public string Description { get; set; }
+        public string Status { get; set; }
+        public string Condition { get; set; }
     }
 }
