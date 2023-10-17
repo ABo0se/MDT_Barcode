@@ -10,6 +10,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public partial class EditItem : Form
     {
         string PicFilePath = null;
+        int checkstate = -1;
+        int conditionstate = -1;
         ////////////////////////////////////////////////////
         public EditItem()
         {
@@ -206,8 +208,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Room_TB);
             BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Note_TB);
             barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            ///
-            PicFilePath = null;
+            /////////////////////////////////
+            PicFilePath = "";
             pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
@@ -216,6 +218,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Price_TB.Text = "";
             Room_TB.Text = "";
             Note_TB.Text = "";
+
+            checkstate = -1;
+            conditionstate = -1;
+
+            S_Have.Checked = false;
+            S_Donthave.Checked = false;
+            ConditionBox.DataSource = null;
         }
 
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)

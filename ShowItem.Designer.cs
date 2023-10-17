@@ -30,11 +30,11 @@
         {
             this.Barcode_ID = new System.Windows.Forms.Label();
             this.Product_Name = new System.Windows.Forms.Label();
-            this.Created_Time = new System.Windows.Forms.Label();
+            this.Model = new System.Windows.Forms.Label();
             this.Price = new System.Windows.Forms.Label();
             this.Attendant = new System.Windows.Forms.Label();
             this.Room = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Note = new System.Windows.Forms.Label();
             this.Note_TXT = new System.Windows.Forms.Label();
             this.Stay_TXT = new System.Windows.Forms.Label();
             this.Price_TXT = new System.Windows.Forms.Label();
@@ -72,16 +72,16 @@
             this.Product_Name.TabIndex = 2;
             this.Product_Name.Text = "ยี่ห้อ :";
             // 
-            // Created_Time
+            // Model
             // 
-            this.Created_Time.AutoSize = true;
-            this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Created_Time.Location = new System.Drawing.Point(9, 340);
-            this.Created_Time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(35, 27);
-            this.Created_Time.TabIndex = 3;
-            this.Created_Time.Text = "รุ่น :";
+            this.Model.AutoSize = true;
+            this.Model.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Model.Location = new System.Drawing.Point(9, 340);
+            this.Model.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Model.Name = "Model";
+            this.Model.Size = new System.Drawing.Size(35, 27);
+            this.Model.TabIndex = 3;
+            this.Model.Text = "รุ่น :";
             // 
             // Price
             // 
@@ -116,16 +116,16 @@
             this.Room.TabIndex = 6;
             this.Room.Text = "ประจำอยู่ที่ :";
             // 
-            // label1
+            // Note
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 454);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 27);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "หมายเหตุ :";
+            this.Note.AutoSize = true;
+            this.Note.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Note.Location = new System.Drawing.Point(9, 454);
+            this.Note.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Note.Name = "Note";
+            this.Note.Size = new System.Drawing.Size(73, 27);
+            this.Note.TabIndex = 15;
+            this.Note.Text = "หมายเหตุ :";
             // 
             // Note_TXT
             // 
@@ -269,11 +269,11 @@
             this.Controls.Add(this.SN_TXT);
             this.Controls.Add(this.Brand_TXT);
             this.Controls.Add(this.ModelName_TXT);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Note);
             this.Controls.Add(this.Room);
             this.Controls.Add(this.Attendant);
             this.Controls.Add(this.Price);
-            this.Controls.Add(this.Created_Time);
+            this.Controls.Add(this.Model);
             this.Controls.Add(this.Product_Name);
             this.Controls.Add(this.Barcode_ID);
             this.Font = new System.Drawing.Font("TH Sarabun New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -291,11 +291,11 @@
         #endregion
         private System.Windows.Forms.Label Barcode_ID;
         private System.Windows.Forms.Label Product_Name;
-        private System.Windows.Forms.Label Created_Time;
+        private System.Windows.Forms.Label Model;
         private System.Windows.Forms.Label Price;
         private System.Windows.Forms.Label Attendant;
         private System.Windows.Forms.Label Room;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Note;
         private System.Windows.Forms.Label Note_TXT;
         private System.Windows.Forms.Label Stay_TXT;
         private System.Windows.Forms.Label Price_TXT;

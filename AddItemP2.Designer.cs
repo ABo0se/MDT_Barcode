@@ -62,7 +62,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(89, 17);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(373, 255);
+            this.pictureBox1.Size = new System.Drawing.Size(375, 255);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -72,7 +72,7 @@
             // 
             this.Barcode_ID.AutoSize = true;
             this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Barcode_ID.Location = new System.Drawing.Point(9, 289);
+            this.Barcode_ID.Location = new System.Drawing.Point(8, 285);
             this.Barcode_ID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Barcode_ID.Name = "Barcode_ID";
             this.Barcode_ID.Size = new System.Drawing.Size(120, 27);
@@ -84,7 +84,7 @@
             // 
             this.Product_Name.AutoSize = true;
             this.Product_Name.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Product_Name.Location = new System.Drawing.Point(9, 338);
+            this.Product_Name.Location = new System.Drawing.Point(9, 325);
             this.Product_Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Product_Name.Name = "Product_Name";
             this.Product_Name.Size = new System.Drawing.Size(48, 27);
@@ -95,7 +95,7 @@
             // 
             this.Created_Time.AutoSize = true;
             this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Created_Time.Location = new System.Drawing.Point(9, 386);
+            this.Created_Time.Location = new System.Drawing.Point(8, 365);
             this.Created_Time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Created_Time.Name = "Created_Time";
             this.Created_Time.Size = new System.Drawing.Size(39, 27);
@@ -107,7 +107,7 @@
             // 
             this.Price.AutoSize = true;
             this.Price.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Price.Location = new System.Drawing.Point(9, 435);
+            this.Price.Location = new System.Drawing.Point(8, 405);
             this.Price.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Price.Name = "Price";
             this.Price.Size = new System.Drawing.Size(110, 27);
@@ -118,7 +118,7 @@
             // 
             this.Attendant.AutoSize = true;
             this.Attendant.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Attendant.Location = new System.Drawing.Point(9, 484);
+            this.Attendant.Location = new System.Drawing.Point(10, 445);
             this.Attendant.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Attendant.Name = "Attendant";
             this.Attendant.Size = new System.Drawing.Size(50, 27);
@@ -129,7 +129,7 @@
             // 
             this.Room.AutoSize = true;
             this.Room.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Room.Location = new System.Drawing.Point(9, 533);
+            this.Room.Location = new System.Drawing.Point(8, 486);
             this.Room.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Room.Name = "Room";
             this.Room.Size = new System.Drawing.Size(84, 27);
@@ -140,7 +140,7 @@
             // Add_Pic
             // 
             this.Add_Pic.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Add_Pic.Location = new System.Drawing.Point(16, 723);
+            this.Add_Pic.Location = new System.Drawing.Point(17, 651);
             this.Add_Pic.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Pic.Name = "Add_Pic";
             this.Add_Pic.Size = new System.Drawing.Size(116, 40);
@@ -152,7 +152,7 @@
             // BarcodeID_TB
             // 
             this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeID_TB.Location = new System.Drawing.Point(124, 286);
+            this.BarcodeID_TB.Location = new System.Drawing.Point(124, 282);
             this.BarcodeID_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.Size = new System.Drawing.Size(422, 34);
@@ -163,7 +163,7 @@
             // Model_TB
             // 
             this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Model_TB.Location = new System.Drawing.Point(53, 334);
+            this.Model_TB.Location = new System.Drawing.Point(54, 322);
             this.Model_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Model_TB.Name = "Model_TB";
             this.Model_TB.Size = new System.Drawing.Size(493, 34);
@@ -172,7 +172,7 @@
             // Brand_TB
             // 
             this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Brand_TB.Location = new System.Drawing.Point(44, 383);
+            this.Brand_TB.Location = new System.Drawing.Point(43, 362);
             this.Brand_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Brand_TB.Name = "Brand_TB";
             this.Brand_TB.Size = new System.Drawing.Size(503, 34);
@@ -181,7 +181,7 @@
             // Serial_TB
             // 
             this.Serial_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Serial_TB.Location = new System.Drawing.Point(116, 432);
+            this.Serial_TB.Location = new System.Drawing.Point(115, 402);
             this.Serial_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Serial_TB.Name = "Serial_TB";
             this.Serial_TB.Size = new System.Drawing.Size(431, 34);
@@ -190,7 +190,7 @@
             // Price_TB
             // 
             this.Price_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Price_TB.Location = new System.Drawing.Point(53, 481);
+            this.Price_TB.Location = new System.Drawing.Point(54, 442);
             this.Price_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Price_TB.Name = "Price_TB";
             this.Price_TB.Size = new System.Drawing.Size(494, 34);
@@ -199,7 +199,7 @@
             // Room_TB
             // 
             this.Room_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Room_TB.Location = new System.Drawing.Point(89, 529);
+            this.Room_TB.Location = new System.Drawing.Point(88, 482);
             this.Room_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Room_TB.Name = "Room_TB";
             this.Room_TB.Size = new System.Drawing.Size(458, 34);
@@ -208,7 +208,7 @@
             // Add_Item_toDB
             // 
             this.Add_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Add_Item_toDB.Location = new System.Drawing.Point(430, 723);
+            this.Add_Item_toDB.Location = new System.Drawing.Point(431, 651);
             this.Add_Item_toDB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Item_toDB.Name = "Add_Item_toDB";
             this.Add_Item_toDB.Size = new System.Drawing.Size(117, 40);
@@ -220,7 +220,7 @@
             // Note_TB
             // 
             this.Note_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Note_TB.Location = new System.Drawing.Point(82, 578);
+            this.Note_TB.Location = new System.Drawing.Point(82, 522);
             this.Note_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(464, 34);
@@ -230,7 +230,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 581);
+            this.label1.Location = new System.Drawing.Point(9, 525);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 27);
@@ -241,7 +241,7 @@
             // 
             this.Status.AutoSize = true;
             this.Status.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status.Location = new System.Drawing.Point(11, 629);
+            this.Status.Location = new System.Drawing.Point(9, 567);
             this.Status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(61, 27);
@@ -252,7 +252,7 @@
             // 
             this.Quality.AutoSize = true;
             this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quality.Location = new System.Drawing.Point(11, 677);
+            this.Quality.Location = new System.Drawing.Point(9, 609);
             this.Quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Quality.Name = "Quality";
             this.Quality.Size = new System.Drawing.Size(55, 27);
@@ -271,7 +271,7 @@
             "จำหน่ายแล้ว",
             "โอนแล้ว",
             "อื่นๆ"});
-            this.ConditionBox.Location = new System.Drawing.Point(64, 673);
+            this.ConditionBox.Location = new System.Drawing.Point(64, 606);
             this.ConditionBox.Name = "ConditionBox";
             this.ConditionBox.Size = new System.Drawing.Size(267, 35);
             this.ConditionBox.TabIndex = 20;
@@ -281,7 +281,7 @@
             // 
             this.S_Have.AutoSize = true;
             this.S_Have.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.S_Have.Location = new System.Drawing.Point(13, 3);
+            this.S_Have.Location = new System.Drawing.Point(13, 4);
             this.S_Have.Name = "S_Have";
             this.S_Have.Size = new System.Drawing.Size(111, 31);
             this.S_Have.TabIndex = 17;
@@ -294,7 +294,7 @@
             // 
             this.S_Donthave.AutoSize = true;
             this.S_Donthave.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.S_Donthave.Location = new System.Drawing.Point(130, 3);
+            this.S_Donthave.Location = new System.Drawing.Point(130, 4);
             this.S_Donthave.Name = "S_Donthave";
             this.S_Donthave.Size = new System.Drawing.Size(126, 31);
             this.S_Donthave.TabIndex = 18;
@@ -307,7 +307,7 @@
             // 
             this.StatsPanel.Controls.Add(this.S_Donthave);
             this.StatsPanel.Controls.Add(this.S_Have);
-            this.StatsPanel.Location = new System.Drawing.Point(69, 624);
+            this.StatsPanel.Location = new System.Drawing.Point(69, 562);
             this.StatsPanel.Name = "StatsPanel";
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
             this.StatsPanel.TabIndex = 21;
@@ -315,7 +315,7 @@
             // AddItemP2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(557, 778);
+            this.ClientSize = new System.Drawing.Size(557, 703);
             this.Controls.Add(this.StatsPanel);
             this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.Quality);

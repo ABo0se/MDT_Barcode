@@ -19,6 +19,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             public string Room { get; set; }
             public string FilePath { get; set; }
             public string Description { get; set; }
+            public string Status { get; set; }
+            public string Condition { get; set; }
         }
 
         public ShowItem()
@@ -58,8 +60,72 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Price_TXT.Text = data.Price;
                 Stay_TXT.Text = data.Room;
                 Note_TXT.Text = data.Description;
-                //MessageBox.Show(data.FilePath);
-                //Image selectedImage = Image.FromFile(data.FilePath);
+                ////////////////////////////////////
+                sbyte statusX, conditionX;
+                statusX = sbyte.Parse(data.Status);
+                conditionX = sbyte.Parse(data.Condition);
+                switch (statusX)
+                {
+                    case -1:
+                    {
+                        Status_TXT.Text = "ไม่สามารถทราบได้";
+                        break;
+                    }
+                    case 0:
+                    {
+                        Status_TXT.Text = "มีให้ตรวจสอบ";
+                        break;
+                    }
+                    case 1:
+                    {
+                        Status_TXT.Text = "มีให้ตรวจสอบ";
+                        break;
+                    }
+                }
+                switch (conditionX)
+                {
+                    case -1:
+                        {
+                            Condition_TXT.Text = "ไม่สามารถทราบได้";
+                            break;
+                        }
+                    case 0:
+                        {
+                            Condition_TXT.Text = "ใช้งานได้";
+                            break;
+                        }
+                    case 1:
+                        {
+                            Condition_TXT.Text = "ชำรุดรอซ่อม";
+                            break;
+                        }
+                    case 2:
+                        {
+                            Condition_TXT.Text = "สิ้นสภาพ";
+                            break;
+                        }
+                    case 3:
+                        {
+                            Condition_TXT.Text = "สูญหาย";
+                            break;
+                        }
+                    case 4:
+                        {
+                            Condition_TXT.Text = "จำหน่ายแล้ว";
+                            break;
+                        }
+                    case 5:
+                        {
+                            Condition_TXT.Text = "โอนแล้ว";
+                            break;
+                        }
+                    case 6:
+                        {
+                            Condition_TXT.Text = "อื่นๆ";
+                            break;
+                        }
+                }
+                ////////////////////////////////////
                 try
                 {
                     if (data.FilePath != null || data.FilePath != "")
@@ -131,7 +197,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void InitializePage()
         {
-            BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = string.Empty;
+            BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = 
+            SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = Status_TXT.Text = Condition_TXT.Text = string.Empty;
             pictureBox1.Image = Properties.Resources.NoImage;
         }
 
