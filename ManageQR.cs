@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -77,6 +78,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     Price = reader["Price"].ToString(),
                                     Room = reader["Room"].ToString(),
                                     Description = reader["Note"].ToString(),
+                                    Status = int.Parse(reader["Status"].ToString()),
+                                    Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                                 };
                                 ResultDataList.Add(data2);
                             }
@@ -101,12 +104,78 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodenumberCollector.Rows.Clear();
 
             int numberofsortedItem = 0;
+            string tempstatus = "";
+            string tempcondition = "";
             foreach (SRResults result in data)
             {
+                
+                /////////////
+                switch (result.Status)
+                {
+                    case -1:
+                        {
+                            tempstatus = "ไม่สามารถทราบได้";
+                            break;
+                        }
+                    case 0:
+                        {
+                            tempstatus = "มีให้ตรวจสอบ";
+                            break;
+                        }
+                    case 1:
+                        {
+                            tempstatus = "มีให้ตรวจสอบ";
+                            break;
+                        }
+                }
+                switch (result.Condition)
+                {
+                    case -1:
+                        {
+                            tempcondition = "ไม่สามารถทราบได้";
+                            break;
+                        }
+                    case 0:
+                        {
+                            tempcondition = "ใช้งานได้";
+                            break;
+                        }
+                    case 1:
+                        {
+                            tempcondition = "ชำรุดรอซ่อม";
+                            break;
+                        }
+                    case 2:
+                        {
+                            tempcondition = "สิ้นสภาพ";
+                            break;
+                        }
+                    case 3:
+                        {
+                            tempcondition = "สูญหาย";
+                            break;
+                        }
+                    case 4:
+                        {
+                            tempcondition = "จำหน่ายแล้ว";
+                            break;
+                        }
+                    case 5:
+                        {
+                            tempcondition = "โอนแล้ว";
+                            break;
+                        }
+                    case 6:
+                        {
+                            tempcondition = "อื่นๆ";
+                            break;
+                        }
+                }
+                /////////////
                 BarcodenumberCollector.Rows.Add
                 (numberofsortedItem, result.Date, result.BarcodeNumber, result.ModelNumber,
                  result.Brand, result.SerialNum, result.Price, result.Room,
-                 result.Description);
+                 result.Description, tempstatus, tempcondition);
                 numberofsortedItem++;
             }
             FontUtility.ApplyEmbeddedFont(BarcodenumberCollector);
@@ -323,17 +392,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void BarcodenumberCollector_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.search;
                 e.FormattingApplied = true; // Add this line
             }
-            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 12 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.EditIcon;
                 e.FormattingApplied = true; // Add this line
             }
-            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 13 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.DeleteIcon;
                 e.FormattingApplied = true; // Add this line

@@ -164,6 +164,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 // Compare the data
                 bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
+                bool isDataSame2 = dbData.Contains(BarcodeID_TB.Text);
                 mySqlConnection.Close();
                 if (isDataSame)
                 {
@@ -190,6 +191,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 mySqlConnection2.Open();
 
                 string query = "UPDATE information SET " +
+               "BarcodeNumber = @BarcodeNumber, " +
                "Model_Name = @Model_Name, " +
                "Brand = @Brand, " +
                "Serial_Number = @Serial_Number, " +
@@ -200,7 +202,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                "Status = @Status, " + // Add a comma here
                "ITEM_CONDITION = @ITEM_CONDITION " + // Add a space here
 
-               "WHERE BarcodeNumber = @BarcodeNumber";
+               "WHERE BarcodeNumber = @BarcodeNumberReplacement";
 
 
                 if (PicFilePath == null)
@@ -217,9 +219,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
                     cmd.Parameters.AddWithValue("@Pic", PicFilePath);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
-                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
+                    //////////
+                    cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TemporaryData.BarcodeNumber);
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -245,6 +250,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (EditItemForm != null)
                 {
                     EditItemForm.Hide();
+                }
+                ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
+                if (QRForm != null)
+                {
+                    QRForm.SearchDatainDB();
                 }
             }
         }

@@ -148,7 +148,6 @@
             this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.BarcodeID_TB.Location = new System.Drawing.Point(129, 273);
             this.BarcodeID_TB.Name = "BarcodeID_TB";
-            this.BarcodeID_TB.ReadOnly = true;
             this.BarcodeID_TB.Size = new System.Drawing.Size(416, 34);
             this.BarcodeID_TB.TabIndex = 8;
             this.BarcodeID_TB.TabStop = false;

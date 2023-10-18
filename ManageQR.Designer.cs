@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BarcodeSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +46,8 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stay_At = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Condition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
@@ -59,7 +60,7 @@
             this.BarcodeSearchBox.Location = new System.Drawing.Point(131, 6);
             this.BarcodeSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
-            this.BarcodeSearchBox.Size = new System.Drawing.Size(990, 30);
+            this.BarcodeSearchBox.Size = new System.Drawing.Size(1240, 30);
             this.BarcodeSearchBox.TabIndex = 3;
             this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
@@ -96,7 +97,7 @@
             this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -112,6 +113,8 @@
             this.Price,
             this.Stay_At,
             this.Note,
+            this.Status,
+            this.Condition,
             this.Action_Search,
             this.Action_Edit,
             this.Action_Remove});
@@ -126,20 +129,12 @@
             this.BarcodenumberCollector.Location = new System.Drawing.Point(12, 73);
             this.BarcodenumberCollector.Name = "BarcodenumberCollector";
             this.BarcodenumberCollector.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BarcodenumberCollector.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.BarcodenumberCollector.RowHeadersVisible = false;
             this.BarcodenumberCollector.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.BarcodenumberCollector.RowTemplate.Height = 25;
-            this.BarcodenumberCollector.Size = new System.Drawing.Size(1200, 400);
+            this.BarcodenumberCollector.Size = new System.Drawing.Size(1458, 418);
             this.BarcodenumberCollector.TabIndex = 5;
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
@@ -148,7 +143,7 @@
             // Search
             // 
             this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(1128, 6);
+            this.Search.Location = new System.Drawing.Point(1378, 6);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(92, 34);
             this.Search.TabIndex = 6;
@@ -180,7 +175,7 @@
             // 
             this.BCNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.BCNumber.HeaderText = "หมายเลขครุภัณฑ์";
-            this.BCNumber.MinimumWidth = 6;
+            this.BCNumber.MinimumWidth = 125;
             this.BCNumber.Name = "BCNumber";
             this.BCNumber.ReadOnly = true;
             this.BCNumber.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -246,6 +241,24 @@
             this.Note.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Note.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // Status
+            // 
+            this.Status.HeaderText = "สถานะ";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Condition
+            // 
+            this.Condition.HeaderText = "สภาพ";
+            this.Condition.MinimumWidth = 6;
+            this.Condition.Name = "Condition";
+            this.Condition.ReadOnly = true;
+            this.Condition.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Condition.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Action_Search
             // 
             this.Action_Search.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -282,7 +295,7 @@
             // ManageQR
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1232, 482);
+            this.ClientSize = new System.Drawing.Size(1482, 503);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.label2);
@@ -317,6 +330,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stay_At;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Condition;
         private System.Windows.Forms.DataGridViewImageColumn Action_Search;
         private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
         private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
