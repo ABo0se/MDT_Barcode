@@ -53,6 +53,8 @@
             this.StatsPanel = new System.Windows.Forms.Panel();
             this.S_DonthaveEdit = new System.Windows.Forms.RadioButton();
             this.S_HaveEdit = new System.Windows.Forms.RadioButton();
+            this.Nextpic = new System.Windows.Forms.Button();
+            this.Prevpic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -138,7 +140,7 @@
             this.Add_Pic.Location = new System.Drawing.Point(12, 660);
             this.Add_Pic.Name = "Add_Pic";
             this.Add_Pic.Size = new System.Drawing.Size(115, 35);
-            this.Add_Pic.TabIndex = 7;
+            this.Add_Pic.TabIndex = 10;
             this.Add_Pic.Text = "+ อัพโหลดรูปภาพ";
             this.Add_Pic.UseVisualStyleBackColor = true;
             this.Add_Pic.Click += new System.EventHandler(this.Add_Pic_Click);
@@ -149,8 +151,7 @@
             this.BarcodeID_TB.Location = new System.Drawing.Point(129, 273);
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.Size = new System.Drawing.Size(416, 34);
-            this.BarcodeID_TB.TabIndex = 8;
-            this.BarcodeID_TB.TabStop = false;
+            this.BarcodeID_TB.TabIndex = 1;
             this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
             // 
             // Model_TB
@@ -159,7 +160,7 @@
             this.Model_TB.Location = new System.Drawing.Point(55, 316);
             this.Model_TB.Name = "Model_TB";
             this.Model_TB.Size = new System.Drawing.Size(490, 34);
-            this.Model_TB.TabIndex = 1;
+            this.Model_TB.TabIndex = 2;
             this.Model_TB.TextChanged += new System.EventHandler(this.Model_TB_TextChanged);
             // 
             // Brand_TB
@@ -168,7 +169,7 @@
             this.Brand_TB.Location = new System.Drawing.Point(45, 359);
             this.Brand_TB.Name = "Brand_TB";
             this.Brand_TB.Size = new System.Drawing.Size(500, 34);
-            this.Brand_TB.TabIndex = 2;
+            this.Brand_TB.TabIndex = 3;
             // 
             // Serial_TB
             // 
@@ -176,7 +177,7 @@
             this.Serial_TB.Location = new System.Drawing.Point(117, 402);
             this.Serial_TB.Name = "Serial_TB";
             this.Serial_TB.Size = new System.Drawing.Size(428, 34);
-            this.Serial_TB.TabIndex = 3;
+            this.Serial_TB.TabIndex = 4;
             // 
             // Price_TB
             // 
@@ -184,7 +185,7 @@
             this.Price_TB.Location = new System.Drawing.Point(59, 445);
             this.Price_TB.Name = "Price_TB";
             this.Price_TB.Size = new System.Drawing.Size(486, 34);
-            this.Price_TB.TabIndex = 4;
+            this.Price_TB.TabIndex = 5;
             // 
             // Room_TB
             // 
@@ -192,7 +193,7 @@
             this.Room_TB.Location = new System.Drawing.Point(92, 488);
             this.Room_TB.Name = "Room_TB";
             this.Room_TB.Size = new System.Drawing.Size(453, 34);
-            this.Room_TB.TabIndex = 5;
+            this.Room_TB.TabIndex = 6;
             // 
             // Edit_Item_toDB
             // 
@@ -200,7 +201,7 @@
             this.Edit_Item_toDB.Location = new System.Drawing.Point(430, 660);
             this.Edit_Item_toDB.Name = "Edit_Item_toDB";
             this.Edit_Item_toDB.Size = new System.Drawing.Size(115, 35);
-            this.Edit_Item_toDB.TabIndex = 14;
+            this.Edit_Item_toDB.TabIndex = 11;
             this.Edit_Item_toDB.Text = "แก้ไขสิ่งของ";
             this.Edit_Item_toDB.UseVisualStyleBackColor = true;
             this.Edit_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
@@ -211,7 +212,7 @@
             this.Note_TB.Location = new System.Drawing.Point(83, 531);
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(462, 34);
-            this.Note_TB.TabIndex = 6;
+            this.Note_TB.TabIndex = 7;
             // 
             // label1
             // 
@@ -262,7 +263,7 @@
             this.ConditionBoxEdit.Location = new System.Drawing.Point(76, 615);
             this.ConditionBoxEdit.Name = "ConditionBoxEdit";
             this.ConditionBoxEdit.Size = new System.Drawing.Size(267, 35);
-            this.ConditionBoxEdit.TabIndex = 25;
+            this.ConditionBoxEdit.TabIndex = 9;
             this.ConditionBoxEdit.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
             // Quality
@@ -294,7 +295,8 @@
             this.StatsPanel.Location = new System.Drawing.Point(76, 571);
             this.StatsPanel.Name = "StatsPanel";
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
-            this.StatsPanel.TabIndex = 26;
+            this.StatsPanel.TabIndex = 8;
+            this.StatsPanel.TabStop = true;
             // 
             // S_DonthaveEdit
             // 
@@ -304,7 +306,6 @@
             this.S_DonthaveEdit.Name = "S_DonthaveEdit";
             this.S_DonthaveEdit.Size = new System.Drawing.Size(126, 31);
             this.S_DonthaveEdit.TabIndex = 18;
-            this.S_DonthaveEdit.TabStop = true;
             this.S_DonthaveEdit.Text = "ไม่มีให้ตรวจสอบ";
             this.S_DonthaveEdit.UseVisualStyleBackColor = true;
             this.S_DonthaveEdit.CheckedChanged += new System.EventHandler(this.S_Donthave_CheckedChanged);
@@ -317,15 +318,42 @@
             this.S_HaveEdit.Name = "S_HaveEdit";
             this.S_HaveEdit.Size = new System.Drawing.Size(111, 31);
             this.S_HaveEdit.TabIndex = 17;
-            this.S_HaveEdit.TabStop = true;
             this.S_HaveEdit.Text = "มีให้ตรวจสอบ";
             this.S_HaveEdit.UseVisualStyleBackColor = true;
             this.S_HaveEdit.CheckedChanged += new System.EventHandler(this.S_Have_CheckedChanged);
+            // 
+            // Nextpic
+            // 
+            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
+            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Nextpic.Location = new System.Drawing.Point(480, 105);
+            this.Nextpic.Name = "Nextpic";
+            this.Nextpic.Size = new System.Drawing.Size(65, 80);
+            this.Nextpic.TabIndex = 28;
+            this.Nextpic.TabStop = false;
+            this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            // 
+            // Prevpic
+            // 
+            this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
+            this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Prevpic.Location = new System.Drawing.Point(12, 105);
+            this.Prevpic.Name = "Prevpic";
+            this.Prevpic.Size = new System.Drawing.Size(65, 80);
+            this.Prevpic.TabIndex = 27;
+            this.Prevpic.TabStop = false;
+            this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
             // EditItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(557, 703);
+            this.Controls.Add(this.Nextpic);
+            this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.StatsPanel);
             this.Controls.Add(this.S_Donthave);
             this.Controls.Add(this.S_Have);
@@ -388,5 +416,7 @@
         private System.Windows.Forms.Panel StatsPanel;
         private System.Windows.Forms.RadioButton S_DonthaveEdit;
         private System.Windows.Forms.RadioButton S_HaveEdit;
+        private System.Windows.Forms.Button Nextpic;
+        private System.Windows.Forms.Button Prevpic;
     }
 }

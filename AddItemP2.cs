@@ -160,7 +160,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 List<string> savedFilePaths = new List<string>();
 
-                // Loop through the selectedImages list and save each image
                 if (selectedImages.Count > 0)
                 {
                     for (int i = 0; i < selectedImages.Count; i++)

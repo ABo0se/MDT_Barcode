@@ -159,6 +159,7 @@
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.Size = new System.Drawing.Size(422, 34);
             this.BarcodeID_TB.TabIndex = 1;
+            this.BarcodeID_TB.TabStop = false;
             this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
             // 
             // Model_TB
