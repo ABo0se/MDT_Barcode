@@ -51,6 +51,8 @@
             this.S_Have = new System.Windows.Forms.RadioButton();
             this.S_Donthave = new System.Windows.Forms.RadioButton();
             this.StatsPanel = new System.Windows.Forms.Panel();
+            this.Prevpic = new System.Windows.Forms.Button();
+            this.Nextpic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -312,10 +314,36 @@
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
             this.StatsPanel.TabIndex = 21;
             // 
+            // Prevpic
+            // 
+            this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
+            this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Prevpic.Location = new System.Drawing.Point(12, 105);
+            this.Prevpic.Name = "Prevpic";
+            this.Prevpic.Size = new System.Drawing.Size(65, 80);
+            this.Prevpic.TabIndex = 22;
+            this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
+            // 
+            // Nextpic
+            // 
+            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
+            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Nextpic.Location = new System.Drawing.Point(480, 105);
+            this.Nextpic.Name = "Nextpic";
+            this.Nextpic.Size = new System.Drawing.Size(65, 80);
+            this.Nextpic.TabIndex = 23;
+            this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            // 
             // AddItemP2
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(557, 703);
+            this.Controls.Add(this.Nextpic);
+            this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.StatsPanel);
             this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.Quality);
@@ -376,5 +404,7 @@
         private System.Windows.Forms.RadioButton S_Donthave;
         private System.Windows.Forms.Panel StatsPanel;
         private System.Windows.Forms.ComboBox ConditionBox;
+        private System.Windows.Forms.Button Prevpic;
+        private System.Windows.Forms.Button Nextpic;
     }
 }

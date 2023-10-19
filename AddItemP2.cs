@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class AddItemP2 : Form
     {
-        string PicFilePath = null;
+        //string PicFilePath = null;
         int checkstate = -1;
         int conditionstate = -1;
+        List<System.Drawing.Image> selectedImages = new List<System.Drawing.Image>();
+        int? selectingImage = null;
         /// ///////////////////////////////////////////
         public AddItemP2()
         {
@@ -41,19 +45,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void Add_Pic_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Files (*.*)|*.*"; // Set the file filter if needed
-            openFileDialog.Title = "Select a File to Upload";
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All Files (*.*)|*.*";
+            openFileDialog.Title = "Select Image(s) to Upload";
+            openFileDialog.Multiselect = true; // Allow multiple file selection
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string selectedFilePath = openFileDialog.FileName;
-                // Handle the selected file path (e.g., upload it or process it)
-                // You can call a method to process the file with the selectedFilePath
-                // Load the selected image into the PictureBox
-                Image selectedImage = Image.FromFile(selectedFilePath);
+                foreach (string selectedFilePath in openFileDialog.FileNames)
+                {
+                    // Load the selected image into the PictureBox
+                    System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
 
-                pictureBox1.Image = selectedImage;
-                PicFilePath = selectedFilePath;
+                    // You can add the selected image to a list to store multiple images
+                    selectedImages.Add(selectedImage);
+
+                    // Optionally, you can display each image in a separate PictureBox
+                }
+                CheckImageButtonBehavior();
+                ChangePicture(0);
             }
         }
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
@@ -62,7 +71,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            //Delete existing picture in picture box
+            foreach (System.Drawing.Bitmap picture in selectedImages)
+            {
+                if (picture == pictureBox1.Image)
+                {
+                    selectedImages.Remove(picture);
+                }
+            }
+            CheckImageButtonBehavior();
+            ChangePicture(0);
         }
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
         {
@@ -123,20 +141,29 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void AddItemToDB()
         {
+            List<byte[]> ImageList = new List<byte[]>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
 
             try
             {
+                //ConvertImageToJSON
+                if (selectedImages.Count > 0)
+                {
+                    foreach (System.Drawing.Image myexistingimg in selectedImages)
+                    {
+                        byte[] myimage = ImageToByteArray(myexistingimg);
+                        ImageList.Add(myimage);
+                    }
+                }
+                string jsonImageData = JsonConvert.SerializeObject(ImageList);
+                
+                //TryAddittoDATABASE
                 mySqlConnection2.Open();
 
                 string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note, Status, ITEM_CONDITION) " +
                                "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note, @Status, @ITEM_CONDITION)";
 
-                if (PicFilePath == null)
-                {
-                    PicFilePath = "";
-                }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
@@ -146,7 +173,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
                     cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-                    cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                    //cmd.Parameters.AddWithValue("@Pic", PicFilePath);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
@@ -172,9 +199,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 mySqlConnection2.Close();
                 AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
+                ManageQR ManageQRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
                 if (AddItemForm != null)
                 {
                     AddItemForm.Hide();
+                }
+                if (ManageQRForm != null)
+                {
+                    ManageQRForm.SearchDatainDB();
                 }
             }
         }
@@ -220,6 +252,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         BarcodeID_TB.Text = barcode;
                         ///
+                        if (selectedImages != null)
+                        {
+                            selectedImages.Clear();
+                        }
+                        else
+                        {
+                            selectedImages = new List<System.Drawing.Image>();
+                        }
+                        selectingImage = null;
+
                         Model_TB.Text = "";
                         Brand_TB.Text = "";
                         Serial_TB.Text = "";
@@ -250,7 +292,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Note_TB);
             barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             /////////////////////////////////
-            PicFilePath = "";
+            if (selectedImages != null)
+            {
+                selectedImages.Clear();
+            }
+            else
+            {
+                selectedImages = new List<System.Drawing.Image>();
+            }
+            selectingImage = null;
+
+            //PicFilePath = "";
             pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
@@ -306,6 +358,60 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void ConditionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             conditionstate = ConditionBox.SelectedIndex;
+        }
+
+        private void Nextpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage + 1) < (selectedImages.Count))
+            {
+                selectingImage++;
+                
+            }
+            else
+            {
+                selectingImage = 0;
+            }
+            ChangePicture((int)selectingImage);
+        }
+        private void Prevpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage - 1) >= 0)
+            {
+                selectingImage--;
+            }
+            else
+            {
+                selectingImage = selectedImages.Count - 1;
+            }
+            ChangePicture((int)selectingImage);
+        }
+        private void CheckImageButtonBehavior()
+        {
+            if (selectedImages != null && selectedImages.Count > 1)
+            {
+                Prevpic.Enabled = true;
+                Nextpic.Enabled = true;
+            }
+            else
+            {
+                Prevpic.Enabled = false;
+                Nextpic.Enabled = false;
+            }
+        }
+        private void ChangePicture(int pictureindex)
+        {
+            selectingImage = pictureindex;
+            pictureBox1.Image = selectedImages[(int)selectingImage];
+        }
+        private byte[] ImageToByteArray(System.Drawing.Image image)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); // Change the format as needed
+                return stream.ToArray();
+            }
         }
     }
 }

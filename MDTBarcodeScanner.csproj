@@ -75,6 +75,9 @@
     <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.1.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Resources\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NuGet.Frameworks, Version=6.7.0.127, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\NuGet.Frameworks.6.7.0\lib\net472\NuGet.Frameworks.dll</HintPath>
     </Reference>
@@ -210,6 +213,8 @@
     <None Include="Images\EditIcon.png" />
     <None Include="Images\DeleteIcon.png" />
     <None Include="Images\No_image_available.png" />
+    <None Include="Images\Previous.png" />
+    <None Include="Images\Next.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\search.png" />
