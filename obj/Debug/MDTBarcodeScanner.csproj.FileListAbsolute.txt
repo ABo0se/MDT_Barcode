@@ -46,3 +46,4 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MDT Barcode Scanner.pdb
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.pdb
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Newtonsoft.Json.dll

@@ -183,19 +183,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void BarcodenumberCollector_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
                 // Your custom logic when the button is clicked
                 string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
                 SearchBarcode(barcodevalue);
             }
-            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 12 && e.RowIndex >= 0)
             {
                 // Your custom logic when the button is clicked
                 string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
                 EditBarcode(barcodevalue);
             }
-            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 13 && e.RowIndex >= 0)
             {
                 //Your custom logic when the button is clicked
                 //Confirmation Box

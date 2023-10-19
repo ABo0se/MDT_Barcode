@@ -146,7 +146,7 @@
             this.Add_Pic.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Pic.Name = "Add_Pic";
             this.Add_Pic.Size = new System.Drawing.Size(116, 40);
-            this.Add_Pic.TabIndex = 7;
+            this.Add_Pic.TabIndex = 10;
             this.Add_Pic.Text = "+ อัพโหลดรูปภาพ";
             this.Add_Pic.UseVisualStyleBackColor = true;
             this.Add_Pic.Click += new System.EventHandler(this.Add_Pic_Click);
@@ -158,8 +158,7 @@
             this.BarcodeID_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.Size = new System.Drawing.Size(422, 34);
-            this.BarcodeID_TB.TabIndex = 8;
-            this.BarcodeID_TB.TabStop = false;
+            this.BarcodeID_TB.TabIndex = 1;
             this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
             // 
             // Model_TB
@@ -169,7 +168,7 @@
             this.Model_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Model_TB.Name = "Model_TB";
             this.Model_TB.Size = new System.Drawing.Size(493, 34);
-            this.Model_TB.TabIndex = 1;
+            this.Model_TB.TabIndex = 2;
             // 
             // Brand_TB
             // 
@@ -178,7 +177,7 @@
             this.Brand_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Brand_TB.Name = "Brand_TB";
             this.Brand_TB.Size = new System.Drawing.Size(503, 34);
-            this.Brand_TB.TabIndex = 2;
+            this.Brand_TB.TabIndex = 3;
             // 
             // Serial_TB
             // 
@@ -187,7 +186,7 @@
             this.Serial_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Serial_TB.Name = "Serial_TB";
             this.Serial_TB.Size = new System.Drawing.Size(431, 34);
-            this.Serial_TB.TabIndex = 3;
+            this.Serial_TB.TabIndex = 4;
             // 
             // Price_TB
             // 
@@ -196,7 +195,7 @@
             this.Price_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Price_TB.Name = "Price_TB";
             this.Price_TB.Size = new System.Drawing.Size(494, 34);
-            this.Price_TB.TabIndex = 4;
+            this.Price_TB.TabIndex = 5;
             // 
             // Room_TB
             // 
@@ -205,7 +204,7 @@
             this.Room_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Room_TB.Name = "Room_TB";
             this.Room_TB.Size = new System.Drawing.Size(458, 34);
-            this.Room_TB.TabIndex = 5;
+            this.Room_TB.TabIndex = 6;
             // 
             // Add_Item_toDB
             // 
@@ -214,7 +213,7 @@
             this.Add_Item_toDB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Add_Item_toDB.Name = "Add_Item_toDB";
             this.Add_Item_toDB.Size = new System.Drawing.Size(117, 40);
-            this.Add_Item_toDB.TabIndex = 14;
+            this.Add_Item_toDB.TabIndex = 11;
             this.Add_Item_toDB.Text = "เพิ่มสิ่งของ";
             this.Add_Item_toDB.UseVisualStyleBackColor = true;
             this.Add_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
@@ -226,7 +225,7 @@
             this.Note_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(464, 34);
-            this.Note_TB.TabIndex = 6;
+            this.Note_TB.TabIndex = 7;
             // 
             // label1
             // 
@@ -276,7 +275,7 @@
             this.ConditionBox.Location = new System.Drawing.Point(64, 606);
             this.ConditionBox.Name = "ConditionBox";
             this.ConditionBox.Size = new System.Drawing.Size(267, 35);
-            this.ConditionBox.TabIndex = 20;
+            this.ConditionBox.TabIndex = 9;
             this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
             // S_Have
@@ -312,7 +311,7 @@
             this.StatsPanel.Location = new System.Drawing.Point(69, 562);
             this.StatsPanel.Name = "StatsPanel";
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
-            this.StatsPanel.TabIndex = 21;
+            this.StatsPanel.TabIndex = 8;
             // 
             // Prevpic
             // 
@@ -323,6 +322,7 @@
             this.Prevpic.Name = "Prevpic";
             this.Prevpic.Size = new System.Drawing.Size(65, 80);
             this.Prevpic.TabIndex = 22;
+            this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
             this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
@@ -335,6 +335,7 @@
             this.Nextpic.Name = "Nextpic";
             this.Nextpic.Size = new System.Drawing.Size(65, 80);
             this.Nextpic.TabIndex = 23;
+            this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
             this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
             // 

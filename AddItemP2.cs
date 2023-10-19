@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
+using System.Text;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -72,15 +73,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //Delete existing picture in picture box
-            foreach (System.Drawing.Bitmap picture in selectedImages)
+            bool isremovingsuccessful = false;
+            if (selectedImages.Count > 1)
             {
-                if (picture == pictureBox1.Image)
-                {
-                    selectedImages.Remove(picture);
-                }
+                selectedImages.Remove(pictureBox1.Image);
+                isremovingsuccessful = true;
             }
-            CheckImageButtonBehavior();
-            ChangePicture(0);
+            if (isremovingsuccessful)
+            {
+                CheckImageButtonBehavior();
+                ChangePicture(selectedImages.Count - 1);
+            }
+            else
+            {
+                MessageBox.Show("Fail to remove picture");
+            }
         }
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
         {
@@ -141,28 +148,51 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void AddItemToDB()
         {
-            List<byte[]> ImageList = new List<byte[]>();
+            //List<byte[]> ImageList = new List<byte[]>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
 
             try
             {
-                //ConvertImageToJSON
+                //Create reference for image we used.
+                string saveDirectory = @"C:\BarcodeDatabaseImage";
+                Directory.CreateDirectory(saveDirectory);
+
+                List<string> savedFilePaths = new List<string>();
+
+                // Loop through the selectedImages list and save each image
                 if (selectedImages.Count > 0)
                 {
-                    foreach (System.Drawing.Image myexistingimg in selectedImages)
+                    for (int i = 0; i < selectedImages.Count; i++)
                     {
-                        byte[] myimage = ImageToByteArray(myexistingimg);
-                        ImageList.Add(myimage);
+                        string baseFileName = "image.jpg"; // Base file name
+                        string fileName = baseFileName;
+                        int fileCounter = 1;
+
+                        // Check if the file already exists and generate a unique name if needed
+                        while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                        {
+                            fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                            fileCounter++;
+                        }
+
+                        string filePath = Path.Combine(saveDirectory, fileName);
+                        selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                        // Add the saved file path to the list
+                        savedFilePaths.Add(filePath);
                     }
                 }
-                string jsonImageData = JsonConvert.SerializeObject(ImageList);
                 
+                string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
+                Console.WriteLine(jsonPicData);
+                MessageBox.Show(jsonPicData);
+
                 //TryAddittoDATABASE
                 mySqlConnection2.Open();
 
-                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Pic, Note, Status, ITEM_CONDITION) " +
-                               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Pic, @Note, @Status, @ITEM_CONDITION)";
+                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, Status, ITEM_CONDITION) " +
+               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @Status, @ITEM_CONDITION)";
 
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
@@ -173,7 +203,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
                     cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-                    //cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                    cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
@@ -300,7 +330,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 selectedImages = new List<System.Drawing.Image>();
             }
-            selectingImage = null;
+
+            ChangePicture(null);
+            CheckImageButtonBehavior();
 
             //PicFilePath = "";
             pictureBox1.Image = Properties.Resources.NoImage;
@@ -400,18 +432,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Nextpic.Enabled = false;
             }
         }
-        private void ChangePicture(int pictureindex)
+        private void ChangePicture(int? pictureindex)
         {
             selectingImage = pictureindex;
-            pictureBox1.Image = selectedImages[(int)selectingImage];
-        }
-        private byte[] ImageToByteArray(System.Drawing.Image image)
-        {
-            using (MemoryStream stream = new MemoryStream())
+            if (selectingImage != null)
             {
-                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); // Change the format as needed
-                return stream.ToArray();
+                pictureBox1.Image = selectedImages[(int)selectingImage];
+            }
+            else
+            {
+                pictureBox1.Image = null;
             }
         }
+        //private byte[] ImageToByteArray(System.Drawing.Image image)
+        //{
+        //    using (MemoryStream stream = new MemoryStream())
+        //    {
+        //        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); // Change the format as needed
+        //        return stream.ToArray();
+        //    }
+        //}
     }
 }
