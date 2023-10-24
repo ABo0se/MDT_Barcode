@@ -35,6 +35,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Room_TB.Text = TemporaryData.Room;
                 Note_TB.Text = TemporaryData.Description;
                 ////////////////////////////////////
+                selectedImages.Clear();
                 List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
                 if (path.Count > 0)
                 {
@@ -374,7 +375,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             CheckImageButtonBehavior();
 
             //PicFilePath = "";
-            pictureBox1.Image = Properties.Resources.NoImage;
+            //pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
             Brand_TB.Text = "";
@@ -604,7 +605,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             ChangePicture((int)selectingImage);
         }
-
     }
 
     public class SRResults

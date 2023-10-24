@@ -315,7 +315,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             CheckImageButtonBehavior();
 
             //PicFilePath = "";
-            pictureBox1.Image = Properties.Resources.NoImage;
+            //pictureBox1.Image = Properties.Resources.NoImage;
             BarcodeID_TB.Text = "";
             Model_TB.Text = "";
             Brand_TB.Text = "";

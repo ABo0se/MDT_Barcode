@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,7 +11,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public partial class ShowItem : Form
     {
         private MySqlConnection mySqlConnection;
-
+        List<System.Drawing.Image> selectedImages = new List<System.Drawing.Image>();
+        int? selectingImage = null;
+        //////////////////////
         public ShowItem()
         {
             InitializeComponent();
@@ -47,6 +51,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Price_TXT.Text = data.Price;
                 Stay_TXT.Text = data.Room;
                 Note_TXT.Text = data.Description;
+                ////////////////////////////////////
+                selectedImages.Clear();
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
+                if (path.Count > 0)
+                {
+                    foreach (string path2 in path)
+                    {
+                        System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
+                        selectedImages.Add(selectedImage);
+                    }
+                    CheckImageButtonBehavior();
+                    ChangePicture(0);
+                    pictureBox1.Refresh();
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.NoImage;
+                }
                 ////////////////////////////////////
                 int statusX, conditionX;
                 statusX = data.Status;
@@ -113,25 +135,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         }
                 }
                 ////////////////////////////////////
-                try
-                {
-                    if (data.FilePath != null || data.FilePath != "")
-                    {
-                        pictureBox1.Image = Image.FromFile(data.FilePath);
-                    }
-                    else
-                    {
-                        pictureBox1.Image = Properties.Resources.NoImage;
-                    }
-                }
-                catch (Exception ex) 
-                {
-                    
-                }
-                finally
-                {
-                    pictureBox1.Refresh();
-                }
             }
         }
 
@@ -161,13 +164,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 SerialNum = reader["Serial_Number"].ToString(),
                                 Price = reader["Price"].ToString(),
                                 Room = reader["Room"].ToString(),
-                                FilePath = reader["Pic"].ToString(),
+                                FilePath = reader["ImageData"].ToString(),
                                 Description = reader["Note"].ToString(),
                                 Status = int.Parse(reader["Status"].ToString()),
                                 Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                             };
-                            MessageBox.Show(reader["Status"].ToString());
-                            MessageBox.Show(reader["ITEM_CONDITION"].ToString());
                             return true;
                         }
                     }
@@ -191,7 +192,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = 
             SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = Status_TXT.Text = Condition_TXT.Text = string.Empty;
-            pictureBox1.Image = Properties.Resources.NoImage;
+            if (selectedImages != null)
+            {
+                selectedImages.Clear();
+            }
+            else
+            {
+                selectedImages = new List<System.Drawing.Image>();
+            }
+            ChangePicture(null);
+            CheckImageButtonBehavior();
         }
 
         // Other event handler methods...
@@ -204,6 +214,61 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CheckImageButtonBehavior()
+        {
+            if (selectedImages != null && selectedImages.Count > 1)
+            {
+                Prevpic.Enabled = true;
+                Nextpic.Enabled = true;
+            }
+            else
+            {
+                Prevpic.Enabled = false;
+                Nextpic.Enabled = false;
+            }
+        }
+        private void ChangePicture(int? pictureindex)
+        {
+            selectingImage = pictureindex;
+            if (selectingImage != null)
+            {
+                pictureBox1.Image = selectedImages[(int)selectingImage];
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.NoImage;
+            }
+        }
+
+        private void Nextpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage + 1) < (selectedImages.Count))
+            {
+                selectingImage++;
+
+            }
+            else
+            {
+                selectingImage = 0;
+            }
+            ChangePicture((int)selectingImage);
+        }
+
+        private void Prevpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage - 1) >= 0)
+            {
+                selectingImage--;
+            }
+            else
+            {
+                selectingImage = selectedImages.Count - 1;
+            }
+            ChangePicture((int)selectingImage);
         }
     }
 }

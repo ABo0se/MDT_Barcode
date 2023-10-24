@@ -47,6 +47,8 @@
             this.Condition = new System.Windows.Forms.Label();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.Condition_TXT = new System.Windows.Forms.Label();
+            this.Nextpic = new System.Windows.Forms.Button();
+            this.Prevpic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,10 +255,38 @@
             this.Condition_TXT.Size = new System.Drawing.Size(0, 27);
             this.Condition_TXT.TabIndex = 27;
             // 
+            // Nextpic
+            // 
+            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
+            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Nextpic.Location = new System.Drawing.Point(480, 105);
+            this.Nextpic.Name = "Nextpic";
+            this.Nextpic.Size = new System.Drawing.Size(65, 80);
+            this.Nextpic.TabIndex = 30;
+            this.Nextpic.TabStop = false;
+            this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            // 
+            // Prevpic
+            // 
+            this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
+            this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Prevpic.Location = new System.Drawing.Point(15, 105);
+            this.Prevpic.Name = "Prevpic";
+            this.Prevpic.Size = new System.Drawing.Size(65, 80);
+            this.Prevpic.TabIndex = 29;
+            this.Prevpic.TabStop = false;
+            this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
+            // 
             // ShowItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(557, 548);
+            this.Controls.Add(this.Nextpic);
+            this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.Condition_TXT);
             this.Controls.Add(this.Condition);
             this.Controls.Add(this.Status);
@@ -308,5 +338,7 @@
         private System.Windows.Forms.Label Condition;
         private System.Windows.Forms.Label Status_TXT;
         private System.Windows.Forms.Label Condition_TXT;
+        private System.Windows.Forms.Button Nextpic;
+        private System.Windows.Forms.Button Prevpic;
     }
 }
