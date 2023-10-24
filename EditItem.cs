@@ -605,6 +605,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             ChangePicture((int)selectingImage);
         }
+
+        private void MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MouseLeave(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class SRResults

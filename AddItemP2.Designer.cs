@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Barcode_ID = new System.Windows.Forms.Label();
             this.Product_Name = new System.Windows.Forms.Label();
             this.Created_Time = new System.Windows.Forms.Label();
@@ -51,24 +50,12 @@
             this.S_Have = new System.Windows.Forms.RadioButton();
             this.S_Donthave = new System.Windows.Forms.RadioButton();
             this.StatsPanel = new System.Windows.Forms.Panel();
-            this.Prevpic = new System.Windows.Forms.Button();
             this.Nextpic = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Prevpic = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.StatsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(89, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(375, 255);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Barcode_ID
             // 
@@ -314,6 +301,19 @@
             this.StatsPanel.Size = new System.Drawing.Size(262, 38);
             this.StatsPanel.TabIndex = 8;
             // 
+            // Nextpic
+            // 
+            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
+            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Nextpic.Location = new System.Drawing.Point(480, 105);
+            this.Nextpic.Name = "Nextpic";
+            this.Nextpic.Size = new System.Drawing.Size(65, 80);
+            this.Nextpic.TabIndex = 23;
+            this.Nextpic.TabStop = false;
+            this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            // 
             // Prevpic
             // 
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
@@ -327,18 +327,21 @@
             this.Prevpic.UseVisualStyleBackColor = false;
             this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
-            // Nextpic
+            // pictureBox1
             // 
-            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
-            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
-            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Nextpic.Location = new System.Drawing.Point(480, 105);
-            this.Nextpic.Name = "Nextpic";
-            this.Nextpic.Size = new System.Drawing.Size(65, 80);
-            this.Nextpic.TabIndex = 23;
-            this.Nextpic.TabStop = false;
-            this.Nextpic.UseVisualStyleBackColor = false;
-            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(89, 17);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(375, 255);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.MouseLeave);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.MouseHover);
             // 
             // AddItemP2
             // 
@@ -373,9 +376,9 @@
             this.Text = "Add barcode Item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.StatsPanel.ResumeLayout(false);
             this.StatsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

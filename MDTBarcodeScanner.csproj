@@ -215,6 +215,8 @@
     <None Include="Images\No_image_available.png" />
     <None Include="Images\Previous.png" />
     <None Include="Images\Next.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\Delete Picture.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\search.png" />

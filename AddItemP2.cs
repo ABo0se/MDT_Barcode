@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using System.Drawing.Imaging;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -450,6 +451,46 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ChangePicture(null);
                 CheckImageButtonBehavior();
             }
+        }
+        /// <summary>
+        /// ///////////////////////
+        private Image originalImage;
+        private Image hoverImage;
+
+        private void MouseHover(object sender, EventArgs e)
+        {
+            //pictureBox1.Image = hoverImage;
+        }
+
+        private void MouseEnter(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+                return;
+            originalImage = pictureBox1.Image;
+            hoverImage = Properties.Resources.Delete_Picture;
+            pictureBox1.Image = hoverImage;
+        }
+
+        private void MouseLeave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+                return;
+            pictureBox1.Image = originalImage;
+        }
+
+        private Image ChangeImageOpacity(Image originalImage, float opacity)
+        {
+            Bitmap image = new Bitmap(originalImage.Width, originalImage.Height);
+            using (Graphics graphics = Graphics.FromImage(image))
+            {
+                ColorMatrix colorMatrix = new ColorMatrix();
+                colorMatrix.Matrix33 = opacity; // Opacity value
+                ImageAttributes imageAttributes = new ImageAttributes();
+                imageAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                graphics.DrawImage(originalImage, new Rectangle(0, 0, originalImage.Width, originalImage.Height), 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
+            return image;
         }
         //private byte[] ImageToByteArray(System.Drawing.Image image)
         //{

@@ -70,6 +70,9 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.MouseLeave);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.MouseHover);
             // 
             // Barcode_ID
             // 
