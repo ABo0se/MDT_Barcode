@@ -70,25 +70,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             SearchBarcodeData(e.Barcode, sender);
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            //Delete existing picture in picture box
-            bool isremovingsuccessful = false;
-            if (selectedImages.Count > 1)
-            {
-                selectedImages.Remove(pictureBox1.Image);
-                isremovingsuccessful = true;
-            }
-            if (isremovingsuccessful)
-            {
-                CheckImageButtonBehavior();
-                ChangePicture(selectedImages.Count - 1);
-            }
-            else
-            {
-                MessageBox.Show("Fail to remove picture");
-            }
-        }
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
         {
 
@@ -185,7 +166,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 
                 string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
                 Console.WriteLine(jsonPicData);
-                MessageBox.Show(jsonPicData);
+                //MessageBox.Show(jsonPicData);
 
                 //TryAddittoDATABASE
                 mySqlConnection2.Open();
@@ -440,7 +421,34 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             else
             {
-                pictureBox1.Image = null;
+                pictureBox1.Image = Properties.Resources.NoImage;
+            }
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //Delete existing picture in picture box
+            bool isremovingsuccessful = false;
+            if (selectedImages.Count > 0)
+            {
+                selectedImages.Remove(pictureBox1.Image);
+                isremovingsuccessful = true;
+            }
+            if (isremovingsuccessful)
+            {
+                CheckImageButtonBehavior();
+                if (selectedImages.Count <= 0)
+                {
+                    ChangePicture(null);
+                }
+                else
+                {
+                    ChangePicture(selectedImages.Count - 1);
+                }
+            }
+            else
+            {
+                ChangePicture(null);
+                CheckImageButtonBehavior();
             }
         }
         //private byte[] ImageToByteArray(System.Drawing.Image image)

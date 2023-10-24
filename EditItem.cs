@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -34,6 +35,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Room_TB.Text = TemporaryData.Room;
                 Note_TB.Text = TemporaryData.Description;
                 ////////////////////////////////////
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
+                if (path.Count > 0)
+                {
+                    foreach (string path2 in path)
+                    {
+                        System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
+                        selectedImages.Add(selectedImage);
+                    }
+                    CheckImageButtonBehavior();
+                    ChangePicture(0);
+                    pictureBox1.Refresh();
+                }
+                else
+                {
+                    pictureBox1.Image = Properties.Resources.NoImage;
+                }
+                ////////////////////////////////////
                 checkstate = TemporaryData.Status;
                 conditionstate = TemporaryData.Condition;
                 
@@ -60,26 +78,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 ConditionBoxEdit.SelectedIndex = conditionstate;
                 ///
-                ////////////////////////////////////
-                try
-                {
-                    if (data.FilePath != null || data.FilePath != "")
-                    {
-                        pictureBox1.Image = Image.FromFile(data.FilePath);
-                    }
-                    else
-                    {
-                        pictureBox1.Image = Properties.Resources.NoImage;
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
-                finally
-                {
-                    pictureBox1.Refresh();
-                }
             }
         }
 
@@ -129,7 +127,30 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            //Delete existing picture in picture box
+            bool isremovingsuccessful = false;
+            if (selectedImages.Count > 0)
+            {
+                selectedImages.Remove(pictureBox1.Image);
+                isremovingsuccessful = true;
+            }
+            if (isremovingsuccessful)
+            {
+                CheckImageButtonBehavior();
+                if (selectedImages.Count <= 0)
+                {
+                    ChangePicture(null);
+                }
+                else
+                {
+                    ChangePicture(selectedImages.Count - 1);
+                }
+            }
+            else
+            {
+                CheckImageButtonBehavior();
+                ChangePicture(null);
+            }
         }
 
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
@@ -219,6 +240,38 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void EditmyDataBase()
         {
+            //Create reference for image we used.
+            string saveDirectory = @"C:\BarcodeDatabaseImage";
+            Directory.CreateDirectory(saveDirectory);
+
+            List<string> savedFilePaths = new List<string>();
+
+            if (selectedImages.Count > 0)
+            {
+                for (int i = 0; i < selectedImages.Count; i++)
+                {
+                    string baseFileName = "image.jpg"; // Base file name
+                    string fileName = baseFileName;
+                    int fileCounter = 1;
+
+                    // Check if the file already exists and generate a unique name if needed
+                    while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                    {
+                        fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                        fileCounter++;
+                    }
+
+                    string filePath = Path.Combine(saveDirectory, fileName);
+                    selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    // Add the saved file path to the list
+                    savedFilePaths.Add(filePath);
+                }
+            }
+
+            string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
+            Console.WriteLine(jsonPicData);
+            ////////////
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
 
@@ -233,7 +286,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                "Serial_Number = @Serial_Number, " +
                "Price = @Price, " +
                "Room = @Room, " +
-               "Pic = @Pic, " +
+               "ImageData = @ImageData, " +
                "Note = @Note, " + // Add a comma here
                "ImageData = @ImageData, " +
                "Status = @Status, " + // Add a comma here
@@ -254,7 +307,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
                     cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-                    //cmd.Parameters.AddWithValue("@Pic", PicFilePath);
+                    cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
@@ -445,7 +498,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 SerialNum = reader["Serial_Number"].ToString(),
                                 Price = reader["Price"].ToString(),
                                 Room = reader["Room"].ToString(),
-                                FilePath = reader["Pic"].ToString(),
+                                FilePath = reader["ImageData"].ToString(),
                                 Description = reader["Note"].ToString(),
                                 Status = int.Parse(reader["Status"].ToString()),
                                 Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
@@ -519,7 +572,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             else
             {
-                pictureBox1.Image = null;
+                pictureBox1.Image = Properties.Resources.NoImage;
             }
         }
 
@@ -551,6 +604,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             ChangePicture((int)selectingImage);
         }
+
     }
 
     public class SRResults
