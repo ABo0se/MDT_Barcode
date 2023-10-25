@@ -605,6 +605,30 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             ChangePicture((int)selectingImage);
         }
+
+        private void EditPic_Enter(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.Delete_Picture;
+            }
+        }
+
+        private void EditPic_Leave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else
+            {
+                ChangePicture((int)selectingImage);
+            }
+        }
     }
 
     public class SRResults

@@ -63,6 +63,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Delete_Picture {
+            get {
+                object obj = ResourceManager.GetObject("Delete_Picture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeleteIcon {
             get {
                 object obj = ResourceManager.GetObject("DeleteIcon", resourceCulture);

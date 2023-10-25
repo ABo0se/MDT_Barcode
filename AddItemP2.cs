@@ -430,7 +430,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             bool isremovingsuccessful = false;
             if (selectedImages.Count > 0)
             {
-                selectedImages.Remove(pictureBox1.Image);
+                selectedImages.Remove(selectedImages[(int)selectingImage]);
                 isremovingsuccessful = true;
             }
             if (isremovingsuccessful)
@@ -451,13 +451,29 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 CheckImageButtonBehavior();
             }
         }
-        //private byte[] ImageToByteArray(System.Drawing.Image image)
-        //{
-        //    using (MemoryStream stream = new MemoryStream())
-        //    {
-        //        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); // Change the format as needed
-        //        return stream.ToArray();
-        //    }
-        //}
+
+        private void Pic1_Enter(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.Delete_Picture;
+            }
+        }
+
+        private void Pic1_Leave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else
+            {
+                ChangePicture((int)selectingImage);
+            }
+        }
     }
 }
