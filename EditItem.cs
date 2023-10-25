@@ -132,7 +132,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             bool isremovingsuccessful = false;
             if (selectedImages.Count > 0)
             {
-                selectedImages.Remove(pictureBox1.Image);
+                selectedImages.Remove(selectedImages[(int)selectingImage]);
                 isremovingsuccessful = true;
             }
             if (isremovingsuccessful)
