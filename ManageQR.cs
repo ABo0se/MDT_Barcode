@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
+using OfficeOpenXml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -406,6 +408,60 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 e.Value = Properties.Resources.DeleteIcon;
                 e.FormattingApplied = true; // Add this line
+            }
+        }
+
+        private void Export_Excel_Click(object sender, EventArgs e)
+        {
+            string filePath = "";
+            try
+            {
+                string saveDirectory = @"C:\ExcelBarcodeDatabase";
+                Directory.CreateDirectory(saveDirectory);
+                string baseFileName = "Database.xlsx"; // Base file name
+                string fileName = baseFileName;
+                int fileCounter = 1;
+                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                {
+                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                    fileCounter++;
+                }
+                filePath = Path.Combine(saveDirectory, fileName);
+
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                ///////////////////////////////////////////////
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
+                {
+                    var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                    int rowCount = BarcodenumberCollector.Rows.Count;
+                    int colCount = BarcodenumberCollector.Columns.Count;
+
+                    // Header row
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        worksheet.Cells[1, col].Value = BarcodenumberCollector.Columns[col - 1].HeaderText;
+                    }
+
+                    // Data rows
+                    for (int row = 0; row < rowCount; row++)
+                    {
+                        for (int col = 0; col < colCount; col++)
+                        {
+                            worksheet.Cells[row + 2, col + 1].Value = BarcodenumberCollector.Rows[row].Cells[col].Value;
+                        }
+                    }
+
+                    package.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                MessageBox.Show("Export to excel completed. Output at " + filePath);
             }
         }
     }

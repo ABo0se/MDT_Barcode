@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
-            this.Search = new System.Windows.Forms.Button();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,8 @@
             this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Search = new System.Windows.Forms.Button();
+            this.Export_Excel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,16 +140,6 @@
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
             this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
-            // 
-            // Search
-            // 
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(1378, 6);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(92, 34);
-            this.Search.TabIndex = 6;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
             // 
             // Tag
             // 
@@ -249,6 +240,7 @@
             this.Status.ReadOnly = true;
             this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Status.Width = 125;
             // 
             // Condition
             // 
@@ -258,6 +250,7 @@
             this.Condition.ReadOnly = true;
             this.Condition.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Condition.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Condition.Width = 125;
             // 
             // Action_Search
             // 
@@ -292,10 +285,32 @@
             this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_Remove.Width = 45;
             // 
+            // Search
+            // 
+            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Search.Location = new System.Drawing.Point(1378, 6);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(92, 34);
+            this.Search.TabIndex = 6;
+            this.Search.Text = "Search";
+            this.Search.UseVisualStyleBackColor = true;
+            // 
+            // Export_Excel
+            // 
+            this.Export_Excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Export_Excel.Location = new System.Drawing.Point(12, 507);
+            this.Export_Excel.Name = "Export_Excel";
+            this.Export_Excel.Size = new System.Drawing.Size(222, 34);
+            this.Export_Excel.TabIndex = 7;
+            this.Export_Excel.Text = "Export to excel";
+            this.Export_Excel.UseVisualStyleBackColor = true;
+            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
+            // 
             // ManageQR
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1482, 503);
+            this.ClientSize = new System.Drawing.Size(1482, 553);
+            this.Controls.Add(this.Export_Excel);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.label2);
@@ -335,6 +350,7 @@
         private System.Windows.Forms.DataGridViewImageColumn Action_Search;
         private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
         private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
+        private System.Windows.Forms.Button Export_Excel;
     }
 }
 
