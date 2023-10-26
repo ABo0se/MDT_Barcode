@@ -15,7 +15,6 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Numerics.Vectors.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Threading.Tasks.Extensions.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\ZstdSharp.dll
-D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Crypto.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.pdb
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.xml
@@ -77,3 +76,5 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.RtfRendering.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.Rendering.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.xml

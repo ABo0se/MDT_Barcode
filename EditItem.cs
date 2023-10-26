@@ -128,30 +128,53 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            //Before we delete picture.
             //Delete existing picture in picture box
-            bool isremovingsuccessful = false;
-            if (selectedImages.Count > 0)
+            //
+            //Your custom logic when the button is clicked
+            //Confirmation Box
+            if (selectedImages.Count <= 0) return;
+            DialogResult result = MessageBox.Show
+            ("Are you sure to delete this image?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
             {
-                selectedImages.Remove(selectedImages[(int)selectingImage]);
-                isremovingsuccessful = true;
-            }
-            if (isremovingsuccessful)
-            {
-                CheckImageButtonBehavior();
-                if (selectedImages.Count <= 0)
+                // User clicked "Yes," perform the action
+                bool isremovingsuccessful = false;
+                if (selectedImages.Count > 0)
                 {
-                    ChangePicture(null);
+                    selectedImages.Remove(selectedImages[(int)selectingImage]);
+                    isremovingsuccessful = true;
+                }
+                if (isremovingsuccessful)
+                {
+                    CheckImageButtonBehavior();
+                    if (selectedImages.Count <= 0)
+                    {
+                        ChangePicture(null);
+                    }
+                    else if (selectingImage + 1 > selectedImages.Count)
+                    {
+                        ChangePicture(selectedImages.Count - 1);
+                    }
+                    else
+                    {
+                        ChangePicture(selectingImage);
+                    }
                 }
                 else
                 {
-                    ChangePicture(selectedImages.Count - 1);
+                    ChangePicture(null);
+                    CheckImageButtonBehavior();
                 }
             }
             else
             {
-                CheckImageButtonBehavior();
-                ChangePicture(null);
+                // User clicked "No" or closed the dialog, do nothing or handle as needed
             }
+            ////////////////////////////////////////////////////////////////
+
         }
 
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
@@ -557,11 +580,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 Prevpic.Enabled = true;
                 Nextpic.Enabled = true;
+                Prevpic.Show();
+                Nextpic.Show();
             }
             else
             {
                 Prevpic.Enabled = false;
                 Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
             }
         }
         private void ChangePicture(int? pictureindex)
@@ -570,10 +597,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (selectingImage != null)
             {
                 pictureBox1.Image = selectedImages[(int)selectingImage];
+                PicInformation.Text = (int)(selectingImage + 1) + " of " + selectedImages.Count;
             }
             else
             {
                 pictureBox1.Image = Properties.Resources.NoImage;
+                PicInformation.Text = "0 of 0";
             }
         }
 

@@ -12,6 +12,11 @@ using PdfSharp.Drawing.Layout;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using OfficeOpenXml.Style;
+using PdfSharp.Pdf.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Document = iTextSharp.text.Document;
+using PdfReader = iTextSharp.text.pdf.PdfReader;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -112,7 +117,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             BarcodenumberCollector.Rows.Clear();
 
-            int numberofsortedItem = 0;
+            int numberofsortedItem = 1;
             string tempstatus = "";
             string tempcondition = "";
             foreach (SRResults result in data)
@@ -421,7 +426,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void Export_Excel_Click(object sender, EventArgs e)
         {
             string filePath = "";
-            bool completeEXCEL = true;
 
             try
             {
@@ -453,7 +457,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     // Header row
                     for (int col = 1; col <= colCount; col++)
                     {
-                        worksheet.Cells[1, col].Value = BarcodenumberCollector.Columns[col - 1].HeaderText;
+                        var headerCell = worksheet.Cells[1, col];
+                        headerCell.Value = BarcodenumberCollector.Columns[col - 1].HeaderText;
+                        headerCell.Style.Font.Bold = true;
+                        headerCell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        headerCell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                        // Increase font size for the first row (header)
+                        if (col == 1)
+                        {
+                            headerCell.Style.Font.Size = 14.0f;
+                        }
                     }
 
                     // Data rows
@@ -461,8 +475,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         for (int col = 0; col < colCount; col++)
                         {
-                            worksheet.Cells[row + 2, col + 1].Value = BarcodenumberCollector.Rows[row].Cells[col].Value;
+                            var cell = worksheet.Cells[row + 2, col + 1];
+                            cell.Value = BarcodenumberCollector.Rows[row].Cells[col].Value;
+
+                            // Align the first column to the middle
+                            if (col == 0)
+                            {
+                                cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            }
                         }
+                    }
+
+                    // Auto-size columns based on the content
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        worksheet.Column(col).AutoFit();
                     }
 
                     package.Save();
@@ -470,76 +498,56 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex)
             {
-                completeEXCEL = false;
                 MessageBox.Show(ex.Message);
+                return;
             }
             finally
             {
-                if (completeEXCEL)
-                    MessageBox.Show("Export to excel completed. Output at " + filePath);
+                 MessageBox.Show("Export to Excel completed. Output at " + filePath);
             }
         }
 
-
         private void Export_PDF_Click(object sender, EventArgs e)
         {
-            string filePath = "";
-            bool completePDF = true;
+            string excelFilePath = "YourExcelFile.xlsx"; // Replace with your Excel file path
+            string pdfFilePath = "YourOutput.pdf"; // Specify the output PDF file path
 
+            ConvertExcelToPDF(excelFilePath, pdfFilePath);
+
+            MessageBox.Show("Export to PDF completed. Output at " + pdfFilePath);
+        }
+        private void ConvertExcelToPDF(string excelFilePath, string pdfFilePath)
+        {
             try
             {
-                string saveDirectory = @"C:\PDFBarcodeDatabase";
-                Directory.CreateDirectory(saveDirectory);
-                string baseFileName = "Database.pdf";
-                string fileName = baseFileName;
-                int fileCounter = 1;
-                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
                 {
-                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                    fileCounter++;
-                }
-                filePath = Path.Combine(saveDirectory, fileName);
+                    var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                Document document = new Document();
-                Section section = document.AddSection();
+                    // Your existing Excel export code goes here
 
-                // Create a font
-                Font font = new Font("TH Sarabun New", 12);
-
-                // Add headers from the DataGridView to the PDF
-                foreach (DataGridViewColumn column in BarcodenumberCollector.Columns)
-                {
-                    Paragraph paragraph = section.AddParagraph(column.HeaderText);
-                    paragraph.Format.Font = font.Clone(); // Clone the font
+                    package.Save();
                 }
 
-                // Add data rows from the DataGridView to the PDF
-                foreach (DataGridViewRow dataRow in BarcodenumberCollector.Rows)
+                using (var excelStream = File.OpenRead(excelFilePath))
+                using (var pdfStream = new FileStream(pdfFilePath, FileMode.Create, FileAccess.Write))
                 {
-                    foreach (DataGridViewCell cell in dataRow.Cells)
+                    var document = new Document();
+                    var writer = PdfWriter.GetInstance(document, pdfStream);
+                    document.Open();
+                    var reader = new PdfReader(excelStream);
+                    for (int page = 1; page <= reader.NumberOfPages; page++)
                     {
-                        if (cell.Value != null)
-                        {
-                            Paragraph paragraph = section.AddParagraph(cell.Value.ToString());
-                            paragraph.Format.Font = font.Clone(); // Clone the font
-                        }
+                        document.NewPage();
+                        PdfImportedPage importedPage = writer.GetImportedPage(reader, page);
+                        writer.DirectContent.AddTemplate(importedPage, 0, 0);
                     }
+                    document.Close();
                 }
-
-                PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
-                renderer.Document = document;
-                renderer.RenderDocument();
-                renderer.PdfDocument.Save(filePath);
             }
             catch (Exception ex)
             {
-                completePDF = false;
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (completePDF)
-                MessageBox.Show("Export to PDF completed. Output at " + filePath);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

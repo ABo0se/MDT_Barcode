@@ -222,11 +222,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 Prevpic.Enabled = true;
                 Nextpic.Enabled = true;
+                Prevpic.Show();
+                Nextpic.Show();
             }
             else
             {
                 Prevpic.Enabled = false;
                 Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
             }
         }
         private void ChangePicture(int? pictureindex)
@@ -235,13 +239,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (selectingImage != null)
             {
                 pictureBox1.Image = selectedImages[(int)selectingImage];
+                PicInformation.Text = (int)(selectingImage + 1) + " of " + selectedImages.Count;
             }
             else
             {
                 pictureBox1.Image = Properties.Resources.NoImage;
+                PicInformation.Text = "0 of 0";
             }
         }
-
         private void Nextpic_Click(object sender, EventArgs e)
         {
             if (selectedImages.Count < 2) return;
