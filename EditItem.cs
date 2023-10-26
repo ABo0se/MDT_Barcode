@@ -251,6 +251,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     EditmyDataBase();
                 }
+                else if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
+                         Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
+                         Room_TB.Text == "" || Note_TB.Text == "" || conditionstate == -1 || checkstate == -1)
+                {
+                    MessageBox.Show("กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่มเข้ามา");
+                }
                 else
                 {
                     MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากไม่สามารถดึงรหัสครุภัณฑ์เก่าได้");

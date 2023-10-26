@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BarcodeSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
-            this.Search = new System.Windows.Forms.Button();
             this.Export_Excel = new System.Windows.Forms.Button();
             this.Export_PDF = new System.Windows.Forms.Button();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,16 +52,20 @@
             this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ConditionBox = new System.Windows.Forms.ComboBox();
+            this.StatusSearchBox = new System.Windows.Forms.ComboBox();
+            this.RoomSearchBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
             // 
             // BarcodeSearchBox
             // 
             this.BarcodeSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeSearchBox.Location = new System.Drawing.Point(131, 6);
+            this.BarcodeSearchBox.Location = new System.Drawing.Point(125, 11);
             this.BarcodeSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
-            this.BarcodeSearchBox.Size = new System.Drawing.Size(1240, 30);
+            this.BarcodeSearchBox.Size = new System.Drawing.Size(586, 30);
             this.BarcodeSearchBox.TabIndex = 3;
             this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
@@ -70,18 +73,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(14, 10);
+            this.label1.Location = new System.Drawing.Point(14, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 25);
+            this.label1.Size = new System.Drawing.Size(162, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Search Barcode :";
+            this.label1.Text = "Search barcode :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(14, 43);
+            this.label2.Location = new System.Drawing.Point(14, 50);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 25);
@@ -94,16 +97,16 @@
             this.BarcodenumberCollector.AllowUserToDeleteRows = false;
             this.BarcodenumberCollector.AllowUserToResizeColumns = false;
             this.BarcodenumberCollector.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.BarcodenumberCollector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Tag,
@@ -120,37 +123,27 @@
             this.Action_Search,
             this.Action_Edit,
             this.Action_Remove});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle3;
-            this.BarcodenumberCollector.Location = new System.Drawing.Point(12, 73);
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle7;
+            this.BarcodenumberCollector.Location = new System.Drawing.Point(12, 84);
             this.BarcodenumberCollector.Name = "BarcodenumberCollector";
             this.BarcodenumberCollector.ReadOnly = true;
             this.BarcodenumberCollector.RowHeadersVisible = false;
             this.BarcodenumberCollector.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.BarcodenumberCollector.RowTemplate.Height = 25;
-            this.BarcodenumberCollector.Size = new System.Drawing.Size(1458, 418);
+            this.BarcodenumberCollector.Size = new System.Drawing.Size(1458, 413);
             this.BarcodenumberCollector.TabIndex = 5;
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
             this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
-            // 
-            // Search
-            // 
-            this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(1378, 6);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(92, 34);
-            this.Search.TabIndex = 6;
-            this.Search.Text = "Search";
-            this.Search.UseVisualStyleBackColor = true;
             // 
             // Export_Excel
             // 
@@ -318,13 +311,72 @@
             this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_Remove.Width = 45;
             // 
+            // ConditionBox
+            // 
+            this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.ConditionBox.FormattingEnabled = true;
+            this.ConditionBox.Items.AddRange(new object[] {
+            "[เลือกสภาพทั้งหมด]",
+            "ใช้งานได้",
+            "ชำรุดรอซ่อม",
+            "สิ้นสภาพ",
+            "สูญหาย",
+            "จำหน่ายแล้ว",
+            "โอนแล้ว",
+            "อื่นๆ"});
+            this.ConditionBox.Location = new System.Drawing.Point(1291, 10);
+            this.ConditionBox.Name = "ConditionBox";
+            this.ConditionBox.Size = new System.Drawing.Size(179, 35);
+            this.ConditionBox.TabIndex = 10;
+            this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
+            // 
+            // StatusSearchBox
+            // 
+            this.StatusSearchBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.StatusSearchBox.FormattingEnabled = true;
+            this.StatusSearchBox.Items.AddRange(new object[] {
+            "[เลือกสถานะทั้งหมด]",
+            "มีให้ตรวจสอบ",
+            "ไม่มีให้ตรวจสอบ"});
+            this.StatusSearchBox.Location = new System.Drawing.Point(1106, 9);
+            this.StatusSearchBox.Name = "StatusSearchBox";
+            this.StatusSearchBox.Size = new System.Drawing.Size(179, 35);
+            this.StatusSearchBox.TabIndex = 11;
+            this.StatusSearchBox.SelectedIndexChanged += new System.EventHandler(this.StatusSearchBox_SelectedIndexChanged);
+            // 
+            // RoomSearchBox
+            // 
+            this.RoomSearchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.RoomSearchBox.Location = new System.Drawing.Point(824, 11);
+            this.RoomSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RoomSearchBox.Name = "RoomSearchBox";
+            this.RoomSearchBox.Size = new System.Drawing.Size(275, 30);
+            this.RoomSearchBox.TabIndex = 12;
+            this.RoomSearchBox.TextChanged += new System.EventHandler(this.RoomSearchBox_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(719, 14);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 25);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Search room :";
+            // 
             // ManageQR
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1482, 553);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.RoomSearchBox);
+            this.Controls.Add(this.StatusSearchBox);
+            this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.Export_PDF);
             this.Controls.Add(this.Export_Excel);
-            this.Controls.Add(this.Search);
             this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BarcodeSearchBox);
@@ -348,7 +400,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView BarcodenumberCollector;
-        private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button Export_Excel;
         private System.Windows.Forms.Button Export_PDF;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
@@ -365,6 +416,10 @@
         private System.Windows.Forms.DataGridViewImageColumn Action_Search;
         private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
         private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
+        private System.Windows.Forms.ComboBox ConditionBox;
+        private System.Windows.Forms.ComboBox StatusSearchBox;
+        private System.Windows.Forms.TextBox RoomSearchBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -17,6 +17,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Document = iTextSharp.text.Document;
 using PdfReader = iTextSharp.text.pdf.PdfReader;
+using System.Drawing;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -27,10 +28,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public ManageQR()
         {
             InitializeComponent();
-            //InitializeDataGridView();
+            ////////////////////////////////////////////////////////
             _barcodeScanner = new BarcodeScanner2(BarcodeSearchBox);
-            /////////////////////////////////////////////////////////////////
             _barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
+            ////////////////////////////////////////////////////////
+            StatusSearchBox.SelectedIndex = 0;
+            ConditionBox.SelectedIndex = 0;
         }
 
         private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
@@ -59,8 +62,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void SearchDatainDB()
         {
+            int statusbox = StatusSearchBox.SelectedIndex - 1;
+            int conditionbox = ConditionBox.SelectedIndex - 1;
             List<SRResults> ResultDataList = new List<SRResults>();
-
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
 
             using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
@@ -69,13 +73,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     mySqlConnection.Open();
 
-                    string query = "SELECT * FROM information WHERE BarcodeNumber LIKE @searchCriteria " +
-                                    "OR Model_Name LIKE @searchCriteria " +
-                                    "OR Serial_Number LIKE @searchCriteria";
+                    string query = "SELECT * FROM information WHERE (BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                                    "AND (Room LIKE @RoomsearchCriteria OR @RoomsearchCriteria = 'ค้นหาห้อง' OR @RoomsearchCriteria = '') " +
+                                    "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1) " +
+                                    "AND (ITEM_CONDITION = @ConditionsearchCriteria OR @ConditionsearchCriteria = -1)";
+
 
                     using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
                     {
-                        command.Parameters.AddWithValue("@searchCriteria", BarcodeSearchBox.Text + "%");
+                        command.Parameters.AddWithValue("@BarcodesearchCriteria", BarcodeSearchBox.Text + "%");
+                        command.Parameters.AddWithValue("@RoomsearchCriteria", RoomSearchBox.Text + "%");
+                        command.Parameters.AddWithValue("@StatussearchCriteria", statusbox);
+                        command.Parameters.AddWithValue("@ConditionsearchCriteria", conditionbox);
 
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
@@ -113,6 +122,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             PopulateDataGridView(ResultDataList);
         }
 
+
         private void PopulateDataGridView(List<SRResults> data)
         {
             BarcodenumberCollector.Rows.Clear();
@@ -138,7 +148,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         }
                     case 1:
                         {
-                            tempstatus = "มีให้ตรวจสอบ";
+                            tempstatus = "ไม่มีให้ตรวจสอบ";
                             break;
                         }
                 }
@@ -549,6 +559,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void Search_Click(object sender, EventArgs e)
+        {
+            SearchDatainDB();
+        }
+
+        private void RoomSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            SearchDatainDB();
+        }
+
+        private void StatusSearchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchDatainDB();
+        }
+
+        private void ConditionBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchDatainDB();
         }
     }
 }

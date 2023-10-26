@@ -253,6 +253,7 @@
             // 
             // ConditionBoxEdit
             // 
+            this.ConditionBoxEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ConditionBoxEdit.Font = new System.Drawing.Font("TH Sarabun New", 12F);
             this.ConditionBoxEdit.FormattingEnabled = true;
             this.ConditionBoxEdit.Items.AddRange(new object[] {

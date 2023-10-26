@@ -265,6 +265,7 @@
             // 
             // ConditionBox
             // 
+            this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 12F);
             this.ConditionBox.FormattingEnabled = true;
             this.ConditionBox.Items.AddRange(new object[] {
