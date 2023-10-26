@@ -6,6 +6,12 @@ using USB_Barcode_Scanner;
 using OfficeOpenXml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
+using OfficeOpenXml.Style;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -73,6 +79,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 SRResults data2 = new SRResults
                                 {
                                     Date = reader.GetDateTime("Time"),
+                                    FormattedDate = reader.GetDateTime("Time").ToString("dd-MM-yyyy HH:mm:ss"),
                                     BarcodeNumber = reader["BarcodeNumber"].ToString(),
                                     ModelNumber = reader["Model_Name"].ToString(),
                                     Brand = reader["Brand"].ToString(),
@@ -110,7 +117,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             string tempcondition = "";
             foreach (SRResults result in data)
             {
-                
+
                 /////////////
                 switch (result.Status)
                 {
@@ -175,7 +182,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 /////////////
                 BarcodenumberCollector.Rows.Add
-                (numberofsortedItem, result.Date, result.BarcodeNumber, result.ModelNumber,
+                (numberofsortedItem, result.FormattedDate, result.BarcodeNumber, result.ModelNumber,
                  result.Brand, result.SerialNum, result.Price, result.Room,
                  result.Description, tempstatus, tempcondition);
                 numberofsortedItem++;
@@ -414,6 +421,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void Export_Excel_Click(object sender, EventArgs e)
         {
             string filePath = "";
+            bool completeEXCEL = true;
+
             try
             {
                 string saveDirectory = @"C:\ExcelBarcodeDatabase";
@@ -429,13 +438,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 filePath = Path.Combine(saveDirectory, fileName);
 
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                ///////////////////////////////////////////////
+
                 using (var package = new ExcelPackage(new FileInfo(filePath)))
                 {
                     var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
                     int rowCount = BarcodenumberCollector.Rows.Count;
                     int colCount = BarcodenumberCollector.Columns.Count;
+
+                    // Set the font properties for the entire worksheet
+                    worksheet.Cells.Style.Font.Name = "TH Sarabun New";
+                    worksheet.Cells.Style.Font.Size = 12.0f;
 
                     // Header row
                     for (int col = 1; col <= colCount; col++)
@@ -457,11 +470,76 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex)
             {
+                completeEXCEL = false;
                 MessageBox.Show(ex.Message);
             }
             finally
             {
-                MessageBox.Show("Export to excel completed. Output at " + filePath);
+                if (completeEXCEL)
+                    MessageBox.Show("Export to excel completed. Output at " + filePath);
+            }
+        }
+
+
+        private void Export_PDF_Click(object sender, EventArgs e)
+        {
+            string filePath = "";
+            bool completePDF = true;
+
+            try
+            {
+                string saveDirectory = @"C:\PDFBarcodeDatabase";
+                Directory.CreateDirectory(saveDirectory);
+                string baseFileName = "Database.pdf";
+                string fileName = baseFileName;
+                int fileCounter = 1;
+                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                {
+                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                    fileCounter++;
+                }
+                filePath = Path.Combine(saveDirectory, fileName);
+
+                Document document = new Document();
+                Section section = document.AddSection();
+
+                // Create a font
+                Font font = new Font("TH Sarabun New", 12);
+
+                // Add headers from the DataGridView to the PDF
+                foreach (DataGridViewColumn column in BarcodenumberCollector.Columns)
+                {
+                    Paragraph paragraph = section.AddParagraph(column.HeaderText);
+                    paragraph.Format.Font = font.Clone(); // Clone the font
+                }
+
+                // Add data rows from the DataGridView to the PDF
+                foreach (DataGridViewRow dataRow in BarcodenumberCollector.Rows)
+                {
+                    foreach (DataGridViewCell cell in dataRow.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            Paragraph paragraph = section.AddParagraph(cell.Value.ToString());
+                            paragraph.Format.Font = font.Clone(); // Clone the font
+                        }
+                    }
+                }
+
+                PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
+                renderer.Document = document;
+                renderer.RenderDocument();
+                renderer.PdfDocument.Save(filePath);
+            }
+            catch (Exception ex)
+            {
+                completePDF = false;
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (completePDF)
+                MessageBox.Show("Export to PDF completed. Output at " + filePath);
             }
         }
     }

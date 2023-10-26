@@ -634,6 +634,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public class SRResults
     {
         public DateTime Date { get; set; }
+        public string FormattedDate { get; set; }
         public string BarcodeNumber { get; set; }
         public string ModelNumber { get; set; }
         public string Brand { get; set; }
