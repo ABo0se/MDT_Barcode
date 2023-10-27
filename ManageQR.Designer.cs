@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BarcodeSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
-            this.Export_Excel = new System.Windows.Forms.Button();
-            this.Export_PDF = new System.Windows.Forms.Button();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,10 +50,13 @@
             this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Export_Excel = new System.Windows.Forms.Button();
+            this.Import_Excel = new System.Windows.Forms.Button();
             this.ConditionBox = new System.Windows.Forms.ComboBox();
             this.StatusSearchBox = new System.Windows.Forms.ComboBox();
             this.RoomSearchBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.Del_Database = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,16 +98,16 @@
             this.BarcodenumberCollector.AllowUserToDeleteRows = false;
             this.BarcodenumberCollector.AllowUserToResizeColumns = false;
             this.BarcodenumberCollector.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.BarcodenumberCollector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Tag,
@@ -123,49 +124,27 @@
             this.Action_Search,
             this.Action_Edit,
             this.Action_Remove});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle3;
             this.BarcodenumberCollector.Location = new System.Drawing.Point(12, 84);
             this.BarcodenumberCollector.Name = "BarcodenumberCollector";
             this.BarcodenumberCollector.ReadOnly = true;
             this.BarcodenumberCollector.RowHeadersVisible = false;
             this.BarcodenumberCollector.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.BarcodenumberCollector.RowTemplate.Height = 25;
             this.BarcodenumberCollector.Size = new System.Drawing.Size(1458, 413);
             this.BarcodenumberCollector.TabIndex = 5;
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
             this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
-            // 
-            // Export_Excel
-            // 
-            this.Export_Excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Export_Excel.Location = new System.Drawing.Point(12, 507);
-            this.Export_Excel.Name = "Export_Excel";
-            this.Export_Excel.Size = new System.Drawing.Size(222, 34);
-            this.Export_Excel.TabIndex = 7;
-            this.Export_Excel.Text = "Export to excel";
-            this.Export_Excel.UseVisualStyleBackColor = true;
-            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
-            // 
-            // Export_PDF
-            // 
-            this.Export_PDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Export_PDF.Location = new System.Drawing.Point(250, 507);
-            this.Export_PDF.Name = "Export_PDF";
-            this.Export_PDF.Size = new System.Drawing.Size(222, 34);
-            this.Export_PDF.TabIndex = 8;
-            this.Export_PDF.Text = "Export to PDF";
-            this.Export_PDF.UseVisualStyleBackColor = true;
-            this.Export_PDF.Click += new System.EventHandler(this.Export_PDF_Click);
             // 
             // Tag
             // 
@@ -311,6 +290,28 @@
             this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_Remove.Width = 45;
             // 
+            // Export_Excel
+            // 
+            this.Export_Excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Export_Excel.Location = new System.Drawing.Point(12, 507);
+            this.Export_Excel.Name = "Export_Excel";
+            this.Export_Excel.Size = new System.Drawing.Size(222, 34);
+            this.Export_Excel.TabIndex = 7;
+            this.Export_Excel.Text = "Export to excel";
+            this.Export_Excel.UseVisualStyleBackColor = true;
+            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
+            // 
+            // Import_Excel
+            // 
+            this.Import_Excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Import_Excel.Location = new System.Drawing.Point(250, 507);
+            this.Import_Excel.Name = "Import_Excel";
+            this.Import_Excel.Size = new System.Drawing.Size(222, 34);
+            this.Import_Excel.TabIndex = 8;
+            this.Import_Excel.Text = "Import from excel";
+            this.Import_Excel.UseVisualStyleBackColor = true;
+            this.Import_Excel.Click += new System.EventHandler(this.Import_Excel_Click);
+            // 
             // ConditionBox
             // 
             this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -367,15 +368,27 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Search room :";
             // 
+            // Del_Database
+            // 
+            this.Del_Database.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Del_Database.Location = new System.Drawing.Point(489, 507);
+            this.Del_Database.Name = "Del_Database";
+            this.Del_Database.Size = new System.Drawing.Size(222, 34);
+            this.Del_Database.TabIndex = 14;
+            this.Del_Database.Text = "Delete all database data";
+            this.Del_Database.UseVisualStyleBackColor = true;
+            this.Del_Database.Click += new System.EventHandler(this.Del_Database_Click);
+            // 
             // ManageQR
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1482, 553);
+            this.Controls.Add(this.Del_Database);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.RoomSearchBox);
             this.Controls.Add(this.StatusSearchBox);
             this.Controls.Add(this.ConditionBox);
-            this.Controls.Add(this.Export_PDF);
+            this.Controls.Add(this.Import_Excel);
             this.Controls.Add(this.Export_Excel);
             this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.label2);
@@ -401,7 +414,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView BarcodenumberCollector;
         private System.Windows.Forms.Button Export_Excel;
-        private System.Windows.Forms.Button Export_PDF;
+        private System.Windows.Forms.Button Import_Excel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn BCNumber;
@@ -420,6 +433,7 @@
         private System.Windows.Forms.ComboBox StatusSearchBox;
         private System.Windows.Forms.TextBox RoomSearchBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Del_Database;
     }
 }
 
