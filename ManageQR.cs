@@ -408,17 +408,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.search;
-                e.FormattingApplied = true; // Add this line
+                //e.FormattingApplied = true; // Add this line
             }
             if (e.ColumnIndex == 12 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.EditIcon;
-                e.FormattingApplied = true; // Add this line
+                //e.FormattingApplied = true; // Add this line
             }
             if (e.ColumnIndex == 13 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.DeleteIcon;
-                e.FormattingApplied = true; // Add this line
+               //e.FormattingApplied = true; // Add this line
             }
         }
 
@@ -551,9 +551,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     //Your custom logic when the button is clicked
                     //Confirmation Box
                     DialogResult result = MessageBox.Show
-                    ("Do you want to put data to database?" + Environment.NewLine + 
-                    "Yes : Put to database and show data." + Environment.NewLine +
-                    "No : Just show data to the table."
+                    ("Do you really want to put data on your excel into this database?"
                     , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     // Check the user's response
@@ -583,8 +581,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     else
                     {
-                        //Show all data without put it in database.
-                        PopulateDataGridView(myexcelresult);
+                        //No action
                     }
                 }
             }
