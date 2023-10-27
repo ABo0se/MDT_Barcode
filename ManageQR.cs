@@ -28,6 +28,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public partial class ManageQR : Form
     {
         private BarcodeScanner2 _barcodeScanner;
+        List<SRResults> TemporaryData;
 
         public ManageQR()
         {
@@ -36,6 +37,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             _barcodeScanner = new BarcodeScanner2(BarcodeSearchBox);
             _barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
             ////////////////////////////////////////////////////////
+            TemporaryData = new List<SRResults>();
             StatusSearchBox.SelectedIndex = 0;
             ConditionBox.SelectedIndex = 0;
         }
@@ -105,6 +107,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     Price = reader["Price"].ToString(),
                                     Room = reader["Room"].ToString(),
                                     Description = reader["Note"].ToString(),
+                                    FilePath = reader["ImageData"].ToString(),
                                     Status = int.Parse(reader["Status"].ToString()),
                                     Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                                 };
@@ -122,8 +125,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     mySqlConnection.Close();
                 }
             }
-
-            PopulateDataGridView(ResultDataList);
+            TemporaryData = ResultDataList;
+            PopulateDataGridView(TemporaryData);
         }
 
 
@@ -444,28 +447,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 using (var package = new ExcelPackage(new FileInfo(filePath)))
                 {
-                    var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                    var worksheet1 = package.Workbook.Worksheets.Add("Data");
 
                     int rowCount = BarcodenumberCollector.Rows.Count;
                     int colCount = BarcodenumberCollector.Columns.Count;
 
                     // Set the font properties for the entire worksheet
-                    worksheet.Cells.Style.Font.Name = "TH Sarabun New";
-                    worksheet.Cells.Style.Font.Size = 12.0f;
+                    worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
+                    worksheet1.Cells.Style.Font.Size = 12.0f;
 
                     // Header row
                     for (int col = 1; col <= colCount; col++)
                     {
-                        var headerCell = worksheet.Cells[1, col];
-                        headerCell.Value = BarcodenumberCollector.Columns[col - 1].HeaderText;
-                        headerCell.Style.Font.Bold = true;
-                        headerCell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        headerCell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        var headerCell1 = worksheet1.Cells[1, col];
+                        headerCell1.Value = BarcodenumberCollector.Columns[col - 1].HeaderText;
+                        headerCell1.Style.Font.Bold = true;
+                        headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
                         // Increase font size for the first row (header)
                         if (col == 1)
                         {
-                            headerCell.Style.Font.Size = 14.0f;
+                            headerCell1.Style.Font.Size = 14.0f;
                         }
                     }
 
@@ -474,14 +477,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         for (int col = 0; col < colCount; col++)
                         {
-                            var cell = worksheet.Cells[row + 2, col + 1];
-                            cell.Value = BarcodenumberCollector.Rows[row].Cells[col].Value;
+                            var cell1 = worksheet1.Cells[row + 2, col + 1];
+                            cell1.Value = BarcodenumberCollector.Rows[row].Cells[col].Value;
 
                             // Align the first column to the middle
                             if (col == 0)
                             {
-                                cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             }
                         }
                     }
@@ -489,9 +492,34 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     // Auto-size columns based on the content
                     for (int col = 1; col <= colCount; col++)
                     {
-                        worksheet.Column(col).AutoFit();
+                        worksheet1.Column(col).AutoFit();
                     }
+                    ////////////////////////////////////////////////////////////////////////////////
+                    
+                    var worksheet2 = package.Workbook.Worksheets.Add("Image");
 
+                    ///// Set the font properties for the entire worksheet
+                    worksheet2.Cells.Style.Font.Name = "TH Sarabun New";
+                    worksheet2.Cells.Style.Font.Size = 12.0f;
+
+                    // Header row
+
+                    var headerCell2 = worksheet2.Cells[1, 1];
+                    headerCell2.Value = "ImagePath";
+                    headerCell2.Style.Font.Bold = true;
+                    headerCell2.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    headerCell2.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    headerCell2.Style.Font.Size = 14.0f;
+
+
+                    // Data rows
+                    for (int i = 0; i < TemporaryData.Count; i++)
+                    {
+                        var cell2 = worksheet2.Cells[i + 2, 1];
+                        cell2.Value = TemporaryData[i].FilePath;
+                    }
+                    worksheet2.Column(1).AutoFit();
+                    ///////////////////////////////////////////////////////////////////////////////////
                     package.Save();
                 }
             }
@@ -736,6 +764,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                "Price = @Price, " +
                "Room = @Room, " +
                "Note = @Note, " +
+               "ImageData = @ImageData, " +
                "Status = @Status, " +
                "ITEM_CONDITION = @ITEM_CONDITION " +
                "WHERE BarcodeNumber = @BarcodeNumber";
@@ -748,6 +777,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 cmd.Parameters.AddWithValue("@Price", result.Price);
                 cmd.Parameters.AddWithValue("@Room", result.Room);
                 cmd.Parameters.AddWithValue("@Note", result.Description);
+                cmd.Parameters.AddWithValue("@ImageData", result.FilePath);
                 cmd.Parameters.AddWithValue("@Status", result.Status);
                 cmd.Parameters.AddWithValue("@ITEM_CONDITION", result.Condition);
                 cmd.Parameters.AddWithValue("@BarcodeNumber", result.BarcodeNumber);
@@ -778,13 +808,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
             {
-                var worksheet = package.Workbook.Worksheets[0]; // Assuming data is on the first worksheet
+                var worksheet1 = package.Workbook.Worksheets["Data"]; // Assuming data is on the first worksheet
+                var worksheet2 = package.Workbook.Worksheets["Image"];
 
-                for (int row = 2; row <= worksheet.Dimension.End.Row; row++) // Assuming the first row contains headers
+                for (int row = 2; row <= worksheet1.Dimension.End.Row; row++) // Assuming the first row contains headers
                 {
                     int tempstatus = -1;
                     int tempcondition = -1;
-                    switch (worksheet.Cells[row, 10].Text)
+                    switch (worksheet1.Cells[row, 10].Text)
                     {
                         case "ไม่สามารถทราบได้":
                             tempstatus = -1;
@@ -796,7 +827,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             tempstatus = 1;
                             break;
                     }
-                    switch (worksheet.Cells[row, 11].Text)
+                    switch (worksheet1.Cells[row, 11].Text)
                     {
                         case "ไม่สามารถทราบได้":
                             tempcondition = -1;
@@ -825,26 +856,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
 
                     // Convert the formatted date string to DateTime
-                    string formattedDateStr = worksheet.Cells[row, 2].Text; // Assuming the date is in column 10
+                    string formattedDateStr = worksheet1.Cells[row, 2].Text; // Assuming the date is in column 10
                     DateTime formattedDate;
                     if (DateTime.TryParseExact(formattedDateStr, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out formattedDate))
                     {
                         SRResults excelData = new SRResults
                         {
-                            BarcodeNumber = worksheet.Cells[row, 3].Text,
-                            ModelNumber = worksheet.Cells[row, 4].Text,
-                            Brand = worksheet.Cells[row, 5].Text,
-                            SerialNum = worksheet.Cells[row, 6].Text,
-                            Price = worksheet.Cells[row, 7].Text,
-                            Room = worksheet.Cells[row, 8].Text,
-                            Description = worksheet.Cells[row, 9].Text,
-                            FilePath = "[]",
+                            BarcodeNumber = worksheet1.Cells[row, 3].Text,
+                            ModelNumber = worksheet1.Cells[row, 4].Text,
+                            Brand = worksheet1.Cells[row, 5].Text,
+                            SerialNum = worksheet1.Cells[row, 6].Text,
+                            Price = worksheet1.Cells[row, 7].Text,
+                            Room = worksheet1.Cells[row, 8].Text,
+                            Description = worksheet1.Cells[row, 9].Text,
+                            FilePath = worksheet2.Cells[row, 1].Text,
                             Status = tempstatus,
                             Condition = tempcondition,
                             Date = formattedDate,
                             FormattedDate = formattedDateStr
                         };
-
                         excelDataList.Add(excelData);
                     }
                 }
