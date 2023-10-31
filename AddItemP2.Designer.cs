@@ -61,8 +61,8 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.Quality = new System.Windows.Forms.Label();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.Quality = new System.Windows.Forms.Label();
             this.Add_Item_toDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
@@ -541,19 +541,6 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(527, 37);
             this.tableLayoutPanel9.TabIndex = 31;
             // 
-            // Quality
-            // 
-            this.Quality.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Quality.AutoSize = true;
-            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quality.Location = new System.Drawing.Point(2, 7);
-            this.Quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Quality.Name = "Quality";
-            this.Quality.Size = new System.Drawing.Size(51, 27);
-            this.Quality.TabIndex = 19;
-            this.Quality.Text = "สภาพ :";
-            this.Quality.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -568,6 +555,19 @@
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(527, 42);
             this.tableLayoutPanel12.TabIndex = 33;
+            // 
+            // Quality
+            // 
+            this.Quality.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Quality.AutoSize = true;
+            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quality.Location = new System.Drawing.Point(2, 7);
+            this.Quality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Quality.Name = "Quality";
+            this.Quality.Size = new System.Drawing.Size(51, 27);
+            this.Quality.TabIndex = 19;
+            this.Quality.Text = "สภาพ :";
+            this.Quality.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Add_Item_toDB
             // 
