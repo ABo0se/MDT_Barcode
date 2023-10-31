@@ -800,7 +800,7 @@
             Creates new instance of <see cref="T:K4os.Compression.LZ4.Streams.Frames.LZ4FrameReaderAsStream"/>.
             </summary>
             <param name="reader">LZ4 frame reader.</param>
-            <param name="leaveOpen">Leave underlying stream open after disposing this stream.</param>
+            <param name="doNotDispose">Indicates to not dispose <paramref name="reader"/> after disposing this stream.</param>
             <param name="interactive">Use interactive mode; return bytes as soon as they available.</param>
         </member>
         <member name="P:K4os.Compression.LZ4.Streams.Frames.LZ4FrameReaderAsStream.CanRead">
@@ -828,9 +828,6 @@
             Position within the stream. Position can be read, but cannot be set as LZ4 stream does
             not have <c>Seek</c> capability.
             </summary>
-        </member>
-        <member name="M:K4os.Compression.LZ4.Streams.Frames.LZ4FrameReaderAsStream.Dispose(System.Boolean)">
-            <inheritdoc />
         </member>
         <member name="T:K4os.Compression.LZ4.Streams.Frames.LZ4FrameWriter`2">
             <summary>
@@ -1021,8 +1018,8 @@
         <member name="M:K4os.Compression.LZ4.Streams.Frames.LZ4FrameWriterAsStream.#ctor(K4os.Compression.LZ4.Streams.Abstractions.ILZ4FrameWriter,System.Boolean)">
             <summary>Creates new instance of <see cref="T:K4os.Compression.LZ4.Streams.LZ4EncoderStream"/>.</summary>
             <param name="writer">Underlying frame encoder.</param>
-            <param name="leaveOpen">Indicates <paramref name="writer"/> should be left
-            open after disposing.</param>
+            <param name="doNotDispose">Indicates <paramref name="writer"/> should be left
+            open after disposing this stream.</param>
         </member>
         <member name="P:K4os.Compression.LZ4.Streams.Frames.LZ4FrameWriterAsStream.CanWrite">
             <inheritdoc />
@@ -1085,7 +1082,7 @@
             Creates new instance of <see cref="T:K4os.Compression.LZ4.Streams.Internal.LZ4StreamEssentials`1"/>.
             </summary>
             <param name="innerResource">Wrapped resource.</param>
-            <param name="leaveOpen">Do not dispose inner resource after stream is disposed.</param>
+            <param name="doNotDispose">Do not dispose inner resource after stream is disposed.</param>
         </member>
         <member name="P:K4os.Compression.LZ4.Streams.Internal.LZ4StreamEssentials`1.InnerResource">
             <summary>Wrapped resource.</summary>

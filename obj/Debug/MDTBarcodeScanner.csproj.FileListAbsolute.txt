@@ -15,7 +15,6 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Numerics.Vectors.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Threading.Tasks.Extensions.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\ZstdSharp.dll
-D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Crypto.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.pdb
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Google.Protobuf.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\K4os.Compression.LZ4.xml
@@ -47,3 +46,35 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MDT Barcode Scanner.pdb
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.pdb
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Newtonsoft.Json.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\EPPlus.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\EPPlus.Interfaces.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\EPPlus.System.Drawing.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.AccessControl.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.Permissions.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.Principal.Windows.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\EPPlus.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.AccessControl.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.Permissions.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\System.Security.Principal.Windows.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\PdfSharp.Charting.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\PdfSharp.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\PdfSharp.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\PdfSharp.Charting.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\PdfSharp.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\PdfSharp.Charting.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Cryptography.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.DocumentObjectModel.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.Rendering.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.RtfRendering.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\BouncyCastle.Cryptography.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.DocumentObjectModel.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.Rendering.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\MigraDoc.RtfRendering.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.Rendering.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.dll
+D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.xml

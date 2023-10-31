@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
-using System.Drawing.Imaging;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -271,7 +270,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             selectedImages = new List<System.Drawing.Image>();
                         }
-                        selectingImage = null;
+                        ChangePicture(null);
+                        CheckImageButtonBehavior();
 
                         Model_TB.Text = "";
                         Brand_TB.Text = "";
@@ -406,11 +406,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 Prevpic.Enabled = true;
                 Nextpic.Enabled = true;
+                Prevpic.Show();
+                Nextpic.Show();
             }
             else
             {
                 Prevpic.Enabled = false;
                 Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
             }
         }
         private void ChangePicture(int? pictureindex)
@@ -419,86 +423,92 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (selectingImage != null)
             {
                 pictureBox1.Image = selectedImages[(int)selectingImage];
+                PicInformation.Text = (int)(selectingImage + 1) + " of " + selectedImages.Count;
             }
             else
             {
                 pictureBox1.Image = Properties.Resources.NoImage;
+                PicInformation.Text = "0 of 0";
             }
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            //Before we delete picture.
             //Delete existing picture in picture box
-            bool isremovingsuccessful = false;
-            if (selectedImages.Count > 0)
+            //
+            //Your custom logic when the button is clicked
+            //Confirmation Box
+            if (selectedImages.Count <= 0) return;
+            DialogResult result = MessageBox.Show
+            ("Are you sure to delete this image?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
             {
-                selectedImages.Remove(pictureBox1.Image);
-                isremovingsuccessful = true;
-            }
-            if (isremovingsuccessful)
-            {
-                CheckImageButtonBehavior();
-                if (selectedImages.Count <= 0)
+                // User clicked "Yes," perform the action
+                bool isremovingsuccessful = false;
+                if (selectedImages.Count > 0)
                 {
-                    ChangePicture(null);
+                    selectedImages.Remove(selectedImages[(int)selectingImage]);
+                    isremovingsuccessful = true;
+                }
+                if (isremovingsuccessful)
+                {
+                    CheckImageButtonBehavior();
+                    if (selectedImages.Count <= 0)
+                    {
+                        ChangePicture(null);
+                    }
+                    else if (selectingImage + 1 > selectedImages.Count)
+                    {
+                        ChangePicture(selectedImages.Count - 1);
+                    }
+                    else
+                    {
+                        ChangePicture(selectingImage);
+                    }
                 }
                 else
                 {
-                    ChangePicture(selectedImages.Count - 1);
+                    ChangePicture(null);
+                    CheckImageButtonBehavior();
                 }
             }
             else
             {
-                ChangePicture(null);
-                CheckImageButtonBehavior();
+                // User clicked "No" or closed the dialog, do nothing or handle as needed
             }
-        }
-        /// <summary>
-        /// ///////////////////////
-        private Image originalImage;
-        private Image hoverImage;
-
-        private void MouseHover(object sender, EventArgs e)
-        {
-            //pictureBox1.Image = hoverImage;
+            ////////////////////////////////////////////////////////////////
+            
         }
 
-        private void MouseEnter(object sender, EventArgs e)
+        private void Pic1_Enter(object sender, EventArgs e)
         {
             if (selectedImages.Count <= 0)
-                return;
-            originalImage = pictureBox1.Image;
-            hoverImage = Properties.Resources.Delete_Picture;
-            pictureBox1.Image = hoverImage;
-        }
-
-        private void MouseLeave(object sender, EventArgs e)
-        {
-            if (selectedImages.Count <= 0)
-                return;
-            pictureBox1.Image = originalImage;
-        }
-
-        private Image ChangeImageOpacity(Image originalImage, float opacity)
-        {
-            Bitmap image = new Bitmap(originalImage.Width, originalImage.Height);
-            using (Graphics graphics = Graphics.FromImage(image))
             {
-                ColorMatrix colorMatrix = new ColorMatrix();
-                colorMatrix.Matrix33 = opacity; // Opacity value
-                ImageAttributes imageAttributes = new ImageAttributes();
-                imageAttributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-                graphics.DrawImage(originalImage, new Rectangle(0, 0, originalImage.Width, originalImage.Height), 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel, imageAttributes);
+                return;
             }
-            return image;
+            else
+            {
+                pictureBox1.Image = Properties.Resources.Delete_Picture;
+            }
         }
-        //private byte[] ImageToByteArray(System.Drawing.Image image)
-        //{
-        //    using (MemoryStream stream = new MemoryStream())
-        //    {
-        //        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg); // Change the format as needed
-        //        return stream.ToArray();
-        //    }
-        //}
+
+        private void Pic1_Leave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else
+            {
+                ChangePicture((int)selectingImage);
+            }
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
