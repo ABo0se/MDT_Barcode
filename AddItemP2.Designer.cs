@@ -80,7 +80,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(91, 9);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -316,6 +317,8 @@
             // 
             // Prevpic
             // 
+            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -329,7 +332,8 @@
             // 
             // Nextpic
             // 
-            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
