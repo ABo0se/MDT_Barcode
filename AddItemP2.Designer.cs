@@ -185,10 +185,10 @@
             // 
             this.Model_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Model_TB.Location = new System.Drawing.Point(50, 3);
+            this.Model_TB.Location = new System.Drawing.Point(41, 3);
             this.Model_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Model_TB.Name = "Model_TB";
-            this.Model_TB.Size = new System.Drawing.Size(475, 34);
+            this.Model_TB.Size = new System.Drawing.Size(484, 34);
             this.Model_TB.TabIndex = 2;
             // 
             // Serial_TB
@@ -348,7 +348,7 @@
             // PicInformation
             // 
             this.PicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PicInformation.Location = new System.Drawing.Point(0, 3);
             this.PicInformation.Margin = new System.Windows.Forms.Padding(0);
             this.PicInformation.Name = "PicInformation";
@@ -381,7 +381,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.Product_Name, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.Model_TB, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.Brand_TB, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 127);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -409,10 +409,10 @@
             // 
             this.Brand_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Brand_TB.Location = new System.Drawing.Point(41, 3);
+            this.Brand_TB.Location = new System.Drawing.Point(50, 3);
             this.Brand_TB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Brand_TB.Name = "Brand_TB";
-            this.Brand_TB.Size = new System.Drawing.Size(484, 34);
+            this.Brand_TB.Size = new System.Drawing.Size(475, 34);
             this.Brand_TB.TabIndex = 3;
             // 
             // Created_Time
@@ -436,7 +436,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.99999F));
             this.tableLayoutPanel4.Controls.Add(this.Created_Time, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.Brand_TB, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.Model_TB, 1, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 84);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -594,9 +594,9 @@
             this.Controls.Add(this.Nextpic);
             this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.pictureBox1);
-            this.Font = new System.Drawing.Font("TH Sarabun New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.MinimumSize = new System.Drawing.Size(550, 800);
+            this.MinimumSize = new System.Drawing.Size(575, 810);
             this.Name = "AddItemP2";
             this.Text = "Add barcode Item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
