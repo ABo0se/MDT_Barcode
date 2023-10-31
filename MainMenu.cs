@@ -22,14 +22,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             Type[] formTypes = assembly.GetTypes();
-            FontUtility.ApplyEmbeddedFont(this);
+            //FontUtility.ApplyEmbeddedFont(this);
 
             foreach (Type type in formTypes)
             {
                 if (type.IsSubclassOf(typeof(Form)) && type != typeof(MainMenu))
                 {
                     Form form = (Form)Activator.CreateInstance(type);
-                    FontUtility.ApplyEmbeddedFont(form);
+                    //FontUtility.ApplyEmbeddedFont(form);
                     initializedForms.Add(form);
                     form.Hide();
                 }
@@ -134,7 +134,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         if (cell.Style != null && cell.Style.Font != null)
                         {
-                            cell.Style.Font = new Font(ff, cell.Style.Font.Size, FontStyle.Regular);
+                            cell.Style.Font = new Font(ff, 12.0f, FontStyle.Regular);
                         }
                     }
                 }
