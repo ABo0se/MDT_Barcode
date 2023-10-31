@@ -212,7 +212,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(96, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(94, 18);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(373, 255);
@@ -283,7 +283,7 @@
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Prevpic.Location = new System.Drawing.Point(15, 105);
+            this.Prevpic.Location = new System.Drawing.Point(15, 104);
             this.Prevpic.Name = "Prevpic";
             this.Prevpic.Size = new System.Drawing.Size(65, 80);
             this.Prevpic.TabIndex = 29;

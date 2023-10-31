@@ -15,7 +15,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Application.Run(new MainMenu());
         }
     }
