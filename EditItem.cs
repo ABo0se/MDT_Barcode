@@ -247,20 +247,39 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
                 bool isDataSame2 = dbData.Contains(BarcodeID_TB.Text);
                 mySqlConnection.Close();
-                if (isDataSame)
-                {
-                    EditmyDataBase();
-                }
-                else if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
+                ///////////////////////////////////
+                string warningMessage = "";
+                if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
                          Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
                          Room_TB.Text == "" || Note_TB.Text == "" || conditionstate == -1 || checkstate == -1)
                 {
-                    MessageBox.Show("กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่มเข้ามา");
+                    warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่มเข้ามา\n";
+                }
+                if (!isDataSame)
+                {
+                    warningMessage += "กรุณาตรวจสอบรหัสครุภัณฑ์ในฐานข้อมูลที่ต้องการจะแก้ไข\n";
+                }
+                if (BarcodeID_TB.Text.Length > 50)
+                {
+                    warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
+                }
+
+                if (Model_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 || Serial_TB.Text.Length > 100 || Room_TB.Text.Length > 100)
+                {
+                    warningMessage += "ความยาวของข้อมูลผลิตภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
+                }
+                if (Note_TB.Text.Length > 200)
+                {
+                    warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                }
+                if (!string.IsNullOrEmpty(warningMessage))
+                
+                {
+                    MessageBox.Show(warningMessage);
                 }
                 else
                 {
-                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากไม่สามารถดึงรหัสครุภัณฑ์เก่าได้");
-                    this.Hide();
+                    EditmyDataBase();
                 }
             }
             catch (Exception ex)

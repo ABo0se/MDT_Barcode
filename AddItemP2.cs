@@ -102,20 +102,42 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Compare the data
                 bool isDataSame = dbData.Contains(BarcodeID_TB.Text); // Check if the barcode is already in the database
 
+                string warningMessage = "";
+
                 if (isDataSame)
                 {
-                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
+                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว\n";
                 }
-                else if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
-                         Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
-                         Room_TB.Text == "" || Note_TB.Text == "" || conditionstate == -1 || checkstate == -1)
+
+                if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
+                    Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
+                    conditionstate == -1 || checkstate == -1)
                 {
-                    MessageBox.Show("กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่มเข้ามา");
+                    warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่่มเข้ามา\n";
+                }
+
+                if (BarcodeID_TB.Text.Length > 50)
+                {
+                    warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
+                }
+
+                if (Model_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 || Serial_TB.Text.Length > 100 || Room_TB.Text.Length > 100)
+                {
+                    warningMessage += "ความยาวของข้อมูลผลิตภัณฑ์ ห้ามเกิน 100 ตัวอักษร\n";
+                }
+                if (Note_TB.Text.Length > 200)
+                {
+                    warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                }
+                if (!string.IsNullOrEmpty(warningMessage))
+                {
+                    MessageBox.Show(warningMessage);
                 }
                 else
                 {
                     AddItemToDB();
                 }
+
             }
             catch (Exception ex)
             {
@@ -248,7 +270,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 mySqlConnection.Close();
                 if (isDataSame)
                 {
-                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว");
+                    MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมี Barcode นี้อยู่แล้ว");
                     this.Hide();
                 }
                 else
