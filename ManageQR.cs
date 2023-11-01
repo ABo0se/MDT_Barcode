@@ -886,15 +886,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
             DialogResult result2 = MessageBox.Show
-            ("Do you want to delete barcode database data?"
-            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            ("Do you want to delete barcode database data?\n" + "Abort/Ignore : Ignore deleting database.\n" + "Retry : Continue deleting database."
+            , "Confirmation", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question);
 
             // Check the user's response
-            if (result2 == DialogResult.Yes)
+            if (result2 == DialogResult.Retry)
             {
-                //Replace all data in the database.
-                DeleteDataInDB();
-                SearchDatainDB();
+                DialogResult result3 = MessageBox.Show
+                ("Do you want to delete barcode database data?"
+                 , "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result3 == DialogResult.Yes)
+                {
+                    DeleteDataInDB();
+                    SearchDatainDB();
+                }
             }
             else
             {
