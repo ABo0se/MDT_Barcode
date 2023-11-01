@@ -595,10 +595,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Check the user's response
                         if (result2 == DialogResult.Yes)
                         {
-                            //Replace all data in the database.
-                            DeleteDataInDB();
-                            ImportExcelInDatabase(myexcelresult);
-                            SearchDatainDB();
+                            ////////////////////////////////////////////////////
+                            //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
+                            DialogResult result4 = MessageBox.Show
+                            ("Do you really sure to delete old database before importing new data?\n" + 
+                            "Abort/Ignore : Ignore deleting database before importing.\n" + 
+                            "Retry : Continue deleting database and add import your excel data."
+                            , "Confirmation", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question);
+
+                            // Check the user's response
+                            if (result4 == DialogResult.Retry)
+                            {
+                                //Replace all data in the database.
+                                DeleteDataInDB();
+                                ImportExcelInDatabase(myexcelresult);
+                                SearchDatainDB();
+                            }
                         }
                         else
                         {
@@ -652,6 +664,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void ImportExcelInDatabase(List<SRResults> resultlist)
         {
+            bool importfile = false;
+            ////////
+            DialogResult result2 = MessageBox.Show
+                        ("Do you want to import picture file path along with data?\n"
+                        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result2 == DialogResult.Yes)
+            {
+                importfile = true;
+            }
+            else
+            {
+                importfile = false;
+            }
+            //////////////////////////////////////////////
             List<string> dbData = new List<string>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
@@ -681,11 +709,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (isDataSame)
                     {
-                        UpdateBarcodeNumber(result);
+                        UpdateBarcodeNumber(result, importfile);
                     }
                     else
                     {
-                        AddBarcodeNumber(result);
+                        AddBarcodeNumber(result, importfile);
                     }
                 }
             }
@@ -699,10 +727,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        private void AddBarcodeNumber(SRResults result)
+        private void AddBarcodeNumber(SRResults result, bool filepathreplacement)
         {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-
+            string importedfilepath;
+            if (filepathreplacement)
+            {
+                importedfilepath = result.FilePath;
+            }
+            else
+            {
+                importedfilepath = "[]";
+            }
             try
             {
                 using (MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString))
@@ -723,7 +759,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         insertCommand.Parameters.AddWithValue("@Price", result.Price);
                         insertCommand.Parameters.AddWithValue("@Room", result.Room);
                         insertCommand.Parameters.AddWithValue("@Note", result.Description);
-                        insertCommand.Parameters.AddWithValue("@ImageData", result.FilePath);
+                        insertCommand.Parameters.AddWithValue("@ImageData", importedfilepath);
                         insertCommand.Parameters.AddWithValue("@Status", result.Status);
                         insertCommand.Parameters.AddWithValue("@ITEM_CONDITION", result.Condition);
 
@@ -747,11 +783,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
 
 
-        private void UpdateBarcodeNumber(SRResults result)
-{
-    string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-
-    try
+    private void UpdateBarcodeNumber(SRResults result, bool filepathreplacement)
+    {
+            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            string importedfilepath;
+            if (filepathreplacement)
+            {
+                importedfilepath = result.FilePath;
+            }
+            else
+            {
+                importedfilepath = "[]";
+            }
+            try
     {
         using (MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString))
         {
@@ -777,7 +821,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 cmd.Parameters.AddWithValue("@Price", result.Price);
                 cmd.Parameters.AddWithValue("@Room", result.Room);
                 cmd.Parameters.AddWithValue("@Note", result.Description);
-                cmd.Parameters.AddWithValue("@ImageData", result.FilePath);
+                cmd.Parameters.AddWithValue("@ImageData", importedfilepath);
                 cmd.Parameters.AddWithValue("@Status", result.Status);
                 cmd.Parameters.AddWithValue("@ITEM_CONDITION", result.Condition);
                 cmd.Parameters.AddWithValue("@BarcodeNumber", result.BarcodeNumber);

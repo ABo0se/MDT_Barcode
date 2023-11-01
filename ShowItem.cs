@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -58,8 +59,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     foreach (string path2 in path)
                     {
-                        System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
-                        selectedImages.Add(selectedImage);
+                        if (File.Exists(path2))
+                        {
+                            System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
+                            selectedImages.Add(selectedImage);
+                        }
+                        else
+                        {
+                            // Handle the case when the file does not exist
+                            // You can log the error, display a message to the user, or take any other appropriate action.
+                            Console.WriteLine($"File not found at path: {path2}");
+                        }
                     }
                     CheckImageButtonBehavior();
                     ChangePicture(0);
