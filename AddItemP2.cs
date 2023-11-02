@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using System.Security.Cryptography;
+using System.Drawing.Imaging;
+using System.Web;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -159,6 +162,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 //Create reference for image we used.
                 string saveDirectory = @"C:\BarcodeDatabaseImage";
+                List<string> SHA512hash = new List<string>();
                 Directory.CreateDirectory(saveDirectory);
 
                 List<string> savedFilePaths = new List<string>();
@@ -184,17 +188,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Add the saved file path to the list
                         savedFilePaths.Add(filePath);
                     }
+                    //////////
+                    //Create md5checksum
+                    SHA512hash = CalculateSHA512Checksum(selectedImages);
                 }
-                
+                string jsonmd5Data = JsonConvert.SerializeObject(SHA512hash, Formatting.Indented);
+                Console.WriteLine(jsonmd5Data);
                 string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
                 Console.WriteLine(jsonPicData);
-                //MessageBox.Show(jsonPicData);
 
                 //TryAddittoDATABASE
                 mySqlConnection2.Open();
 
-                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, Status, ITEM_CONDITION) " +
-               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @Status, @ITEM_CONDITION)";
+                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
+               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
 
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
@@ -206,6 +213,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
                     cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
+                    cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", jsonmd5Data);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
@@ -242,6 +250,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
         }
+        List<string> CalculateSHA512Checksum(List<Image> myImages)
+        {
+            List<string> sha512Values = new List<string>();
+            foreach (Image image in myImages)
+            {
+                if (image != null)
+                {
+                    using (var sha512 = SHA512.Create())
+                    using (var stream = new MemoryStream())
+                    {
+                        image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                        stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                        byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
+                        string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
+                        sha512Values.Add(sha512Checksum);
+                    }
+                }
+            }
+            return sha512Values;
+        }
+
         private void SearchBarcodeData(string barcode, object sender)
         {
             List<string> dbData = new List<string>();

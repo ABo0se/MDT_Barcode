@@ -270,8 +270,10 @@
     <None Include="Images\Previous.png" />
     <None Include="Images\Next.png" />
     <None Include="Resources\Delete Picture.png" />
+    <Content Include="Resources\corruptedfile.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <Content Include="Resources\EditIcon.png" />
+    <Content Include="Resources\filemissing.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\Test.png" />
   </ItemGroup>

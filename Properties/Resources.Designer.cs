@@ -63,6 +63,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap corruptedfile {
+            get {
+                object obj = ResourceManager.GetObject("corruptedfile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete_Picture {
             get {
                 object obj = ResourceManager.GetObject("Delete_Picture", resourceCulture);
@@ -86,6 +96,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         internal static System.Drawing.Bitmap EditIcon {
             get {
                 object obj = ResourceManager.GetObject("EditIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap filemissing {
+            get {
+                object obj = ResourceManager.GetObject("filemissing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

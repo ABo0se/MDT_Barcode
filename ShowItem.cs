@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Imaging;
+using System.Security.Cryptography;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -55,20 +57,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ////////////////////////////////////
                 selectedImages.Clear();
                 List<string> path = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
+                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
                 if (path.Count > 0)
                 {
-                    foreach (string path2 in path)
+                    for (int i = 0; i < path.Count; i++)
                     {
-                        if (File.Exists(path2))
+                        if (File.Exists(path[i]))
                         {
-                            System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
-                            selectedImages.Add(selectedImage);
+                            Image selectedImage = Image.FromFile(path[i]);
+                            if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
+                            {
+                                selectedImages.Add(selectedImage);
+                            }
+                            else
+                            {
+                                selectedImages.Add(Properties.Resources.corruptedfile);
+                            }
                         }
                         else
                         {
-                            // Handle the case when the file does not exist
-                            // You can log the error, display a message to the user, or take any other appropriate action.
-                            Console.WriteLine($"File not found at path: {path2}");
+                            selectedImages.Add(Properties.Resources.filemissing);
                         }
                     }
                     CheckImageButtonBehavior();
@@ -175,6 +183,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 Price = reader["Price"].ToString(),
                                 Room = reader["Room"].ToString(),
                                 FilePath = reader["ImageData"].ToString(),
+                                SHA512 = reader["MD5_ImageValidityChecksum"].ToString(),
                                 Description = reader["Note"].ToString(),
                                 Status = int.Parse(reader["Status"].ToString()),
                                 Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
@@ -285,7 +294,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             ChangePicture((int)selectingImage);
         }
+        public bool VerifyImageSHA512Hash(Image image, string storedHash)
+        {
+            using (SHA512 sha512 = SHA512.Create())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                stream.Seek(0, SeekOrigin.Begin); // Reset stream position
 
+                byte[] imageBytes = stream.ToArray();
+                byte[] computedHash = sha512.ComputeHash(imageBytes);
+
+                // Convert the computed hash to a hexadecimal string
+                string computedHashString = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
+
+                // Compare the computed hash with the stored hash
+                return computedHashString.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+            }
+        }
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 

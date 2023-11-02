@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Properties;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -36,13 +39,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Note_TB.Text = TemporaryData.Description;
                 ////////////////////////////////////
                 selectedImages.Clear();
-                List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
+                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
                 if (path.Count > 0)
                 {
-                    foreach (string path2 in path)
+                    for (int i = 0; i < path.Count; i++)
                     {
-                        System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(path2);
-                        selectedImages.Add(selectedImage);
+                        if (File.Exists(path[i]))
+                        {
+                            Image selectedImage = Image.FromFile(path[i]);
+                            if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
+                            {
+                                selectedImages.Add(selectedImage);
+                            }
+                            else
+                            {
+                                selectedImages.Add(Properties.Resources.corruptedfile);
+                            }
+                        }
+                        else
+                        {
+                            selectedImages.Add(Properties.Resources.filemissing);
+                        }
                     }
                     CheckImageButtonBehavior();
                     ChangePicture(0);
@@ -52,10 +70,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     pictureBox1.Image = Properties.Resources.NoImage;
                 }
-                ////////////////////////////////////
+                /////////////////////////////////////////////////////
                 checkstate = TemporaryData.Status;
                 conditionstate = TemporaryData.Condition;
-                
                 switch (checkstate)
                 {
                     case -1:
@@ -144,6 +161,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 bool isremovingsuccessful = false;
                 if (selectedImages.Count > 0)
                 {
+                    //if (selectedImages[(int)selectingImage] == Properties.Resources.corruptedfile)
+                    //{
+                        
+                    //}
                     selectedImages.Remove(selectedImages[(int)selectingImage]);
                     isremovingsuccessful = true;
                 }
@@ -209,22 +230,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     for (int i = 0; i < selectedImages.Count; i++)
                     {
-                        string baseFileName = "image.jpg"; // Base file name
-                        string fileName = baseFileName;
-                        int fileCounter = 1;
-
-                        // Check if the file already exists and generate a unique name if needed
-                        while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                        if (!(selectedImages[i] == Resources.corruptedfile || selectedImages[i] == Resources.filemissing))
                         {
-                            fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                            fileCounter++;
+                            string baseFileName = "image.jpg"; // Base file name
+                            string fileName = baseFileName;
+                            int fileCounter = 1;
+
+                            // Check if the file already exists and generate a unique name if needed
+                            while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                            {
+                                fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                                fileCounter++;
+                            }
+
+                            string filePath = Path.Combine(saveDirectory, fileName);
+                            selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                            // Add the saved file path to the list
+                            savedFilePaths.Add(filePath);
                         }
-
-                        string filePath = Path.Combine(saveDirectory, fileName);
-                        selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                        // Add the saved file path to the list
-                        savedFilePaths.Add(filePath);
                     }
                 }
 
@@ -299,22 +323,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 for (int i = 0; i < selectedImages.Count; i++)
                 {
-                    string baseFileName = "image.jpg"; // Base file name
-                    string fileName = baseFileName;
-                    int fileCounter = 1;
-
-                    // Check if the file already exists and generate a unique name if needed
-                    while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                    if (!(selectedImages[i] == Resources.filemissing || selectedImages[i] == Resources.corruptedfile))
                     {
-                        fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                        fileCounter++;
+                        string baseFileName = "image.jpg"; // Base file name
+                        string fileName = baseFileName;
+                        int fileCounter = 1;
+
+                        // Check if the file already exists and generate a unique name if needed
+                        while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                        {
+                            fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                            fileCounter++;
+                        }
+
+                        string filePath = Path.Combine(saveDirectory, fileName);
+                        selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                        // Add the saved file path to the list
+                        savedFilePaths.Add(filePath);
                     }
-
-                    string filePath = Path.Combine(saveDirectory, fileName);
-                    selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                    // Add the saved file path to the list
-                    savedFilePaths.Add(filePath);
                 }
             }
 
@@ -548,6 +575,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 Price = reader["Price"].ToString(),
                                 Room = reader["Room"].ToString(),
                                 FilePath = reader["ImageData"].ToString(),
+                                SHA512 = reader["MD5_ImageValidityChecksum"].ToString(),
                                 Description = reader["Note"].ToString(),
                                 Status = int.Parse(reader["Status"].ToString()),
                                 Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
@@ -683,6 +711,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ChangePicture((int)selectingImage);
             }
         }
+        public bool VerifyImageSHA512Hash(Image image, string storedHash)
+        {
+            using (SHA512 sha512 = SHA512.Create())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                byte[] imageBytes = stream.ToArray();
+                byte[] computedHash = sha512.ComputeHash(imageBytes);
+
+                // Convert the computed hash to a hexadecimal string
+                string computedHashString = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
+
+                // Compare the computed hash with the stored hash
+                return computedHashString.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+            }
+        }
     }
 
     public class SRResults
@@ -696,6 +742,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public string Price { get; set; }
         public string Room { get; set; }
         public string FilePath { get; set; }
+        public string SHA512 { get; set; }
         public string Description { get; set; }
         public int Status { get; set; }
         public int Condition { get; set; }
