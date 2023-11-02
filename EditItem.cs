@@ -51,15 +51,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
                             {
                                 selectedImages.Add(selectedImage);
+                                selectedImages[i].Tag = "NormalFile";
                             }
                             else
                             {
-                                selectedImages.Add(Properties.Resources.corruptedfile);
+                                selectedImages.Add(Resources.corruptedfile);
+                                selectedImages[i].Tag = "FileCorrupt";
                             }
                         }
                         else
                         {
-                            selectedImages.Add(Properties.Resources.filemissing);
+                            selectedImages.Add(Resources.filemissing);
+                            selectedImages[i].Tag = "FileMissing";
                         }
                     }
                     CheckImageButtonBehavior();
@@ -135,7 +138,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     // You can add the selected image to a list to store multiple images
                     selectedImages.Add(selectedImage);
-
+                    selectedImages[selectedImages.Count - 1].Tag ="NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
                 }
                 CheckImageButtonBehavior();
@@ -220,38 +223,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             try
             {
-                //Create reference for image we used.
-                string saveDirectory = @"C:\BarcodeDatabaseImage";
-                Directory.CreateDirectory(saveDirectory);
-
-                List<string> savedFilePaths = new List<string>();
-
-                if (selectedImages.Count > 0)
-                {
-                    for (int i = 0; i < selectedImages.Count; i++)
-                    {
-                        if (!(selectedImages[i] == Resources.corruptedfile || selectedImages[i] == Resources.filemissing))
-                        {
-                            string baseFileName = "image.jpg"; // Base file name
-                            string fileName = baseFileName;
-                            int fileCounter = 1;
-
-                            // Check if the file already exists and generate a unique name if needed
-                            while (File.Exists(Path.Combine(saveDirectory, fileName)))
-                            {
-                                fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                                fileCounter++;
-                            }
-
-                            string filePath = Path.Combine(saveDirectory, fileName);
-                            selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                            // Add the saved file path to the list
-                            savedFilePaths.Add(filePath);
-                        }
-                    }
-                }
-
                 mySqlConnection.Open();
                 string selectQuery = "SELECT BarcodeNumber FROM information";
 
@@ -318,12 +289,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Directory.CreateDirectory(saveDirectory);
 
             List<string> savedFilePaths = new List<string>();
+            List<string> SHA512hash = new List<string>();
 
             if (selectedImages.Count > 0)
             {
                 for (int i = 0; i < selectedImages.Count; i++)
                 {
-                    if (!(selectedImages[i] == Resources.filemissing || selectedImages[i] == Resources.corruptedfile))
+                    if (!(selectedImages[i].Tag.ToString() == "FileCorrupt" || selectedImages[i].Tag.ToString() == "FileMissing"))
                     {
                         string baseFileName = "image.jpg"; // Base file name
                         string fileName = baseFileName;
@@ -340,13 +312,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
                         // Add the saved file path to the list
+                        MessageBox.Show(filePath);
                         savedFilePaths.Add(filePath);
                     }
                 }
+                //////////
+                //Create md5checksum
+                SHA512hash = CalculateSHA512Checksum(selectedImages);
             }
-
+            else
+            {
+                SHA512hash = CalculateSHA512Checksum(new List<Image>());
+            }
+            string jsonmd5Data = JsonConvert.SerializeObject(SHA512hash, Formatting.Indented);
+            Console.WriteLine(jsonmd5Data);
             string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
             Console.WriteLine(jsonPicData);
+
             ////////////
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
@@ -363,6 +345,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                "Price = @Price, " +
                "Room = @Room, " +
                "ImageData = @ImageData, " +
+               "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum, " +
                "Note = @Note, " + // Add a comma here
                "ImageData = @ImageData, " +
                "Status = @Status, " + // Add a comma here
@@ -384,6 +367,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
                     cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
+                    cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", jsonmd5Data);
                     cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
                     cmd.Parameters.AddWithValue("@Status", checkstate);
                     cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
@@ -728,6 +712,27 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Compare the computed hash with the stored hash
                 return computedHashString.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
             }
+        }
+        List<string> CalculateSHA512Checksum(List<Image> myImages)
+        {
+            List<string> sha512Values = new List<string>();
+            foreach (Image image in myImages)
+            {
+                if (image != null)
+                {
+                    using (var sha512 = SHA512.Create())
+                    using (var stream = new MemoryStream())
+                    {
+                        image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                        stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                        byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
+                        string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
+                        sha512Values.Add(sha512Checksum);
+                    }
+                }
+            }
+            return sha512Values;
         }
     }
 
