@@ -108,6 +108,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     Room = reader["Room"].ToString(),
                                     Description = reader["Note"].ToString(),
                                     FilePath = reader["ImageData"].ToString(),
+                                    SHA512 = reader["MD5_ImageValidityChecksum"].ToString(),
                                     Status = int.Parse(reader["Status"].ToString()),
                                     Condition = int.Parse(reader["ITEM_CONDITION"].ToString())
                                 };
@@ -511,12 +512,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     headerCell2.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                     headerCell2.Style.Font.Size = 14.0f;
 
+                    var headerCell3 = worksheet2.Cells[1, 2];
+                    headerCell3.Value = "SHA_512Checksum";
+                    headerCell3.Style.Font.Bold = true;
+                    headerCell3.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    headerCell3.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                    headerCell3.Style.Font.Size = 14.0f;
+
 
                     // Data rows
                     for (int i = 0; i < TemporaryData.Count; i++)
                     {
                         var cell2 = worksheet2.Cells[i + 2, 1];
                         cell2.Value = TemporaryData[i].FilePath;
+                        var cell3 = worksheet2.Cells[i + 2, 2];
+                        cell3.Value = TemporaryData[i].SHA512;
                     }
                     worksheet2.Column(1).AutoFit();
                     ///////////////////////////////////////////////////////////////////////////////////
@@ -730,14 +740,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void AddBarcodeNumber(SRResults result, bool filepathreplacement)
         {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            string importedfilepath;
+            string importedfilepath, SHA512;
             if (filepathreplacement)
             {
                 importedfilepath = result.FilePath;
+                SHA512 = result.SHA512;
             }
             else
             {
                 importedfilepath = "[]";
+                SHA512 = "[]";
             }
             try
             {
@@ -746,8 +758,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     mySqlConnection2.Open();
 
                     // Record with BarcodeNumber doesn't exist; perform an insert
-                    string insertQuery = "INSERT INTO information (BarcodeNumber, Time, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, Status, ITEM_CONDITION) " +
-                    "VALUES (@BarcodeNumber, @Time, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @Status, @ITEM_CONDITION)";
+                    string insertQuery = "INSERT INTO information (BarcodeNumber, Time, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
+                    "VALUES (@BarcodeNumber, @Time, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
 
                     using (MySqlCommand insertCommand = new MySqlCommand(insertQuery, mySqlConnection2))
                     {
@@ -760,6 +772,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         insertCommand.Parameters.AddWithValue("@Room", result.Room);
                         insertCommand.Parameters.AddWithValue("@Note", result.Description);
                         insertCommand.Parameters.AddWithValue("@ImageData", importedfilepath);
+                        insertCommand.Parameters.AddWithValue("@MD5_ImageValidityChecksum", SHA512);
                         insertCommand.Parameters.AddWithValue("@Status", result.Status);
                         insertCommand.Parameters.AddWithValue("@ITEM_CONDITION", result.Condition);
 
@@ -786,14 +799,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     private void UpdateBarcodeNumber(SRResults result, bool filepathreplacement)
     {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            string importedfilepath;
+            string importedfilepath, SHA512;
             if (filepathreplacement)
             {
                 importedfilepath = result.FilePath;
+                SHA512 = result.SHA512;
             }
             else
             {
                 importedfilepath = "[]";
+                SHA512 = "[]";
             }
             try
     {
@@ -809,6 +824,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                "Room = @Room, " +
                "Note = @Note, " +
                "ImageData = @ImageData, " +
+               "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum," +
                "Status = @Status, " +
                "ITEM_CONDITION = @ITEM_CONDITION " +
                "WHERE BarcodeNumber = @BarcodeNumber";
@@ -822,6 +838,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 cmd.Parameters.AddWithValue("@Room", result.Room);
                 cmd.Parameters.AddWithValue("@Note", result.Description);
                 cmd.Parameters.AddWithValue("@ImageData", importedfilepath);
+                cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", SHA512);
                 cmd.Parameters.AddWithValue("@Status", result.Status);
                 cmd.Parameters.AddWithValue("@ITEM_CONDITION", result.Condition);
                 cmd.Parameters.AddWithValue("@BarcodeNumber", result.BarcodeNumber);
@@ -914,6 +931,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             Room = worksheet1.Cells[row, 8].Text,
                             Description = worksheet1.Cells[row, 9].Text,
                             FilePath = worksheet2.Cells[row, 1].Text,
+                            SHA512 = worksheet2.Cells[row, 2].Text,
                             Status = tempstatus,
                             Condition = tempcondition,
                             Date = formattedDate,
