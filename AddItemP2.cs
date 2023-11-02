@@ -10,6 +10,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Drawing.Imaging;
 using System.Web;
+using MySqlX.XDevAPI.Common;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -124,13 +125,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
                 }
 
-                if (Model_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 || Serial_TB.Text.Length > 100 || Room_TB.Text.Length > 100)
+                if (Model_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 || Serial_TB.Text.Length > 100 || Room_TB.Text.Length > 100 || Price_TB.Text.Length > 31)
                 {
                     warningMessage += "ความยาวของข้อมูลผลิตภัณฑ์ ห้ามเกิน 100 ตัวอักษร\n";
+                }
+                if (Price_TB.Text.Length > 30)
+                {
+                    warningMessage += "ความยาวของราคา ห้ามเกิน 30 ตัวอักษร\n";
                 }
                 if (Note_TB.Text.Length > 200)
                 {
                     warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                }
+                if (!int.TryParse(Price_TB.Text, out int result))
+                {
+                    warningMessage += "กรุณากรอกราคาเป็นตัวเลขเท่านั้น\n";
                 }
                 if (!string.IsNullOrEmpty(warningMessage))
                 {
