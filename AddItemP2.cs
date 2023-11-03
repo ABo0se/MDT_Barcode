@@ -124,8 +124,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
                     Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
                     conditionstate == -1 || checkstate == -1 || BarcodeID_TB.Text == "[1-50 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" ||
-                Serial_TB.Text == "[1-100 ตัวอักษร]" || Price_TB.Text == "[1-30 ตัวเลข]" || Room_TB.Text == "[1-100 ตัวอักษร]" ||
-                Note_TB.Text == "[0-200 ตัวอักษร]")
+                Serial_TB.Text == "[1-100 ตัวอักษร]" || Price_TB.Text == "[1-30 ตัวเลข]" || Room_TB.Text == "[1-100 ตัวอักษร]")
                 {
                     warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่่มเข้ามา\n";
                 }
