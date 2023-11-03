@@ -115,7 +115,8 @@
             this.BarcodeID_TB.Name = "BarcodeID_TB";
             this.BarcodeID_TB.Size = new System.Drawing.Size(401, 34);
             this.BarcodeID_TB.TabIndex = 1;
-            this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
+            this.BarcodeID_TB.Enter += new System.EventHandler(this.BarcodeID_TB_Enter);
+            this.BarcodeID_TB.Leave += new System.EventHandler(this.BarcodeID_TB_Leave);
             // 
             // Model_TB
             // 
@@ -125,7 +126,8 @@
             this.Model_TB.Name = "Model_TB";
             this.Model_TB.Size = new System.Drawing.Size(482, 34);
             this.Model_TB.TabIndex = 2;
-            this.Model_TB.TextChanged += new System.EventHandler(this.Model_TB_TextChanged);
+            this.Model_TB.Enter += new System.EventHandler(this.Model_TB_Enter);
+            this.Model_TB.Leave += new System.EventHandler(this.Model_TB_Leave);
             // 
             // Brand_TB
             // 
@@ -135,6 +137,8 @@
             this.Brand_TB.Name = "Brand_TB";
             this.Brand_TB.Size = new System.Drawing.Size(473, 34);
             this.Brand_TB.TabIndex = 3;
+            this.Brand_TB.Enter += new System.EventHandler(this.Brand_TB_Enter);
+            this.Brand_TB.Leave += new System.EventHandler(this.Brand_TB_Leave);
             // 
             // Serial_TB
             // 
@@ -144,6 +148,8 @@
             this.Serial_TB.Name = "Serial_TB";
             this.Serial_TB.Size = new System.Drawing.Size(411, 34);
             this.Serial_TB.TabIndex = 4;
+            this.Serial_TB.Enter += new System.EventHandler(this.Serial_TB_Enter);
+            this.Serial_TB.Leave += new System.EventHandler(this.Serial_TB_Leave);
             // 
             // Price_TB
             // 
@@ -153,6 +159,8 @@
             this.Price_TB.Name = "Price_TB";
             this.Price_TB.Size = new System.Drawing.Size(471, 34);
             this.Price_TB.TabIndex = 5;
+            this.Price_TB.Enter += new System.EventHandler(this.Price_TB_Enter);
+            this.Price_TB.Leave += new System.EventHandler(this.Price_TB_Leave);
             // 
             // Room_TB
             // 
@@ -162,6 +170,8 @@
             this.Room_TB.Name = "Room_TB";
             this.Room_TB.Size = new System.Drawing.Size(437, 34);
             this.Room_TB.TabIndex = 6;
+            this.Room_TB.Enter += new System.EventHandler(this.Room_TB_Enter);
+            this.Room_TB.Leave += new System.EventHandler(this.Room_TB_Leave);
             // 
             // Edit_Item_toDB
             // 
@@ -183,6 +193,8 @@
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(454, 34);
             this.Note_TB.TabIndex = 7;
+            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
+            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
             // 
             // S_Donthave
             // 

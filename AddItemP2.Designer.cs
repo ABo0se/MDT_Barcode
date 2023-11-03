@@ -53,6 +53,10 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.Created_Time = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.BarcodeID_TB = new System.Windows.Forms.TextBox();
+            this.Barcode_ID = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,22 +64,18 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.Quality = new System.Windows.Forms.Label();
             this.Add_Item_toDB = new System.Windows.Forms.Button();
-            this.Barcode_ID = new System.Windows.Forms.Label();
-            this.BarcodeID_TB = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -170,6 +170,8 @@
             this.Model_TB.Name = "Model_TB";
             this.Model_TB.Size = new System.Drawing.Size(483, 34);
             this.Model_TB.TabIndex = 2;
+            this.Model_TB.Enter += new System.EventHandler(this.Model_TB_Enter);
+            this.Model_TB.Leave += new System.EventHandler(this.Model_TB_Leave);
             // 
             // Serial_TB
             // 
@@ -180,6 +182,8 @@
             this.Serial_TB.Name = "Serial_TB";
             this.Serial_TB.Size = new System.Drawing.Size(412, 34);
             this.Serial_TB.TabIndex = 4;
+            this.Serial_TB.Enter += new System.EventHandler(this.Serial_TB_Enter);
+            this.Serial_TB.Leave += new System.EventHandler(this.Serial_TB_Leave);
             // 
             // Price_TB
             // 
@@ -190,6 +194,8 @@
             this.Price_TB.Name = "Price_TB";
             this.Price_TB.Size = new System.Drawing.Size(472, 34);
             this.Price_TB.TabIndex = 5;
+            this.Price_TB.Enter += new System.EventHandler(this.Price_TB_Enter);
+            this.Price_TB.Leave += new System.EventHandler(this.Price_TB_Leave);
             // 
             // Room_TB
             // 
@@ -200,6 +206,8 @@
             this.Room_TB.Name = "Room_TB";
             this.Room_TB.Size = new System.Drawing.Size(438, 34);
             this.Room_TB.TabIndex = 6;
+            this.Room_TB.Enter += new System.EventHandler(this.Room_TB_Enter);
+            this.Room_TB.Leave += new System.EventHandler(this.Room_TB_Leave);
             // 
             // Note_TB
             // 
@@ -210,6 +218,8 @@
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(455, 34);
             this.Note_TB.TabIndex = 7;
+            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
+            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
             // 
             // label1
             // 
@@ -223,7 +233,6 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "หมายเหตุ :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // Status
             // 
@@ -371,6 +380,8 @@
             this.Brand_TB.Name = "Brand_TB";
             this.Brand_TB.Size = new System.Drawing.Size(474, 34);
             this.Brand_TB.TabIndex = 3;
+            this.Brand_TB.Enter += new System.EventHandler(this.Brand_TB_Enter);
+            this.Brand_TB.Leave += new System.EventHandler(this.Brand_TB_Leave);
             // 
             // tableLayoutPanel5
             // 
@@ -436,6 +447,67 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(532, 436);
             this.tableLayoutPanel1.TabIndex = 28;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.Created_Time, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.Model_TB, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 83);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(532, 38);
+            this.tableLayoutPanel4.TabIndex = 26;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.BarcodeID_TB, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Barcode_ID, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 40);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(532, 38);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // BarcodeID_TB
+            // 
+            this.BarcodeID_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.BarcodeID_TB.Location = new System.Drawing.Point(128, 2);
+            this.BarcodeID_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.BarcodeID_TB.Name = "BarcodeID_TB";
+            this.BarcodeID_TB.Size = new System.Drawing.Size(402, 34);
+            this.BarcodeID_TB.TabIndex = 1;
+            this.BarcodeID_TB.Enter += new System.EventHandler(this.BarcodeID_TB_Enter);
+            this.BarcodeID_TB.Leave += new System.EventHandler(this.BarcodeID_TB_Leave);
+            // 
+            // Barcode_ID
+            // 
+            this.Barcode_ID.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Barcode_ID.AutoSize = true;
+            this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Barcode_ID.Location = new System.Drawing.Point(0, 5);
+            this.Barcode_ID.Margin = new System.Windows.Forms.Padding(0);
+            this.Barcode_ID.Name = "Barcode_ID";
+            this.Barcode_ID.Size = new System.Drawing.Size(126, 27);
+            this.Barcode_ID.TabIndex = 1;
+            this.Barcode_ID.Text = "* หมายเลขครุภัณฑ์ :";
+            this.Barcode_ID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -548,66 +620,6 @@
             this.Add_Item_toDB.UseVisualStyleBackColor = true;
             this.Add_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
             // 
-            // Barcode_ID
-            // 
-            this.Barcode_ID.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Barcode_ID.AutoSize = true;
-            this.Barcode_ID.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Barcode_ID.Location = new System.Drawing.Point(0, 5);
-            this.Barcode_ID.Margin = new System.Windows.Forms.Padding(0);
-            this.Barcode_ID.Name = "Barcode_ID";
-            this.Barcode_ID.Size = new System.Drawing.Size(126, 27);
-            this.Barcode_ID.TabIndex = 1;
-            this.Barcode_ID.Text = "* หมายเลขครุภัณฑ์ :";
-            this.Barcode_ID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Barcode_ID.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // BarcodeID_TB
-            // 
-            this.BarcodeID_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeID_TB.Location = new System.Drawing.Point(128, 2);
-            this.BarcodeID_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.BarcodeID_TB.Name = "BarcodeID_TB";
-            this.BarcodeID_TB.Size = new System.Drawing.Size(402, 34);
-            this.BarcodeID_TB.TabIndex = 1;
-            this.BarcodeID_TB.TextChanged += new System.EventHandler(this.BarcodeID_TB_TextChanged);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.AutoSize = true;
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.BarcodeID_TB, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.Barcode_ID, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 40);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(532, 38);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.Created_Time, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.Model_TB, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 83);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(532, 38);
-            this.tableLayoutPanel4.TabIndex = 26;
-            // 
             // AddItemP2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -635,6 +647,10 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -645,10 +661,6 @@
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }

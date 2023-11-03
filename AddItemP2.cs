@@ -76,7 +76,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
         {
-
+            if (String.IsNullOrEmpty(BarcodeID_TB.Text))
+            {
+                BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
+                BarcodeID_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                BarcodeID_TB.ForeColor = Color.Black;
+            }
         }
 
         private void Add_Item_toDB_Click(object sender, EventArgs e)
@@ -115,7 +123,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
                     Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
-                    conditionstate == -1 || checkstate == -1)
+                    conditionstate == -1 || checkstate == -1 || BarcodeID_TB.Text == "[1-50 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" ||
+                Serial_TB.Text == "[1-100 ตัวอักษร]" || Price_TB.Text == "[1-30 ตัวเลข]" || Room_TB.Text == "[1-100 ตัวอักษร]" ||
+                Note_TB.Text == "[0-200 ตัวอักษร]")
                 {
                     warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่่มเข้ามา\n";
                 }
@@ -136,6 +146,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (Note_TB.Text.Length > 200)
                 {
                     warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                }
+                if (Note_TB.Text == "[0-200 ตัวอักษร]" || Note_TB.Text == "")
+                {
+                    Note_TB.Text = "-";
                 }
                 if (!int.TryParse(Price_TB.Text, out int result))
                 {
@@ -334,12 +348,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         ChangePicture(null);
                         CheckImageButtonBehavior();
 
-                        Model_TB.Text = "";
-                        Brand_TB.Text = "";
-                        Serial_TB.Text = "";
-                        Price_TB.Text = "";
-                        Room_TB.Text = "";
-                        Note_TB.Text = "";
+                        BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
+                        Model_TB.Text = "[1-100 ตัวอักษร]";
+                        Brand_TB.Text = "[1-100 ตัวอักษร]";
+                        Serial_TB.Text = "[1-100 ตัวอักษร]";
+                        Price_TB.Text = "[1-30 ตัวเลข]";
+                        Room_TB.Text = "[1-100 ตัวอักษร]";
+                        Note_TB.Text = "[0-200 ตัวอักษร]";
+
+                        BarcodeID_TB.ForeColor = Color.Gray;
+                        Model_TB.ForeColor = Color.Gray;
+                        Brand_TB.ForeColor = Color.Gray;
+                        Serial_TB.ForeColor = Color.Gray;
+                        Price_TB.ForeColor = Color.Gray;
+                        Room_TB.ForeColor = Color.Gray;
+                        Note_TB.ForeColor = Color.Gray;
+
                         S_Have.Checked = false;
                         S_Donthave.Checked = false;
                         ConditionBox.DataSource = null;
@@ -378,13 +402,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             //PicFilePath = "";
             //pictureBox1.Image = Properties.Resources.NoImage;
-            BarcodeID_TB.Text = "";
-            Model_TB.Text = "";
-            Brand_TB.Text = "";
-            Serial_TB.Text = "";
-            Price_TB.Text = "";
-            Room_TB.Text = "";
-            Note_TB.Text = "";
+            BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
+            Model_TB.Text = "[1-100 ตัวอักษร]";
+            Brand_TB.Text = "[1-100 ตัวอักษร]";
+            Serial_TB.Text = "[1-100 ตัวอักษร]";
+            Price_TB.Text = "[1-30 ตัวเลข]";
+            Room_TB.Text = "[1-100 ตัวอักษร]";
+            Note_TB.Text = "[0-200 ตัวอักษร]";
+
+            BarcodeID_TB.ForeColor = Color.Gray;
+            Model_TB.ForeColor = Color.Gray;
+            Brand_TB.ForeColor = Color.Gray;
+            Serial_TB.ForeColor = Color.Gray;
+            Price_TB.ForeColor = Color.Gray;
+            Room_TB.ForeColor = Color.Gray;
+            Note_TB.ForeColor = Color.Gray;
 
             checkstate = -1;
             conditionstate = -1;
@@ -566,10 +598,160 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ChangePicture((int)selectingImage);
             }
         }
-
-        private void label1_Click_1(object sender, EventArgs e)
+        private void BarcodeID_TB_Enter(object sender, EventArgs e)
         {
-
+            if (BarcodeID_TB.Text == "[1-50 ตัวอักษร]")
+            {
+                BarcodeID_TB.Text = "";
+                BarcodeID_TB.ForeColor = Color.Black;
+            }
         }
+
+        private void Model_TB_Enter(object sender, EventArgs e)
+        {
+            if (Model_TB.Text == "[1-100 ตัวอักษร]")
+            {
+                Model_TB.Text = "";
+                Model_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Brand_TB_Enter(object sender, EventArgs e)
+        {
+            if (Brand_TB.Text == "[1-100 ตัวอักษร]")
+            {
+                Brand_TB.Text = "";
+                Brand_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Serial_TB_Enter(object sender, EventArgs e)
+        {
+            if (Serial_TB.Text == "[1-100 ตัวอักษร]")
+            {
+                Serial_TB.Text = "";
+                Serial_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Price_TB_Enter(object sender, EventArgs e)
+        {
+            if (Price_TB.Text == "[1-30 ตัวเลข]")
+            {
+                Price_TB.Text = "";
+                Price_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Room_TB_Enter(object sender, EventArgs e)
+        {
+            if (Room_TB.Text == "[1-100 ตัวอักษร]")
+            {
+                Room_TB.Text = "";
+                Room_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Note_TB_Enter(object sender, EventArgs e)
+        {
+            if (Note_TB.Text == "[0-200 ตัวอักษร]")
+            {
+                Note_TB.Text = "";
+                Note_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void BarcodeID_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(BarcodeID_TB.Text))
+            {
+                BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
+                BarcodeID_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                BarcodeID_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Model_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Model_TB.Text))
+            {
+                Model_TB.Text = "[1-100 ตัวอักษร]";
+                Model_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Model_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Brand_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Brand_TB.Text))
+            {
+                Brand_TB.Text = "[1-100 ตัวอักษร]";
+                Brand_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Brand_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Serial_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Serial_TB.Text))
+            {
+                Serial_TB.Text = "[1-100 ตัวอักษร]";
+                Serial_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Serial_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Price_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Price_TB.Text))
+            {
+                Price_TB.Text = "[1-30 ตัวเลข]";
+                Price_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Price_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Room_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Room_TB.Text))
+            {
+                Room_TB.Text = "[1-100 ตัวอักษร]";
+                Room_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Room_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Note_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Note_TB.Text))
+            {
+                Note_TB.Text = "[0-200 ตัวอักษร]";
+                Note_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                Note_TB.ForeColor = Color.Black;
+            }
+        }
+
+        
     }
 }
