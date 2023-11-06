@@ -28,48 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Add_Pic = new System.Windows.Forms.Button();
             this.Edit_Item_toDB = new System.Windows.Forms.Button();
             this.S_Donthave = new System.Windows.Forms.RadioButton();
             this.S_Have = new System.Windows.Forms.RadioButton();
-            this.Nextpic = new System.Windows.Forms.Button();
-            this.Prevpic = new System.Windows.Forms.Button();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.ConditionBoxEdit = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.ConditionBoxEdit = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.StatsPanel = new System.Windows.Forms.Panel();
-            this.S_HaveEdit = new System.Windows.Forms.RadioButton();
-            this.S_DonthaveEdit = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.StatsPanel = new System.Windows.Forms.Panel();
+            this.S_DonthaveEdit = new System.Windows.Forms.RadioButton();
+            this.S_HaveEdit = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.Note_TB = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.Note_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.Room_TB = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.Room_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.Price_TB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.Price_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BarcodeID_TB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.BarcodeID_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.Model_TB = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.Model_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.Serial_TB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.Serial_TB = new System.Windows.Forms.TextBox();
             this.PicInformation = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.Brand_TB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.Brand_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.ProductName_TB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ProductName_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Nextpic = new System.Windows.Forms.Button();
+            this.Prevpic = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.StatsPanel.SuspendLayout();
@@ -82,22 +81,8 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(92, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(450, 270);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseEnter += new System.EventHandler(this.EditPic_Enter);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.EditPic_Leave);
             // 
             // Add_Pic
             // 
@@ -147,36 +132,6 @@
             this.S_Have.Text = "มีให้ตรวจสอบ";
             this.S_Have.UseVisualStyleBackColor = true;
             // 
-            // Nextpic
-            // 
-            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
-            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
-            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Nextpic.Location = new System.Drawing.Point(555, 90);
-            this.Nextpic.Name = "Nextpic";
-            this.Nextpic.Size = new System.Drawing.Size(65, 120);
-            this.Nextpic.TabIndex = 1;
-            this.Nextpic.TabStop = false;
-            this.Nextpic.UseVisualStyleBackColor = false;
-            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
-            // 
-            // Prevpic
-            // 
-            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
-            this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
-            this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Prevpic.Location = new System.Drawing.Point(15, 90);
-            this.Prevpic.Name = "Prevpic";
-            this.Prevpic.Size = new System.Drawing.Size(65, 120);
-            this.Prevpic.TabIndex = 0;
-            this.Prevpic.TabStop = false;
-            this.Prevpic.UseVisualStyleBackColor = false;
-            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
-            // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -192,6 +147,19 @@
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(602, 52);
             this.tableLayoutPanel12.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label11.Location = new System.Drawing.Point(0, 8);
+            this.label11.Margin = new System.Windows.Forms.Padding(0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(81, 36);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "* สภาพ :";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ConditionBoxEdit
             // 
@@ -213,19 +181,6 @@
             this.ConditionBoxEdit.TabIndex = 1;
             this.ConditionBoxEdit.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.label11.Location = new System.Drawing.Point(0, 8);
-            this.label11.Margin = new System.Windows.Forms.Padding(0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(81, 36);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "* สภาพ :";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -243,6 +198,19 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(605, 37);
             this.tableLayoutPanel9.TabIndex = 9;
             // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Margin = new System.Windows.Forms.Padding(0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 36);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "* สถานะ :";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // StatsPanel
             // 
             this.StatsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -253,18 +221,6 @@
             this.StatsPanel.Size = new System.Drawing.Size(510, 31);
             this.StatsPanel.TabIndex = 1;
             this.StatsPanel.TabStop = true;
-            // 
-            // S_HaveEdit
-            // 
-            this.S_HaveEdit.AutoSize = true;
-            this.S_HaveEdit.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.S_HaveEdit.Location = new System.Drawing.Point(0, -5);
-            this.S_HaveEdit.Name = "S_HaveEdit";
-            this.S_HaveEdit.Size = new System.Drawing.Size(137, 40);
-            this.S_HaveEdit.TabIndex = 0;
-            this.S_HaveEdit.Text = "มีให้ตรวจสอบ";
-            this.S_HaveEdit.UseVisualStyleBackColor = true;
-            this.S_HaveEdit.CheckedChanged += new System.EventHandler(this.S_Have_CheckedChanged);
             // 
             // S_DonthaveEdit
             // 
@@ -278,18 +234,17 @@
             this.S_DonthaveEdit.UseVisualStyleBackColor = true;
             this.S_DonthaveEdit.CheckedChanged += new System.EventHandler(this.S_Donthave_CheckedChanged);
             // 
-            // label10
+            // S_HaveEdit
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.label10.Location = new System.Drawing.Point(0, 0);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 36);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "* สถานะ :";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.S_HaveEdit.AutoSize = true;
+            this.S_HaveEdit.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.S_HaveEdit.Location = new System.Drawing.Point(0, -5);
+            this.S_HaveEdit.Name = "S_HaveEdit";
+            this.S_HaveEdit.Size = new System.Drawing.Size(137, 40);
+            this.S_HaveEdit.TabIndex = 0;
+            this.S_HaveEdit.Text = "มีให้ตรวจสอบ";
+            this.S_HaveEdit.UseVisualStyleBackColor = true;
+            this.S_HaveEdit.CheckedChanged += new System.EventHandler(this.S_Have_CheckedChanged);
             // 
             // tableLayoutPanel8
             // 
@@ -308,17 +263,6 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel8.TabIndex = 8;
             // 
-            // Note_TB
-            // 
-            this.Note_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Note_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Note_TB.Location = new System.Drawing.Point(98, 3);
-            this.Note_TB.Name = "Note_TB";
-            this.Note_TB.Size = new System.Drawing.Size(504, 43);
-            this.Note_TB.TabIndex = 1;
-            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
-            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
-            // 
             // label9
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -331,6 +275,17 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "หมายเหตุ :";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Note_TB
+            // 
+            this.Note_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Note_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Note_TB.Location = new System.Drawing.Point(98, 3);
+            this.Note_TB.Name = "Note_TB";
+            this.Note_TB.Size = new System.Drawing.Size(504, 43);
+            this.Note_TB.TabIndex = 1;
+            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
+            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
             // 
             // tableLayoutPanel7
             // 
@@ -349,17 +304,6 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel7.TabIndex = 7;
             // 
-            // Room_TB
-            // 
-            this.Room_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Room_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Room_TB.Location = new System.Drawing.Point(110, 3);
-            this.Room_TB.Name = "Room_TB";
-            this.Room_TB.Size = new System.Drawing.Size(492, 43);
-            this.Room_TB.TabIndex = 1;
-            this.Room_TB.Enter += new System.EventHandler(this.Room_TB_Enter);
-            this.Room_TB.Leave += new System.EventHandler(this.Room_TB_Leave);
-            // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -372,6 +316,17 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "ประจำอยู่ที่ :";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Room_TB
+            // 
+            this.Room_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Room_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Room_TB.Location = new System.Drawing.Point(110, 3);
+            this.Room_TB.Name = "Room_TB";
+            this.Room_TB.Size = new System.Drawing.Size(492, 43);
+            this.Room_TB.TabIndex = 1;
+            this.Room_TB.Enter += new System.EventHandler(this.Room_TB_Enter);
+            this.Room_TB.Leave += new System.EventHandler(this.Room_TB_Leave);
             // 
             // tableLayoutPanel6
             // 
@@ -390,17 +345,6 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
-            // Price_TB
-            // 
-            this.Price_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Price_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Price_TB.Location = new System.Drawing.Point(66, 3);
-            this.Price_TB.Name = "Price_TB";
-            this.Price_TB.Size = new System.Drawing.Size(536, 43);
-            this.Price_TB.TabIndex = 1;
-            this.Price_TB.Enter += new System.EventHandler(this.Price_TB_Enter);
-            this.Price_TB.Leave += new System.EventHandler(this.Price_TB_Leave);
-            // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -413,6 +357,17 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "ราคา :";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Price_TB
+            // 
+            this.Price_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Price_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Price_TB.Location = new System.Drawing.Point(66, 3);
+            this.Price_TB.Name = "Price_TB";
+            this.Price_TB.Size = new System.Drawing.Size(536, 43);
+            this.Price_TB.TabIndex = 1;
+            this.Price_TB.Enter += new System.EventHandler(this.Price_TB_Enter);
+            this.Price_TB.Leave += new System.EventHandler(this.Price_TB_Leave);
             // 
             // tableLayoutPanel2
             // 
@@ -431,17 +386,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // BarcodeID_TB
-            // 
-            this.BarcodeID_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodeID_TB.Location = new System.Drawing.Point(167, 3);
-            this.BarcodeID_TB.Name = "BarcodeID_TB";
-            this.BarcodeID_TB.Size = new System.Drawing.Size(435, 43);
-            this.BarcodeID_TB.TabIndex = 1;
-            this.BarcodeID_TB.Enter += new System.EventHandler(this.BarcodeID_TB_Enter);
-            this.BarcodeID_TB.Leave += new System.EventHandler(this.BarcodeID_TB_Leave);
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -454,6 +398,17 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "* หมายเลขครุภัณฑ์ :";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BarcodeID_TB
+            // 
+            this.BarcodeID_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.BarcodeID_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodeID_TB.Location = new System.Drawing.Point(167, 3);
+            this.BarcodeID_TB.Name = "BarcodeID_TB";
+            this.BarcodeID_TB.Size = new System.Drawing.Size(435, 43);
+            this.BarcodeID_TB.TabIndex = 1;
+            this.BarcodeID_TB.Enter += new System.EventHandler(this.BarcodeID_TB_Enter);
+            this.BarcodeID_TB.Leave += new System.EventHandler(this.BarcodeID_TB_Leave);
             // 
             // tableLayoutPanel3
             // 
@@ -472,17 +427,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
-            // Model_TB
-            // 
-            this.Model_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Model_TB.Location = new System.Drawing.Point(48, 3);
-            this.Model_TB.Name = "Model_TB";
-            this.Model_TB.Size = new System.Drawing.Size(554, 43);
-            this.Model_TB.TabIndex = 1;
-            this.Model_TB.Enter += new System.EventHandler(this.Model_TB_Enter);
-            this.Model_TB.Leave += new System.EventHandler(this.Model_TB_Leave);
-            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -495,6 +439,17 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "รุ่น :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Model_TB
+            // 
+            this.Model_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Model_TB.Location = new System.Drawing.Point(48, 3);
+            this.Model_TB.Name = "Model_TB";
+            this.Model_TB.Size = new System.Drawing.Size(554, 43);
+            this.Model_TB.TabIndex = 1;
+            this.Model_TB.Enter += new System.EventHandler(this.Model_TB_Enter);
+            this.Model_TB.Leave += new System.EventHandler(this.Model_TB_Leave);
             // 
             // tableLayoutPanel5
             // 
@@ -513,17 +468,6 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
-            // Serial_TB
-            // 
-            this.Serial_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Serial_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Serial_TB.Location = new System.Drawing.Point(144, 3);
-            this.Serial_TB.Name = "Serial_TB";
-            this.Serial_TB.Size = new System.Drawing.Size(458, 43);
-            this.Serial_TB.TabIndex = 1;
-            this.Serial_TB.Enter += new System.EventHandler(this.Serial_TB_Enter);
-            this.Serial_TB.Leave += new System.EventHandler(this.Serial_TB_Leave);
-            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -537,10 +481,21 @@
             this.label4.Text = "Serial Number :";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // Serial_TB
+            // 
+            this.Serial_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Serial_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Serial_TB.Location = new System.Drawing.Point(144, 3);
+            this.Serial_TB.Name = "Serial_TB";
+            this.Serial_TB.Size = new System.Drawing.Size(458, 43);
+            this.Serial_TB.TabIndex = 1;
+            this.Serial_TB.Enter += new System.EventHandler(this.Serial_TB_Enter);
+            this.Serial_TB.Leave += new System.EventHandler(this.Serial_TB_Leave);
+            // 
             // PicInformation
             // 
             this.PicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.PicInformation.Location = new System.Drawing.Point(0, 6);
             this.PicInformation.Margin = new System.Windows.Forms.Padding(0);
             this.PicInformation.Name = "PicInformation";
@@ -566,17 +521,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
-            // Brand_TB
-            // 
-            this.Brand_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Brand_TB.Location = new System.Drawing.Point(60, 3);
-            this.Brand_TB.Name = "Brand_TB";
-            this.Brand_TB.Size = new System.Drawing.Size(542, 43);
-            this.Brand_TB.TabIndex = 1;
-            this.Brand_TB.Enter += new System.EventHandler(this.Brand_TB_Enter);
-            this.Brand_TB.Leave += new System.EventHandler(this.Brand_TB_Leave);
-            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -589,6 +533,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ยี่ห้อ :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Brand_TB
+            // 
+            this.Brand_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Brand_TB.Location = new System.Drawing.Point(60, 3);
+            this.Brand_TB.Name = "Brand_TB";
+            this.Brand_TB.Size = new System.Drawing.Size(542, 43);
+            this.Brand_TB.TabIndex = 1;
+            this.Brand_TB.Enter += new System.EventHandler(this.Brand_TB_Enter);
+            this.Brand_TB.Leave += new System.EventHandler(this.Brand_TB_Leave);
             // 
             // tableLayoutPanel10
             // 
@@ -607,17 +562,6 @@
             this.tableLayoutPanel10.Size = new System.Drawing.Size(605, 49);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
-            // ProductName_TB
-            // 
-            this.ProductName_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductName_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.ProductName_TB.Location = new System.Drawing.Point(120, 3);
-            this.ProductName_TB.Name = "ProductName_TB";
-            this.ProductName_TB.Size = new System.Drawing.Size(482, 43);
-            this.ProductName_TB.TabIndex = 1;
-            this.ProductName_TB.Enter += new System.EventHandler(this.ProductName_TB_Enter);
-            this.ProductName_TB.Leave += new System.EventHandler(this.ProductName_TB_Leave);
-            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -630,6 +574,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "* ชื่อครุภัณฑ์ :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ProductName_TB
+            // 
+            this.ProductName_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductName_TB.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ProductName_TB.Location = new System.Drawing.Point(120, 3);
+            this.ProductName_TB.Name = "ProductName_TB";
+            this.ProductName_TB.Size = new System.Drawing.Size(482, 43);
+            this.ProductName_TB.TabIndex = 1;
+            this.ProductName_TB.Enter += new System.EventHandler(this.ProductName_TB_Enter);
+            this.ProductName_TB.Leave += new System.EventHandler(this.ProductName_TB_Leave);
             // 
             // tableLayoutPanel1
             // 
@@ -667,6 +622,51 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 545);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // Nextpic
+            // 
+            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
+            this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Nextpic.Location = new System.Drawing.Point(555, 90);
+            this.Nextpic.Name = "Nextpic";
+            this.Nextpic.Size = new System.Drawing.Size(65, 120);
+            this.Nextpic.TabIndex = 1;
+            this.Nextpic.TabStop = false;
+            this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
+            // 
+            // Prevpic
+            // 
+            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
+            this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
+            this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Prevpic.Location = new System.Drawing.Point(15, 90);
+            this.Prevpic.Name = "Prevpic";
+            this.Prevpic.Size = new System.Drawing.Size(65, 120);
+            this.Prevpic.TabIndex = 0;
+            this.Prevpic.TabStop = false;
+            this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(92, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(450, 270);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.EditPic_Enter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.EditPic_Leave);
+            // 
             // EditItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -685,7 +685,6 @@
             this.Text = "Edit barcode Item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing3);
             this.Load += new System.EventHandler(this.AddItemP2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -710,6 +709,7 @@
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

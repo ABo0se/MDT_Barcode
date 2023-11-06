@@ -466,36 +466,39 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         switch (col)
                         {
                             case 1:
-                                headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
+                                headerCell1.Value = "ลำดับที่";
                                 break;
                             case 2:
-                                headerCell1.Value = "หมายเลขครุภัณฑ์";
+                                headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
                                 break;
                             case 3:
-                                headerCell1.Value = "ชื่อผลิตภัณฑ์";
+                                headerCell1.Value = "หมายเลขครุภัณฑ์";
                                 break;
                             case 4:
-                                headerCell1.Value = "หมายเลขรุ่น";
+                                headerCell1.Value = "ชื่อผลิตภัณฑ์";
                                 break;
                             case 5:
                                 headerCell1.Value = "ยี่ห้อ";
                                 break;
                             case 6:
-                                headerCell1.Value = "S/N";
+                                headerCell1.Value = "หมายเลขรุ่น";
                                 break;
                             case 7:
-                                headerCell1.Value = "ราคา";
+                                headerCell1.Value = "S/N";
                                 break;
                             case 8:
-                                headerCell1.Value = "ประจำอยู่ที่";
+                                headerCell1.Value = "ราคา";
                                 break;
                             case 9:
-                                headerCell1.Value = "รายละเอียด";
+                                headerCell1.Value = "ประจำอยู่ที่";
                                 break;
                             case 10:
-                                headerCell1.Value = "สถานะ";
+                                headerCell1.Value = "รายละเอียด";
                                 break;
                             case 11:
+                                headerCell1.Value = "สถานะ";
+                                break;
+                            case 12:
                                 headerCell1.Value = "สภาพ";
                                 break;
                         }
@@ -515,33 +518,36 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             switch (col)
                             {
                                 case 0:
-                                    cell1.Value = TemporaryData[row].FormattedDate;
+                                    cell1.Value = row + 1;
                                     break;
                                 case 1:
-                                    cell1.Value = TemporaryData[row].BarcodeNumber;
+                                    cell1.Value = TemporaryData[row].FormattedDate;
                                     break;
                                 case 2:
-                                    cell1.Value = TemporaryData[row].Product_Name;
+                                    cell1.Value = TemporaryData[row].BarcodeNumber;
                                     break;
                                 case 3:
-                                    cell1.Value = TemporaryData[row].ModelNumber;
+                                    cell1.Value = TemporaryData[row].Product_Name;
                                     break;
                                 case 4:
-                                    cell1.Value = TemporaryData[row].Brand;
+                                    cell1.Value = TemporaryData[row].ModelNumber;
                                     break;
                                 case 5:
-                                    cell1.Value = TemporaryData[row].SerialNum;
+                                    cell1.Value = TemporaryData[row].Brand;
                                     break;
                                 case 6:
-                                    cell1.Value = TemporaryData[row].Price;
+                                    cell1.Value = TemporaryData[row].SerialNum;
                                     break;
                                 case 7:
-                                    cell1.Value = TemporaryData[row].Room;
+                                    cell1.Value = TemporaryData[row].Price;
                                     break;
                                 case 8:
-                                    cell1.Value = TemporaryData[row].Description;
+                                    cell1.Value = TemporaryData[row].Room;
                                     break;
                                 case 9:
+                                    cell1.Value = TemporaryData[row].Description;
+                                    break;
+                                case 10:
                                     {
                                         string tempstatus;
                                         switch (TemporaryData[row].Status)
@@ -570,7 +576,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                         cell1.Value = tempstatus;
                                         break;
                                     }
-                                case 10:
+                                case 11:
                                     {
                                         string tempcondition;
                                         switch (TemporaryData[row].Condition)
@@ -626,10 +632,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     }
                                 }
                             // Align the first column to the middle
-                            if (col == 0)
+                            if (col == 0 || col == 1)
                             {
                                 cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                                 cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            }
+                            else
+                            {
+                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                             }
                         }
                     }
@@ -724,6 +734,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 try
                 {
                     myexcelresult = ImportDataFromExcel(excelFilePath);
+                    //CurrentProblemLOL
+                    if (myexcelresult == null)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -904,13 +919,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     mySqlConnection2.Open();
 
                     // Record with BarcodeNumber doesn't exist; perform an insert
-                    string insertQuery = "INSERT INTO information (BarcodeNumber, Time, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
-                    "VALUES (@BarcodeNumber, @Time, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
+                    string insertQuery = "INSERT INTO information (BarcodeNumber, Time, Product_Name, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
+                    "VALUES (@BarcodeNumber, @Time, @Product_Name, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
 
                     using (MySqlCommand insertCommand = new MySqlCommand(insertQuery, mySqlConnection2))
                     {
                         insertCommand.Parameters.AddWithValue("@BarcodeNumber", result.BarcodeNumber);
                         insertCommand.Parameters.AddWithValue("@Time", DateTime.Now); // Or use the appropriate date value.
+                        insertCommand.Parameters.AddWithValue("@Product_Name", result.Product_Name);
                         insertCommand.Parameters.AddWithValue("@Model_Name", result.ModelNumber);
                         insertCommand.Parameters.AddWithValue("@Brand", result.Brand);
                         insertCommand.Parameters.AddWithValue("@Serial_Number", result.SerialNum);
@@ -963,6 +979,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             mySqlConnection2.Open();
 
             string query = "UPDATE information SET " +
+               "Product_Name = @Product_Name, " +
                "Model_Name = @Model_Name, " +
                "Brand = @Brand, " +
                "Serial_Number = @Serial_Number, " +
@@ -977,6 +994,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
             {
+                cmd.Parameters.AddWithValue("@Product_Name", result.Product_Name);
                 cmd.Parameters.AddWithValue("@Model_Name", result.ModelNumber);
                 cmd.Parameters.AddWithValue("@Brand", result.Brand);
                 cmd.Parameters.AddWithValue("@Serial_Number", result.SerialNum);
@@ -1016,13 +1034,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
             {
                 var worksheet1 = package.Workbook.Worksheets["Data"]; // Assuming data is on the first worksheet
-                var worksheet2 = package.Workbook.Worksheets["Image"];
+                var worksheet2 = package.Workbook.Worksheets["ImageData"];
 
                 for (int row = 2; row <= worksheet1.Dimension.End.Row; row++) // Assuming the first row contains headers
                 {
                     int tempstatus = -1;
                     int tempcondition = -1;
-                    switch (worksheet1.Cells[row, 10].Text)
+                    switch (worksheet1.Cells[row, 11].Text)
                     {
                         case "ไม่สามารถทราบได้":
                             tempstatus = -1;
@@ -1034,7 +1052,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             tempstatus = 1;
                             break;
                     }
-                    switch (worksheet1.Cells[row, 11].Text)
+                    switch (worksheet1.Cells[row, 12].Text)
                     {
                         case "ไม่สามารถทราบได้":
                             tempcondition = -1;
@@ -1065,24 +1083,66 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     // Convert the formatted date string to DateTime
                     string formattedDateStr = worksheet1.Cells[row, 2].Text; // Assuming the date is in column 10
                     DateTime formattedDate;
+
                     if (DateTime.TryParseExact(formattedDateStr, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out formattedDate))
                     {
-                        SRResults excelData = new SRResults
-                        {
-                            BarcodeNumber = worksheet1.Cells[row, 3].Text,
-                            ModelNumber = worksheet1.Cells[row, 4].Text,
-                            Brand = worksheet1.Cells[row, 5].Text,
-                            SerialNum = worksheet1.Cells[row, 6].Text,
-                            Price = worksheet1.Cells[row, 7].Text,
-                            Room = worksheet1.Cells[row, 8].Text,
-                            Description = worksheet1.Cells[row, 9].Text,
-                            FilePath = worksheet2.Cells[row, 1].Text,
-                            SHA512 = worksheet2.Cells[row, 2].Text,
-                            Status = tempstatus,
-                            Condition = tempcondition,
-                            Date = formattedDate,
-                            FormattedDate = formattedDateStr
-                        };
+                        // The value was successfully parsed
+                    }
+                    else
+                    {
+                        // Parsing failed, use DateTime.Now as a fallback
+                        formattedDate = DateTime.Now;
+                    }
+
+                    string formattedDateStrForDisplay = formattedDate.ToString("dd-MM-yyyy HH:mm:ss"); // Format for display
+                    string warningmessage = "";
+
+                    SRResults excelData = new SRResults
+                    {
+                        BarcodeNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 3].Text) ? "-" : worksheet1.Cells[row, 3].Text,
+                        Product_Name = string.IsNullOrEmpty(worksheet1.Cells[row, 4].Text) ? "-" : worksheet1.Cells[row, 4].Text,
+                        ModelNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 5].Text) ? "-" : worksheet1.Cells[row, 5].Text,
+                        Brand = string.IsNullOrEmpty(worksheet1.Cells[row, 6].Text) ? "-" : worksheet1.Cells[row, 6].Text,
+                        SerialNum = string.IsNullOrEmpty(worksheet1.Cells[row, 7].Text) ? "-" : worksheet1.Cells[row, 7].Text,
+                        Price = string.IsNullOrEmpty(worksheet1.Cells[row, 8].Text) ? "0" : worksheet1.Cells[row, 8].Text,
+                        Room = string.IsNullOrEmpty(worksheet1.Cells[row, 9].Text) ? "-" : worksheet1.Cells[row, 9].Text,
+                        Description = string.IsNullOrEmpty(worksheet1.Cells[row, 10].Text) ? "-" : worksheet1.Cells[row, 10].Text,
+                        FilePath = string.IsNullOrEmpty(worksheet2.Cells[row, 1].Text) ? "-" : worksheet2.Cells[row, 1].Text,
+                        SHA512 = string.IsNullOrEmpty(worksheet2.Cells[row, 2].Text) ? "-" : worksheet2.Cells[row, 2].Text,
+                        Status = tempstatus,
+                        Condition = tempcondition,
+                        Date = formattedDate,
+                        FormattedDate = formattedDateStrForDisplay
+                    };
+                    if (excelData.BarcodeNumber == "-" || excelData.Product_Name == "-")
+                    {
+                        warningmessage += "ข้อมูลของหมายเลขครุภัณฑ์ และ ชื่อผลิตภัณฑ์ ต้องถูกบันทึกไว้ในข้อมูลที่จะนำเข้ามา\n";
+                    }
+                    if (excelData.BarcodeNumber.Length > 50)
+                    {
+                        warningmessage += "ความยาวหมายเลขครุภัณฑ์ห้ามเกิน 50 ตัวอักษร\n";
+                    }
+                    if (excelData.Product_Name.Length > 100 || excelData.ModelNumber.Length > 100 || excelData.Brand.Length > 100 || 
+                        excelData.SerialNum.Length > 100 || excelData.Room.Length > 100)
+                    {
+                        warningmessage += "ความยาวข้อมูข้อมูลครุภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
+                    }
+                    if (excelData.Price.Length > 30)
+                    {
+                        warningmessage += "ความยาวข้อมูลราคาห้ามเกิน 30 ตัวอักษร\n";
+                    }
+                    if (excelData.Description.Length > 200)
+                    {
+                        warningmessage += "ความยาวของรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
+                    }
+                    /////////////////////////////////////////////////////////////////
+                    if (warningmessage != "")
+                    {
+                        MessageBox.Show(warningmessage);
+                        return null;
+                    }
+                    else
+                    {
                         excelDataList.Add(excelData);
                     }
                 }

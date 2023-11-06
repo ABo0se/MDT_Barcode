@@ -58,10 +58,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Del_Database = new System.Windows.Forms.Button();
             this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.Download_Template = new System.Windows.Forms.Button();
             this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
             this.ConditionBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Download_Template = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.ExportPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -426,6 +426,19 @@
             this.ExportPanel.Size = new System.Drawing.Size(1018, 56);
             this.ExportPanel.TabIndex = 15;
             // 
+            // Download_Template
+            // 
+            this.Download_Template.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Download_Template.Location = new System.Drawing.Point(765, 3);
+            this.Download_Template.Name = "Download_Template";
+            this.Download_Template.Size = new System.Drawing.Size(250, 50);
+            this.Download_Template.TabIndex = 18;
+            this.Download_Template.Text = "Download excel template";
+            this.Download_Template.UseVisualStyleBackColor = true;
+            this.Download_Template.Click += new System.EventHandler(this.Download_Template_Click);
+            // 
             // TitlePanel
             // 
             this.TitlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -485,19 +498,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1548, 393);
             this.panel1.TabIndex = 17;
-            // 
-            // Download_Template
-            // 
-            this.Download_Template.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Download_Template.Location = new System.Drawing.Point(765, 3);
-            this.Download_Template.Name = "Download_Template";
-            this.Download_Template.Size = new System.Drawing.Size(250, 50);
-            this.Download_Template.TabIndex = 18;
-            this.Download_Template.Text = "Download excel template";
-            this.Download_Template.UseVisualStyleBackColor = true;
-            this.Download_Template.Click += new System.EventHandler(this.Download_Template_Click);
             // 
             // ManageQR
             // 
