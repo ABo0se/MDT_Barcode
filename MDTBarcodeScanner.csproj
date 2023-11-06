@@ -261,6 +261,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Example_Import_WithData1.xlsx" />
+    <None Include="Resources\MDT_Stock_Import_Example.xlsx" />
     <None Include="Resources\THSarabunNew.ttf" />
     <None Include="Resources\TH_Sarabun_New_Font.bmp" />
     <None Include="Images\search.png" />

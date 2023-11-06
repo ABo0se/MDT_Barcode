@@ -111,6 +111,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MDT_Stock_Import_Example {
+            get {
+                object obj = ResourceManager.GetObject("MDT_Stock_Import_Example", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Next {

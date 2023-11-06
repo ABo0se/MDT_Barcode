@@ -37,16 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
-            this.Export_Excel = new System.Windows.Forms.Button();
-            this.Import_Excel = new System.Windows.Forms.Button();
-            this.StatusSearchBox = new System.Windows.Forms.ComboBox();
-            this.RoomSearchBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Del_Database = new System.Windows.Forms.Button();
-            this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ConditionBox = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModelName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +51,17 @@
             this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Export_Excel = new System.Windows.Forms.Button();
+            this.Import_Excel = new System.Windows.Forms.Button();
+            this.StatusSearchBox = new System.Windows.Forms.ComboBox();
+            this.RoomSearchBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Del_Database = new System.Windows.Forms.Button();
+            this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ConditionBox = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Download_Template = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.ExportPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
@@ -73,10 +74,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BarcodeSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodeSearchBox.Location = new System.Drawing.Point(165, 3);
+            this.BarcodeSearchBox.Location = new System.Drawing.Point(170, 3);
             this.BarcodeSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
-            this.BarcodeSearchBox.Size = new System.Drawing.Size(605, 43);
+            this.BarcodeSearchBox.Size = new System.Drawing.Size(601, 43);
             this.BarcodeSearchBox.TabIndex = 3;
             this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
@@ -90,7 +91,7 @@
             this.label1.Location = new System.Drawing.Point(4, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 50);
+            this.label1.Size = new System.Drawing.Size(158, 50);
             this.label1.TabIndex = 2;
             this.label1.Text = "Search barcode :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,170 +174,6 @@
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
             this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
-            // 
-            // Export_Excel
-            // 
-            this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Export_Excel.Location = new System.Drawing.Point(3, 3);
-            this.Export_Excel.Name = "Export_Excel";
-            this.Export_Excel.Size = new System.Drawing.Size(333, 50);
-            this.Export_Excel.TabIndex = 7;
-            this.Export_Excel.Text = "Export to excel";
-            this.Export_Excel.UseVisualStyleBackColor = true;
-            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
-            // 
-            // Import_Excel
-            // 
-            this.Import_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Import_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Import_Excel.Location = new System.Drawing.Point(342, 3);
-            this.Import_Excel.Name = "Import_Excel";
-            this.Import_Excel.Size = new System.Drawing.Size(333, 50);
-            this.Import_Excel.TabIndex = 8;
-            this.Import_Excel.Text = "Import from excel";
-            this.Import_Excel.UseVisualStyleBackColor = true;
-            this.Import_Excel.Click += new System.EventHandler(this.Import_Excel_Click);
-            // 
-            // StatusSearchBox
-            // 
-            this.StatusSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StatusSearchBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.StatusSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.StatusSearchBox.FormattingEnabled = true;
-            this.StatusSearchBox.Items.AddRange(new object[] {
-            "[เลือกสถานะทั้งหมด]",
-            "มีให้ตรวจสอบ",
-            "ไม่มีให้ตรวจสอบ"});
-            this.StatusSearchBox.Location = new System.Drawing.Point(1157, 3);
-            this.StatusSearchBox.Name = "StatusSearchBox";
-            this.StatusSearchBox.Size = new System.Drawing.Size(195, 44);
-            this.StatusSearchBox.TabIndex = 11;
-            this.StatusSearchBox.SelectedIndexChanged += new System.EventHandler(this.StatusSearchBox_SelectedIndexChanged);
-            // 
-            // RoomSearchBox
-            // 
-            this.RoomSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RoomSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.RoomSearchBox.Location = new System.Drawing.Point(916, 3);
-            this.RoomSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RoomSearchBox.Name = "RoomSearchBox";
-            this.RoomSearchBox.Size = new System.Drawing.Size(234, 43);
-            this.RoomSearchBox.TabIndex = 12;
-            this.RoomSearchBox.TextChanged += new System.EventHandler(this.RoomSearchBox_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(778, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 50);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Search room :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Del_Database
-            // 
-            this.Del_Database.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Del_Database.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Del_Database.Location = new System.Drawing.Point(681, 3);
-            this.Del_Database.Name = "Del_Database";
-            this.Del_Database.Size = new System.Drawing.Size(334, 50);
-            this.Del_Database.TabIndex = 14;
-            this.Del_Database.Text = "Delete all data";
-            this.Del_Database.UseVisualStyleBackColor = true;
-            this.Del_Database.Click += new System.EventHandler(this.Del_Database_Click);
-            // 
-            // ExportPanel
-            // 
-            this.ExportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportPanel.AutoSize = true;
-            this.ExportPanel.ColumnCount = 3;
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ExportPanel.Controls.Add(this.Del_Database, 2, 0);
-            this.ExportPanel.Controls.Add(this.Import_Excel, 1, 0);
-            this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
-            this.ExportPanel.Location = new System.Drawing.Point(19, 488);
-            this.ExportPanel.Name = "ExportPanel";
-            this.ExportPanel.RowCount = 1;
-            this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ExportPanel.Size = new System.Drawing.Size(1018, 56);
-            this.ExportPanel.TabIndex = 15;
-            // 
-            // TitlePanel
-            // 
-            this.TitlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TitlePanel.AutoSize = true;
-            this.TitlePanel.ColumnCount = 6;
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.71796F));
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.23076F));
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.02564F));
-            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.02564F));
-            this.TitlePanel.Controls.Add(this.label1, 0, 0);
-            this.TitlePanel.Controls.Add(this.BarcodeSearchBox, 1, 0);
-            this.TitlePanel.Controls.Add(this.label3, 2, 0);
-            this.TitlePanel.Controls.Add(this.RoomSearchBox, 3, 0);
-            this.TitlePanel.Controls.Add(this.StatusSearchBox, 4, 0);
-            this.TitlePanel.Controls.Add(this.ConditionBox, 5, 0);
-            this.TitlePanel.Location = new System.Drawing.Point(6, 12);
-            this.TitlePanel.Name = "TitlePanel";
-            this.TitlePanel.RowCount = 1;
-            this.TitlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TitlePanel.Size = new System.Drawing.Size(1558, 50);
-            this.TitlePanel.TabIndex = 16;
-            // 
-            // ConditionBox
-            // 
-            this.ConditionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ConditionBox.DropDownWidth = 179;
-            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.ConditionBox.FormattingEnabled = true;
-            this.ConditionBox.Items.AddRange(new object[] {
-            "[เลือกสภาพทั้งหมด]",
-            "ใช้งานได้",
-            "ชำรุดรอซ่อม",
-            "สิ้นสภาพ",
-            "สูญหาย",
-            "จำหน่ายแล้ว",
-            "โอนแล้ว",
-            "อื่นๆ"});
-            this.ConditionBox.Location = new System.Drawing.Point(1358, 3);
-            this.ConditionBox.Name = "ConditionBox";
-            this.ConditionBox.Size = new System.Drawing.Size(197, 44);
-            this.ConditionBox.TabIndex = 10;
-            this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.BarcodenumberCollector);
-            this.panel1.Location = new System.Drawing.Point(16, 86);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1548, 393);
-            this.panel1.TabIndex = 17;
             // 
             // Tag
             // 
@@ -483,6 +320,185 @@
             this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_Remove.Width = 45;
             // 
+            // Export_Excel
+            // 
+            this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Export_Excel.Location = new System.Drawing.Point(3, 3);
+            this.Export_Excel.Name = "Export_Excel";
+            this.Export_Excel.Size = new System.Drawing.Size(248, 50);
+            this.Export_Excel.TabIndex = 7;
+            this.Export_Excel.Text = "Export to excel";
+            this.Export_Excel.UseVisualStyleBackColor = true;
+            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
+            // 
+            // Import_Excel
+            // 
+            this.Import_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Import_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Import_Excel.Location = new System.Drawing.Point(257, 3);
+            this.Import_Excel.Name = "Import_Excel";
+            this.Import_Excel.Size = new System.Drawing.Size(248, 50);
+            this.Import_Excel.TabIndex = 8;
+            this.Import_Excel.Text = "Import from excel";
+            this.Import_Excel.UseVisualStyleBackColor = true;
+            this.Import_Excel.Click += new System.EventHandler(this.Import_Excel_Click);
+            // 
+            // StatusSearchBox
+            // 
+            this.StatusSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusSearchBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.StatusSearchBox.FormattingEnabled = true;
+            this.StatusSearchBox.Items.AddRange(new object[] {
+            "[เลือกสถานะทั้งหมด]",
+            "มีให้ตรวจสอบ",
+            "ไม่มีให้ตรวจสอบ"});
+            this.StatusSearchBox.Location = new System.Drawing.Point(1159, 3);
+            this.StatusSearchBox.Name = "StatusSearchBox";
+            this.StatusSearchBox.Size = new System.Drawing.Size(194, 44);
+            this.StatusSearchBox.TabIndex = 11;
+            this.StatusSearchBox.SelectedIndexChanged += new System.EventHandler(this.StatusSearchBox_SelectedIndexChanged);
+            // 
+            // RoomSearchBox
+            // 
+            this.RoomSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RoomSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.RoomSearchBox.Location = new System.Drawing.Point(920, 3);
+            this.RoomSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.RoomSearchBox.Name = "RoomSearchBox";
+            this.RoomSearchBox.Size = new System.Drawing.Size(232, 43);
+            this.RoomSearchBox.TabIndex = 12;
+            this.RoomSearchBox.TextChanged += new System.EventHandler(this.RoomSearchBox_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(779, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(133, 50);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Search room :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Del_Database
+            // 
+            this.Del_Database.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Del_Database.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Del_Database.Location = new System.Drawing.Point(511, 3);
+            this.Del_Database.Name = "Del_Database";
+            this.Del_Database.Size = new System.Drawing.Size(248, 50);
+            this.Del_Database.TabIndex = 14;
+            this.Del_Database.Text = "Delete all data";
+            this.Del_Database.UseVisualStyleBackColor = true;
+            this.Del_Database.Click += new System.EventHandler(this.Del_Database_Click);
+            // 
+            // ExportPanel
+            // 
+            this.ExportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExportPanel.AutoSize = true;
+            this.ExportPanel.ColumnCount = 4;
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ExportPanel.Controls.Add(this.Download_Template, 3, 0);
+            this.ExportPanel.Controls.Add(this.Del_Database, 2, 0);
+            this.ExportPanel.Controls.Add(this.Import_Excel, 1, 0);
+            this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
+            this.ExportPanel.Location = new System.Drawing.Point(19, 488);
+            this.ExportPanel.Name = "ExportPanel";
+            this.ExportPanel.RowCount = 1;
+            this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ExportPanel.Size = new System.Drawing.Size(1018, 56);
+            this.ExportPanel.TabIndex = 15;
+            // 
+            // TitlePanel
+            // 
+            this.TitlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TitlePanel.AutoSize = true;
+            this.TitlePanel.ColumnCount = 6;
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.71796F));
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.23076F));
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.02564F));
+            this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.02564F));
+            this.TitlePanel.Controls.Add(this.label1, 0, 0);
+            this.TitlePanel.Controls.Add(this.BarcodeSearchBox, 1, 0);
+            this.TitlePanel.Controls.Add(this.label3, 2, 0);
+            this.TitlePanel.Controls.Add(this.RoomSearchBox, 3, 0);
+            this.TitlePanel.Controls.Add(this.StatusSearchBox, 4, 0);
+            this.TitlePanel.Controls.Add(this.ConditionBox, 5, 0);
+            this.TitlePanel.Location = new System.Drawing.Point(6, 12);
+            this.TitlePanel.Name = "TitlePanel";
+            this.TitlePanel.RowCount = 1;
+            this.TitlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TitlePanel.Size = new System.Drawing.Size(1558, 50);
+            this.TitlePanel.TabIndex = 16;
+            // 
+            // ConditionBox
+            // 
+            this.ConditionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ConditionBox.DropDownWidth = 179;
+            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ConditionBox.FormattingEnabled = true;
+            this.ConditionBox.Items.AddRange(new object[] {
+            "[เลือกสภาพทั้งหมด]",
+            "ใช้งานได้",
+            "ชำรุดรอซ่อม",
+            "สิ้นสภาพ",
+            "สูญหาย",
+            "จำหน่ายแล้ว",
+            "โอนแล้ว",
+            "อื่นๆ"});
+            this.ConditionBox.Location = new System.Drawing.Point(1359, 3);
+            this.ConditionBox.Name = "ConditionBox";
+            this.ConditionBox.Size = new System.Drawing.Size(196, 44);
+            this.ConditionBox.TabIndex = 10;
+            this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.BarcodenumberCollector);
+            this.panel1.Location = new System.Drawing.Point(16, 86);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1548, 393);
+            this.panel1.TabIndex = 17;
+            // 
+            // Download_Template
+            // 
+            this.Download_Template.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Download_Template.Location = new System.Drawing.Point(765, 3);
+            this.Download_Template.Name = "Download_Template";
+            this.Download_Template.Size = new System.Drawing.Size(250, 50);
+            this.Download_Template.TabIndex = 18;
+            this.Download_Template.Text = "Download excel template";
+            this.Download_Template.UseVisualStyleBackColor = true;
+            this.Download_Template.Click += new System.EventHandler(this.Download_Template_Click);
+            // 
             // ManageQR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -539,6 +555,7 @@
         private System.Windows.Forms.DataGridViewImageColumn Action_Search;
         private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
         private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
+        private System.Windows.Forms.Button Download_Template;
     }
 }
 
