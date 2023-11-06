@@ -19,9 +19,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         //string PicFilePath = null;
         int checkstate = -1;
         int conditionstate = -1;
-        List<System.Drawing.Image> selectedImages = new List<System.Drawing.Image>();
+        List<Image> selectedImages = new List<Image>();
         int? selectingImage = null;
-        /// ///////////////////////////////////////////
+        /////////////////////////////////////////////
+        string BarcodeIDDF = "[Example : 460650003296]";
+        string ProductNameDF = "[Example : Occulus Quest 2023]";
+        string ModelDF = "[Example : KD-43X8000H]";
+        string BrandDF = "[Example : Google]";
+        string SerialDF = "[Example : ABC12345XYZ]";
+        string PriceDF = "[Example : 1000]";
+        string RoomDF = "[Example : 516]";
+        string NoteDF = "[Example : วัสดุนี้ได้ซื้อในราคาพิเศษ]";
+        ////////////////////////////////////////////
         public AddItemP2()
         {
             InitializeComponent();
@@ -74,18 +83,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             SearchBarcodeData(e.Barcode, sender);
         }
-        private void BarcodeID_TB_TextChanged(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(BarcodeID_TB.Text))
-            {
-                BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
-                BarcodeID_TB.ForeColor = Color.Gray;
-            }
-            else
-            {
-                BarcodeID_TB.ForeColor = Color.Black;
-            }
-        }
 
         private void Add_Item_toDB_Click(object sender, EventArgs e)
         {
@@ -121,10 +118,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว\n";
                 }
 
-                if (BarcodeID_TB.Text == "" || Model_TB.Text == "" || Brand_TB.Text == "" ||
-                    Serial_TB.Text == "" || Price_TB.Text == "" || Room_TB.Text == "" ||
-                    conditionstate == -1 || checkstate == -1 || BarcodeID_TB.Text == "[1-50 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" || Model_TB.Text == "[1-100 ตัวอักษร]" ||
-                Serial_TB.Text == "[1-100 ตัวอักษร]" || Price_TB.Text == "[1-30 ตัวเลข]" || Room_TB.Text == "[1-100 ตัวอักษร]")
+                if (BarcodeID_TB.Text == "" || ProductName_TB.Text == ""  ||
+                    ProductName_TB.Text == ProductNameDF || checkstate == -1 || BarcodeID_TB.Text == BarcodeIDDF || 
+                    Model_TB.Text == "[1-100 ตัวอักษร]")
                 {
                     warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่่มเข้ามา\n";
                 }
@@ -134,7 +130,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
                 }
 
-                if (Model_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 || Serial_TB.Text.Length > 100 || Room_TB.Text.Length > 100 || Price_TB.Text.Length > 31)
+                if (Model_TB.Text.Length > 100 || ProductName_TB.Text.Length > 100 || Brand_TB.Text.Length > 100 
+                    || Serial_TB.Text.Length > 100 ||  Room_TB.Text.Length > 100)
                 {
                     warningMessage += "ความยาวของข้อมูลผลิตภัณฑ์ ห้ามเกิน 100 ตัวอักษร\n";
                 }
@@ -146,10 +143,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
                 }
-                if (Note_TB.Text == "[0-200 ตัวอักษร]" || Note_TB.Text == "")
+                //////////////////////////////////////////////
+                if (Model_TB.Text == ModelDF || Model_TB.Text == "")
+                {
+                    Model_TB.Text = "-";
+                }
+                if (Brand_TB.Text == BrandDF || Brand_TB.Text == "")
+                {
+                    Brand_TB.Text = "-";
+                }
+                if (Serial_TB.Text == SerialDF || Serial_TB.Text == "")
+                {
+                    Serial_TB.Text = "-";
+                }
+                if (Room_TB.Text == RoomDF || Room_TB.Text == "")
+                {
+                    Room_TB.Text = "-";
+                }
+                if (Note_TB.Text == NoteDF || Note_TB.Text == "")
                 {
                     Note_TB.Text = "-";
                 }
+                //////////////////////////////////////////////
                 if (!int.TryParse(Price_TB.Text, out int result))
                 {
                     warningMessage += "กรุณากรอกราคาเป็นตัวเลขเท่านั้น\n";
@@ -172,7 +187,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 mySqlConnection.Close(); // Make sure to close the connection when done
             }
-            /////////////////////////////////////////////////////////////////////////////////////////////////////
         }
         private void AddItemToDB()
         {
@@ -222,13 +236,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 //TryAddittoDATABASE
                 mySqlConnection2.Open();
 
-                string query = "INSERT INTO information (BarcodeNumber, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
-               "VALUES (@BarcodeNumber, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
+                string query = "INSERT INTO information (BarcodeNumber, Product_Name, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
+               "VALUES (@BarcodeNumber, @Product_Name, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
 
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
                     cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+                    cmd.Parameters.AddWithValue("@ProductName", ProductName_TB.Text);
                     cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
@@ -347,15 +362,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         ChangePicture(null);
                         CheckImageButtonBehavior();
 
-                        BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
-                        Model_TB.Text = "[1-100 ตัวอักษร]";
-                        Brand_TB.Text = "[1-100 ตัวอักษร]";
-                        Serial_TB.Text = "[1-100 ตัวอักษร]";
-                        Price_TB.Text = "[1-30 ตัวเลข]";
-                        Room_TB.Text = "[1-100 ตัวอักษร]";
-                        Note_TB.Text = "[0-200 ตัวอักษร]";
+                        BarcodeID_TB.Text = BarcodeIDDF;
+                        ProductName_TB.Text = ProductNameDF;
+                        Model_TB.Text = ModelDF;
+                        Brand_TB.Text = BrandDF;
+                        Serial_TB.Text = SerialDF;
+                        Price_TB.Text = PriceDF;
+                        Room_TB.Text = RoomDF;
+                        Note_TB.Text = NoteDF;
 
                         BarcodeID_TB.ForeColor = Color.Gray;
+                        ProductName_TB.ForeColor = Color.Gray;
                         Model_TB.ForeColor = Color.Gray;
                         Brand_TB.ForeColor = Color.Gray;
                         Serial_TB.ForeColor = Color.Gray;
@@ -401,15 +418,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             //PicFilePath = "";
             //pictureBox1.Image = Properties.Resources.NoImage;
-            BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
-            Model_TB.Text = "[1-100 ตัวอักษร]";
-            Brand_TB.Text = "[1-100 ตัวอักษร]";
-            Serial_TB.Text = "[1-100 ตัวอักษร]";
-            Price_TB.Text = "[1-30 ตัวเลข]";
-            Room_TB.Text = "[1-100 ตัวอักษร]";
-            Note_TB.Text = "[0-200 ตัวอักษร]";
+            BarcodeID_TB.Text = BarcodeIDDF;
+            ProductName_TB.Text = ProductNameDF;
+            Model_TB.Text = ModelDF;
+            Brand_TB.Text = BrandDF;
+            Serial_TB.Text = SerialDF;
+            Price_TB.Text = PriceDF;
+            Room_TB.Text = RoomDF;
+            Note_TB.Text = NoteDF;
 
             BarcodeID_TB.ForeColor = Color.Gray;
+            ProductName_TB.ForeColor = Color.Gray;
             Model_TB.ForeColor = Color.Gray;
             Brand_TB.ForeColor = Color.Gray;
             Serial_TB.ForeColor = Color.Gray;
@@ -599,7 +618,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void BarcodeID_TB_Enter(object sender, EventArgs e)
         {
-            if (BarcodeID_TB.Text == "[1-50 ตัวอักษร]")
+            if (BarcodeID_TB.Text == BarcodeIDDF)
             {
                 BarcodeID_TB.Text = "";
                 BarcodeID_TB.ForeColor = Color.Black;
@@ -608,7 +627,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Model_TB_Enter(object sender, EventArgs e)
         {
-            if (Model_TB.Text == "[1-100 ตัวอักษร]")
+            if (Model_TB.Text == ModelDF)
             {
                 Model_TB.Text = "";
                 Model_TB.ForeColor = Color.Black;
@@ -617,7 +636,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Brand_TB_Enter(object sender, EventArgs e)
         {
-            if (Brand_TB.Text == "[1-100 ตัวอักษร]")
+            if (Brand_TB.Text == BrandDF)
             {
                 Brand_TB.Text = "";
                 Brand_TB.ForeColor = Color.Black;
@@ -626,7 +645,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Serial_TB_Enter(object sender, EventArgs e)
         {
-            if (Serial_TB.Text == "[1-100 ตัวอักษร]")
+            if (Serial_TB.Text == SerialDF)
             {
                 Serial_TB.Text = "";
                 Serial_TB.ForeColor = Color.Black;
@@ -635,7 +654,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Price_TB_Enter(object sender, EventArgs e)
         {
-            if (Price_TB.Text == "[1-30 ตัวเลข]")
+            if (Price_TB.Text == PriceDF)
             {
                 Price_TB.Text = "";
                 Price_TB.ForeColor = Color.Black;
@@ -644,7 +663,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Room_TB_Enter(object sender, EventArgs e)
         {
-            if (Room_TB.Text == "[1-100 ตัวอักษร]")
+            if (Room_TB.Text == RoomDF)
             {
                 Room_TB.Text = "";
                 Room_TB.ForeColor = Color.Black;
@@ -653,7 +672,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Note_TB_Enter(object sender, EventArgs e)
         {
-            if (Note_TB.Text == "[0-200 ตัวอักษร]")
+            if (Note_TB.Text == NoteDF)
             {
                 Note_TB.Text = "";
                 Note_TB.ForeColor = Color.Black;
@@ -662,9 +681,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void BarcodeID_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(BarcodeID_TB.Text))
+            if (String.IsNullOrEmpty(BarcodeID_TB.Text) || BarcodeID_TB.Text == BarcodeIDDF)
             {
-                BarcodeID_TB.Text = "[1-50 ตัวอักษร]";
+                BarcodeID_TB.Text = BarcodeIDDF;
                 BarcodeID_TB.ForeColor = Color.Gray;
             }
             else
@@ -675,9 +694,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Model_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Model_TB.Text))
+            if (String.IsNullOrEmpty(Model_TB.Text) || Model_TB.Text == ModelDF)
             {
-                Model_TB.Text = "[1-100 ตัวอักษร]";
+                Model_TB.Text = ModelDF;
                 Model_TB.ForeColor = Color.Gray;
             }
             else
@@ -688,9 +707,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Brand_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Brand_TB.Text))
+            if (String.IsNullOrEmpty(Brand_TB.Text) || Brand_TB.Text == BrandDF)
             {
-                Brand_TB.Text = "[1-100 ตัวอักษร]";
+                Brand_TB.Text = BrandDF;
                 Brand_TB.ForeColor = Color.Gray;
             }
             else
@@ -701,9 +720,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Serial_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Serial_TB.Text))
+            if (String.IsNullOrEmpty(Serial_TB.Text) || Serial_TB.Text == SerialDF)
             {
-                Serial_TB.Text = "[1-100 ตัวอักษร]";
+                Serial_TB.Text = SerialDF;
                 Serial_TB.ForeColor = Color.Gray;
             }
             else
@@ -714,9 +733,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Price_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Price_TB.Text))
+            if (String.IsNullOrEmpty(Price_TB.Text) || Price.Text == PriceDF)
             {
-                Price_TB.Text = "[1-30 ตัวเลข]";
+                Price_TB.Text = PriceDF;
                 Price_TB.ForeColor = Color.Gray;
             }
             else
@@ -727,9 +746,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Room_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Room_TB.Text))
+            if (String.IsNullOrEmpty(Room_TB.Text) || Room_TB.Text == RoomDF)
             {
-                Room_TB.Text = "[1-100 ตัวอักษร]";
+                Room_TB.Text = RoomDF;
                 Room_TB.ForeColor = Color.Gray;
             }
             else
@@ -740,9 +759,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Note_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Note_TB.Text))
+            if (String.IsNullOrEmpty(Note_TB.Text) || Note_TB.Text == NoteDF)
             {
-                Note_TB.Text = "[0-200 ตัวอักษร]";
+                Note_TB.Text = NoteDF;
                 Note_TB.ForeColor = Color.Gray;
             }
             else
@@ -751,6 +770,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        
+        private void ProductName_TB_Enter(object sender, EventArgs e)
+        {
+            if (ProductName_TB.Text == ProductNameDF)
+            {
+                ProductName_TB.Text = "";
+                ProductName_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void ProductName_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(ProductName_TB.Text) || ProductName_TB.Text == ProductNameDF)
+            {
+                ProductName_TB.Text = ProductNameDF;
+                ProductName_TB.ForeColor = Color.Gray;
+            }
+            else
+            {
+                ProductName_TB.ForeColor = Color.Black;
+            }
+        }
     }
 }

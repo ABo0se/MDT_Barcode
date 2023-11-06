@@ -122,9 +122,9 @@
             // 
             this.Model_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Model_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Model_TB.Location = new System.Drawing.Point(57, 3);
+            this.Model_TB.Location = new System.Drawing.Point(48, 3);
             this.Model_TB.Name = "Model_TB";
-            this.Model_TB.Size = new System.Drawing.Size(473, 34);
+            this.Model_TB.Size = new System.Drawing.Size(482, 34);
             this.Model_TB.TabIndex = 1;
             this.Model_TB.Enter += new System.EventHandler(this.Model_TB_Enter);
             this.Model_TB.Leave += new System.EventHandler(this.Model_TB_Leave);
@@ -133,9 +133,9 @@
             // 
             this.Brand_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Brand_TB.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Brand_TB.Location = new System.Drawing.Point(48, 3);
+            this.Brand_TB.Location = new System.Drawing.Point(57, 3);
             this.Brand_TB.Name = "Brand_TB";
-            this.Brand_TB.Size = new System.Drawing.Size(482, 34);
+            this.Brand_TB.Size = new System.Drawing.Size(473, 34);
             this.Brand_TB.TabIndex = 1;
             this.Brand_TB.Enter += new System.EventHandler(this.Brand_TB_Enter);
             this.Brand_TB.Leave += new System.EventHandler(this.Brand_TB_Leave);
@@ -358,7 +358,7 @@
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.Brand_TB, 1, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 82);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -418,7 +418,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.Model_TB, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 125);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
