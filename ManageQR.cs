@@ -100,6 +100,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                 {
                                     Date = reader.GetDateTime("Time"),
                                     FormattedDate = reader.GetDateTime("Time").ToString("dd-MM-yyyy HH:mm:ss"),
+                                    Product_Name = reader["Product_Name"].ToString(),
                                     BarcodeNumber = reader["BarcodeNumber"].ToString(),
                                     ModelNumber = reader["Model_Name"].ToString(),
                                     Brand = reader["Brand"].ToString(),
@@ -203,7 +204,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 /////////////
                 BarcodenumberCollector.Rows.Add
-                (numberofsortedItem, result.FormattedDate, result.BarcodeNumber, result.ModelNumber,
+                (numberofsortedItem, result.Product_Name, result.BarcodeNumber, result.ModelNumber,
                  result.Brand, result.SerialNum, result.Price, result.Room,
                  result.Description, tempstatus, tempcondition);
                 numberofsortedItem++;

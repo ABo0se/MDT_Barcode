@@ -149,7 +149,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Marshal.FreeCoTaskMem(ptrData);
 
             ff = pfc.Families[0];
-            embeddedFont = new Font(ff, 15f, FontStyle.Regular);
+            embeddedFont = new Font(ff, 16f, FontStyle.Regular);
         }
 
         public static void ApplyEmbeddedFont(Control control)
@@ -180,7 +180,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         if (cell.Style != null && cell.Style.Font != null)
                         {
-                            cell.Style.Font = new Font(ff, 12.0f, FontStyle.Regular);
+                            cell.Style.Font = new Font(ff, 16.0f, FontStyle.Regular);
                         }
                     }
                 }

@@ -22,14 +22,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         List<Image> selectedImages = new List<Image>();
         int? selectingImage = null;
         /////////////////////////////////////////////
-        string BarcodeIDDF = "[Example : 460650003296]";
-        string ProductNameDF = "[Example : Occulus Quest 2023]";
-        string ModelDF = "[Example : KD-43X8000H]";
-        string BrandDF = "[Example : Google]";
-        string SerialDF = "[Example : ABC12345XYZ]";
-        string PriceDF = "[Example : 1000]";
-        string RoomDF = "[Example : 516]";
-        string NoteDF = "[Example : วัสดุนี้ได้ซื้อในราคาพิเศษ]";
+        string BarcodeIDDF = "[ตัวอย่าง : 460650003296]";
+        string ProductNameDF = "[ตัวอย่าง : Occulus Quest 2023]";
+        string ModelDF = "[ตัวอย่าง : KD-43X8000H]";
+        string BrandDF = "[ตัวอย่าง : Google]";
+        string SerialDF = "[ตัวอย่าง : ABC12345XYZ]";
+        string PriceDF = "[ตัวอย่าง : 1000]";
+        string RoomDF = "[ตัวอย่าง : 516]";
+        string NoteDF = "[ตัวอย่าง : วัสดุนี้ได้ซื้อในราคาพิเศษ]";
         ////////////////////////////////////////////
         public AddItemP2()
         {
