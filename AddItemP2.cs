@@ -399,12 +399,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public void InitializePage()
         {
             BarcodeScanner2 barcodeScanner1 = new BarcodeScanner2(BarcodeID_TB);
-            BarcodeScanner2 barcodeScanner2 = new BarcodeScanner2(Model_TB);
-            BarcodeScanner2 barcodeScanner3 = new BarcodeScanner2(Brand_TB);
-            BarcodeScanner2 barcodeScanner4 = new BarcodeScanner2(Serial_TB);
-            BarcodeScanner2 barcodeScanner5 = new BarcodeScanner2(Price_TB);
-            BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Room_TB);
-            BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Note_TB);
+            BarcodeScanner2 barcodeScanner2 = new BarcodeScanner2(ProductName_TB);
+            BarcodeScanner2 barcodeScanner3 = new BarcodeScanner2(Model_TB);
+            BarcodeScanner2 barcodeScanner4 = new BarcodeScanner2(Brand_TB);
+            BarcodeScanner2 barcodeScanner5 = new BarcodeScanner2(Serial_TB);
+            BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Price_TB);
+            BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Room_TB);
+            BarcodeScanner2 barcodeScanner8 = new BarcodeScanner2(Note_TB);
             barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             /////////////////////////////////
             if (selectedImages != null)
@@ -736,7 +737,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Price_TB_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Price_TB.Text) || Price.Text == PriceDF)
+            if (String.IsNullOrEmpty(Price_TB.Text) || Price_TB.Text == PriceDF)
             {
                 Price_TB.Text = PriceDF;
                 Price_TB.ForeColor = Color.Gray;
