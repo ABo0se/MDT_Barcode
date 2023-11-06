@@ -53,6 +53,9 @@
             this.Brand_TB = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ProductNameTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.ProductName_TB = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BarcodeID_TB = new System.Windows.Forms.TextBox();
@@ -64,14 +67,12 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.Quality = new System.Windows.Forms.Label();
             this.Add_Item_toDB = new System.Windows.Forms.Button();
-            this.ProductNameTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.ProductName_TB = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.ProductNameTableLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -79,7 +80,6 @@
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
-            this.ProductNameTableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -265,7 +265,7 @@
             "จำหน่ายแล้ว",
             "โอนแล้ว",
             "อื่นๆ"});
-            this.ConditionBox.Location = new System.Drawing.Point(83, 4);
+            this.ConditionBox.Location = new System.Drawing.Point(83, 5);
             this.ConditionBox.Margin = new System.Windows.Forms.Padding(2);
             this.ConditionBox.Name = "ConditionBox";
             this.ConditionBox.Size = new System.Drawing.Size(252, 44);
@@ -454,6 +454,49 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 545);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // ProductNameTableLayout
+            // 
+            this.ProductNameTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductNameTableLayout.AutoSize = true;
+            this.ProductNameTableLayout.ColumnCount = 2;
+            this.ProductNameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.ProductNameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ProductNameTableLayout.Controls.Add(this.ProductName_TB, 1, 0);
+            this.ProductNameTableLayout.Controls.Add(this.label2, 0, 0);
+            this.ProductNameTableLayout.Location = new System.Drawing.Point(0, 99);
+            this.ProductNameTableLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.ProductNameTableLayout.Name = "ProductNameTableLayout";
+            this.ProductNameTableLayout.RowCount = 1;
+            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.ProductNameTableLayout.Size = new System.Drawing.Size(605, 47);
+            this.ProductNameTableLayout.TabIndex = 2;
+            // 
+            // ProductName_TB
+            // 
+            this.ProductName_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductName_TB.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.ProductName_TB.Location = new System.Drawing.Point(119, 2);
+            this.ProductName_TB.Margin = new System.Windows.Forms.Padding(2);
+            this.ProductName_TB.Name = "ProductName_TB";
+            this.ProductName_TB.Size = new System.Drawing.Size(484, 43);
+            this.ProductName_TB.TabIndex = 2;
+            this.ProductName_TB.Enter += new System.EventHandler(this.ProductName_TB_Enter);
+            this.ProductName_TB.Leave += new System.EventHandler(this.ProductName_TB_Leave);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label2.Location = new System.Drawing.Point(0, 5);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 36);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "* ชื่อครุภัณฑ์ :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -626,49 +669,6 @@
             this.Add_Item_toDB.UseVisualStyleBackColor = true;
             this.Add_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
             // 
-            // ProductNameTableLayout
-            // 
-            this.ProductNameTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductNameTableLayout.AutoSize = true;
-            this.ProductNameTableLayout.ColumnCount = 2;
-            this.ProductNameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.ProductNameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ProductNameTableLayout.Controls.Add(this.ProductName_TB, 1, 0);
-            this.ProductNameTableLayout.Controls.Add(this.label2, 0, 0);
-            this.ProductNameTableLayout.Location = new System.Drawing.Point(0, 99);
-            this.ProductNameTableLayout.Margin = new System.Windows.Forms.Padding(0);
-            this.ProductNameTableLayout.Name = "ProductNameTableLayout";
-            this.ProductNameTableLayout.RowCount = 1;
-            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.ProductNameTableLayout.Size = new System.Drawing.Size(605, 47);
-            this.ProductNameTableLayout.TabIndex = 2;
-            // 
-            // ProductName_TB
-            // 
-            this.ProductName_TB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductName_TB.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.ProductName_TB.Location = new System.Drawing.Point(119, 2);
-            this.ProductName_TB.Margin = new System.Windows.Forms.Padding(2);
-            this.ProductName_TB.Name = "ProductName_TB";
-            this.ProductName_TB.Size = new System.Drawing.Size(484, 43);
-            this.ProductName_TB.TabIndex = 2;
-            this.ProductName_TB.Enter += new System.EventHandler(this.ProductName_TB_Enter);
-            this.ProductName_TB.Leave += new System.EventHandler(this.ProductName_TB_Leave);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.label2.Location = new System.Drawing.Point(0, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 36);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "* ชื่อครุภัณฑ์ :";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // AddItemP2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -696,6 +696,8 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.ProductNameTableLayout.ResumeLayout(false);
+            this.ProductNameTableLayout.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -710,8 +712,6 @@
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
-            this.ProductNameTableLayout.ResumeLayout(false);
-            this.ProductNameTableLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }

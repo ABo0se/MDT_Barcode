@@ -253,13 +253,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
 
                 // Compare the data
-                bool isDataSame = dbData.Contains(BarcodeID_TB.Text); // Check if the barcode is already in the database
+                bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
 
                 string warningMessage = "";
 
-                if (isDataSame)
+                if (!isDataSame)
                 {
-                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว\n";
+                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากไม่ได้บันทึกรหัสครุภัณฑ์เดิมไว้\n";
                 }
 
                 if (BarcodeID_TB.Text == "" || ProductName_TB.Text == "" ||

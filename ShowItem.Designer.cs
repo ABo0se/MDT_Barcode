@@ -48,18 +48,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.BarcodeID_TXT = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Created_Time = new System.Windows.Forms.Label();
             this.Brand_TXT = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.SN_TXT = new System.Windows.Forms.Label();
             this.PicInformation = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.Created_Time = new System.Windows.Forms.Label();
             this.ModelName_TXT = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ProductName_TXT = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -71,6 +74,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -81,7 +85,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(94, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(373, 255);
+            this.pictureBox1.Size = new System.Drawing.Size(450, 270);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
@@ -91,11 +95,11 @@
             // 
             this.Status_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Status_TXT.AutoSize = true;
-            this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status_TXT.Location = new System.Drawing.Point(57, 3);
+            this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Status_TXT.Location = new System.Drawing.Point(75, 9);
             this.Status_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Status_TXT.Name = "Status_TXT";
-            this.Status_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Status_TXT.Size = new System.Drawing.Size(21, 36);
             this.Status_TXT.TabIndex = 26;
             this.Status_TXT.Text = "-";
             this.Status_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -107,9 +111,9 @@
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Nextpic.Location = new System.Drawing.Point(480, 101);
+            this.Nextpic.Location = new System.Drawing.Point(555, 90);
             this.Nextpic.Name = "Nextpic";
-            this.Nextpic.Size = new System.Drawing.Size(65, 80);
+            this.Nextpic.Size = new System.Drawing.Size(65, 120);
             this.Nextpic.TabIndex = 30;
             this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
@@ -122,9 +126,9 @@
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Prevpic.Location = new System.Drawing.Point(15, 100);
+            this.Prevpic.Location = new System.Drawing.Point(15, 90);
             this.Prevpic.Name = "Prevpic";
-            this.Prevpic.Size = new System.Drawing.Size(65, 80);
+            this.Prevpic.Size = new System.Drawing.Size(65, 120);
             this.Prevpic.TabIndex = 29;
             this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
@@ -138,23 +142,23 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel12.Controls.Add(this.Quality, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.Condition_TXT, 1, 0);
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(0, 309);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(0, 540);
             this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(533, 33);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(606, 56);
             this.tableLayoutPanel12.TabIndex = 33;
             // 
             // Quality
             // 
             this.Quality.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Quality.AutoSize = true;
-            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quality.Location = new System.Drawing.Point(0, 3);
+            this.Quality.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Quality.Location = new System.Drawing.Point(0, 11);
             this.Quality.Margin = new System.Windows.Forms.Padding(0);
             this.Quality.Name = "Quality";
-            this.Quality.Size = new System.Drawing.Size(51, 27);
+            this.Quality.Size = new System.Drawing.Size(67, 36);
             this.Quality.TabIndex = 19;
             this.Quality.Text = "สภาพ :";
             this.Quality.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,11 +167,11 @@
             // 
             this.Condition_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Condition_TXT.AutoSize = true;
-            this.Condition_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Condition_TXT.Location = new System.Drawing.Point(51, 3);
+            this.Condition_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Condition_TXT.Location = new System.Drawing.Point(67, 11);
             this.Condition_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Condition_TXT.Name = "Condition_TXT";
-            this.Condition_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Condition_TXT.Size = new System.Drawing.Size(21, 36);
             this.Condition_TXT.TabIndex = 27;
             this.Condition_TXT.Text = "-";
             this.Condition_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -181,23 +185,23 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.Note_TXT, 1, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 241);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 441);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel8.TabIndex = 30;
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 27);
+            this.label7.Size = new System.Drawing.Size(95, 36);
             this.label7.TabIndex = 15;
             this.label7.Text = "หมายเหตุ :";
             // 
@@ -205,11 +209,11 @@
             // 
             this.Note_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Note_TXT.AutoSize = true;
-            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Note_TXT.Location = new System.Drawing.Point(73, 0);
+            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Note_TXT.Location = new System.Drawing.Point(95, 0);
             this.Note_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Note_TXT.Name = "Note_TXT";
-            this.Note_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Note_TXT.Size = new System.Drawing.Size(21, 36);
             this.Note_TXT.TabIndex = 21;
             this.Note_TXT.Text = "-";
             this.Note_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,23 +227,23 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.Stay_TXT, 1, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 207);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 387);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel7.TabIndex = 29;
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 27);
+            this.label6.Size = new System.Drawing.Size(107, 36);
             this.label6.TabIndex = 6;
             this.label6.Text = "ประจำอยู่ที่ :";
             // 
@@ -247,11 +251,11 @@
             // 
             this.Stay_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Stay_TXT.AutoSize = true;
-            this.Stay_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stay_TXT.Location = new System.Drawing.Point(80, 0);
+            this.Stay_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Stay_TXT.Location = new System.Drawing.Point(107, 0);
             this.Stay_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Stay_TXT.Name = "Stay_TXT";
-            this.Stay_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Stay_TXT.Size = new System.Drawing.Size(21, 36);
             this.Stay_TXT.TabIndex = 20;
             this.Stay_TXT.Text = "-";
             this.Stay_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -265,23 +269,23 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.Price_TXT, 1, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 173);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 333);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel6.TabIndex = 28;
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 27);
+            this.label5.Size = new System.Drawing.Size(63, 36);
             this.label5.TabIndex = 5;
             this.label5.Text = "ราคา :";
             // 
@@ -289,11 +293,11 @@
             // 
             this.Price_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Price_TXT.AutoSize = true;
-            this.Price_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Price_TXT.Location = new System.Drawing.Point(46, 0);
+            this.Price_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Price_TXT.Location = new System.Drawing.Point(63, 0);
             this.Price_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Price_TXT.Name = "Price_TXT";
-            this.Price_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Price_TXT.Size = new System.Drawing.Size(21, 36);
             this.Price_TXT.TabIndex = 19;
             this.Price_TXT.Text = "-";
             this.Price_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -307,23 +311,23 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BarcodeID_TXT, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 37);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 63);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 27);
+            this.label4.Size = new System.Drawing.Size(150, 36);
             this.label4.TabIndex = 1;
             this.label4.Text = "หมายเลขครุภัณฑ์ :";
             // 
@@ -331,11 +335,11 @@
             // 
             this.BarcodeID_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.BarcodeID_TXT.AutoSize = true;
-            this.BarcodeID_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarcodeID_TXT.Location = new System.Drawing.Point(116, 0);
+            this.BarcodeID_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodeID_TXT.Location = new System.Drawing.Point(150, 0);
             this.BarcodeID_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.BarcodeID_TXT.Name = "BarcodeID_TXT";
-            this.BarcodeID_TXT.Size = new System.Drawing.Size(16, 27);
+            this.BarcodeID_TXT.Size = new System.Drawing.Size(21, 36);
             this.BarcodeID_TXT.TabIndex = 22;
             this.BarcodeID_TXT.Text = "-";
             this.BarcodeID_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -346,42 +350,54 @@
             this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.AutoSize = true;
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.Created_Time, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.Brand_TXT, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 105);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 225);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel3.TabIndex = 25;
             // 
-            // label3
+            // Created_Time
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 27);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "ยี่ห้อ :";
+            this.Created_Time.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Created_Time.AutoSize = true;
+            this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Created_Time.Location = new System.Drawing.Point(0, 0);
+            this.Created_Time.Margin = new System.Windows.Forms.Padding(0);
+            this.Created_Time.Name = "Created_Time";
+            this.Created_Time.Size = new System.Drawing.Size(45, 36);
+            this.Created_Time.TabIndex = 3;
+            this.Created_Time.Text = "รุ่น :";
             // 
             // Brand_TXT
             // 
             this.Brand_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Brand_TXT.AutoSize = true;
-            this.Brand_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Brand_TXT.Location = new System.Drawing.Point(50, 0);
+            this.Brand_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Brand_TXT.Location = new System.Drawing.Point(45, 0);
             this.Brand_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Brand_TXT.Name = "Brand_TXT";
-            this.Brand_TXT.Size = new System.Drawing.Size(16, 27);
+            this.Brand_TXT.Size = new System.Drawing.Size(21, 36);
             this.Brand_TXT.TabIndex = 17;
             this.Brand_TXT.Text = "-";
             this.Brand_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 36);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "ยี่ห้อ :";
             // 
             // tableLayoutPanel5
             // 
@@ -392,23 +408,23 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.SN_TXT, 1, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 139);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 279);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel5.TabIndex = 27;
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 27);
+            this.label2.Size = new System.Drawing.Size(141, 36);
             this.label2.TabIndex = 4;
             this.label2.Text = "Serial Number :";
             // 
@@ -416,11 +432,11 @@
             // 
             this.SN_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SN_TXT.AutoSize = true;
-            this.SN_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SN_TXT.Location = new System.Drawing.Point(106, 0);
+            this.SN_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.SN_TXT.Location = new System.Drawing.Point(141, 0);
             this.SN_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.SN_TXT.Name = "SN_TXT";
-            this.SN_TXT.Size = new System.Drawing.Size(16, 27);
+            this.SN_TXT.Size = new System.Drawing.Size(21, 36);
             this.SN_TXT.TabIndex = 18;
             this.SN_TXT.Text = "-";
             this.SN_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -428,11 +444,11 @@
             // PicInformation
             // 
             this.PicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PicInformation.Location = new System.Drawing.Point(0, 2);
+            this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.PicInformation.Location = new System.Drawing.Point(0, 12);
             this.PicInformation.Margin = new System.Windows.Forms.Padding(0);
             this.PicInformation.Name = "PicInformation";
-            this.PicInformation.Size = new System.Drawing.Size(533, 30);
+            this.PicInformation.Size = new System.Drawing.Size(606, 30);
             this.PicInformation.TabIndex = 31;
             this.PicInformation.Text = "-";
             this.PicInformation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -442,39 +458,27 @@
             this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.ModelName_TXT, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 71);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 171);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(533, 27);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(606, 36);
             this.tableLayoutPanel4.TabIndex = 26;
-            // 
-            // Created_Time
-            // 
-            this.Created_Time.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Created_Time.AutoSize = true;
-            this.Created_Time.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Created_Time.Location = new System.Drawing.Point(0, 0);
-            this.Created_Time.Margin = new System.Windows.Forms.Padding(0);
-            this.Created_Time.Name = "Created_Time";
-            this.Created_Time.Size = new System.Drawing.Size(35, 27);
-            this.Created_Time.TabIndex = 3;
-            this.Created_Time.Text = "รุ่น :";
             // 
             // ModelName_TXT
             // 
             this.ModelName_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ModelName_TXT.AutoSize = true;
-            this.ModelName_TXT.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModelName_TXT.Location = new System.Drawing.Point(50, 0);
+            this.ModelName_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ModelName_TXT.Location = new System.Drawing.Point(57, 0);
             this.ModelName_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.ModelName_TXT.Name = "ModelName_TXT";
-            this.ModelName_TXT.Size = new System.Drawing.Size(16, 27);
+            this.ModelName_TXT.Size = new System.Drawing.Size(21, 36);
             this.ModelName_TXT.TabIndex = 16;
             this.ModelName_TXT.Text = "-";
             this.ModelName_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -486,31 +490,33 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel10, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.PicInformation, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 0, 8);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 278);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 0, 9);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 298);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(533, 345);
+            this.tableLayoutPanel1.RowCount = 11;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09091F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(606, 596);
             this.tableLayoutPanel1.TabIndex = 32;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -521,37 +527,79 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Controls.Add(this.Status_TXT, 1, 0);
             this.tableLayoutPanel9.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 272);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 486);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(533, 34);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(606, 54);
             this.tableLayoutPanel9.TabIndex = 34;
             // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("TH Sarabun New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(0, 3);
+            this.label8.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label8.Location = new System.Drawing.Point(0, 9);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(57, 27);
+            this.label8.Size = new System.Drawing.Size(75, 36);
             this.label8.TabIndex = 16;
             this.label8.Text = "สถานะ :";
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel10.AutoSize = true;
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.ProductName_TXT, 1, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 117);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(606, 36);
+            this.tableLayoutPanel10.TabIndex = 33;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 36);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "ชื่อครุภัณฑ์ :";
+            // 
+            // ProductName_TXT
+            // 
+            this.ProductName_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ProductName_TXT.AutoSize = true;
+            this.ProductName_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ProductName_TXT.Location = new System.Drawing.Point(103, 0);
+            this.ProductName_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.ProductName_TXT.Name = "ProductName_TXT";
+            this.ProductName_TXT.Size = new System.Drawing.Size(21, 36);
+            this.ProductName_TXT.TabIndex = 22;
+            this.ProductName_TXT.Text = "-";
+            this.ProductName_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ShowItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(559, 636);
+            this.ClientSize = new System.Drawing.Size(632, 903);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Nextpic);
             this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.MinimumSize = new System.Drawing.Size(575, 675);
+            this.MinimumSize = new System.Drawing.Size(650, 950);
             this.Name = "ShowItem";
             this.Text = "Show Item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShowForm_Closing);
@@ -577,6 +625,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -614,5 +664,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ProductName_TXT;
     }
 }

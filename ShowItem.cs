@@ -48,6 +48,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 //DisplayData
                 BarcodeID_TXT.Text = data.BarcodeNumber;
+                ProductName_TXT.Text = data.Product_Name;
                 ModelName_TXT.Text = data.ModelNumber;
                 Brand_TXT.Text = data.Brand;
                 SN_TXT.Text = data.SerialNum;
@@ -176,6 +177,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             data = new SRResults
                             {
                                 Date = reader.GetDateTime("Time"),
+                                Product_Name = reader["Product_Name"].ToString(),
                                 BarcodeNumber = reader["BarcodeNumber"].ToString(),
                                 ModelNumber = reader["Model_Name"].ToString(),
                                 Brand = reader["Brand"].ToString(),
@@ -209,7 +211,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void InitializePage()
         {
-            BarcodeID_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = 
+            BarcodeID_TXT.Text = ProductName_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = 
             SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = Status_TXT.Text = Condition_TXT.Text = string.Empty;
             if (selectedImages != null)
             {
