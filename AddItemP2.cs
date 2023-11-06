@@ -119,8 +119,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
 
                 if (BarcodeID_TB.Text == "" || ProductName_TB.Text == ""  ||
-                    ProductName_TB.Text == ProductNameDF || checkstate == -1 || BarcodeID_TB.Text == BarcodeIDDF || 
-                    Model_TB.Text == "[1-100 ตัวอักษร]")
+                    ProductName_TB.Text == ProductNameDF || checkstate == -1 || BarcodeID_TB.Text == BarcodeIDDF)
                 {
                     warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วน ก่อนทำการเพิ่่มเข้ามา\n";
                 }
@@ -163,6 +162,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (Note_TB.Text == NoteDF || Note_TB.Text == "")
                 {
                     Note_TB.Text = "-";
+                }
+                if (Price_TB.Text == PriceDF || Price_TB.Text == "")
+                {
+                    Price_TB.Text = "0";
                 }
                 //////////////////////////////////////////////
                 if (!int.TryParse(Price_TB.Text, out int result))
@@ -243,11 +246,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
                     cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
-                    cmd.Parameters.AddWithValue("@ProductName", ProductName_TB.Text);
+                    cmd.Parameters.AddWithValue("@Product_Name", ProductName_TB.Text);
                     cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
                     cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
                     cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
-                    cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
+                    cmd.Parameters.AddWithValue("@Price", int.Parse(Price_TB.Text));
                     cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
                     cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
                     cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", jsonmd5Data);
