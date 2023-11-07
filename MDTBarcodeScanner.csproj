@@ -274,6 +274,7 @@
     <None Include="Resources\Delete Picture.png" />
     <Content Include="Resources\corruptedfile.png" />
     <Content Include="Resources\DeleteIcon.png" />
+    <None Include="Resources\DrawLine.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\filemissing.png" />
     <Content Include="Resources\search.png" />

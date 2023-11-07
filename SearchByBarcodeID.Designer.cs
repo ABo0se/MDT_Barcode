@@ -39,34 +39,34 @@
             // 
             this.BarcodeID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BarcodeID.AutoSize = true;
-            this.BarcodeID.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodeID.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.BarcodeID.Location = new System.Drawing.Point(2, 12);
             this.BarcodeID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BarcodeID.Name = "BarcodeID";
-            this.BarcodeID.Size = new System.Drawing.Size(193, 36);
+            this.BarcodeID.Size = new System.Drawing.Size(173, 36);
             this.BarcodeID.TabIndex = 0;
-            this.BarcodeID.Text = "ค้นหาหมายเลขครุภัณฑ์ :";
+            this.BarcodeID.Text = "หมายเลขครุภัณฑ์ :";
             // 
             // BarcodeText
             // 
             this.BarcodeText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BarcodeText.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.BarcodeText.Location = new System.Drawing.Point(199, 8);
+            this.BarcodeText.Location = new System.Drawing.Point(179, 8);
             this.BarcodeText.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.BarcodeText.Name = "BarcodeText";
-            this.BarcodeText.Size = new System.Drawing.Size(295, 43);
+            this.BarcodeText.Size = new System.Drawing.Size(315, 43);
             this.BarcodeText.TabIndex = 1;
             // 
             // SearchButton
             // 
             this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchButton.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.SearchButton.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.SearchButton.Location = new System.Drawing.Point(498, 9);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(108, 41);
             this.SearchButton.TabIndex = 2;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "ค้นหา";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
@@ -99,7 +99,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Search";
-            this.Text = "Search barcode";
+            this.Text = "ค้นหาครุภัณฑ์";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing);
             this.Load += new System.EventHandler(this.Search_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

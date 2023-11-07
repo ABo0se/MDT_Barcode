@@ -32,7 +32,13 @@
             this.Search = new System.Windows.Forms.Button();
             this.Manage = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddItem
@@ -41,13 +47,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddItem.AutoSize = true;
-            this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.AddItem.Location = new System.Drawing.Point(2, 3);
             this.AddItem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.AddItem.Name = "AddItem";
-            this.AddItem.Size = new System.Drawing.Size(544, 123);
+            this.AddItem.Size = new System.Drawing.Size(554, 83);
             this.AddItem.TabIndex = 0;
-            this.AddItem.Text = "Add Item";
+            this.AddItem.Text = "เพิ่มครุภัณฑ์";
             this.AddItem.UseVisualStyleBackColor = true;
             this.AddItem.Click += new System.EventHandler(this.AddItem_Click);
             // 
@@ -57,13 +63,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Search.AutoSize = true;
-            this.Search.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Search.Location = new System.Drawing.Point(2, 132);
+            this.Search.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Search.Location = new System.Drawing.Point(2, 92);
             this.Search.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(544, 123);
+            this.Search.Size = new System.Drawing.Size(554, 83);
             this.Search.TabIndex = 1;
-            this.Search.Text = "Search";
+            this.Search.Text = "ค้นหาครุภัณฑ์";
             this.Search.UseVisualStyleBackColor = true;
             this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
@@ -73,13 +79,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Manage.AutoSize = true;
-            this.Manage.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Manage.Location = new System.Drawing.Point(2, 261);
+            this.Manage.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Manage.Location = new System.Drawing.Point(2, 181);
             this.Manage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Manage.Name = "Manage";
-            this.Manage.Size = new System.Drawing.Size(544, 125);
+            this.Manage.Size = new System.Drawing.Size(554, 83);
             this.Manage.TabIndex = 2;
-            this.Manage.Text = "Manage";
+            this.Manage.Text = "จัดการครุภัณฑ์";
             this.Manage.UseVisualStyleBackColor = true;
             this.Manage.Click += new System.EventHandler(this.Manage_Click);
             // 
@@ -90,33 +96,109 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.AddItem, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Manage, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.Search, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(548, 389);
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 478);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button1.Location = new System.Drawing.Point(2, 389);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(554, 86);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "จัดการระบบยืม-คืน";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.AutoSize = true;
+            this.button3.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button3.Location = new System.Drawing.Point(2, 300);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(554, 83);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "ระบบยืม-คืน";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.InitialImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.DrawLine;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 281);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(552, 2);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.label1.Location = new System.Drawing.Point(12, 500);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 27);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Copyright @ 2023 by : ICE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.label2.Location = new System.Drawing.Point(529, 500);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 27);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "V.1.2";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(572, 413);
+            this.ClientSize = new System.Drawing.Size(582, 538);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainMenu";
-            this.Text = "MDT Inventory";
+            this.Text = "ระบบจัดการครุภัณฑ์ (มีเดีย)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Exit_Application);
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -126,5 +208,10 @@
         private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button Manage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

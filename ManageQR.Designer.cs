@@ -72,10 +72,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BarcodeSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodeSearchBox.Location = new System.Drawing.Point(170, 3);
+            this.BarcodeSearchBox.Location = new System.Drawing.Point(155, 3);
             this.BarcodeSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
-            this.BarcodeSearchBox.Size = new System.Drawing.Size(601, 43);
+            this.BarcodeSearchBox.Size = new System.Drawing.Size(621, 43);
             this.BarcodeSearchBox.TabIndex = 3;
             this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
@@ -85,13 +85,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(4, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 50);
+            this.label1.Size = new System.Drawing.Size(143, 50);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Search barcode :";
+            this.label1.Text = "ค้นหาครุภัณฑ์ :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -101,20 +101,20 @@
             this.label2.Location = new System.Drawing.Point(10, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 36);
+            this.label2.Size = new System.Drawing.Size(146, 36);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Barcode list";
+            this.label2.Text = "รายการครุภัณฑ์";
             // 
             // Export_Excel
             // 
             this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.Export_Excel.Location = new System.Drawing.Point(3, 3);
             this.Export_Excel.Name = "Export_Excel";
-            this.Export_Excel.Size = new System.Drawing.Size(248, 50);
+            this.Export_Excel.Size = new System.Drawing.Size(280, 50);
             this.Export_Excel.TabIndex = 7;
-            this.Export_Excel.Text = "Export to excel";
+            this.Export_Excel.Text = "นำข้อมูลออกเป็น Excel";
             this.Export_Excel.UseVisualStyleBackColor = true;
             this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
             // 
@@ -122,12 +122,12 @@
             // 
             this.Import_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Import_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Import_Excel.Location = new System.Drawing.Point(257, 3);
+            this.Import_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Import_Excel.Location = new System.Drawing.Point(289, 3);
             this.Import_Excel.Name = "Import_Excel";
-            this.Import_Excel.Size = new System.Drawing.Size(248, 50);
+            this.Import_Excel.Size = new System.Drawing.Size(280, 50);
             this.Import_Excel.TabIndex = 8;
-            this.Import_Excel.Text = "Import from excel";
+            this.Import_Excel.Text = "นำข้อมูลเข้าจาก Excel";
             this.Import_Excel.UseVisualStyleBackColor = true;
             this.Import_Excel.Click += new System.EventHandler(this.Import_Excel_Click);
             // 
@@ -144,9 +144,9 @@
             "มีให้ตรวจสอบ",
             "ไม่มีให้ตรวจสอบ",
             "ไม่พบข้อมูล"});
-            this.StatusSearchBox.Location = new System.Drawing.Point(1159, 3);
+            this.StatusSearchBox.Location = new System.Drawing.Point(1151, 3);
             this.StatusSearchBox.Name = "StatusSearchBox";
-            this.StatusSearchBox.Size = new System.Drawing.Size(194, 44);
+            this.StatusSearchBox.Size = new System.Drawing.Size(201, 44);
             this.StatusSearchBox.TabIndex = 11;
             this.StatusSearchBox.SelectedIndexChanged += new System.EventHandler(this.StatusSearchBox_SelectedIndexChanged);
             // 
@@ -156,10 +156,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RoomSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.RoomSearchBox.Location = new System.Drawing.Point(920, 3);
+            this.RoomSearchBox.Location = new System.Drawing.Point(904, 3);
             this.RoomSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RoomSearchBox.Name = "RoomSearchBox";
-            this.RoomSearchBox.Size = new System.Drawing.Size(232, 43);
+            this.RoomSearchBox.Size = new System.Drawing.Size(240, 43);
             this.RoomSearchBox.TabIndex = 12;
             this.RoomSearchBox.TextChanged += new System.EventHandler(this.RoomSearchBox_TextChanged);
             // 
@@ -169,25 +169,25 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(779, 0);
+            this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(784, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 50);
+            this.label3.Size = new System.Drawing.Size(112, 50);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Search room :";
+            this.label3.Text = "ค้นหาห้อง :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Del_Database
             // 
-            this.Del_Database.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Del_Database.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Del_Database.Location = new System.Drawing.Point(511, 3);
+            this.Del_Database.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Del_Database.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Del_Database.ForeColor = System.Drawing.Color.Red;
+            this.Del_Database.Location = new System.Drawing.Point(1393, 492);
             this.Del_Database.Name = "Del_Database";
-            this.Del_Database.Size = new System.Drawing.Size(248, 50);
+            this.Del_Database.Size = new System.Drawing.Size(177, 50);
             this.Del_Database.TabIndex = 14;
-            this.Del_Database.Text = "Delete all data";
+            this.Del_Database.Text = "ลบข้อมูลทั้งหมด";
             this.Del_Database.UseVisualStyleBackColor = true;
             this.Del_Database.Click += new System.EventHandler(this.Del_Database_Click);
             // 
@@ -196,32 +196,30 @@
             this.ExportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportPanel.AutoSize = true;
-            this.ExportPanel.ColumnCount = 4;
+            this.ExportPanel.ColumnCount = 3;
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ExportPanel.Controls.Add(this.Download_Template, 3, 0);
-            this.ExportPanel.Controls.Add(this.Del_Database, 2, 0);
             this.ExportPanel.Controls.Add(this.Import_Excel, 1, 0);
+            this.ExportPanel.Controls.Add(this.Download_Template, 2, 0);
             this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
-            this.ExportPanel.Location = new System.Drawing.Point(19, 490);
+            this.ExportPanel.Location = new System.Drawing.Point(16, 489);
             this.ExportPanel.Name = "ExportPanel";
             this.ExportPanel.RowCount = 1;
             this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ExportPanel.Size = new System.Drawing.Size(1018, 56);
+            this.ExportPanel.Size = new System.Drawing.Size(858, 56);
             this.ExportPanel.TabIndex = 15;
             // 
             // Download_Template
             // 
             this.Download_Template.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Download_Template.Location = new System.Drawing.Point(765, 3);
+            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Download_Template.Location = new System.Drawing.Point(575, 3);
             this.Download_Template.Name = "Download_Template";
-            this.Download_Template.Size = new System.Drawing.Size(250, 50);
+            this.Download_Template.Size = new System.Drawing.Size(280, 50);
             this.Download_Template.TabIndex = 18;
-            this.Download_Template.Text = "Download excel template";
+            this.Download_Template.Text = "โหลดตัวอย่างฟอร์ม";
             this.Download_Template.UseVisualStyleBackColor = true;
             this.Download_Template.Click += new System.EventHandler(this.Download_Template_Click);
             // 
@@ -247,7 +245,7 @@
             this.TitlePanel.Name = "TitlePanel";
             this.TitlePanel.RowCount = 1;
             this.TitlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TitlePanel.Size = new System.Drawing.Size(1558, 50);
+            this.TitlePanel.Size = new System.Drawing.Size(1564, 50);
             this.TitlePanel.TabIndex = 16;
             // 
             // ConditionBox
@@ -269,9 +267,9 @@
             "โอนแล้ว",
             "อื่นๆ",
             "ไม่พบข้อมูล"});
-            this.ConditionBox.Location = new System.Drawing.Point(1359, 3);
+            this.ConditionBox.Location = new System.Drawing.Point(1358, 3);
             this.ConditionBox.Name = "ConditionBox";
-            this.ConditionBox.Size = new System.Drawing.Size(196, 44);
+            this.ConditionBox.Size = new System.Drawing.Size(203, 44);
             this.ConditionBox.TabIndex = 10;
             this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
@@ -320,7 +318,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle3;
             this.BarcodenumberCollector.EnableHeadersVisualStyles = false;
-            this.BarcodenumberCollector.Location = new System.Drawing.Point(19, 95);
+            this.BarcodenumberCollector.Location = new System.Drawing.Point(16, 95);
             this.BarcodenumberCollector.Name = "BarcodenumberCollector";
             this.BarcodenumberCollector.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -337,7 +335,7 @@
             this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.BarcodenumberCollector.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.BarcodenumberCollector.RowTemplate.Height = 35;
-            this.BarcodenumberCollector.Size = new System.Drawing.Size(1545, 387);
+            this.BarcodenumberCollector.Size = new System.Drawing.Size(1554, 387);
             this.BarcodenumberCollector.TabIndex = 5;
             this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
             this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
@@ -493,6 +491,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1582, 553);
+            this.Controls.Add(this.Del_Database);
             this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.TitlePanel);
             this.Controls.Add(this.ExportPanel);
@@ -501,7 +500,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ManageQR";
-            this.Text = "Manage your barcode data";
+            this.Text = "จัดการครุภัณฑ์";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageQR_Closing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ExportPanel.ResumeLayout(false);

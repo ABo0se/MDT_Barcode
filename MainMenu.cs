@@ -41,10 +41,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-
                 string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
-                                        "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                        "BarcodeNumber VARCHAR(100), " +
+                                            "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                            "BarcodeNumber VARCHAR(100), " +
+                                            "Product_Name VARCHAR(100), " +
                                             "Model_Name VARCHAR(100), " +
                                             "Brand VARCHAR(100), " +
                                             "Serial_Number VARCHAR(100), " +
@@ -119,6 +119,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void MainMenu_Load(object sender, EventArgs e)
         {
             InitializeAllForms();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

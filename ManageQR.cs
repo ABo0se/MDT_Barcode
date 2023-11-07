@@ -845,17 +845,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                         if (rowsAffected >= 0)
                         {
-                            Console.WriteLine("All data deleted successfully.");
+                            Console.WriteLine("ข้อมูลถูกลบเรียบร้อยแล้ว!.");
                         }
                         else
                         {
-                            Console.WriteLine("Data deletion failed.");
+                            Console.WriteLine("เกิดข้อผิดพลาดในการลบข้อมูล.");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
                 finally
                 {
