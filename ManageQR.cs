@@ -1175,6 +1175,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         warningmessage += "ความยาวรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
                     }
+                    if (!int.TryParse(excelData.Price, out int result))
+                    {
+                        warningmessage += "กรุณากรอกราคาเป็นตัวเลขเท่านั้น\n";
+                    }
                     if (warningmessage != "")
                     {
                         MessageBox.Show(warningmessage);
