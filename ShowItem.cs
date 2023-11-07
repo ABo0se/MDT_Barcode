@@ -96,7 +96,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     case -1:
                     {
-                        Status_TXT.Text = "ไม่สามารถทราบได้";
+                        Status_TXT.Text = "ไม่พบข้อมูล";
                         break;
                     }
                     case 0:
@@ -114,7 +114,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     case -1:
                         {
-                            Condition_TXT.Text = "ไม่สามารถทราบได้";
+                            Condition_TXT.Text = "ไม่พบข้อมูล";
                             break;
                         }
                     case 0:

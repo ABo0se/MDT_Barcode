@@ -176,7 +176,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     case -1:
                         {
-                            tempstatus = "ไม่สามารถทราบได้";
+                            tempstatus = "ไม่พบข้อมูล";
                             break;
                         }
                     case 0:
@@ -194,7 +194,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     case -1:
                         {
-                            tempcondition = "ไม่สามารถทราบได้";
+                            tempcondition = "ไม่พบข้อมูล";
                             break;
                         }
                     case 0:
@@ -262,7 +262,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 //Your custom logic when the button is clicked
                 //Confirmation Box
                 DialogResult result = MessageBox.Show
-                ("Are you sure to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                ("ต้องการจะลบข้อมูลครุภัณฑ์นี้หรือไม่??", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // Check the user's response
                 if (result == DialogResult.Yes)
@@ -585,7 +585,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                         {
                                             case -1:
                                                 {
-                                                    tempstatus = "ไม่สามารถทราบได้";
+                                                    tempstatus = "ไม่พบข้อมูล";
                                                     break;
                                                 }
                                             case 0:
@@ -600,7 +600,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                                 }
                                             default:
                                                 {
-                                                    tempstatus = "ไม่สามารถทราบได้";
+                                                    tempstatus = "ไม่พบข้อมูล";
                                                     break;
                                                 }
                                         }
@@ -614,7 +614,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                         {
                                             case -1:
                                                 {
-                                                    tempcondition = "ไม่สามารถทราบได้";
+                                                    tempcondition = "ไม่พบข้อมูล";
                                                     break;
                                                 }
                                             case 0:
@@ -654,7 +654,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                                 }
                                             default:
                                                 {
-                                                    tempcondition = "ไม่สามารถทราบได้";
+                                                    tempcondition = "ไม่พบข้อมูล";
                                                     break;
                                                 }
                                         }
@@ -773,7 +773,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     //Your custom logic when the button is clicked
                     //Confirmation Box
                     DialogResult result = MessageBox.Show
-                    ("Do you really want to put data on your excel into this database?"
+                    ("ต้องการจะนำข้อมููลเข้ามาในฐานข้อมูลหรือไม่?"
                     , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     // Check the user's response
@@ -781,9 +781,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
                         DialogResult result2 = MessageBox.Show
-                        ("Do you want to replace all old database data with the new data?" + Environment.NewLine +
-                        "Yes : Replace old data with the new data." + Environment.NewLine +
-                        "No : Add and update data into this database."
+                        ("ต้องการจะแทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามาหรือไม่?" + Environment.NewLine +
+                        "Yes : แทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามา" + Environment.NewLine +
+                        "No : เพิ่มข้อมูลและยังคงเก็บข้อมูลเดิมเอาไว้"
                         , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         // Check the user's response
@@ -792,13 +792,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             ////////////////////////////////////////////////////
                             //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
                             DialogResult result4 = MessageBox.Show
-                            ("Do you really sure to delete old database before importing new data?\n" +
-                            "Abort/Ignore : Ignore deleting database before importing.\n" +
-                            "Retry : Continue deleting database and add import your excel data."
-                            , "Confirmation", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question);
+                            ("ต้องการที่จะลบฐานข้อมูลเก่าและแทนที่ด้วยข้อมูลที่นำเข้ามาหรือไม่?\n"
+                            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             // Check the user's response
-                            if (result4 == DialogResult.Retry)
+                            if (result4 == DialogResult.Yes)
                             {
                                 //Replace all data in the database.
                                 DeleteDataInDB();
@@ -870,7 +868,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             bool importfile = false;
             ////////
             DialogResult result2 = MessageBox.Show
-                        ("Do you want to import picture file path along with data?\n"
+                        ("ต้องการที่จะนำเข้าข้อมูลที่อยู่ไฟล์ภาพหรือไม่?\n"
                         , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             // Check the user's response
@@ -1047,7 +1045,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    //MessageBox.Show("Failed to update data.");
+                    MessageBox.Show("การเปลี่ยนแปลงข้อมูลล้มเหลว");
                 }
             }
         }
@@ -1076,7 +1074,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     int tempcondition = -1;
                     switch (worksheet1.Cells[row, 11].Text)
                     {
-                        case "ไม่สามารถทราบได้":
+                        case "ไม่พบข้อมูล":
                             tempstatus = -1;
                             break;
                         case "มีให้ตรวจสอบ":
@@ -1091,7 +1089,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     switch (worksheet1.Cells[row, 12].Text)
                     {
-                        case "ไม่สามารถทราบได้":
+                        case "ไม่พบข้อมูล":
                             tempcondition = -1;
                             break;
                         case "ใช้งานได้":
@@ -1208,15 +1206,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
             DialogResult result2 = MessageBox.Show
-            ("Do you want to delete barcode database data?\n" + "Abort/Ignore : Ignore deleting database.\n" + "Retry : Continue deleting database."
-            , "Confirmation", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question);
+            ("ต้องการที่จะลบหมายเลขครุภัณฑ์ในฐานข้อมูลหรือไม่?\n"
+            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             // Check the user's response
-            if (result2 == DialogResult.Retry)
+            if (result2 == DialogResult.Yes)
             {
                 DialogResult result3 = MessageBox.Show
-                ("Do you want to delete barcode database data?"
-                 , "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                ("แน่ใจหรือไม่ที่จะลบข้อมูลทั้งหมดในฐานข้อมูล?" 
+                 , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result3 == DialogResult.Yes)
                 {
                     DeleteDataInDB();
@@ -1258,12 +1256,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
 
                     // Notify the user that the download is complete
-                    MessageBox.Show("File download completed!");
+                    MessageBox.Show("การดาวน์โหลดไฟล์เสร็จเรียบร้อย");
                 }
             }
             else
             {
-                MessageBox.Show("Resource not found.");
+                MessageBox.Show("ไม่พบไฟล์ที่จะดาวน์โหลด");
             }
         }
     }

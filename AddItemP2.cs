@@ -262,18 +262,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Barcode Data inserted successfully!");
+                        MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ!");
                         //PullDataFromDB();
                     }
                     else
                     {
-                        MessageBox.Show("Failed to insert data.");
+                        MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์ล้มเหลว.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
             finally
             {
@@ -360,12 +360,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         }
                         else
                         {
-                            selectedImages = new List<System.Drawing.Image>();
+                            selectedImages = new List<Image>();
                         }
                         ChangePicture(null);
                         CheckImageButtonBehavior();
 
-                        BarcodeID_TB.Text = BarcodeIDDF;
+                        BarcodeID_TB.Text = barcode;
                         ProductName_TB.Text = ProductNameDF;
                         Model_TB.Text = ModelDF;
                         Brand_TB.Text = BrandDF;
@@ -374,7 +374,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         Room_TB.Text = RoomDF;
                         Note_TB.Text = NoteDF;
 
-                        BarcodeID_TB.ForeColor = Color.Gray;
+                        BarcodeID_TB.ForeColor = Color.Black;
                         ProductName_TB.ForeColor = Color.Gray;
                         Model_TB.ForeColor = Color.Gray;
                         Brand_TB.ForeColor = Color.Gray;
@@ -385,9 +385,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                         S_Have.Checked = false;
                         S_Donthave.Checked = false;
-                        ConditionBox.DataSource = null;
+                        ConditionBox.SelectedIndex = -1;
                         checkstate = -1;
                         conditionstate = -1;
+                        
                     }
                 }
             }
@@ -406,7 +407,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Price_TB);
             BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Room_TB);
             BarcodeScanner2 barcodeScanner8 = new BarcodeScanner2(Note_TB);
+            barcodeScanner1.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner3.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner4.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner5.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner6.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             /////////////////////////////////
             if (selectedImages != null)
             {
@@ -414,7 +422,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             else
             {
-                selectedImages = new List<System.Drawing.Image>();
+                selectedImages = new List<Image>();
             }
 
             ChangePicture(null);
