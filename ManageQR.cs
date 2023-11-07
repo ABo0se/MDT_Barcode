@@ -79,11 +79,42 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     mySqlConnection.Open();
 
-                    string query = "SELECT * FROM information WHERE (BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                    string query;
+                    bool ifcheckunknownstatus = statusbox == StatusSearchBox.Items.Count - 2;
+                    bool ifcheckunknowncondition = conditionbox == ConditionBox.Items.Count - 2;
+
+                    //MessageBox.Show("Count : " + (StatusSearchBox.Items.Count - 2).ToString() + " " + (ConditionBox.Items.Count - 2).ToString());
+                    //MessageBox.Show("Selecting : " + (StatusSearchBox.SelectedIndex - 1).ToString() + " " + (ConditionBox.SelectedIndex - 1).ToString());
+                    //MessageBox.Show(ifcheckunknownstatus.ToString() + " " + ifcheckunknowncondition.ToString());
+                    if (!(ifcheckunknowncondition || ifcheckunknownstatus))
+                    {
+                        query = "SELECT * FROM information WHERE (BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
                                     "AND (Room LIKE @RoomsearchCriteria OR @RoomsearchCriteria = 'ค้นหาห้อง' OR @RoomsearchCriteria = '') " +
                                     "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1) " +
                                     "AND (ITEM_CONDITION = @ConditionsearchCriteria OR @ConditionsearchCriteria = -1)";
-
+                    }
+                    else if (ifcheckunknowncondition && !ifcheckunknownstatus)
+                    {
+                        query = "SELECT * FROM information WHERE (BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                                    "AND (Room LIKE @RoomsearchCriteria OR @RoomsearchCriteria = 'ค้นหาห้อง' OR @RoomsearchCriteria = '') " +
+                                    "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1) " +
+                                    "AND (ITEM_CONDITION = -1)";
+                    }
+                    else if (!ifcheckunknowncondition && ifcheckunknownstatus)
+                    {
+                        query = "SELECT * FROM information WHERE (BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                                    "AND (Room LIKE @RoomsearchCriteria OR @RoomsearchCriteria = 'ค้นหาห้อง' OR @RoomsearchCriteria = '') " +
+                                    "AND (Status = -1) " +
+                                    "AND (ITEM_CONDITION = @ConditionsearchCriteria OR @ConditionsearchCriteria = -1)";
+                    }
+                    else
+                    {
+                        query = "SELECT * FROM information WHERE " +
+                        "(BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                        "AND (Room LIKE @RoomsearchCriteria OR @RoomsearchCriteria = 'ค้นหาห้อง' OR @RoomsearchCriteria = '') " +
+                        "AND (Status = -1) " +
+                        "AND (ITEM_CONDITION = -1)";
+                    }
 
                     using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
                     {
@@ -739,14 +770,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         return;
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                finally
-                {
                     //Your custom logic when the button is clicked
                     //Confirmation Box
                     DialogResult result = MessageBox.Show
@@ -769,8 +792,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             ////////////////////////////////////////////////////
                             //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
                             DialogResult result4 = MessageBox.Show
-                            ("Do you really sure to delete old database before importing new data?\n" + 
-                            "Abort/Ignore : Ignore deleting database before importing.\n" + 
+                            ("Do you really sure to delete old database before importing new data?\n" +
+                            "Abort/Ignore : Ignore deleting database before importing.\n" +
                             "Retry : Continue deleting database and add import your excel data."
                             , "Confirmation", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Question);
 
@@ -794,6 +817,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         //No action
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                finally
+                {
+                    
                 }
             }
         }
@@ -1031,6 +1063,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             List<SRResults> excelDataList = new List<SRResults>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            bool hasWarnings = false;
+
             using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
             {
                 var worksheet1 = package.Workbook.Worksheets["Data"]; // Assuming data is on the first worksheet
@@ -1050,6 +1084,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             break;
                         case "ไม่มีให้ตรวจสอบ":
                             tempstatus = 1;
+                            break;
+                        default:
+                            tempstatus = -1;
                             break;
                     }
                     switch (worksheet1.Cells[row, 12].Text)
@@ -1077,6 +1114,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             break;
                         case "อื่นๆ":
                             tempcondition = 6;
+                            break;
+                        default:
+                            tempcondition = -1;
                             break;
                     }
 
@@ -1107,8 +1147,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         Price = string.IsNullOrEmpty(worksheet1.Cells[row, 8].Text) ? "0" : worksheet1.Cells[row, 8].Text,
                         Room = string.IsNullOrEmpty(worksheet1.Cells[row, 9].Text) ? "-" : worksheet1.Cells[row, 9].Text,
                         Description = string.IsNullOrEmpty(worksheet1.Cells[row, 10].Text) ? "-" : worksheet1.Cells[row, 10].Text,
-                        FilePath = string.IsNullOrEmpty(worksheet2.Cells[row, 1].Text) ? "-" : worksheet2.Cells[row, 1].Text,
-                        SHA512 = string.IsNullOrEmpty(worksheet2.Cells[row, 2].Text) ? "-" : worksheet2.Cells[row, 2].Text,
+                        FilePath = string.IsNullOrEmpty(worksheet2.Cells[row, 1].Text) ? "[]" : worksheet2.Cells[row, 1].Text,
+                        SHA512 = string.IsNullOrEmpty(worksheet2.Cells[row, 2].Text) ? "[]" : worksheet2.Cells[row, 2].Text,
                         Status = tempstatus,
                         Condition = tempcondition,
                         Date = formattedDate,
@@ -1122,10 +1162,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         warningmessage += "ความยาวหมายเลขครุภัณฑ์ห้ามเกิน 50 ตัวอักษร\n";
                     }
-                    if (excelData.Product_Name.Length > 100 || excelData.ModelNumber.Length > 100 || excelData.Brand.Length > 100 || 
+                    if (excelData.Product_Name.Length > 100 || excelData.ModelNumber.Length > 100 || excelData.Brand.Length > 100 ||
                         excelData.SerialNum.Length > 100 || excelData.Room.Length > 100)
                     {
-                        warningmessage += "ความยาวข้อมูข้อมูลครุภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
+                        warningmessage += "ความยาวข้อมูลครุภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
                     }
                     if (excelData.Price.Length > 30)
                     {
@@ -1133,13 +1173,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     if (excelData.Description.Length > 200)
                     {
-                        warningmessage += "ความยาวของรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
+                        warningmessage += "ความยาวรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
                     }
-                    /////////////////////////////////////////////////////////////////
                     if (warningmessage != "")
                     {
                         MessageBox.Show(warningmessage);
-                        return null;
+                        excelDataList.Clear();
+                        hasWarnings = true;
+                        break; // Exit the loop immediately when a warning is encountered
                     }
                     else
                     {
@@ -1147,8 +1188,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                 }
             }
-            return excelDataList;
+
+            if (hasWarnings)
+            {
+                return null; // Return null if any warnings were encountered
+            }
+            else
+            {
+                return excelDataList; // Return the list if no warnings
+            }
         }
+
 
         private void Del_Database_Click(object sender, EventArgs e)
         {

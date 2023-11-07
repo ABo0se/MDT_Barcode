@@ -28,29 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BarcodeSearchBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
-            this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModelName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serial_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stay_At = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Condition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
             this.Export_Excel = new System.Windows.Forms.Button();
             this.Import_Excel = new System.Windows.Forms.Button();
             this.StatusSearchBox = new System.Windows.Forms.ComboBox();
@@ -61,11 +46,24 @@
             this.Download_Template = new System.Windows.Forms.Button();
             this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
             this.ConditionBox = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
+            this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
+            this.Action_Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Action_Edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Action_Search = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Condition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stay_At = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModelName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportPanel.SuspendLayout();
             this.TitlePanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).BeginInit();
             this.SuspendLayout();
             // 
             // BarcodeSearchBox
@@ -107,219 +105,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Barcode list";
             // 
-            // BarcodenumberCollector
-            // 
-            this.BarcodenumberCollector.AllowUserToAddRows = false;
-            this.BarcodenumberCollector.AllowUserToDeleteRows = false;
-            this.BarcodenumberCollector.AllowUserToResizeColumns = false;
-            this.BarcodenumberCollector.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.BarcodenumberCollector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BarcodenumberCollector.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.BarcodenumberCollector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Tag,
-            this.Time,
-            this.ModelName,
-            this.Model,
-            this.Brand,
-            this.Serial_Number,
-            this.Price,
-            this.Stay_At,
-            this.Note,
-            this.Status,
-            this.Condition,
-            this.Action_Search,
-            this.Action_Edit,
-            this.Action_Remove});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle3;
-            this.BarcodenumberCollector.EnableHeadersVisualStyles = false;
-            this.BarcodenumberCollector.Location = new System.Drawing.Point(3, 3);
-            this.BarcodenumberCollector.Name = "BarcodenumberCollector";
-            this.BarcodenumberCollector.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BarcodenumberCollector.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.BarcodenumberCollector.RowHeadersVisible = false;
-            this.BarcodenumberCollector.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.BarcodenumberCollector.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BarcodenumberCollector.RowTemplate.Height = 35;
-            this.BarcodenumberCollector.Size = new System.Drawing.Size(1545, 455);
-            this.BarcodenumberCollector.TabIndex = 5;
-            this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
-            this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
-            this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
-            // 
-            // Tag
-            // 
-            this.Tag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Tag.HeaderText = "ลำดับ";
-            this.Tag.MinimumWidth = 65;
-            this.Tag.Name = "Tag";
-            this.Tag.ReadOnly = true;
-            this.Tag.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Tag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Tag.Width = 65;
-            // 
-            // Time
-            // 
-            this.Time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Time.HeaderText = "ชื่อครุภัณฑ์";
-            this.Time.MinimumWidth = 200;
-            this.Time.Name = "Time";
-            this.Time.ReadOnly = true;
-            this.Time.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Time.Width = 200;
-            // 
-            // ModelName
-            // 
-            this.ModelName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModelName.HeaderText = "หมายเลขครุภัณฑ์";
-            this.ModelName.MinimumWidth = 130;
-            this.ModelName.Name = "ModelName";
-            this.ModelName.ReadOnly = true;
-            this.ModelName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ModelName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Model
-            // 
-            this.Model.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Model.HeaderText = "ยี่ห้อ";
-            this.Model.MinimumWidth = 75;
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            this.Model.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Model.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Brand
-            // 
-            this.Brand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Brand.HeaderText = "รุ่น";
-            this.Brand.MinimumWidth = 75;
-            this.Brand.Name = "Brand";
-            this.Brand.ReadOnly = true;
-            this.Brand.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Brand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Serial_Number
-            // 
-            this.Serial_Number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Serial_Number.HeaderText = "S/N";
-            this.Serial_Number.MinimumWidth = 75;
-            this.Serial_Number.Name = "Serial_Number";
-            this.Serial_Number.ReadOnly = true;
-            this.Serial_Number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Serial_Number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Price.HeaderText = "ราคา";
-            this.Price.MinimumWidth = 75;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Stay_At
-            // 
-            this.Stay_At.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Stay_At.HeaderText = "ประจำอยู่ที่";
-            this.Stay_At.MinimumWidth = 75;
-            this.Stay_At.Name = "Stay_At";
-            this.Stay_At.ReadOnly = true;
-            this.Stay_At.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Stay_At.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Note
-            // 
-            this.Note.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Note.HeaderText = "หมายเหตุ";
-            this.Note.MinimumWidth = 75;
-            this.Note.Name = "Note";
-            this.Note.ReadOnly = true;
-            this.Note.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Note.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Status
-            // 
-            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Status.HeaderText = "สถานะ";
-            this.Status.MinimumWidth = 75;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Condition
-            // 
-            this.Condition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Condition.HeaderText = "สภาพ";
-            this.Condition.MinimumWidth = 75;
-            this.Condition.Name = "Condition";
-            this.Condition.ReadOnly = true;
-            this.Condition.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Condition.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Action_Search
-            // 
-            this.Action_Search.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Action_Search.HeaderText = "";
-            this.Action_Search.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Action_Search.MinimumWidth = 45;
-            this.Action_Search.Name = "Action_Search";
-            this.Action_Search.ReadOnly = true;
-            this.Action_Search.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Action_Search.Width = 45;
-            // 
-            // Action_Edit
-            // 
-            this.Action_Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Action_Edit.HeaderText = "";
-            this.Action_Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Action_Edit.MinimumWidth = 45;
-            this.Action_Edit.Name = "Action_Edit";
-            this.Action_Edit.ReadOnly = true;
-            this.Action_Edit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Action_Edit.Width = 45;
-            // 
-            // Action_Remove
-            // 
-            this.Action_Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Action_Remove.HeaderText = "";
-            this.Action_Remove.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Action_Remove.MinimumWidth = 45;
-            this.Action_Remove.Name = "Action_Remove";
-            this.Action_Remove.ReadOnly = true;
-            this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Action_Remove.Width = 45;
-            // 
             // Export_Excel
             // 
             this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -357,7 +142,8 @@
             this.StatusSearchBox.Items.AddRange(new object[] {
             "[เลือกสถานะทั้งหมด]",
             "มีให้ตรวจสอบ",
-            "ไม่มีให้ตรวจสอบ"});
+            "ไม่มีให้ตรวจสอบ",
+            "ไม่สามารถทราบได้"});
             this.StatusSearchBox.Location = new System.Drawing.Point(1159, 3);
             this.StatusSearchBox.Name = "StatusSearchBox";
             this.StatusSearchBox.Size = new System.Drawing.Size(194, 44);
@@ -419,7 +205,7 @@
             this.ExportPanel.Controls.Add(this.Del_Database, 2, 0);
             this.ExportPanel.Controls.Add(this.Import_Excel, 1, 0);
             this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
-            this.ExportPanel.Location = new System.Drawing.Point(19, 488);
+            this.ExportPanel.Location = new System.Drawing.Point(19, 490);
             this.ExportPanel.Name = "ExportPanel";
             this.ExportPanel.RowCount = 1;
             this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -481,30 +267,233 @@
             "สูญหาย",
             "จำหน่ายแล้ว",
             "โอนแล้ว",
-            "อื่นๆ"});
+            "อื่นๆ",
+            "ไม่สามารถทราบได้"});
             this.ConditionBox.Location = new System.Drawing.Point(1359, 3);
             this.ConditionBox.Name = "ConditionBox";
             this.ConditionBox.Size = new System.Drawing.Size(196, 44);
             this.ConditionBox.TabIndex = 10;
             this.ConditionBox.SelectedIndexChanged += new System.EventHandler(this.ConditionBox_SelectedIndexChanged);
             // 
-            // panel1
+            // BarcodenumberCollector
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BarcodenumberCollector.AllowUserToAddRows = false;
+            this.BarcodenumberCollector.AllowUserToDeleteRows = false;
+            this.BarcodenumberCollector.AllowUserToResizeColumns = false;
+            this.BarcodenumberCollector.AllowUserToResizeRows = false;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodenumberCollector.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.BarcodenumberCollector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.BarcodenumberCollector);
-            this.panel1.Location = new System.Drawing.Point(16, 86);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1548, 393);
-            this.panel1.TabIndex = 17;
+            this.BarcodenumberCollector.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.BarcodenumberCollector.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.BarcodenumberCollector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Tag,
+            this.Time,
+            this.ModelName,
+            this.Model,
+            this.Brand,
+            this.Serial_Number,
+            this.Price,
+            this.Stay_At,
+            this.Note,
+            this.Status,
+            this.Condition,
+            this.Action_Search,
+            this.Action_Edit,
+            this.Action_Remove});
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BarcodenumberCollector.DefaultCellStyle = dataGridViewCellStyle13;
+            this.BarcodenumberCollector.EnableHeadersVisualStyles = false;
+            this.BarcodenumberCollector.Location = new System.Drawing.Point(19, 95);
+            this.BarcodenumberCollector.Name = "BarcodenumberCollector";
+            this.BarcodenumberCollector.ReadOnly = true;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BarcodenumberCollector.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.BarcodenumberCollector.RowHeadersVisible = false;
+            this.BarcodenumberCollector.RowHeadersWidth = 51;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodenumberCollector.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.BarcodenumberCollector.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BarcodenumberCollector.RowTemplate.Height = 35;
+            this.BarcodenumberCollector.Size = new System.Drawing.Size(1545, 387);
+            this.BarcodenumberCollector.TabIndex = 5;
+            this.BarcodenumberCollector.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BarcodenumberCollector_CellContentClick);
+            this.BarcodenumberCollector.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BarcodenumberCollector_CellFormatting);
+            this.BarcodenumberCollector.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.BarcodenumberCollector_CellPainting);
+            // 
+            // Action_Remove
+            // 
+            this.Action_Remove.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Action_Remove.HeaderText = "";
+            this.Action_Remove.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Action_Remove.MinimumWidth = 45;
+            this.Action_Remove.Name = "Action_Remove";
+            this.Action_Remove.ReadOnly = true;
+            this.Action_Remove.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_Remove.Width = 45;
+            // 
+            // Action_Edit
+            // 
+            this.Action_Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Action_Edit.HeaderText = "";
+            this.Action_Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Action_Edit.MinimumWidth = 45;
+            this.Action_Edit.Name = "Action_Edit";
+            this.Action_Edit.ReadOnly = true;
+            this.Action_Edit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_Edit.Width = 45;
+            // 
+            // Action_Search
+            // 
+            this.Action_Search.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Action_Search.HeaderText = "";
+            this.Action_Search.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Action_Search.MinimumWidth = 45;
+            this.Action_Search.Name = "Action_Search";
+            this.Action_Search.ReadOnly = true;
+            this.Action_Search.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_Search.Width = 45;
+            // 
+            // Condition
+            // 
+            this.Condition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Condition.HeaderText = "สภาพ";
+            this.Condition.MinimumWidth = 75;
+            this.Condition.Name = "Condition";
+            this.Condition.ReadOnly = true;
+            this.Condition.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Condition.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Status
+            // 
+            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Status.HeaderText = "สถานะ";
+            this.Status.MinimumWidth = 75;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Note
+            // 
+            this.Note.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Note.HeaderText = "หมายเหตุ";
+            this.Note.MinimumWidth = 75;
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            this.Note.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Note.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Stay_At
+            // 
+            this.Stay_At.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Stay_At.HeaderText = "ประจำอยู่ที่";
+            this.Stay_At.MinimumWidth = 75;
+            this.Stay_At.Name = "Stay_At";
+            this.Stay_At.ReadOnly = true;
+            this.Stay_At.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Stay_At.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Price.HeaderText = "ราคา";
+            this.Price.MinimumWidth = 75;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Serial_Number
+            // 
+            this.Serial_Number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Serial_Number.HeaderText = "S/N";
+            this.Serial_Number.MinimumWidth = 75;
+            this.Serial_Number.Name = "Serial_Number";
+            this.Serial_Number.ReadOnly = true;
+            this.Serial_Number.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Serial_Number.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Brand
+            // 
+            this.Brand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Brand.HeaderText = "รุ่น";
+            this.Brand.MinimumWidth = 75;
+            this.Brand.Name = "Brand";
+            this.Brand.ReadOnly = true;
+            this.Brand.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Brand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Model
+            // 
+            this.Model.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Model.HeaderText = "ยี่ห้อ";
+            this.Model.MinimumWidth = 75;
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Model.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ModelName
+            // 
+            this.ModelName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ModelName.HeaderText = "หมายเลขครุภัณฑ์";
+            this.ModelName.MinimumWidth = 130;
+            this.ModelName.Name = "ModelName";
+            this.ModelName.ReadOnly = true;
+            this.ModelName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ModelName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Time
+            // 
+            this.Time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Time.HeaderText = "ชื่อครุภัณฑ์";
+            this.Time.MinimumWidth = 200;
+            this.Time.Name = "Time";
+            this.Time.ReadOnly = true;
+            this.Time.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Time.Width = 200;
+            // 
+            // Tag
+            // 
+            this.Tag.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Tag.HeaderText = "ลำดับ";
+            this.Tag.MinimumWidth = 65;
+            this.Tag.Name = "Tag";
+            this.Tag.ReadOnly = true;
+            this.Tag.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Tag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Tag.Width = 65;
             // 
             // ManageQR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1582, 553);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BarcodenumberCollector);
             this.Controls.Add(this.TitlePanel);
             this.Controls.Add(this.ExportPanel);
             this.Controls.Add(this.label2);
@@ -515,11 +504,10 @@
             this.Text = "Manage your barcode data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageQR_Closing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).EndInit();
             this.ExportPanel.ResumeLayout(false);
             this.TitlePanel.ResumeLayout(false);
             this.TitlePanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BarcodenumberCollector)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,7 +518,6 @@
         private System.Windows.Forms.TextBox BarcodeSearchBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView BarcodenumberCollector;
         private System.Windows.Forms.Button Export_Excel;
         private System.Windows.Forms.Button Import_Excel;
         private System.Windows.Forms.ComboBox StatusSearchBox;
@@ -540,7 +527,8 @@
         private System.Windows.Forms.TableLayoutPanel ExportPanel;
         private System.Windows.Forms.TableLayoutPanel TitlePanel;
         private System.Windows.Forms.ComboBox ConditionBox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Download_Template;
+        private System.Windows.Forms.DataGridView BarcodenumberCollector;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModelName;
@@ -555,7 +543,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Action_Search;
         private System.Windows.Forms.DataGridViewImageColumn Action_Edit;
         private System.Windows.Forms.DataGridViewImageColumn Action_Remove;
-        private System.Windows.Forms.Button Download_Template;
     }
 }
 
