@@ -180,53 +180,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddBorrowItem.cs">
+    <Compile Include="Borrow-Return\AddBorrowItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddBorrowItem.Designer.cs">
+    <Compile Include="Borrow-Return\AddBorrowItem.Designer.cs">
       <DependentUpon>AddBorrowItem.cs</DependentUpon>
     </Compile>
     <Compile Include="BarcodeScanner2.cs" />
-    <Compile Include="EditItem.cs">
+    <Compile Include="Barcode\EditItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditItem.Designer.cs">
+    <Compile Include="Barcode\EditItem.Designer.cs">
       <DependentUpon>EditItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReturnItem.cs">
+    <Compile Include="Borrow-Return\ReturnItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReturnItem.Designer.cs">
+    <Compile Include="Borrow-Return\ReturnItem.Designer.cs">
       <DependentUpon>ReturnItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowBorrowDetail.cs">
+    <Compile Include="Borrow-Return\ShowBorrowDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowBorrowDetail.Designer.cs">
+    <Compile Include="Borrow-Return\ShowBorrowDetail.Designer.cs">
       <DependentUpon>ShowBorrowDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowItem.cs">
+    <Compile Include="Barcode\ShowItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowItem.Designer.cs">
+    <Compile Include="Barcode\ShowItem.Designer.cs">
       <DependentUpon>ShowItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddItemP2.cs">
+    <Compile Include="Barcode\AddItemP2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddItemP2.Designer.cs">
+    <Compile Include="Barcode\AddItemP2.Designer.cs">
       <DependentUpon>AddItemP2.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchByBarcodeID.cs">
+    <Compile Include="Barcode\SearchByBarcodeID.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchByBarcodeID.Designer.cs">
+    <Compile Include="Barcode\SearchByBarcodeID.Designer.cs">
       <DependentUpon>SearchByBarcodeID.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageQR.cs">
+    <Compile Include="Barcode\ManageQR.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageQR.Designer.cs">
+    <Compile Include="Barcode\ManageQR.Designer.cs">
       <DependentUpon>ManageQR.cs</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.cs">
@@ -237,28 +237,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddBorrowItem.resx">
+    <EmbeddedResource Include="Borrow-Return\AddBorrowItem.resx">
       <DependentUpon>AddBorrowItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditItem.resx">
+    <EmbeddedResource Include="Barcode\EditItem.resx">
       <DependentUpon>EditItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReturnItem.resx">
+    <EmbeddedResource Include="Borrow-Return\ReturnItem.resx">
       <DependentUpon>ReturnItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowBorrowDetail.resx">
+    <EmbeddedResource Include="Borrow-Return\ShowBorrowDetail.resx">
       <DependentUpon>ShowBorrowDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowItem.resx">
+    <EmbeddedResource Include="Barcode\ShowItem.resx">
       <DependentUpon>ShowItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddItemP2.resx">
+    <EmbeddedResource Include="Barcode\AddItemP2.resx">
       <DependentUpon>AddItemP2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageQR.resx">
+    <EmbeddedResource Include="Barcode\ManageQR.resx">
       <DependentUpon>ManageQR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -271,7 +271,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SearchByBarcodeID.resx">
+    <EmbeddedResource Include="Barcode\SearchByBarcodeID.resx">
       <DependentUpon>SearchByBarcodeID.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
