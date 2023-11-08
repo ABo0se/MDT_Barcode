@@ -193,6 +193,12 @@
     <Compile Include="Barcode\EditItem.Designer.cs">
       <DependentUpon>EditItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrow-Return\ManageBorrowedItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrow-Return\ManageBorrowedItem.Designer.cs">
+      <DependentUpon>ManageBorrowedItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Borrow-Return\ReturnItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\EditItem.resx">
       <DependentUpon>EditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrow-Return\ManageBorrowedItem.resx">
+      <DependentUpon>ManageBorrowedItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrow-Return\ReturnItem.resx">
       <DependentUpon>ReturnItem.cs</DependentUpon>

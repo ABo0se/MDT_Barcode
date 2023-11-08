@@ -235,7 +235,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 /////////////
                 BarcodenumberCollector.Rows.Add
-                (numberofsortedItem, result.Product_Name, result.BarcodeNumber, result.ModelNumber,
+                (numberofsortedItem, result.BarcodeNumber, result.Product_Name, result.ModelNumber,
                  result.Brand, result.SerialNum, result.Price, result.Room,
                  result.Description, tempstatus, tempcondition);
                 numberofsortedItem++;
