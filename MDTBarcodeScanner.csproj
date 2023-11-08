@@ -180,12 +180,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddBorrowItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBorrowItem.Designer.cs">
+      <DependentUpon>AddBorrowItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="BarcodeScanner2.cs" />
     <Compile Include="EditItem.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditItem.Designer.cs">
       <DependentUpon>EditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReturnItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReturnItem.Designer.cs">
+      <DependentUpon>ReturnItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowBorrowDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowBorrowDetail.Designer.cs">
+      <DependentUpon>ShowBorrowDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="ShowItem.cs">
       <SubType>Form</SubType>
@@ -219,8 +237,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddBorrowItem.resx">
+      <DependentUpon>AddBorrowItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditItem.resx">
       <DependentUpon>EditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnItem.resx">
+      <DependentUpon>ReturnItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowBorrowDetail.resx">
+      <DependentUpon>ShowBorrowDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowItem.resx">
       <DependentUpon>ShowItem.cs</DependentUpon>
