@@ -32,8 +32,8 @@
             this.Search = new System.Windows.Forms.Button();
             this.Manage = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Borrow_Return_Manager = new System.Windows.Forms.Button();
+            this.Borrow_Return_System = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -96,8 +96,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.Borrow_Return_Manager, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.Borrow_Return_System, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.AddItem, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Manage, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.Search, 0, 1);
@@ -114,35 +114,37 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(558, 478);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // button1
+            // Borrow_Return_Manager
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Borrow_Return_Manager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(2, 389);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(554, 86);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "จัดการระบบยืม-คืน";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Borrow_Return_Manager.AutoSize = true;
+            this.Borrow_Return_Manager.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Borrow_Return_Manager.Location = new System.Drawing.Point(2, 389);
+            this.Borrow_Return_Manager.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Borrow_Return_Manager.Name = "Borrow_Return_Manager";
+            this.Borrow_Return_Manager.Size = new System.Drawing.Size(554, 86);
+            this.Borrow_Return_Manager.TabIndex = 0;
+            this.Borrow_Return_Manager.Text = "จัดการระบบยืม-คืน";
+            this.Borrow_Return_Manager.UseVisualStyleBackColor = true;
+            this.Borrow_Return_Manager.Click += new System.EventHandler(this.Borrow_Return_Manager_Click);
             // 
-            // button3
+            // Borrow_Return_System
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Borrow_Return_System.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.AutoSize = true;
-            this.button3.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button3.Location = new System.Drawing.Point(2, 300);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(554, 83);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "ระบบยืม-คืน";
-            this.button3.UseVisualStyleBackColor = true;
+            this.Borrow_Return_System.AutoSize = true;
+            this.Borrow_Return_System.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Borrow_Return_System.Location = new System.Drawing.Point(2, 300);
+            this.Borrow_Return_System.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Borrow_Return_System.Name = "Borrow_Return_System";
+            this.Borrow_Return_System.Size = new System.Drawing.Size(554, 83);
+            this.Borrow_Return_System.TabIndex = 1;
+            this.Borrow_Return_System.Text = "ระบบยืม-คืน";
+            this.Borrow_Return_System.UseVisualStyleBackColor = true;
+            this.Borrow_Return_System.Click += new System.EventHandler(this.Borrow_Return_System_Click);
             // 
             // pictureBox1
             // 
@@ -208,8 +210,8 @@
         private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button Manage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Borrow_Return_Manager;
+        private System.Windows.Forms.Button Borrow_Return_System;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

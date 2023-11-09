@@ -78,3 +78,7 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.Rendering.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\itextsharp.xml
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.AddBorrowItem.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return.ManageBorrowedItem.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Return_Item.resources
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.ShowBorrowDetail.resources

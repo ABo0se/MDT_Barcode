@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 {
-    public partial class ManageBorrowedItem : Form
+    public partial class Borrow_BarcodeIDChecker : Form
     {
-        public ManageBorrowedItem()
+        public Borrow_BarcodeIDChecker()
         {
             InitializeComponent();
         }
 
-        public void SearchDatainDB()
-        {
-            
-        }
-
-        private void ManageBorrowedItem_Load(object sender, EventArgs e)
+        private void Borrow_BarcodeIDChecker_Load(object sender, EventArgs e)
         {
 
         }

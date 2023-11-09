@@ -193,6 +193,12 @@
     <Compile Include="Barcode\EditItem.Designer.cs">
       <DependentUpon>EditItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrow-Return\Borrow_BarcodeIDChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrow-Return\Borrow_BarcodeIDChecker.Designer.cs">
+      <DependentUpon>Borrow_BarcodeIDChecker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Borrow-Return\ManageBorrowedItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\EditItem.resx">
       <DependentUpon>EditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrow-Return\Borrow_BarcodeIDChecker.resx">
+      <DependentUpon>Borrow_BarcodeIDChecker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrow-Return\ManageBorrowedItem.resx">
       <DependentUpon>ManageBorrowedItem.cs</DependentUpon>

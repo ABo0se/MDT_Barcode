@@ -6,6 +6,7 @@ using System.Drawing.Text;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -23,22 +24,38 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CreateDataBase()
         {
-            string connectionStrin = "server=127.0.0.1; user=root; password=";
-            using (MySqlConnection connection = new MySqlConnection(connectionStrin))
+            string connectionString = "server=127.0.0.1; user=root; password=";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                string databaseName = "barcodedatacollector";
-                string createDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {databaseName}";
+                // Create the first database
+                string firstDatabaseName = "barcodedatacollector";
+                string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
 
-                using (MySqlCommand command = new MySqlCommand(createDatabaseQuery, connection))
+                using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
                 {
                     command.ExecuteNonQuery();
                 }
+
+                // Create the second database
+                string secondDatabaseName = "Borrow_Returning_System";
+                string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
+
+                using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+
+                // Additional code for your application...
+
+                // Close the connection
+                connection.Close();
             }
             //////////////////////////////////////////////////////////////////////////////////////////////////////
-            string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+            using (MySqlConnection connection = new MySqlConnection(connectionString2))
             {
                 connection.Open();
                 string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
@@ -60,6 +77,33 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
                 {
                     command.ExecuteNonQuery();
+                }
+
+                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=";
+                using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
+                {
+                    connection.Open();
+                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS information ( " +
+                                                "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                "BarcodeNumber VARCHAR(100), " +
+                                                "Product_Name VARCHAR(100), " +
+                                                "Model_Name VARCHAR(100), " +
+                                                "Brand VARCHAR(100), " +
+                                                "Serial_Number VARCHAR(100), " +
+                                                "Price INT(30), " +
+                                                "Room VARCHAR(100), " +
+                                                "ImageData TEXT, " +
+                                                "MD5_ImageValidityChecksum TEXT, " +
+                                                "Note VARCHAR(200), " +
+                                                "Status INT(1), " +
+                                                "ITEM_CONDITION INT(1) " +
+                                                ");";
+
+                    using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
+                    {
+                        command2.ExecuteNonQuery();
+                    }
+                    connection.Close();
                 }
             }
         }
@@ -124,6 +168,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Borrow_Return_Manager_Click(object sender, EventArgs e)
+        {
+            ManageBorrowedItem ManageQRForm = initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;
+            if (ManageQRForm != null)
+            {
+                ManageQRForm.Show();
+                ManageQRForm.SearchDatainDB();
+            }
+        }
+
+        private void Borrow_Return_System_Click(object sender, EventArgs e)
+        {
+            Borrow_BarcodeIDChecker ManageQRForm = initializedForms.Find(f => f is Borrow_BarcodeIDChecker) as Borrow_BarcodeIDChecker;
+            if (ManageQRForm != null)
+            {
+                ManageQRForm.Show();
+            }
         }
     }
 
