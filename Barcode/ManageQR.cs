@@ -248,14 +248,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
                 // Your custom logic when the button is clicked
-                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                SearchBarcode(barcodevalue);
+                SearchBarcode(TemporaryData[e.RowIndex].BarcodeNumber);
             }
             if (e.ColumnIndex == 12 && e.RowIndex >= 0)
             {
                 // Your custom logic when the button is clicked
-                string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                EditBarcode(barcodevalue);
+                EditBarcode(TemporaryData[e.RowIndex].BarcodeNumber);
             }
             if (e.ColumnIndex == 13 && e.RowIndex >= 0)
             {
@@ -268,8 +266,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (result == DialogResult.Yes)
                 {
                     // User clicked "Yes," perform the action
-                    string barcodevalue = BarcodenumberCollector.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    DeleteBarcode(barcodevalue);
+                    DeleteBarcode(TemporaryData[e.RowIndex].BarcodeNumber);
                 }
                 else
                 {

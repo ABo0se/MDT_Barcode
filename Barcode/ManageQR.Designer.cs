@@ -48,8 +48,8 @@
             this.ConditionBox = new System.Windows.Forms.ComboBox();
             this.BarcodenumberCollector = new System.Windows.Forms.DataGridView();
             this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarcodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Serial_Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -296,8 +296,8 @@
             this.BarcodenumberCollector.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BarcodenumberCollector.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Tag,
-            this.Product_Name,
             this.BarcodeID,
+            this.Product_Name,
             this.Model,
             this.Brand,
             this.Serial_Number,
@@ -352,26 +352,26 @@
             this.Tag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Tag.Width = 65;
             // 
-            // Product_Name
-            // 
-            this.Product_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Product_Name.HeaderText = "ชื่อครุภัณฑ์";
-            this.Product_Name.MinimumWidth = 200;
-            this.Product_Name.Name = "Product_Name";
-            this.Product_Name.ReadOnly = true;
-            this.Product_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Product_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Product_Name.Width = 200;
-            // 
             // BarcodeID
             // 
-            this.BarcodeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BarcodeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.BarcodeID.HeaderText = "หมายเลขครุภัณฑ์";
             this.BarcodeID.MinimumWidth = 130;
             this.BarcodeID.Name = "BarcodeID";
             this.BarcodeID.ReadOnly = true;
             this.BarcodeID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BarcodeID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BarcodeID.Width = 130;
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Product_Name.HeaderText = "ชื่อครุภัณฑ์";
+            this.Product_Name.MinimumWidth = 200;
+            this.Product_Name.Name = "Product_Name";
+            this.Product_Name.ReadOnly = true;
+            this.Product_Name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Product_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Model
             // 
@@ -529,8 +529,8 @@
         private System.Windows.Forms.Button Download_Template;
         private System.Windows.Forms.DataGridView BarcodenumberCollector;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Model;
         private System.Windows.Forms.DataGridViewTextBoxColumn Brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn Serial_Number;

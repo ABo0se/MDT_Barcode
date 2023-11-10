@@ -24,7 +24,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CreateDataBase()
         {
-            string connectionString = "server=127.0.0.1; user=root; password=";
+            string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -53,8 +53,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Close the connection
                 connection.Close();
             }
+
             //////////////////////////////////////////////////////////////////////////////////////////////////////
-            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+
+            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
             using (MySqlConnection connection = new MySqlConnection(connectionString2))
             {
                 connection.Open();
@@ -78,35 +80,35 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     command.ExecuteNonQuery();
                 }
+                connection.Close();
 
-                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=";
+                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
                 using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
                 {
-                    connection.Open();
-                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS information ( " +
-                                                "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                    connection2.Open();
+                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS BORROWING_INFO ( " +
+                                                "Initial_Borrow_Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                "EST_Return_Date DATETIME, " +
+                                                "ACTUAL_Return_Date DATETIME, " +
                                                 "BarcodeNumber VARCHAR(100), " +
                                                 "Product_Name VARCHAR(100), " +
-                                                "Model_Name VARCHAR(100), " +
-                                                "Brand VARCHAR(100), " +
-                                                "Serial_Number VARCHAR(100), " +
-                                                "Price INT(30), " +
-                                                "Room VARCHAR(100), " +
+                                                "Borrower_Name VARCHAR(100), " +
                                                 "ImageData TEXT, " +
                                                 "MD5_ImageValidityChecksum TEXT, " +
+                                                "Contact VARCHAR(200), " +
                                                 "Note VARCHAR(200), " +
-                                                "Status INT(1), " +
-                                                "ITEM_CONDITION INT(1) " +
+                                                "Status INT(1) " +
                                                 ");";
 
                     using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
                     {
                         command2.ExecuteNonQuery();
                     }
-                    connection.Close();
+                    connection2.Close();
                 }
             }
         }
+
 
         private void InitializeAllForms()
         {

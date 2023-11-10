@@ -32,45 +32,45 @@
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.Status_TXT = new System.Windows.Forms.Label();
+            this.Status = new System.Windows.Forms.Label();
             this.ProductNameTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.Product_Name_TXT = new System.Windows.Forms.Label();
             this.ProductNME = new System.Windows.Forms.Label();
             this.PicInformation = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.Borrower_TXT = new System.Windows.Forms.Label();
             this.Borrower = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.Contact = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.Borrow_Time = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BarcodeID_TXT = new System.Windows.Forms.Label();
             this.Barcode_ID = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.Note = new System.Windows.Forms.Label();
-            this.Borrower_TXT = new System.Windows.Forms.Label();
-            this.EST_Return_Date_TXT = new System.Windows.Forms.Label();
-            this.Contact_TXT = new System.Windows.Forms.Label();
             this.Note_TXT = new System.Windows.Forms.Label();
+            this.Note = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.Contact_TXT = new System.Windows.Forms.Label();
+            this.Contact = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.Return_Date_TXT = new System.Windows.Forms.Label();
             this.Return_Date = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.EST_Return_Date_TXT = new System.Windows.Forms.Label();
+            this.Borrow_Time = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.EST_Borrow_Date_TXT = new System.Windows.Forms.Label();
             this.Borrow_Date = new System.Windows.Forms.Label();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.Status_TXT = new System.Windows.Forms.Label();
-            this.Status = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.ProductNameTableLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // Nextpic
@@ -140,6 +140,50 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 500);
             this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel9.AutoSize = true;
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.Status_TXT, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.Status, 0, 0);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 207);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(605, 36);
+            this.tableLayoutPanel9.TabIndex = 10;
+            // 
+            // Status_TXT
+            // 
+            this.Status_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Status_TXT.AutoSize = true;
+            this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Status_TXT.Location = new System.Drawing.Point(207, 0);
+            this.Status_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.Status_TXT.Name = "Status_TXT";
+            this.Status_TXT.Size = new System.Drawing.Size(21, 36);
+            this.Status_TXT.TabIndex = 9;
+            this.Status_TXT.Text = "-";
+            this.Status_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Status
+            // 
+            this.Status.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Status.AutoSize = true;
+            this.Status.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Status.Location = new System.Drawing.Point(0, 0);
+            this.Status.Margin = new System.Windows.Forms.Padding(0);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(207, 36);
+            this.Status.TabIndex = 0;
+            this.Status.Text = "สถานะการยืมครุภัณฑ์ :";
+            this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ProductNameTableLayout
             // 
@@ -211,9 +255,22 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(605, 36);
             this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // Borrower_TXT
+            // 
+            this.Borrower_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Borrower_TXT.AutoSize = true;
+            this.Borrower_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Borrower_TXT.Location = new System.Drawing.Point(154, 0);
+            this.Borrower_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.Borrower_TXT.Name = "Borrower_TXT";
+            this.Borrower_TXT.Size = new System.Drawing.Size(21, 36);
+            this.Borrower_TXT.TabIndex = 9;
+            this.Borrower_TXT.Text = "-";
+            this.Borrower_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Borrower
             // 
@@ -227,67 +284,6 @@
             this.Borrower.TabIndex = 1;
             this.Borrower.Text = "ชื่อผู้ยืมครุภัณฑ์ :";
             this.Borrower.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.AutoSize = true;
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.Contact_TXT, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.Contact, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 407);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 36);
-            this.tableLayoutPanel5.TabIndex = 5;
-            // 
-            // Contact
-            // 
-            this.Contact.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Contact.AutoSize = true;
-            this.Contact.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Contact.Location = new System.Drawing.Point(0, 0);
-            this.Contact.Margin = new System.Windows.Forms.Padding(0);
-            this.Contact.Name = "Contact";
-            this.Contact.Size = new System.Drawing.Size(173, 36);
-            this.Contact.TabIndex = 0;
-            this.Contact.Text = "ช่องทางการติดต่อ :";
-            this.Contact.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.AutoSize = true;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.EST_Return_Date_TXT, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.Borrow_Time, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 307);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(605, 36);
-            this.tableLayoutPanel3.TabIndex = 4;
-            // 
-            // Borrow_Time
-            // 
-            this.Borrow_Time.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Borrow_Time.AutoSize = true;
-            this.Borrow_Time.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Borrow_Time.Location = new System.Drawing.Point(0, 0);
-            this.Borrow_Time.Margin = new System.Windows.Forms.Padding(0);
-            this.Borrow_Time.Name = "Borrow_Time";
-            this.Borrow_Time.Size = new System.Drawing.Size(234, 36);
-            this.Borrow_Time.TabIndex = 0;
-            this.Borrow_Time.Text = "วันที่จะทำการคืนครุภัณฑ์ :";
-            this.Borrow_Time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -350,6 +346,19 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(605, 36);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
+            // Note_TXT
+            // 
+            this.Note_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Note_TXT.AutoSize = true;
+            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Note_TXT.Location = new System.Drawing.Point(108, 0);
+            this.Note_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.Note_TXT.Name = "Note_TXT";
+            this.Note_TXT.Size = new System.Drawing.Size(21, 36);
+            this.Note_TXT.TabIndex = 9;
+            this.Note_TXT.Text = "-";
+            this.Note_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Note
             // 
             this.Note.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -363,31 +372,22 @@
             this.Note.Text = "หมายเหตุ :";
             this.Note.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Borrower_TXT
+            // tableLayoutPanel5
             // 
-            this.Borrower_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Borrower_TXT.AutoSize = true;
-            this.Borrower_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Borrower_TXT.Location = new System.Drawing.Point(154, 0);
-            this.Borrower_TXT.Margin = new System.Windows.Forms.Padding(0);
-            this.Borrower_TXT.Name = "Borrower_TXT";
-            this.Borrower_TXT.Size = new System.Drawing.Size(21, 36);
-            this.Borrower_TXT.TabIndex = 9;
-            this.Borrower_TXT.Text = "-";
-            this.Borrower_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // EST_Return_Date_TXT
-            // 
-            this.EST_Return_Date_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.EST_Return_Date_TXT.AutoSize = true;
-            this.EST_Return_Date_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(234, 0);
-            this.EST_Return_Date_TXT.Margin = new System.Windows.Forms.Padding(0);
-            this.EST_Return_Date_TXT.Name = "EST_Return_Date_TXT";
-            this.EST_Return_Date_TXT.Size = new System.Drawing.Size(21, 36);
-            this.EST_Return_Date_TXT.TabIndex = 9;
-            this.EST_Return_Date_TXT.Text = "-";
-            this.EST_Return_Date_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.AutoSize = true;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.Contact_TXT, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.Contact, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 407);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 36);
+            this.tableLayoutPanel5.TabIndex = 5;
             // 
             // Contact_TXT
             // 
@@ -402,18 +402,18 @@
             this.Contact_TXT.Text = "-";
             this.Contact_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Note_TXT
+            // Contact
             // 
-            this.Note_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Note_TXT.AutoSize = true;
-            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Note_TXT.Location = new System.Drawing.Point(108, 0);
-            this.Note_TXT.Margin = new System.Windows.Forms.Padding(0);
-            this.Note_TXT.Name = "Note_TXT";
-            this.Note_TXT.Size = new System.Drawing.Size(21, 36);
-            this.Note_TXT.TabIndex = 9;
-            this.Note_TXT.Text = "-";
-            this.Note_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Contact.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Contact.AutoSize = true;
+            this.Contact.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Contact.Location = new System.Drawing.Point(0, 0);
+            this.Contact.Margin = new System.Windows.Forms.Padding(0);
+            this.Contact.Name = "Contact";
+            this.Contact.Size = new System.Drawing.Size(173, 36);
+            this.Contact.TabIndex = 0;
+            this.Contact.Text = "ช่องทางการติดต่อ :";
+            this.Contact.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel7
             // 
@@ -429,7 +429,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(605, 36);
             this.tableLayoutPanel7.TabIndex = 9;
             // 
@@ -459,6 +459,50 @@
             this.Return_Date.Text = "วันที่คืนครุภัณฑ์ :";
             this.Return_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.EST_Return_Date_TXT, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.Borrow_Time, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 307);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(605, 36);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // EST_Return_Date_TXT
+            // 
+            this.EST_Return_Date_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.EST_Return_Date_TXT.AutoSize = true;
+            this.EST_Return_Date_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(235, 0);
+            this.EST_Return_Date_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.EST_Return_Date_TXT.Name = "EST_Return_Date_TXT";
+            this.EST_Return_Date_TXT.Size = new System.Drawing.Size(21, 36);
+            this.EST_Return_Date_TXT.TabIndex = 9;
+            this.EST_Return_Date_TXT.Text = "-";
+            this.EST_Return_Date_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Borrow_Time
+            // 
+            this.Borrow_Time.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Borrow_Time.AutoSize = true;
+            this.Borrow_Time.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Borrow_Time.Location = new System.Drawing.Point(0, 0);
+            this.Borrow_Time.Margin = new System.Windows.Forms.Padding(0);
+            this.Borrow_Time.Name = "Borrow_Time";
+            this.Borrow_Time.Size = new System.Drawing.Size(235, 36);
+            this.Borrow_Time.TabIndex = 0;
+            this.Borrow_Time.Text = "วันที่คาดว่าจะคืนครุภัณฑ์ :";
+            this.Borrow_Time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -473,7 +517,7 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(605, 36);
             this.tableLayoutPanel8.TabIndex = 9;
             // 
@@ -503,50 +547,6 @@
             this.Borrow_Date.Text = "วันที่ยืมครุภัณฑ์ :";
             this.Borrow_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel9.AutoSize = true;
-            this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.Status_TXT, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.Status, 0, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 207);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(605, 36);
-            this.tableLayoutPanel9.TabIndex = 10;
-            // 
-            // Status_TXT
-            // 
-            this.Status_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Status_TXT.AutoSize = true;
-            this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Status_TXT.Location = new System.Drawing.Point(207, 0);
-            this.Status_TXT.Margin = new System.Windows.Forms.Padding(0);
-            this.Status_TXT.Name = "Status_TXT";
-            this.Status_TXT.Size = new System.Drawing.Size(21, 36);
-            this.Status_TXT.TabIndex = 9;
-            this.Status_TXT.Text = "-";
-            this.Status_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Status
-            // 
-            this.Status.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Status.AutoSize = true;
-            this.Status.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Status.Location = new System.Drawing.Point(0, 0);
-            this.Status.Margin = new System.Windows.Forms.Padding(0);
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(207, 36);
-            this.Status.TabIndex = 0;
-            this.Status.Text = "สถานะการยืมครุภัณฑ์ :";
-            this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // ShowBorrowDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -564,24 +564,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.ProductNameTableLayout.ResumeLayout(false);
             this.ProductNameTableLayout.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
