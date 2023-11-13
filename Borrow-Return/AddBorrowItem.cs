@@ -13,6 +13,8 @@ using USB_Barcode_Scanner_Tutorial___C_Sharp.Properties;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
+using System.Windows.Media.Media3D;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -29,6 +31,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         //DateTime defaultReturnDate = DateTime.Now;
         string defaultcontact = "[ตัวอย่าง : 0878675185]";
         string defaultnote = "[ตัวอย่าง : วัสดุนี้จะต้องถูกยืมเป็นระยะเวลานาน]";
+        //TemporaryData
+        RentResults TemporaryData;
         public AddBorrowItem()
         {
             InitializeComponent();
@@ -102,11 +106,97 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             ChangePicture(null);
             CheckImageButtonBehavior();
+            ////////
+            if (TemporaryData == null)
+            {
+                TemporaryData = new RentResults();
+
+            }
         }
 
         private void Add_BorrowItem_ToDB(object sender, EventArgs e)
         {
+            //Serach before we do something.
+            List<string> dbData = new List<string>();
+            string dbConnectionString = "server=127.0.0.1; user=root; databaseborrow_returning_system; password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
+            try
+            {
+                mySqlConnection.Open();
+                string selectQuery = "SELECT BarcodeNumber FROM borrowing_info";
+
+                // Use MySqlCommand instead of SqlCommand for MySQL
+                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+
+                // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string rowData = reader["BarcodeNumber"].ToString();
+                    dbData.Add(rowData);
+                }
+
+                // Compare the data
+                bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
+
+                string warningMessage = "";
+
+                if (isDataSame)
+                {
+                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว\n";
+                }
+
+                if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
+                    Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
+                    Return_Date_TXT.Value.Date < DateTime.Now.Date || Contact_TB.Text == defaultcontact ||
+                    Contact_TB.Text == ""|| Note_TB.Text == defaultnote)
+                {
+                    warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วนและถูกต้อง ก่อนทำการเพิ่่มเข้ามา\n";
+                }
+
+                if (BarcodeID_TXT.Text.Length > 50)
+                {
+                    warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
+                }
+
+                if (Borrower_Name_TB.Text.Length > 100 || Contact_TB.Text.Length > 100)
+                {
+                    warningMessage += "ความยาวของข้อมูลผู้ยืม ห้ามเกิน 100 ตัวอักษร\n";
+                }
+                if (Return_Date_TXT.Value.Date < DateTime.Now.Date)
+                {
+                    warningMessage += "กรุณากรอกวันที่ให้ถูกต้อง\n";
+                }
+                if (Note_TB.Text.Length > 200)
+                {
+                    warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                }
+                //////////////////////////////////////////////
+                if (Note_TB.Text == defaultnote || Note_TB.Text == "")
+                {
+                    Note_TB.Text = "-";
+                }
+                ///////////////////////
+                if (!string.IsNullOrEmpty(warningMessage))
+                {
+                    MessageBox.Show(warningMessage);
+                }
+                else
+                {
+                    AddItemToDB();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+            }
+        }
+
+        private void AddItemToDB()
+        {
+            
         }
 
         private void AddBorrowItem_Load(object sender, EventArgs e)

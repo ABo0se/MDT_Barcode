@@ -68,7 +68,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             temporarydata = data;
             if (temporarydata == null)
             {
-
                 MessageBox.Show("ไม่พบครุภัณฑ์ที่บันทึกไว้ในฐานข้อมูลครุภัณฑ์");
                 ResetButtonState();
                 ResetTextState();

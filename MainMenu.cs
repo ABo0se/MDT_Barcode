@@ -95,6 +95,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                                 "Borrower_Name VARCHAR(100), " +
                                                 "ImageData TEXT, " +
                                                 "MD5_ImageValidityChecksum TEXT, " +
+                                                "HistoryTextlog TEXT, " +
                                                 "Contact VARCHAR(200), " +
                                                 "Note VARCHAR(200), " +
                                                 "Status INT(1) " +
