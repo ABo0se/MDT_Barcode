@@ -99,6 +99,9 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
@@ -167,6 +170,7 @@
             this.Borrow_Return_Management_B.TabIndex = 2;
             this.Borrow_Return_Management_B.Text = "จัดการ ยืม/คืน";
             this.Borrow_Return_Management_B.UseVisualStyleBackColor = true;
+            this.Borrow_Return_Management_B.Click += new System.EventHandler(this.Borrow_Return_Management_B_Click);
             // 
             // AdjustDetail_B
             // 

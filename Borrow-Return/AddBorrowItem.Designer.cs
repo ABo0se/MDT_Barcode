@@ -185,6 +185,8 @@
             this.Borrower_Name_TB.Name = "Borrower_Name_TB";
             this.Borrower_Name_TB.Size = new System.Drawing.Size(436, 43);
             this.Borrower_Name_TB.TabIndex = 3;
+            this.Borrower_Name_TB.Enter += new System.EventHandler(this.Borrower_Name_TB_Enter);
+            this.Borrower_Name_TB.Leave += new System.EventHandler(this.Borrower_Name_TB_Leave);
             // 
             // PicInformation
             // 
@@ -244,6 +246,9 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -296,6 +301,8 @@
             this.Contact_TB.Name = "Contact_TB";
             this.Contact_TB.Size = new System.Drawing.Size(417, 43);
             this.Contact_TB.TabIndex = 5;
+            this.Contact_TB.Enter += new System.EventHandler(this.Contact_TB_Enter);
+            this.Contact_TB.Leave += new System.EventHandler(this.Contact_TB_Leave);
             // 
             // Contact
             // 
@@ -349,6 +356,8 @@
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(497, 43);
             this.Note_TB.TabIndex = 6;
+            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
+            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
             // 
             // Add_Borrowed_Item_toDB
             // 
@@ -365,6 +374,8 @@
             // 
             // Nextpic
             // 
+            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -375,9 +386,12 @@
             this.Nextpic.TabIndex = 2;
             this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
             // 
             // Prevpic
             // 
+            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -388,9 +402,13 @@
             this.Prevpic.TabIndex = 3;
             this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(90, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
@@ -413,6 +431,8 @@
             this.MinimumSize = new System.Drawing.Size(650, 725);
             this.Name = "AddBorrowItem";
             this.Text = "ยืมครุภัณฑ์";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddBorrowItem_FormClosing);
+            this.Load += new System.EventHandler(this.AddBorrowItem_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);

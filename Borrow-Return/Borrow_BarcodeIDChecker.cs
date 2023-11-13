@@ -16,6 +16,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
     public partial class Borrow_BarcodeIDChecker : Form
     {
         string defaultText = "[สแกน หรือ กรอกหมายเลขครุภัณฑ์]";
+        RentResults temporarydata = null;
         public Borrow_BarcodeIDChecker()
         {
             InitializeComponent();
@@ -64,8 +65,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             //MessageBox.Show(BarcodeText.Text);
             FindBarcodeInItemDatabase(BarcodeText.Text, out RentResults data);
-            if (data == null)
+            temporarydata = data;
+            if (temporarydata == null)
             {
+
                 MessageBox.Show("ไม่พบครุภัณฑ์ที่บันทึกไว้ในฐานข้อมูลครุภัณฑ์");
                 ResetButtonState();
                 ResetTextState();
@@ -73,16 +76,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             else
             {
                 Status_TXT.Text = DecodingStatus(data.Status);
-                if (data.Status == null)
+                if (temporarydata.Status == null)
                 {
                     ChangeButtonState(false, false, true);
                 }
-                if (data.Status == 0 || data.Status == 1 || data.Status == 2)
+                if (temporarydata.Status == 0 || temporarydata.Status == 1 || temporarydata.Status == 2)
                 {
                     ChangeButtonState(true, true, true);
                 }
             }
-        }    
+        }
         private RentResults FindBarcodeInItemDatabase(string serialCode, out RentResults data)
         {
             data = new RentResults();
@@ -185,19 +188,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
         private string DecodingStatus(int? status)
         {
-            switch (status) 
+            switch (status)
             {
                 case 0:
                     {
                         return "ถูกยืม";
                     }
-                case 1: 
+                case 1:
                     {
                         return "เลยกำหนด";
                     }
-                case 2: 
+                case 2:
                     {
-                        return "คืนเรียบร้อย";
+                        return "คืนเรียบร้อย (พร้อมให้ยืม)";
                     }
                 case 3:
                     {
@@ -207,7 +210,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     {
                         return "พร้อมให้ยืม";
                     }
-                default: 
+                default:
                     {
                         return "ไม่พบข้อมูล";
                     }
@@ -222,6 +225,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 this.Hide();      // Hide the form instead
             }
         }
+
+        private void Borrow_Return_Management_B_Click(object sender, EventArgs e)
+        {
+            if (temporarydata == null) return;
+            AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
+            if (AddBForm != null)
+            {
+                AddBForm.Show();
+                AddBForm.InitializePage();
+                AddBForm.AssignBarcodeText(temporarydata);
+            }
+        }
     }
 
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,6 +247,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         public DateTime EstReturnDate { get; set; }
         public DateTime ActualReturnDate { get; set; }
         public string BarcodeNumber { get; set; }
+        public List<RentHistory> BarcodeHistoryList { get; set; }
+        public string BarcodeHistoryListSerialized { get; set; }
         public string Product_Name { get; set; }
         public string Borrower_Name { get; set; }
         public string FilePath { get; set; }
@@ -239,5 +256,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         public string Borrower_Contact { get; set; }
         public string Note { get; set; }
         public int? Status { get; set; }
+    }
+    public class RentHistory
+    {
+        public string Borrower_Name { get; set; }
+        public DateTime InitialBorrowDate { get; set; }
+        public DateTime EstReturnDate { get; set; }
+        public DateTime ActualReturnDate { get; set; }
+        public string Borrower_Contact { get; set; }
+        public string Note { get; set; }
     }
 }

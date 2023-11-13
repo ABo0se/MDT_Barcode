@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,19 +8,292 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Properties;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Security.Cryptography;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class AddBorrowItem : Form
     {
+        //ThisPageTempData
+        List<Image> selectedImages = new List<Image>();
+        int? selectingImage = null;
+        //DefaultValue
+        string defaultBarcode = "[ตัวอย่าง : 4250352120]";
+        string defaultProductName = "[ตัวอย่าง : Occulus Quest 2D]";
+        string defaultBorrowerName = "[ตัวอย่าง : นางแป้บ ซิลอน]";
+        string defaultPicstatus = "0 of 0";
+        //DateTime defaultReturnDate = DateTime.Now;
+        string defaultcontact = "[ตัวอย่าง : 0878675185]";
+        string defaultnote = "[ตัวอย่าง : วัสดุนี้จะต้องถูกยืมเป็นระยะเวลานาน]";
         public AddBorrowItem()
         {
             InitializeComponent();
+        }
+
+        public void AssignBarcodeText(RentResults result)
+        {
+            BarcodeID_TXT.Text = result.BarcodeNumber;
+            Product_Name_TXT.Text = result.Product_Name;
+            Return_Date_TXT.Value = DateTime.Now;
+            ////////////////////////////////////
+            selectedImages.Clear();
+            List<string> path = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
+            List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(result.SHA512);
+            if (path.Count > 0)
+            {
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (File.Exists(path[i]))
+                    {
+                        Image selectedImage = Image.FromFile(path[i]);
+                        if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
+                        {
+                            selectedImages.Add(selectedImage);
+                            selectedImages[i].Tag = "NormalFile";
+                        }
+                        else
+                        {
+                            selectedImages.Add(Resources.corruptedfile);
+                            selectedImages[i].Tag = "FileCorrupt";
+                        }
+                    }
+                    else
+                    {
+                        selectedImages.Add(Resources.filemissing);
+                        selectedImages[i].Tag = "FileMissing";
+                    }
+                }
+                CheckImageButtonBehavior();
+                ChangePicture(0);
+                pictureBox1.Refresh();
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.NoImage;
+            }
+            /////////////////////////////////////////////////////
+        }
+
+        public void InitializePage()
+        {
+            //BarcodeID_TXT.Text = defaultBarcode;
+            //Product_Name_TXT.Text = defaultProductName;
+            Return_Date_TXT.Value = DateTime.Now;
+            Borrower_Name_TB.Text = defaultBorrowerName;
+            Contact_TB.Text = defaultcontact;
+            Note_TB.Text= defaultnote;
+
+            Borrower_Name_TB.ForeColor = Color.Gray;
+            Contact_TB.ForeColor = Color.Gray;
+            Note_TB.ForeColor = Color.Gray;
+            /////////////////////////////////
+            if (selectedImages != null)
+            {
+                selectedImages.Clear();
+            }
+            else
+            {
+                selectedImages = new List<System.Drawing.Image>();
+            }
+
+            ChangePicture(null);
+            CheckImageButtonBehavior();
         }
 
         private void Add_BorrowItem_ToDB(object sender, EventArgs e)
         {
 
         }
+
+        private void AddBorrowItem_Load(object sender, EventArgs e)
+        {
+            InitializePage();
+        }
+
+        private void AddBorrowItem_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; // Prevent the form from closing
+                this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void Borrower_Name_TB_Enter(object sender, EventArgs e)
+        {
+            if (Borrower_Name_TB.Text == defaultBorrowerName)
+            {
+                Borrower_Name_TB.Text = "";
+                Borrower_Name_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Borrower_Name_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Borrower_Name_TB.Text) || Borrower_Name_TB.Text == defaultBorrowerName)
+            {
+                Borrower_Name_TB.Text = defaultBorrowerName;
+                Borrower_Name_TB.ForeColor = Color.Gray;
+            }
+        }
+
+        private void Contact_TB_Enter(object sender, EventArgs e)
+        {
+            if (Contact_TB.Text == defaultcontact)
+            {
+                Contact_TB.Text = "";
+                Contact_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Contact_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Contact_TB.Text) || Contact_TB.Text == defaultcontact)
+            {
+                Contact_TB.Text = defaultcontact;
+                Contact_TB.ForeColor = Color.Gray;
+            }
+        }
+
+        private void Note_TB_Enter(object sender, EventArgs e)
+        {
+            if (Note_TB.Text == defaultnote)
+            {
+                Note_TB.Text = "";
+                Note_TB.ForeColor = Color.Black;
+            }
+        }
+
+        private void Note_TB_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Note_TB.Text) || Note_TB.Text == defaultnote)
+            {
+                Note_TB.Text = defaultnote;
+                Note_TB.ForeColor = Color.Gray;
+            }
+        }
+        ///////////////////////////////////////////
+        public bool VerifyImageSHA512Hash(Image image, string storedHash)
+        {
+            using (SHA512 sha512 = SHA512.Create())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                byte[] imageBytes = stream.ToArray();
+                byte[] computedHash = sha512.ComputeHash(imageBytes);
+
+                // Convert the computed hash to a hexadecimal string
+                string computedHashString = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
+
+                // Compare the computed hash with the stored hash
+                return computedHashString.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+        string CalculateSHA512Checksum1pic(Image image)
+        {
+            string sha512Values = string.Empty;
+            if (image != null)
+            {
+                using (var sha512 = SHA512.Create())
+                using (var stream = new MemoryStream())
+                {
+                    image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                    stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                    byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
+                    string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
+                    sha512Values = sha512Checksum;
+                }
+            }
+            return sha512Values;
+        }
+        List<string> CalculateSHA512Checksum(List<Image> myImages)
+        {
+            List<string> sha512Values = new List<string>();
+            foreach (Image image in myImages)
+            {
+                if (image != null)
+                {
+                    using (var sha512 = SHA512.Create())
+                    using (var stream = new MemoryStream())
+                    {
+                        image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                        stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                        byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
+                        string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
+                        sha512Values.Add(sha512Checksum);
+                    }
+                }
+            }
+            return sha512Values;
+        }
+        private void ChangePicture(int? pictureindex)
+        {
+            selectingImage = pictureindex;
+            if (selectingImage != null)
+            {
+                pictureBox1.Image = selectedImages[(int)selectingImage];
+                PicInformation.Text = (int)(selectingImage + 1) + " of " + selectedImages.Count;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.NoImage;
+                PicInformation.Text = "0 of 0";
+            }
+        }
+        private void CheckImageButtonBehavior()
+        {
+            if (selectedImages != null && selectedImages.Count > 1)
+            {
+                Prevpic.Enabled = true;
+                Nextpic.Enabled = true;
+                Prevpic.Show();
+                Nextpic.Show();
+            }
+            else
+            {
+                Prevpic.Enabled = false;
+                Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
+            }
+        }
+
+        private void Prevpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage - 1) >= 0)
+            {
+                selectingImage--;
+            }
+            else
+            {
+                selectingImage = selectedImages.Count - 1;
+            }
+            ChangePicture((int)selectingImage);
+        }
+
+        private void Nextpic_Click(object sender, EventArgs e)
+        {
+            if (selectedImages.Count < 2) return;
+            if ((selectingImage + 1) < (selectedImages.Count))
+            {
+                selectingImage++;
+
+            }
+            else
+            {
+                selectingImage = 0;
+            }
+            ChangePicture((int)selectingImage);
+        }
+        //////////////////////////////////////////////////
     }
 }

@@ -210,7 +210,7 @@
             "[เลือกสถานะทั้งหมด]",
             "ถูกยืม",
             "เลยกำหนด",
-            "คืนเรียบร้อย",
+            "คืนเรียบร้อย (พร้อมให้ยืม)",
             "ไม่พบข้อมูล"});
             this.ConditionBox.Location = new System.Drawing.Point(1143, 3);
             this.ConditionBox.Name = "ConditionBox";
