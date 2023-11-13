@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -15,6 +16,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public ShowBorrowDetail()
         {
             InitializeComponent();
+        }
+
+        internal void AssignBarcodeText(RentResults temporarydata)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void InitializePage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

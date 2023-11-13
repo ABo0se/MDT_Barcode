@@ -235,7 +235,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     }
                 case 2:
                     {
-                        return "คืนเรียบร้อย (พร้อมให้ยืม)";
+                        return "พร้อมให้ยืม";
                     }
                 case 3:
                     {
@@ -264,12 +264,52 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void Borrow_Return_Management_B_Click(object sender, EventArgs e)
         {
             if (temporarydata == null) return;
-            AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
-            if (AddBForm != null)
+
+            //BorrowItem
+            if (temporarydata.Status == null)
             {
-                AddBForm.Show();
-                AddBForm.InitializePage();
-                AddBForm.AssignBarcodeText(temporarydata);
+                AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
+                if (AddBForm != null)
+                {
+                    AddBForm.Show();
+                    AddBForm.InitializePage();
+                    AddBForm.AssignBarcodeText(temporarydata);
+                }
+            }
+            if (temporarydata.Status == 0 || temporarydata.Status == 1 || temporarydata.Status == 2)
+            {
+                Return_Item ReturnForm = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
+                if (ReturnForm != null)
+                {
+                    ReturnForm.Show();
+                    ReturnForm.InitializePage();
+                    ReturnForm.AssignBarcodeText(temporarydata);
+                }
+            }
+            //ReturnItem
+        }
+
+        private void AdjustDetail_B_Click(object sender, EventArgs e)
+        {
+            if (temporarydata == null) return;
+            EditBorrowedItems EditForm = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
+            if (EditForm != null)
+            {
+                EditForm.Show();
+                EditForm.InitializePage();
+                EditForm.AssignBarcodeText(temporarydata);
+            }
+        }
+
+        private void ShowDetail_B_Click(object sender, EventArgs e)
+        {
+            if (temporarydata == null) return;
+            ShowBorrowDetail ShowForm = MainMenu.initializedForms.Find(f => f is ShowBorrowDetail) as ShowBorrowDetail;
+            if (ShowForm != null)
+            {
+                ShowForm.Show();
+                ShowForm.InitializePage();
+                ShowForm.AssignBarcodeText(temporarydata);
             }
         }
     }

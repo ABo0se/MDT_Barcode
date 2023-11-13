@@ -211,11 +211,11 @@
     <Compile Include="Borrow-Return\ManageBorrowedItem.Designer.cs">
       <DependentUpon>ManageBorrowedItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Borrow-Return\ReturnItem.cs">
+    <Compile Include="Borrow-Return\Return_Item.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Borrow-Return\ReturnItem.Designer.cs">
-      <DependentUpon>ReturnItem.cs</DependentUpon>
+    <Compile Include="Borrow-Return\Return_Item.Designer.cs">
+      <DependentUpon>Return_Item.cs</DependentUpon>
     </Compile>
     <Compile Include="Borrow-Return\ShowBorrowDetail.cs">
       <SubType>Form</SubType>
@@ -270,8 +270,8 @@
     <EmbeddedResource Include="Borrow-Return\ManageBorrowedItem.resx">
       <DependentUpon>ManageBorrowedItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Borrow-Return\ReturnItem.resx">
-      <DependentUpon>ReturnItem.cs</DependentUpon>
+    <EmbeddedResource Include="Borrow-Return\Return_Item.resx">
+      <DependentUpon>Return_Item.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrow-Return\ShowBorrowDetail.resx">
       <DependentUpon>ShowBorrowDetail.cs</DependentUpon>

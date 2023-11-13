@@ -16,5 +16,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             InitializeComponent();
         }
+
+        internal void AssignBarcodeText(RentResults temporarydata)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void InitializePage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

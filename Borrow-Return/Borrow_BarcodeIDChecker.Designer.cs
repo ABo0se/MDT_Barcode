@@ -157,6 +157,7 @@
             this.ShowDetail_B.TabIndex = 0;
             this.ShowDetail_B.Text = "ดูรายละเอียด";
             this.ShowDetail_B.UseVisualStyleBackColor = true;
+            this.ShowDetail_B.Click += new System.EventHandler(this.ShowDetail_B_Click);
             // 
             // Borrow_Return_Management_B
             // 
@@ -184,6 +185,7 @@
             this.AdjustDetail_B.TabIndex = 1;
             this.AdjustDetail_B.Text = "แก้ไขรายละเอียด";
             this.AdjustDetail_B.UseVisualStyleBackColor = true;
+            this.AdjustDetail_B.Click += new System.EventHandler(this.AdjustDetail_B_Click);
             // 
             // Borrow_BarcodeIDChecker
             // 
