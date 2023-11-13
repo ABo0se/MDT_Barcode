@@ -40,13 +40,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void AssignBarcodeText(RentResults result)
         {
-            BarcodeID_TXT.Text = result.BarcodeNumber;
-            Product_Name_TXT.Text = result.Product_Name;
+            TemporaryData = result;
+            BarcodeID_TXT.Text = TemporaryData.BarcodeNumber;
+            Product_Name_TXT.Text = TemporaryData.Product_Name;
             Return_Date_TXT.Value = DateTime.Now;
+
             ////////////////////////////////////
             selectedImages.Clear();
-            List<string> path = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
-            List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(result.SHA512);
+            List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
+            List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(TemporaryData.SHA512);
             if (path.Count > 0)
             {
                 for (int i = 0; i < path.Count; i++)
@@ -110,7 +112,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (TemporaryData == null)
             {
                 TemporaryData = new RentResults();
-
             }
         }
 
@@ -118,7 +119,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             //Serach before we do something.
             List<string> dbData = new List<string>();
-            string dbConnectionString = "server=127.0.0.1; user=root; databaseborrow_returning_system; password=";
+            string dbConnectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
             try
@@ -145,7 +146,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 if (isDataSame)
                 {
-                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้อยู่แล้ว\n";
+                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
                 }
 
                 if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
@@ -173,6 +174,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
                 }
+                if (TemporaryData == null)
+                {
+                    warningMessage += "ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n";
+                }
                 //////////////////////////////////////////////
                 if (Note_TB.Text == defaultnote || Note_TB.Text == "")
                 {
@@ -196,7 +201,76 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void AddItemToDB()
         {
-            
+            //Adjust object before we put in database.
+            if (TemporaryData == null)
+            {
+                MessageBox.Show("ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n");
+                return;
+            }
+            TemporaryData.InitialBorrowDate = DateTime.Now.Date;
+            TemporaryData.EstReturnDate = Return_Date_TXT.Value.Date;
+            TemporaryData.Borrower_Name = Borrower_Name_TB.Text;
+            TemporaryData.Borrower_Contact = Contact_TB.Text;
+            TemporaryData.Note = Note_TB.Text;
+            //ถูกยืม
+            TemporaryData.Status = 0;
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+            MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
+
+            try
+            {
+                //TryAddittoDATABASE
+                mySqlConnection2.Open();
+
+                string query = "INSERT INTO borrowing_info (Initial_Borrow_Time, EST_Return_Date, BarcodeNumber, Product_Name, Borrower_Name, ImageData, MD5_ImageValidityChecksum, Contact, Note, Status) " +
+               "VALUES (@Initial_Borrow_Time, @EST_Return_Date, @BarcodeNumber, @Product_Name, @Borrower_Name, @ImageData, @MD5_ImageValidityChecksum, @Contact, @Note, @Status)";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
+                {
+                    cmd.Parameters.AddWithValue("@Initial_Borrow_Time", TemporaryData.InitialBorrowDate);
+                    cmd.Parameters.AddWithValue("@EST_Return_Date", TemporaryData.EstReturnDate);
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", TemporaryData.BarcodeNumber);
+                    cmd.Parameters.AddWithValue("@Product_Name", TemporaryData.Product_Name);
+                    cmd.Parameters.AddWithValue("@Borrower_Name", TemporaryData.Borrower_Name);
+                    cmd.Parameters.AddWithValue("@ImageData", TemporaryData.FilePath);
+                    cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", TemporaryData.SHA512);
+                    cmd.Parameters.AddWithValue("@Contact", TemporaryData.Borrower_Contact);
+                    cmd.Parameters.AddWithValue("@Note", TemporaryData.Note);
+                    cmd.Parameters.AddWithValue("@Status", TemporaryData.Status);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("การยืมครุภัณฑ์สำเร็จ!");
+                        //PullDataFromDB();
+                    }
+                    else
+                    {
+                        MessageBox.Show("การยืมลครุภัณฑ์ล้มเหลว.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+            }
+            finally
+            {
+                mySqlConnection2.Close();
+                AddBorrowItem AddItem = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
+                ManageBorrowedItem ManageRent = MainMenu.initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;
+                if (AddItem != null)
+                {
+                    AddItem.Hide();
+                }
+                if (ManageRent != null)
+                {
+                    ManageRent.SearchDatainDB();
+                }
+            }
         }
 
         private void AddBorrowItem_Load(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
@@ -38,6 +39,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void ResetTextState()
         {
             BarcodeText.Text = defaultText;
+            Status_TXT.Text = "";
             BarcodeText.ForeColor = Color.Gray;
         }
         private void BeginNewTextState()
@@ -65,8 +67,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             //MessageBox.Show(BarcodeText.Text);
             FindBarcodeInItemDatabase(BarcodeText.Text, out RentResults data);
-            temporarydata = data;
-            if (temporarydata == null)
+            
+            if (data == null)
             {
                 MessageBox.Show("ไม่พบครุภัณฑ์ที่บันทึกไว้ในฐานข้อมูลครุภัณฑ์");
                 ResetButtonState();
@@ -74,6 +76,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             else
             {
+                temporarydata = data;
                 Status_TXT.Text = DecodingStatus(data.Status);
                 if (temporarydata.Status == null)
                 {
@@ -85,10 +88,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
             }
         }
-        private RentResults FindBarcodeInItemDatabase(string serialCode, out RentResults data)
+        private bool FindBarcodeInItemDatabase(string serialCode, out RentResults data)
         {
-            data = new RentResults();
+            data = null;
             MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1; user=root; database=barcodedatacollector; password=");
+
             try
             {
                 mySqlConnection.Open();
@@ -102,6 +106,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     {
                         while (reader.Read())
                         {
+                            if (data == null) data = new RentResults();
                             data.Product_Name = reader["Product_Name"].ToString();
                             data.BarcodeNumber = reader["BarcodeNumber"].ToString();
                             data.FilePath = reader["ImageData"].ToString();
@@ -109,31 +114,36 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                         }
                     }
                 }
+
+                // If data is still null, no matching record was found
                 if (data == null)
                 {
-                    return null;
+                    return false;
                 }
-                else
-                {
-                    FindBarcodeInBorrowNReturn(data, out RentResults data2);
-                    data = data2;
-                    return data;
-                }
+
+                // Populate additional data using FindBarcodeInBorrowNReturn
+                RentResults mydata = FindBarcodeInBorrowNReturn(data);
+                data = mydata;
+
+                // Data found
+                return true;
             }
             catch (Exception ex)
             {
-                // Handle exceptions as needed
-                // MessageBox.Show(ex.Message);
+                MessageBox.Show("Test555");
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
                 mySqlConnection.Close();
             }
-            return null;
+
+            // Return false if an exception occurred
+            return false;
         }
-        private RentResults FindBarcodeInBorrowNReturn(RentResults data2, out RentResults data)
+
+        private RentResults FindBarcodeInBorrowNReturn(RentResults data)
         {
-            data = data2;
             MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1; user=root; database=borrow_returning_system; password=");
             try
             {
@@ -143,14 +153,41 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 using (MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection))
                 {
                     command.Parameters.AddWithValue("@BarcodeNumber", data.BarcodeNumber);
-
+                    //MessageBox.Show(data.BarcodeNumber);
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            data.InitialBorrowDate = reader.GetDateTime("Initial_Borrow_Date");
-                            data.EstReturnDate = reader.GetDateTime("EST_Return_Date");
-                            data.ActualReturnDate = reader.GetDateTime("ACTUAL_Return_Date");
+                            // Check for DBNull before assigning to ActualReturnDate
+                            if (!reader.IsDBNull(reader.GetOrdinal("Initial_Borrow_Time")))
+                            {
+                                data.InitialBorrowDate = reader.GetDateTime("Initial_Borrow_Time");
+                            }
+                            else
+                            {
+                                data.InitialBorrowDate = null; // Handle DBNull by assigning null to the nullable property
+                            }
+
+                            // Check for DBNull before assigning to ActualReturnDate
+                            if (!reader.IsDBNull(reader.GetOrdinal("EST_Return_Date")))
+                            {
+                                data.EstReturnDate = reader.GetDateTime("EST_Return_Date");
+                            }
+                            else
+                            {
+                                data.EstReturnDate = null; // Handle DBNull by assigning null to the nullable property
+                            }
+
+                            // Check for DBNull before assigning to ActualReturnDate
+                            if (!reader.IsDBNull(reader.GetOrdinal("ACTUAL_Return_Date")))
+                            {
+                                data.ActualReturnDate = reader.GetDateTime("ACTUAL_Return_Date");
+                            }
+                            else
+                            {
+                                data.ActualReturnDate = null; // Handle DBNull by assigning null to the nullable property
+                            }
+
                             //data.Product_Name = reader["Product_Name"].ToString();
                             data.Borrower_Name = reader["Borrower_Name"].ToString();
                             //data.BarcodeNumber = reader["BarcodeNumber"].ToString();
@@ -158,16 +195,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             //data.SHA512 = reader["MD5_ImageValidityChecksum"].ToString();
                             data.Borrower_Contact = reader["Contact"].ToString();
                             data.Note = reader["Note"].ToString();
-                            data.Status = int.Parse(reader["Status"].ToString());
-                            return data;
+                            data.Status = int.Parse(reader["Status"].ToString());           
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exceptions as needed
-                // MessageBox.Show(ex.Message);
+                MessageBox.Show("Warning here.");
+                MessageBox.Show("ข้อผิดพลาด : " + ex);
             }
             finally
             {
@@ -242,9 +278,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
     public class RentResults
     {
-        public DateTime InitialBorrowDate { get; set; }
-        public DateTime EstReturnDate { get; set; }
-        public DateTime ActualReturnDate { get; set; }
+        public DateTime? InitialBorrowDate { get; set; }
+        public DateTime? EstReturnDate { get; set; }
+        public DateTime? ActualReturnDate { get; set; }
         public string BarcodeNumber { get; set; }
         public List<RentHistory> BarcodeHistoryList { get; set; }
         public string BarcodeHistoryListSerialized { get; set; }
