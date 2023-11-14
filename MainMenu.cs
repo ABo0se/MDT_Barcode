@@ -87,7 +87,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     connection2.Open();
                     string createTableQuery2 = "CREATE TABLE IF NOT EXISTS BORROWING_INFO ( " +
-                                                "Initial_Borrow_Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                "Initial_Borrow_Time DATETIME, " +
                                                 "EST_Return_Date DATETIME, " +
                                                 "ACTUAL_Return_Date DATETIME, " +
                                                 "BarcodeNumber VARCHAR(100), " +

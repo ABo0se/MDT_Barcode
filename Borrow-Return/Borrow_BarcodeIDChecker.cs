@@ -235,7 +235,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     }
                 case 2:
                     {
-                        return "พร้อมให้ยืม";
+                        return "พร้อมให้ยืม [มีประวัติ]";
                     }
                 case 3:
                     {
@@ -318,6 +318,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
     public class RentResults
     {
+        public DateTime? Date { get; set; }
         public DateTime? InitialBorrowDate { get; set; }
         public DateTime? EstReturnDate { get; set; }
         public DateTime? ActualReturnDate { get; set; }

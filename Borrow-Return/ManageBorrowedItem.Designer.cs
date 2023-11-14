@@ -31,25 +31,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Borrower_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BarcodeSearchBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.RoomSearchBox = new System.Windows.Forms.TextBox();
+            this.Product_Name_SearchBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ConditionBox = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.StatusBox = new System.Windows.Forms.ComboBox();
+            this.ReturnTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.BorrowTime = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Del_Database = new System.Windows.Forms.Button();
             this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Import_Excel = new System.Windows.Forms.Button();
             this.Download_Template = new System.Windows.Forms.Button();
             this.Export_Excel = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BorrowGridView = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarcodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +65,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.ExportPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BorrowGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // TitlePanel
@@ -80,12 +80,12 @@
             this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TitlePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.TitlePanel.Controls.Add(this.textBox1, 5, 0);
+            this.TitlePanel.Controls.Add(this.Borrower_Name, 5, 0);
             this.TitlePanel.Controls.Add(this.label2, 4, 0);
             this.TitlePanel.Controls.Add(this.label1, 0, 0);
             this.TitlePanel.Controls.Add(this.BarcodeSearchBox, 1, 0);
             this.TitlePanel.Controls.Add(this.label3, 2, 0);
-            this.TitlePanel.Controls.Add(this.RoomSearchBox, 3, 0);
+            this.TitlePanel.Controls.Add(this.Product_Name_SearchBox, 3, 0);
             this.TitlePanel.Location = new System.Drawing.Point(3, 3);
             this.TitlePanel.Name = "TitlePanel";
             this.TitlePanel.RowCount = 1;
@@ -93,17 +93,18 @@
             this.TitlePanel.Size = new System.Drawing.Size(1552, 49);
             this.TitlePanel.TabIndex = 17;
             // 
-            // textBox1
+            // Borrower_Name
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Borrower_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.textBox1.Location = new System.Drawing.Point(1195, 3);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(353, 43);
-            this.textBox1.TabIndex = 19;
+            this.Borrower_Name.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Borrower_Name.Location = new System.Drawing.Point(1195, 3);
+            this.Borrower_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Borrower_Name.Name = "Borrower_Name";
+            this.Borrower_Name.Size = new System.Drawing.Size(353, 43);
+            this.Borrower_Name.TabIndex = 19;
+            this.Borrower_Name.TextChanged += new System.EventHandler(this.Borrower_Name_TextChanged);
             // 
             // label2
             // 
@@ -146,6 +147,7 @@
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
             this.BarcodeSearchBox.Size = new System.Drawing.Size(352, 43);
             this.BarcodeSearchBox.TabIndex = 3;
+            this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
             // label3
             // 
@@ -162,17 +164,18 @@
             this.label3.Text = "ค้นหาชื่อครุภัณฑ์ :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // RoomSearchBox
+            // Product_Name_SearchBox
             // 
-            this.RoomSearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Product_Name_SearchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RoomSearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.RoomSearchBox.Location = new System.Drawing.Point(690, 3);
-            this.RoomSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.RoomSearchBox.Name = "RoomSearchBox";
-            this.RoomSearchBox.Size = new System.Drawing.Size(352, 43);
-            this.RoomSearchBox.TabIndex = 12;
+            this.Product_Name_SearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Product_Name_SearchBox.Location = new System.Drawing.Point(690, 3);
+            this.Product_Name_SearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Product_Name_SearchBox.Name = "Product_Name_SearchBox";
+            this.Product_Name_SearchBox.Size = new System.Drawing.Size(352, 43);
+            this.Product_Name_SearchBox.TabIndex = 12;
+            this.Product_Name_SearchBox.TextChanged += new System.EventHandler(this.Product_Name_SearchBox_TextChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -185,11 +188,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.Controls.Add(this.ConditionBox, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.StatusBox, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.ReturnTime, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BorrowTime, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 58);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -197,37 +200,40 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1552, 50);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
-            // ConditionBox
+            // StatusBox
             // 
-            this.ConditionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.StatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ConditionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ConditionBox.DropDownWidth = 179;
-            this.ConditionBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.ConditionBox.FormattingEnabled = true;
-            this.ConditionBox.Items.AddRange(new object[] {
+            this.StatusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusBox.DropDownWidth = 179;
+            this.StatusBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.StatusBox.FormattingEnabled = true;
+            this.StatusBox.Items.AddRange(new object[] {
             "[เลือกสถานะทั้งหมด]",
             "ถูกยืม",
             "เลยกำหนด",
-            "คืนเรียบร้อย (พร้อมให้ยืม)",
+            "พร้อมให้ยืม [มีประวัติ]",
             "ไม่พบข้อมูล"});
-            this.ConditionBox.Location = new System.Drawing.Point(1143, 3);
-            this.ConditionBox.Name = "ConditionBox";
-            this.ConditionBox.Size = new System.Drawing.Size(406, 44);
-            this.ConditionBox.TabIndex = 21;
+            this.StatusBox.Location = new System.Drawing.Point(1143, 3);
+            this.StatusBox.Name = "StatusBox";
+            this.StatusBox.Size = new System.Drawing.Size(406, 44);
+            this.StatusBox.TabIndex = 21;
+            this.StatusBox.SelectedIndexChanged += new System.EventHandler(this.StatusBox_SelectedIndexChanged);
             // 
-            // dateTimePicker2
+            // ReturnTime
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ReturnTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.dateTimePicker2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.dateTimePicker2.Location = new System.Drawing.Point(731, 3);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(406, 43);
-            this.dateTimePicker2.TabIndex = 21;
+            this.ReturnTime.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ReturnTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.ReturnTime.Location = new System.Drawing.Point(731, 3);
+            this.ReturnTime.Name = "ReturnTime";
+            this.ReturnTime.Size = new System.Drawing.Size(406, 43);
+            this.ReturnTime.TabIndex = 21;
+            this.ReturnTime.ValueChanged += new System.EventHandler(this.ReturnTime_ValueChanged);
+            this.ReturnTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReturnTime_KeyDown);
             // 
             // label4
             // 
@@ -259,17 +265,19 @@
             this.label5.Text = "เวลาที่ยืม  :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker1
+            // BorrowTime
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BorrowTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.dateTimePicker1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.dateTimePicker1.Location = new System.Drawing.Point(121, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(406, 43);
-            this.dateTimePicker1.TabIndex = 14;
+            this.BorrowTime.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowTime.Location = new System.Drawing.Point(121, 3);
+            this.BorrowTime.Name = "BorrowTime";
+            this.BorrowTime.Size = new System.Drawing.Size(406, 43);
+            this.BorrowTime.TabIndex = 14;
+            this.BorrowTime.ValueChanged += new System.EventHandler(this.BorrowTime_ValueChanged);
+            this.BorrowTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorrowTime_KeyDown);
             // 
             // tableLayoutPanel2
             // 
@@ -352,12 +360,12 @@
             this.Export_Excel.Text = "นำข้อมูลออกเป็น Excel";
             this.Export_Excel.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // BorrowGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
+            this.BorrowGridView.AllowUserToAddRows = false;
+            this.BorrowGridView.AllowUserToDeleteRows = false;
+            this.BorrowGridView.AllowUserToResizeColumns = false;
+            this.BorrowGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
@@ -365,9 +373,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 41;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BorrowGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.BorrowGridView.ColumnHeadersHeight = 41;
+            this.BorrowGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Index,
             this.BarcodeID,
             this.Product_Name,
@@ -379,15 +387,15 @@
             this.Action_1,
             this.Action_2,
             this.Action_3});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 127);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
+            this.BorrowGridView.Location = new System.Drawing.Point(12, 127);
+            this.BorrowGridView.Name = "BorrowGridView";
+            this.BorrowGridView.RowHeadersVisible = false;
+            this.BorrowGridView.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1558, 510);
-            this.dataGridView1.TabIndex = 25;
+            this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.BorrowGridView.RowTemplate.Height = 25;
+            this.BorrowGridView.Size = new System.Drawing.Size(1558, 510);
+            this.BorrowGridView.TabIndex = 25;
             // 
             // Index
             // 
@@ -492,7 +500,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1582, 703);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.BorrowGridView);
             this.Controls.Add(this.ExportPanel);
             this.Controls.Add(this.Del_Database);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -508,7 +516,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ExportPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BorrowGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,22 +528,22 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox BarcodeSearchBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox RoomSearchBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Product_Name_SearchBox;
+        private System.Windows.Forms.TextBox Borrower_Name;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker BorrowTime;
+        private System.Windows.Forms.DateTimePicker ReturnTime;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox ConditionBox;
+        private System.Windows.Forms.ComboBox StatusBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button Del_Database;
         private System.Windows.Forms.TableLayoutPanel ExportPanel;
         private System.Windows.Forms.Button Import_Excel;
         private System.Windows.Forms.Button Download_Template;
         private System.Windows.Forms.Button Export_Excel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView BorrowGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
