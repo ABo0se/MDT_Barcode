@@ -85,6 +85,7 @@
             this.Nextpic.TabIndex = 5;
             this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
             // 
             // Prevpic
             // 
@@ -98,6 +99,7 @@
             this.Prevpic.TabIndex = 6;
             this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
             // pictureBox1
             // 
@@ -561,6 +563,8 @@
             this.MinimumSize = new System.Drawing.Size(650, 825);
             this.Name = "ShowBorrowDetail";
             this.Text = "รายละเอียดครุภัณฑ์ที่ยืม";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShowBorrowDetail_FormClosing);
+            this.Load += new System.EventHandler(this.ShowBorrowDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

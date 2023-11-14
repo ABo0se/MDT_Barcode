@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,15 +76,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                                 InitialBorrowDate = reader.IsDBNull(reader.GetOrdinal("Initial_Borrow_Time")) ? (DateTime?)null : reader.GetDateTime("Initial_Borrow_Time"),
                                 EstReturnDate = reader.IsDBNull(reader.GetOrdinal("EST_Return_Date")) ? (DateTime?)null : reader.GetDateTime("EST_Return_Date"),
                                 ActualReturnDate = reader.IsDBNull(reader.GetOrdinal("ACTUAL_Return_Date")) ? (DateTime?)null : reader.GetDateTime("ACTUAL_Return_Date"),
-                                BarcodeNumber = reader["BarcodeNumber"].ToString(),
-                                Product_Name = reader["Product_Name"].ToString(),
-                                Borrower_Name = reader["Borrower_Name"].ToString(),
-                                FilePath = reader["ImageData"].ToString(),
-                                SHA512 = reader["MD5_ImageValidityChecksum"].ToString(),
-                                BarcodeHistoryListSerialized = reader["HistoryTextlog"].ToString(),
-                                Borrower_Contact = reader["Contact"].ToString(),
-                                Note = reader["Note"].ToString(),
-                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? (int?)null : reader.GetInt16("Status")
+                                BarcodeNumber = !string.IsNullOrEmpty(reader["BarcodeNumber"]?.ToString()) ? reader["BarcodeNumber"].ToString() : "-",
+                                Product_Name = !string.IsNullOrEmpty(reader["Product_Name"]?.ToString()) ? reader["Product_Name"].ToString() : "-",
+                                Borrower_Name = !string.IsNullOrEmpty(reader["Borrower_Name"]?.ToString()) ? reader["Borrower_Name"].ToString() : "-",
+                                FilePath = !string.IsNullOrEmpty(reader["ImageData"]?.ToString()) ? reader["ImageData"].ToString() : "[]",
+                                SHA512 = !string.IsNullOrEmpty(reader["MD5_ImageValidityChecksum"]?.ToString()) ? reader["MD5_ImageValidityChecksum"].ToString() : "[]",
+                                BarcodeHistoryListSerialized = !string.IsNullOrEmpty(reader["HistoryTextlog"]?.ToString()) ? reader["HistoryTextlog"].ToString() : "[]",
+                                Borrower_Contact = !string.IsNullOrEmpty(reader["Contact"]?.ToString()) ? reader["Contact"].ToString() : "-",
+                                Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
+                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
                             };
                             mysearchresults.Add(myrentdata);
                         }
@@ -251,6 +252,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 // Your custom logic when the button is clicked
                 // Search
+                ShowBorrowDetail Search = MainMenu.initializedForms.Find(f => f is ShowBorrowDetail) as ShowBorrowDetail;
+                if (Search != null && TemporaryData[e.RowIndex] != null)
+                {
+                    Search.Show();
+                    Search.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                }
             }
             if (e.ColumnIndex == 9 && e.RowIndex >= 0)
             {
