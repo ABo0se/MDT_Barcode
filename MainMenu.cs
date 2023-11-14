@@ -169,11 +169,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             InitializeAllForms();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Borrow_Return_Manager_Click(object sender, EventArgs e)
         {
             ManageBorrowedItem ManageQRForm = initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;

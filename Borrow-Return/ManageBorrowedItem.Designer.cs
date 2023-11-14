@@ -30,6 +30,9 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
             this.Borrower_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,6 +64,7 @@
             this.Action_1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Action_4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.TitlePanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -367,14 +371,18 @@
             this.BorrowGridView.AllowUserToResizeColumns = false;
             this.BorrowGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BorrowGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BorrowGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.BorrowGridView.ColumnHeadersHeight = 41;
+            this.BorrowGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.BorrowGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Index,
             this.BarcodeID,
@@ -386,14 +394,32 @@
             this.Status,
             this.Action_1,
             this.Action_2,
-            this.Action_3});
+            this.Action_3,
+            this.Action_4});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BorrowGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.BorrowGridView.Location = new System.Drawing.Point(12, 127);
             this.BorrowGridView.Name = "BorrowGridView";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BorrowGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.BorrowGridView.RowHeadersVisible = false;
             this.BorrowGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.BorrowGridView.RowTemplate.Height = 25;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.BorrowGridView.RowTemplate.Height = 35;
             this.BorrowGridView.Size = new System.Drawing.Size(1558, 510);
             this.BorrowGridView.TabIndex = 25;
             // 
@@ -472,28 +498,37 @@
             // 
             this.Action_1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_1.HeaderText = "";
-            this.Action_1.MinimumWidth = 45;
+            this.Action_1.MinimumWidth = 40;
             this.Action_1.Name = "Action_1";
-            this.Action_1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action_1.Width = 45;
+            this.Action_1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_1.Width = 40;
             // 
             // Action_2
             // 
             this.Action_2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_2.HeaderText = "";
-            this.Action_2.MinimumWidth = 45;
+            this.Action_2.MinimumWidth = 40;
             this.Action_2.Name = "Action_2";
-            this.Action_2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action_2.Width = 45;
+            this.Action_2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_2.Width = 40;
             // 
             // Action_3
             // 
             this.Action_3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_3.HeaderText = "";
-            this.Action_3.MinimumWidth = 45;
+            this.Action_3.MinimumWidth = 40;
             this.Action_3.Name = "Action_3";
-            this.Action_3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action_3.Width = 45;
+            this.Action_3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_3.Width = 40;
+            // 
+            // Action_4
+            // 
+            this.Action_4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Action_4.HeaderText = "";
+            this.Action_4.MinimumWidth = 40;
+            this.Action_4.Name = "Action_4";
+            this.Action_4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Action_4.Width = 40;
             // 
             // ManageBorrowedItem
             // 
@@ -508,6 +543,7 @@
             this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "ManageBorrowedItem";
             this.Text = "ManageBorrowedItem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageBorrowedItem_FormClosing);
             this.Load += new System.EventHandler(this.ManageBorrowedItem_Load);
             this.TitlePanel.ResumeLayout(false);
             this.TitlePanel.PerformLayout();
@@ -555,5 +591,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Action_1;
         private System.Windows.Forms.DataGridViewImageColumn Action_2;
         private System.Windows.Forms.DataGridViewImageColumn Action_3;
+        private System.Windows.Forms.DataGridViewImageColumn Action_4;
     }
 }

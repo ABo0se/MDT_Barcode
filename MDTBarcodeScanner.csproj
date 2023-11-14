@@ -331,6 +331,7 @@
     <None Include="Resources\DrawLine.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\filemissing.png" />
+    <None Include="Resources\Return_Product.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\Test.png" />
   </ItemGroup>
