@@ -58,9 +58,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     // Assuming you have parameters, add them here
-                    command.Parameters.AddWithValue("@BarcodesearchCriteria", BarcodeSearchBox.Text);
-                    command.Parameters.AddWithValue("@Product_Name", Product_Name_SearchBox.Text);
-                    command.Parameters.AddWithValue("@Borrower_Name", Borrower_Name.Text);
+                    command.Parameters.AddWithValue("@BarcodesearchCriteria", "%" + BarcodeSearchBox.Text + "%");
+                    command.Parameters.AddWithValue("@Product_Name", "%" + Product_Name_SearchBox.Text + "%");
+                    command.Parameters.AddWithValue("@Borrower_Name", "%" + Borrower_Name.Text + "%");
                     command.Parameters.AddWithValue("@Initial_Borrow_Time", BorrowingDate.HasValue ? (object)BorrowingDate.Value.Date : DBNull.Value);
                     command.Parameters.AddWithValue("@EST_Return_Date", ReturningDate.HasValue ? (object)ReturningDate.Value.Date : DBNull.Value);
                     command.Parameters.AddWithValue("@StatussearchCriteria", (StatusBox.SelectedIndex - 1));
@@ -241,6 +241,67 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 e.Cancel = true; // Prevent the form from closing
                 this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void BorrowGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 8 && e.RowIndex >= 0)
+            {
+                // Your custom logic when the button is clicked
+                // Search
+            }
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            {
+                // Your custom logic when the button is clicked
+                // Edit
+            }
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            {
+                //Your custom logic when the button is clicked
+                // Return
+                
+            }
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            {
+                //Delete
+                DialogResult result = MessageBox.Show
+                ("ต้องการจะลบข้อมูลครุภัณฑ์นี้หรือไม่??", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Check the user's response
+                if (result == DialogResult.Yes)
+                {
+                    // User clicked "Yes," perform the action
+                    
+                }
+                else
+                {
+                    // User clicked "No" or closed the dialog, do nothing or handle as needed
+                }
+            }
+        }
+
+        private void BorrowGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 8 && e.RowIndex >= 0)
+            {
+                e.Value = Properties.Resources.search;
+                //e.FormattingApplied = true; // Add this line
+            }
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            {
+                e.Value = Properties.Resources.EditIcon;
+                //e.FormattingApplied = true; // Add this line
+            }
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
+            {
+                e.Value = Properties.Resources.Return_Product;
+                //e.FormattingApplied = true; // Add this line
+            }
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            {
+                e.Value = Properties.Resources.DeleteIcon;
+                //e.FormattingApplied = true; // Add this line
             }
         }
 

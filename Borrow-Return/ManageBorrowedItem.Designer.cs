@@ -422,6 +422,8 @@
             this.BorrowGridView.RowTemplate.Height = 35;
             this.BorrowGridView.Size = new System.Drawing.Size(1558, 510);
             this.BorrowGridView.TabIndex = 25;
+            this.BorrowGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BorrowGridView_CellContentClick);
+            this.BorrowGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BorrowGridView_CellFormatting);
             // 
             // Index
             // 
@@ -498,6 +500,7 @@
             // 
             this.Action_1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_1.HeaderText = "";
+            this.Action_1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_1.MinimumWidth = 40;
             this.Action_1.Name = "Action_1";
             this.Action_1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -507,6 +510,7 @@
             // 
             this.Action_2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_2.HeaderText = "";
+            this.Action_2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_2.MinimumWidth = 40;
             this.Action_2.Name = "Action_2";
             this.Action_2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -516,6 +520,7 @@
             // 
             this.Action_3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_3.HeaderText = "";
+            this.Action_3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_3.MinimumWidth = 40;
             this.Action_3.Name = "Action_3";
             this.Action_3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -525,6 +530,7 @@
             // 
             this.Action_4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Action_4.HeaderText = "";
+            this.Action_4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Action_4.MinimumWidth = 40;
             this.Action_4.Name = "Action_4";
             this.Action_4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
