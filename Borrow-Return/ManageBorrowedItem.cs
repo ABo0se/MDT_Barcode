@@ -38,68 +38,81 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private bool SearchDatabase(out List<RentResults> mysearchresults)
         {
             mysearchresults = new List<RentResults>();
-            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
-            string query = "SELECT * FROM borrowing_info WHERE " +
-                "(BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
-                "AND (Product_Name LIKE @Product_Name OR @Product_Name = '') " +
-                "AND (Borrower_Name LIKE @Borrower_Name OR @Borrower_Name = '') " +
-                "AND (Initial_Borrow_Time = COALESCE(@Initial_Borrow_Time, Initial_Borrow_Time) OR @Initial_Borrow_Time IS NULL) " +
-                "AND (EST_Return_Date = COALESCE(@EST_Return_Date, EST_Return_Date) OR @EST_Return_Date IS NULL) " +
-                "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1 OR @StatussearchCriteria = -2)";
-            ////////////////////////////////////////////////////
-            //MessageBox.Show(BarcodeSearchBox.Text);
-            //MessageBox.Show(Product_Name_SearchBox.Text);
-            //MessageBox.Show((BorrowingDate.HasValue ? (object)BorrowingDate.Value.Date : DBNull.Value).ToString());
-            //MessageBox.Show((ReturningDate.HasValue ? (object)ReturningDate.Value.Date : DBNull.Value).ToString());
-            //MessageBox.Show((StatusBox.SelectedIndex - 1).ToString());
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                string query = "SELECT * FROM borrowing_info WHERE " +
+                    "(BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+                    "AND (Product_Name LIKE @Product_Name OR @Product_Name = '') " +
+                    "AND (Borrower_Name LIKE @Borrower_Name OR @Borrower_Name = '') " +
+                    "AND (Initial_Borrow_Time = COALESCE(@Initial_Borrow_Time, Initial_Borrow_Time) OR @Initial_Borrow_Time IS NULL) " +
+                    "AND (EST_Return_Date = COALESCE(@EST_Return_Date, EST_Return_Date) OR @EST_Return_Date IS NULL) " +
+                    "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1 OR @StatussearchCriteria = -2)";
+                ////////////////////////////////////////////////////
+                //MessageBox.Show(BarcodeSearchBox.Text);
+                //MessageBox.Show(Product_Name_SearchBox.Text);
+                //MessageBox.Show((BorrowingDate.HasValue ? (object)BorrowingDate.Value.Date : DBNull.Value).ToString());
+                //MessageBox.Show((ReturningDate.HasValue ? (object)ReturningDate.Value.Date : DBNull.Value).ToString());
+                //MessageBox.Show((StatusBox.SelectedIndex - 1).ToString());
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    // Assuming you have parameters, add them here
-                    command.Parameters.AddWithValue("@BarcodesearchCriteria", "%" + BarcodeSearchBox.Text + "%");
-                    command.Parameters.AddWithValue("@Product_Name", "%" + Product_Name_SearchBox.Text + "%");
-                    command.Parameters.AddWithValue("@Borrower_Name", "%" + Borrower_Name.Text + "%");
-                    command.Parameters.AddWithValue("@Initial_Borrow_Time", BorrowingDate.HasValue ? (object)BorrowingDate.Value.Date : DBNull.Value);
-                    command.Parameters.AddWithValue("@EST_Return_Date", ReturningDate.HasValue ? (object)ReturningDate.Value.Date : DBNull.Value);
-                    command.Parameters.AddWithValue("@StatussearchCriteria", (StatusBox.SelectedIndex - 1));
+                    connection.Open();
 
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        while (reader.Read())
+                        // Assuming you have parameters, add them here
+                        command.Parameters.AddWithValue("@BarcodesearchCriteria", "%" + BarcodeSearchBox.Text + "%");
+                        command.Parameters.AddWithValue("@Product_Name", "%" + Product_Name_SearchBox.Text + "%");
+                        command.Parameters.AddWithValue("@Borrower_Name", "%" + Borrower_Name.Text + "%");
+                        command.Parameters.AddWithValue("@Initial_Borrow_Time", BorrowingDate.HasValue ? (object)BorrowingDate.Value.Date : DBNull.Value);
+                        command.Parameters.AddWithValue("@EST_Return_Date", ReturningDate.HasValue ? (object)ReturningDate.Value.Date : DBNull.Value);
+                        command.Parameters.AddWithValue("@StatussearchCriteria", (StatusBox.SelectedIndex - 1));
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            RentResults myrentdata = new RentResults
+                            while (reader.Read())
                             {
-                                Date = reader.IsDBNull(reader.GetOrdinal("Time")) ? (DateTime?)null : reader.GetDateTime("Time"),
-                                InitialBorrowDate = reader.IsDBNull(reader.GetOrdinal("Initial_Borrow_Time")) ? (DateTime?)null : reader.GetDateTime("Initial_Borrow_Time"),
-                                EstReturnDate = reader.IsDBNull(reader.GetOrdinal("EST_Return_Date")) ? (DateTime?)null : reader.GetDateTime("EST_Return_Date"),
-                                ActualReturnDate = reader.IsDBNull(reader.GetOrdinal("ACTUAL_Return_Date")) ? (DateTime?)null : reader.GetDateTime("ACTUAL_Return_Date"),
-                                BarcodeNumber = !string.IsNullOrEmpty(reader["BarcodeNumber"]?.ToString()) ? reader["BarcodeNumber"].ToString() : "-",
-                                Product_Name = !string.IsNullOrEmpty(reader["Product_Name"]?.ToString()) ? reader["Product_Name"].ToString() : "-",
-                                Borrower_Name = !string.IsNullOrEmpty(reader["Borrower_Name"]?.ToString()) ? reader["Borrower_Name"].ToString() : "-",
-                                FilePath = !string.IsNullOrEmpty(reader["ImageData"]?.ToString()) ? reader["ImageData"].ToString() : "[]",
-                                SHA512 = !string.IsNullOrEmpty(reader["MD5_ImageValidityChecksum"]?.ToString()) ? reader["MD5_ImageValidityChecksum"].ToString() : "[]",
-                                BarcodeHistoryListSerialized = !string.IsNullOrEmpty(reader["HistoryTextlog"]?.ToString()) ? reader["HistoryTextlog"].ToString() : "[]",
-                                Borrower_Contact = !string.IsNullOrEmpty(reader["Contact"]?.ToString()) ? reader["Contact"].ToString() : "-",
-                                Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
-                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
-                            };
-                            mysearchresults.Add(myrentdata);
+                                RentResults myrentdata = new RentResults
+                                {
+                                    Date = reader.IsDBNull(reader.GetOrdinal("Time")) ? (DateTime?)null : reader.GetDateTime("Time"),
+                                    InitialBorrowDate = reader.IsDBNull(reader.GetOrdinal("Initial_Borrow_Time")) ? (DateTime?)null : reader.GetDateTime("Initial_Borrow_Time"),
+                                    EstReturnDate = reader.IsDBNull(reader.GetOrdinal("EST_Return_Date")) ? (DateTime?)null : reader.GetDateTime("EST_Return_Date"),
+                                    ActualReturnDate = reader.IsDBNull(reader.GetOrdinal("ACTUAL_Return_Date")) ? (DateTime?)null : reader.GetDateTime("ACTUAL_Return_Date"),
+                                    BarcodeNumber = !string.IsNullOrEmpty(reader["BarcodeNumber"]?.ToString()) ? reader["BarcodeNumber"].ToString() : "-",
+                                    Product_Name = !string.IsNullOrEmpty(reader["Product_Name"]?.ToString()) ? reader["Product_Name"].ToString() : "-",
+                                    Borrower_Name = !string.IsNullOrEmpty(reader["Borrower_Name"]?.ToString()) ? reader["Borrower_Name"].ToString() : "-",
+                                    FilePath = !string.IsNullOrEmpty(reader["ImageData"]?.ToString()) ? reader["ImageData"].ToString() : "[]",
+                                    SHA512 = !string.IsNullOrEmpty(reader["MD5_ImageValidityChecksum"]?.ToString()) ? reader["MD5_ImageValidityChecksum"].ToString() : "[]",
+                                    BarcodeHistoryListSerialized = !string.IsNullOrEmpty(reader["HistoryTextlog"]?.ToString()) ? reader["HistoryTextlog"].ToString() : "[]",
+                                    Borrower_Contact = !string.IsNullOrEmpty(reader["Contact"]?.ToString()) ? reader["Contact"].ToString() : "-",
+                                    Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
+                                    Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
+                                };
+                                mysearchresults.Add(myrentdata);
+                            }
                         }
                     }
+                    connection.Close();
+                }
+                if (mysearchresults.Count != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    mysearchresults = null;
+                    return false;
                 }
             }
-            if (mysearchresults.Count != 0)
+            catch (Exception ex)
             {
-                return true;
+                MessageBox.Show(ex.ToString());
             }
-            else
+            finally
             {
-                mysearchresults = null;
-                return false;
+                
             }
+            return false;
         }
         private void PopulateDataGridView(List<RentResults> data)
         {
@@ -263,6 +276,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 // Your custom logic when the button is clicked
                 // Edit
+                EditBorrowedItems Edit = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
+                if (Edit != null && TemporaryData[e.RowIndex] != null)
+                {
+                    Edit.Show();
+                    Edit.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                }
             }
             if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {

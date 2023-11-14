@@ -185,6 +185,8 @@
             this.Borrower_Name_TB.Name = "Borrower_Name_TB";
             this.Borrower_Name_TB.Size = new System.Drawing.Size(436, 43);
             this.Borrower_Name_TB.TabIndex = 3;
+            this.Borrower_Name_TB.Enter += new System.EventHandler(this.Borrower_Name_TB_Enter);
+            this.Borrower_Name_TB.Leave += new System.EventHandler(this.Borrower_Name_TB_Leave);
             // 
             // tableLayoutPanel5
             // 
@@ -212,6 +214,8 @@
             this.Contact_TB.Name = "Contact_TB";
             this.Contact_TB.Size = new System.Drawing.Size(417, 43);
             this.Contact_TB.TabIndex = 5;
+            this.Contact_TB.Enter += new System.EventHandler(this.Contact_TB_Enter);
+            this.Contact_TB.Leave += new System.EventHandler(this.Contact_TB_Leave);
             // 
             // Contact
             // 
@@ -349,6 +353,8 @@
             this.Note_TB.Name = "Note_TB";
             this.Note_TB.Size = new System.Drawing.Size(497, 43);
             this.Note_TB.TabIndex = 6;
+            this.Note_TB.Enter += new System.EventHandler(this.Note_TB_Enter);
+            this.Note_TB.Leave += new System.EventHandler(this.Note_TB_Leave);
             // 
             // Add_Borrowed_Item_toDB
             // 
@@ -361,6 +367,7 @@
             this.Add_Borrowed_Item_toDB.TabIndex = 7;
             this.Add_Borrowed_Item_toDB.Text = "ปรับแก้รายละเอียดการยืมครุภัณฑ์";
             this.Add_Borrowed_Item_toDB.UseVisualStyleBackColor = true;
+            this.Add_Borrowed_Item_toDB.Click += new System.EventHandler(this.Add_Borrowed_Item_toDB_Click);
             // 
             // Nextpic
             // 
@@ -374,6 +381,7 @@
             this.Nextpic.TabIndex = 6;
             this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
             // 
             // Prevpic
             // 
@@ -387,6 +395,7 @@
             this.Prevpic.TabIndex = 7;
             this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
             // pictureBox1
             // 
@@ -410,6 +419,8 @@
             this.MinimumSize = new System.Drawing.Size(650, 725);
             this.Name = "EditBorrowedItems";
             this.Text = "EditBorrowedItems";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditBorrowedItems_FormClosing);
+            this.Load += new System.EventHandler(this.EditBorrowedItems_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ProductNameTableLayout.ResumeLayout(false);
