@@ -110,7 +110,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 string tempstatus = DecodingStatus(result.Status);
                 string BorrowDate = result.InitialBorrowDate.Value.ToString("dd MMMM yyyy");
                 string ReturnDate = result.EstReturnDate.Value.ToString("dd MMMM yyyy");
-                BorrowGridView.Rows.Add(numberofsortedItem, result.BarcodeNumber, result.Product_Name, BorrowDate, 
+                BorrowGridView.Rows.Add(numberofsortedItem, result.BarcodeNumber, result.Product_Name, BorrowDate,
                                         ReturnDate, result.Borrower_Name, result.Borrower_Contact, tempstatus);
                 numberofsortedItem++;
             }
@@ -147,12 +147,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void BorrowTime_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Back && e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
             {
                 BorrowTime.Format = DateTimePickerFormat.Custom;
                 BorrowTime.CustomFormat = " ";
                 BorrowingDate = null;
-            }
+                SearchDatainDB();
+            }     
         }
         private string DecodingStatus(int? status)
         {
@@ -307,11 +308,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void ReturnTime_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Back && e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
             {
                 ReturnTime.Format = DateTimePickerFormat.Custom;
                 ReturnTime.CustomFormat = " ";
                 ReturningDate = null;
+                SearchDatainDB();
             }
         }
     }
