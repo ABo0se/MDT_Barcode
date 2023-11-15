@@ -86,6 +86,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void InitializePage()
         {
+            ////////////////////////////////////////////
             //BarcodeID_TXT.Text = defaultBarcode;
             //Product_Name_TXT.Text = defaultProductName;
             Return_Date_TXT.Value = DateTime.Now;

@@ -44,6 +44,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             if (SearchDatabase(temporarydata.BarcodeNumber, out RentResults myResult))
             {
+                if (myResult.Status == 3)
+                {
+                    MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
+                    this.Hide();
+                    return;
+                }
                 TemporaryData = myResult;
                 //string serializedRentResults = JsonConvert.SerializeObject(myResult, Formatting.Indented);
                 //MessageBox.Show(serializedRentResults);
@@ -162,6 +168,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void InitializePage()
         {
+            ////////////////////////////////////////////
             BarcodeID_TXT.Text = defaultBarcode;
             Product_Name_TXT.Text = defaultProductName;
             Borrower_TXT.Text = defaultBorrowerName;
@@ -303,7 +310,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             string serializedRentHistory = JsonConvert.SerializeObject(TemporaryData.BarcodeHistoryList, Formatting.Indented);
             TemporaryData.BarcodeHistoryListSerialized = serializedRentHistory;
 
-
             /////////////////////
             string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
@@ -322,7 +328,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     cmd.Parameters.AddWithValue("@ACTUAL_Return_Date", TemporaryData.ActualReturnDate);
                     cmd.Parameters.AddWithValue("@Status", TemporaryData.Status);
                     cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TemporaryData.BarcodeNumber);
-                    cmd.Parameters.AddWithValue("@HistoryTextlog", TemporaryData.BarcodeNumber);
+                    cmd.Parameters.AddWithValue("@HistoryTextlog", TemporaryData.BarcodeHistoryListSerialized);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 

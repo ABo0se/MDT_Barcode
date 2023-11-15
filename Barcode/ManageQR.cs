@@ -402,11 +402,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
+                        MessageBox.Show("การลบข้อมูลสำเร็๗.");
                         //MessageBox.Show("Data deleted successfully!");
                     }
                     else
                     {
-                        MessageBox.Show("No rows were deleted. Verify the condition.");
+                        MessageBox.Show("ไม่มีข้อมูลที่ถูกลบ โปรดตรวจสอบข้อมูลอีกครั้ง.");
                     }
                 }
                 catch (Exception ex)

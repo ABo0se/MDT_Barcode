@@ -27,7 +27,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             InitializePage();
         }
-        private void InitializePage()
+        public void InitializePage()
         {
             ResetButtonState();
             ResetTextState();
@@ -39,9 +39,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void ResetTextState()
         {
             BarcodeText.Text = defaultText;
-            Status_TXT.Text = "";
+            Status_TXT.Text = "สถานะ : -";
             BarcodeText.ForeColor = Color.Gray;
         }
+        private void SoftReset()
+        {
+            Status_TXT.Text = "สถานะ : -";
+            temporarydata = null;
+            ChangeButtonState(false, false, false);
+        }
+
         private void BeginNewTextState()
         {
             BarcodeText.Text = "";
@@ -51,6 +58,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void BarcodeText_Enter(object sender, EventArgs e)
         {
             if (BarcodeText.Text == defaultText)
+            {
+                BeginNewTextState();
+            }
+            else if (BarcodeText.ForeColor == Color.Gray)
             {
                 BeginNewTextState();
             }
@@ -77,7 +88,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             else
             {
                 temporarydata = data;
-                Status_TXT.Text = DecodingStatus(data.Status);
+                Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
                 if (temporarydata.Status == null)
                 {
                     ChangeButtonState(false, false, true);
@@ -134,7 +145,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Test555");
+
                 MessageBox.Show(ex.ToString());
             }
             finally
@@ -315,6 +326,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 ShowForm.InitializePage();
                 ShowForm.AssignBarcodeText(temporarydata);
             }
+        }
+
+        private void BarcodeText_TextChanged(object sender, EventArgs e)
+        {
+            SoftReset();
         }
     }
 

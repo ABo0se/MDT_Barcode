@@ -94,6 +94,7 @@
             this.BarcodeText.Name = "BarcodeText";
             this.BarcodeText.Size = new System.Drawing.Size(309, 43);
             this.BarcodeText.TabIndex = 1;
+            this.BarcodeText.TextChanged += new System.EventHandler(this.BarcodeText_TextChanged);
             this.BarcodeText.Enter += new System.EventHandler(this.BarcodeText_Enter);
             this.BarcodeText.Leave += new System.EventHandler(this.BarcodeText_Leave);
             // 

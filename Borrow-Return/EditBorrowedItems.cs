@@ -36,6 +36,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
         public void InitializePage()
         {
+          
+
+            ////////////////////////////////////////////
             BarcodeID_TXT.Text = defaultBarcode;
             Product_Name_TXT.Text = defaultProductName;
             Borrower_Name_TB.Text = defaultBorrowerName;

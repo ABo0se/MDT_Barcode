@@ -295,6 +295,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Return_Item Return = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
                 if (Return != null && TemporaryData[e.RowIndex] != null)
                 {
+                    if (TemporaryData[e.RowIndex].Status == 2)
+                    {
+                        MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
+                        return;
+                    }
                     Return.Show();
                     Return.AssignBarcodeText(TemporaryData[e.RowIndex]);
                 }
@@ -305,19 +310,68 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 //Delete
                 DialogResult result = MessageBox.Show
-                ("ต้องการจะลบข้อมูลครุภัณฑ์นี้หรือไม่??", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                ("ต้องการจะลบข้อมูลการยืม/คืนของครุภัณฑ์นี้หรือไม่??", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 // Check the user's response
                 if (result == DialogResult.Yes)
                 {
-                    // User clicked "Yes," perform the action
-                    
+                    if (TemporaryData[e.RowIndex] != null)
+                    {
+                        DeleteBarcode(TemporaryData[e.RowIndex].BarcodeNumber);
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่มีข้อมูลที่ถูกลบ โปรดตรวจสอบข้อมูลอีกครั้ง");
+                    }
                 }
                 else
                 {
                     // User clicked "No" or closed the dialog, do nothing or handle as needed
                 }
             }
+        }
+        private void DeleteBarcode(string barcode)
+        {
+            if (barcode == null && barcode == "")
+            {
+                return;
+            }
+            string dbConnectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+
+            using (MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString))
+            {
+                try
+                {
+                    mySqlConnection.Open();
+                    string selectQuery = "DELETE FROM borrowing_info WHERE BarcodeNumber = @BarcodeNumber";
+
+                    MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+                    command.Parameters.AddWithValue("@BarcodeNumber", barcode);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("การลบข้อมูลสำเร็จ.");
+                        //MessageBox.Show("Data deleted successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่มีข้อมูลที่ถูกลบ โปรดตรวจสอบข้อมูลอีกครั้ง.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+            }
+            //BarcodenumberCollector.Rows.RemoveAt(rowindex);
+            //BarcodenumberCollector.Rows.Clear();
+            SearchDatainDB();
         }
 
         private void BorrowGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
