@@ -86,6 +86,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void InitializePage()
         {
+            Borrow_BarcodeIDChecker Search = MainMenu.initializedForms.Find(f => f is Borrow_BarcodeIDChecker) as Borrow_BarcodeIDChecker;
+            if (Search != null)
+            {
+                Search.SoftReset();
+            }
             ////////////////////////////////////////////
             //BarcodeID_TXT.Text = defaultBarcode;
             //Product_Name_TXT.Text = defaultProductName;

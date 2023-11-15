@@ -42,10 +42,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             Status_TXT.Text = "สถานะ : -";
             BarcodeText.ForeColor = Color.Gray;
         }
-        private void SoftReset()
+        public void SemiHardReset()
         {
             Status_TXT.Text = "สถานะ : -";
             temporarydata = null;
+            ChangeButtonState(false, false, false);
+        }
+        public void SoftReset()
+        {
+            Status_TXT.Text = "สถานะ : -";
             ChangeButtonState(false, false, false);
         }
 
@@ -281,7 +286,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             if (temporarydata == null) return;
 
             //BorrowItem
-            if (temporarydata.Status == null)
+            if (temporarydata.Status == null || temporarydata.Status == 2)
             {
                 AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
                 if (AddBForm != null)
@@ -291,7 +296,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     AddBForm.AssignBarcodeText(temporarydata);
                 }
             }
-            if (temporarydata.Status == 0 || temporarydata.Status == 1 || temporarydata.Status == 2)
+            if (temporarydata.Status == 0 || temporarydata.Status == 1)
             {
                 Return_Item ReturnForm = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
                 if (ReturnForm != null)
@@ -330,7 +335,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void BarcodeText_TextChanged(object sender, EventArgs e)
         {
-            SoftReset();
+            SemiHardReset();
         }
     }
 

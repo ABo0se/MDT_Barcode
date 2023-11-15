@@ -174,11 +174,11 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label2.Location = new System.Drawing.Point(529, 500);
+            this.label2.Location = new System.Drawing.Point(519, 500);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 27);
+            this.label2.Size = new System.Drawing.Size(51, 27);
             this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.2";
+            this.label2.Text = "V.1.2.1";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainMenu
