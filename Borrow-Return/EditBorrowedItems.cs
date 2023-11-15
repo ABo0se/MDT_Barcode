@@ -228,9 +228,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
                 string warningMessage = "";
 
-                if (isDataSame)
+                if (!isDataSame)
                 {
-                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
+                    warningMessage += "ไม่สามารถเปลี่ยนข้อมูลในระบบได้ เนื่องจากไม่มีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
                 }
 
                 if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
@@ -307,29 +307,35 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             try
             {
                 string query = "UPDATE borrowing_info SET " +
-               "EST_Return_Date = @BarcodeNumber, " +
-               "Borrower_Name = @Product_Name, " +
-               "Contact = @Model_Name, " +
-               "Note = @Brand, " +
-               "Status = @Status, " +
-
-               "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+    "EST_Return_Date = @EST_Return_Date, " +
+    "Borrower_Name = @Borrower_Name, " +
+    "Contact = @Contact, " +
+    "Note = @Note, " +
+    "Status = @Status " +  // Removed the extra comma here
+    "WHERE BarcodeNumber = @BarcodeNumberReplacement";
                 //TryAddittoDATABASE
                 mySqlConnection2.Open();
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
                     cmd.Parameters.AddWithValue("@EST_Return_Date", TemporaryData.EstReturnDate);
-                    cmd.Parameters.AddWithValue("@Borrower_Name", TemporaryData.Borrower_Contact);
+                    cmd.Parameters.AddWithValue("@Borrower_Name", TemporaryData.Borrower_Name);
                     cmd.Parameters.AddWithValue("@Contact", TemporaryData.Borrower_Contact);
                     cmd.Parameters.AddWithValue("@Note", TemporaryData.Note);
                     cmd.Parameters.AddWithValue("@Status", TemporaryData.Status);
                     cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TemporaryData.BarcodeNumber);
+                    cmd.Parameters.AddWithValue("@Product_Name", TemporaryData.Product_Name);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("การเปลี่ยนข้อมูลการยืมครุภัณฑ์สำเร็จ!");
+                        this.Hide();
+                        ManageBorrowedItem Search = MainMenu.initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;
+                        if (Search != null)
+                        {
+                            Search.SearchDatainDB();
+                        }
                         //PullDataFromDB();
                     }
                     else
@@ -338,11 +344,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void EditBorrowedItems_Load(object sender, EventArgs e)
         {
-
+            InitializePage();
         }
 
         private void EditBorrowedItems_FormClosing(object sender, FormClosingEventArgs e)
