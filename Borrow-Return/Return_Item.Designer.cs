@@ -113,6 +113,7 @@
             this.Return_Borrowed_Item_toDB.TabIndex = 10;
             this.Return_Borrowed_Item_toDB.Text = "คืนครุภัณฑ์";
             this.Return_Borrowed_Item_toDB.UseVisualStyleBackColor = true;
+            this.Return_Borrowed_Item_toDB.Click += new System.EventHandler(this.Return_Borrowed_Item_toDB_Click);
             // 
             // ProductNameTableLayout
             // 
@@ -488,6 +489,7 @@
             this.Nextpic.TabIndex = 9;
             this.Nextpic.TabStop = false;
             this.Nextpic.UseVisualStyleBackColor = false;
+            this.Nextpic.Click += new System.EventHandler(this.Nextpic_Click);
             // 
             // Prevpic
             // 
@@ -501,6 +503,7 @@
             this.Prevpic.TabIndex = 10;
             this.Prevpic.TabStop = false;
             this.Prevpic.UseVisualStyleBackColor = false;
+            this.Prevpic.Click += new System.EventHandler(this.Prevpic_Click);
             // 
             // pictureBox1
             // 
@@ -524,6 +527,7 @@
             this.MinimumSize = new System.Drawing.Size(650, 825);
             this.Name = "Return_Item";
             this.Text = "คืนครุภัณฑ์";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Return_Item_FormClosing);
             this.Load += new System.EventHandler(this.Return_Item_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections;
@@ -279,6 +280,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 EditBorrowedItems Edit = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
                 if (Edit != null && TemporaryData[e.RowIndex] != null)
                 {
+                    if (TemporaryData[e.RowIndex].Status == 2)
+                    {
+                        MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
+                        return;
+                    }
                     Edit.Show();
                     Edit.AssignBarcodeText(TemporaryData[e.RowIndex]);
                 }
@@ -286,8 +292,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
                 //Your custom logic when the button is clicked
+                Return_Item Return = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
+                if (Return != null && TemporaryData[e.RowIndex] != null)
+                {
+                    Return.Show();
+                    Return.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                }
                 // Return
-                
+
             }
             if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {

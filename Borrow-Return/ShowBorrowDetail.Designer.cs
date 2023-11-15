@@ -32,7 +32,6 @@
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
             this.ProductNameTableLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -60,9 +59,9 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.EST_Borrow_Date_TXT = new System.Windows.Forms.Label();
             this.Borrow_Date = new System.Windows.Forms.Label();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.ProductNameTableLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -71,6 +70,7 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // Nextpic
@@ -116,7 +116,7 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel10, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.ProductNameTableLayout, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.PicInformation, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
@@ -143,30 +143,12 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 500);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel9.AutoSize = true;
-            this.tableLayoutPanel9.ColumnCount = 2;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.Status_TXT, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.Status, 0, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 207);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(605, 36);
-            this.tableLayoutPanel9.TabIndex = 10;
-            // 
             // Status_TXT
             // 
             this.Status_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Status_TXT.AutoSize = true;
             this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Status_TXT.Location = new System.Drawing.Point(207, 0);
+            this.Status_TXT.Location = new System.Drawing.Point(207, 4);
             this.Status_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Status_TXT.Name = "Status_TXT";
             this.Status_TXT.Size = new System.Drawing.Size(21, 36);
@@ -179,7 +161,7 @@
             this.Status.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Status.AutoSize = true;
             this.Status.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Status.Location = new System.Drawing.Point(0, 0);
+            this.Status.Location = new System.Drawing.Point(0, 4);
             this.Status.Margin = new System.Windows.Forms.Padding(0);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(207, 36);
@@ -549,6 +531,21 @@
             this.Borrow_Date.Text = "วันที่ยืมครุภัณฑ์ :";
             this.Borrow_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.Status_TXT, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.Status, 0, 0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 203);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(599, 44);
+            this.tableLayoutPanel10.TabIndex = 11;
+            // 
             // ShowBorrowDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -568,8 +565,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
             this.ProductNameTableLayout.ResumeLayout(false);
             this.ProductNameTableLayout.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -586,6 +581,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -621,8 +618,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label EST_Borrow_Date_TXT;
         private System.Windows.Forms.Label Borrow_Date;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label Status_TXT;
         private System.Windows.Forms.Label Status;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
     }
 }

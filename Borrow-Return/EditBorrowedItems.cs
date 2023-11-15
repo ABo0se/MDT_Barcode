@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -62,6 +63,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             if (SearchDatabase(temporarydata.BarcodeNumber, out RentResults myResult))
             {
+                if (myResult.Status == 2)
+                {
+                    MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
+                    this.Hide();
+                    return;
+                }
                 TemporaryData = myResult;
                 BarcodeID_TXT.Text = TemporaryData.BarcodeNumber;
                 Product_Name_TXT.Text = TemporaryData.Product_Name;
@@ -347,6 +354,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                mySqlConnection2.Close();
             }
         }
 

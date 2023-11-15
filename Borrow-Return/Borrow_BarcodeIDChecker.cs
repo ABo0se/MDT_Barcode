@@ -82,9 +82,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 {
                     ChangeButtonState(false, false, true);
                 }
-                if (temporarydata.Status == 0 || temporarydata.Status == 1 || temporarydata.Status == 2)
+                if (temporarydata.Status == 0 || temporarydata.Status == 1)
                 {
                     ChangeButtonState(true, true, true);
+                }
+                if (temporarydata.Status == 2)
+                {
+                    ChangeButtonState(true, false, true);
                 }
             }
         }
