@@ -196,20 +196,38 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //List<byte[]> ImageList = new List<byte[]>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
-
+            bool isdumplicated = false;
             try
             {
                 //Create reference for image we used.
                 string saveDirectory = @"C:\BarcodeDatabaseImage";
-                List<string> SHA512hash = new List<string>();
+                List<string> newSHA512hashes = new List<string>();
                 Directory.CreateDirectory(saveDirectory);
-
+                
                 List<string> savedFilePaths = new List<string>();
 
                 if (selectedImages.Count > 0)
                 {
                     for (int i = 0; i < selectedImages.Count; i++)
                     {
+                        // Calculate SHA-512 checksum for the current image
+                        string sha512Checksum = CalculateSHA512Checksum1pic(selectedImages[i]);
+
+                        // Check if the checksum already exists in the newSHA512hashes
+                        if (newSHA512hashes.Contains(sha512Checksum))
+                        {
+                            // Find the index of the duplicate in the newSHA512hashes
+                            int duplicateIndex = newSHA512hashes.IndexOf(sha512Checksum);
+                            isdumplicated = true;
+                            // Console.WriteLine($"Duplicate file found and not saved: {selectedImages[i].Tag.ToString()}");
+
+                            // Optionally, perform some action for duplicate (e.g., show a message)
+
+                            // Skip saving the duplicate file
+                            continue;
+                        }
+
+                        // Save the file if it's not a duplicate
                         string baseFileName = "image.jpeg"; // Base file name
                         string fileName = baseFileName;
                         int fileCounter = 1;
@@ -224,14 +242,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         string filePath = Path.Combine(saveDirectory, fileName);
                         selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
-                        // Add the saved file path to the list
+                        // Add the saved file path and SHA-512 hash to the lists
                         savedFilePaths.Add(filePath);
+                        newSHA512hashes.Add(sha512Checksum);
                     }
-                    //////////
-                    //Create md5checksum
-                    SHA512hash = CalculateSHA512Checksum(selectedImages);
                 }
-                string jsonmd5Data = JsonConvert.SerializeObject(SHA512hash, Formatting.Indented);
+
+                string jsonmd5Data = JsonConvert.SerializeObject(newSHA512hashes, Formatting.Indented);
                 Console.WriteLine(jsonmd5Data);
                 string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
                 Console.WriteLine(jsonPicData);
@@ -262,7 +279,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ!");
+                        if (!isdumplicated)
+                        {
+                            MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะถูกลบออก!");
+                        }
                         //PullDataFromDB();
                     }
                     else
@@ -307,6 +331,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
                         sha512Values.Add(sha512Checksum);
                     }
+                }
+            }
+            return sha512Values;
+        }
+        string CalculateSHA512Checksum1pic(Image image)
+        {
+            string sha512Values = string.Empty;
+            if (image != null)
+            {
+                using (var sha512 = SHA512.Create())
+                using (var stream = new MemoryStream())
+                {
+                    image.Save(stream, ImageFormat.Jpeg); // You can choose the appropriate format
+                    stream.Seek(0, SeekOrigin.Begin); // Reset stream position
+
+                    byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
+                    string sha512Checksum = BitConverter.ToString(sha512ChecksumBytes).Replace("-", "").ToLower();
+                    sha512Values = sha512Checksum;
                 }
             }
             return sha512Values;

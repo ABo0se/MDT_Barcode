@@ -115,11 +115,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 for (int i = paths.Count - 1; i >= 0; i--)
                 {
                     string sha512 = sha512s[i];
-                    foreach (KeyValuePair<string, string> imagedata in uniqueImage)
-                    {
-                        MessageBox.Show(sha512 + " vs " + imagedata.Value);
-                    }
-                    
                     if (uniqueImage.ContainsValue(sha512))
                     {
                         string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;

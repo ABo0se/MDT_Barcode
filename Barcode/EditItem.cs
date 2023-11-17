@@ -351,6 +351,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 oldSHA512hash = JsonConvert.DeserializeObject<List<string>>(TemporaryData.SHA512);
             }
             /////////////////
+            bool isDuplicated = false;
 
             if (selectedImages.Count > 0)
             {
@@ -364,14 +365,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Calculate the SHA-512 checksum for the newly saved image
                         string checksum = CalculateSHA512Checksum1pic(selectedImages[i]);
 
-                        // Check if the checksum exists in the existing database
-                        if (oldSHA512hash.Contains(checksum))
+                        // Check if the checksum exists in the currently processed data
+                        for (int j = 0; j < i; j++)
                         {
-                            // Add the saved file path to the list
-                            savedFilePaths.Add(oldsavedFilePaths[i]);
-                            SHA512hash.Add(oldSHA512hash[i]);
+                            if (checksum == CalculateSHA512Checksum1pic(selectedImages[j]))
+                            {
+                                // Set isDuplicated to true if the SHA-512 already exists
+                                isDuplicated = true;
+
+                                // Optionally, perform some action for duplicates (e.g., show a message)
+                                // Console.WriteLine($"Duplicate file found: {selectedImages[i].Tag.ToString()}");
+
+                                // Continue to the next iteration of the loop
+                                continue;
+                            }
                         }
-                        else
+
+                        // If it's not a duplicate or if duplicates are allowed
+                        if (!isDuplicated)
                         {
                             int fileCounter = 1;
                             // Check if the file already exists and generate a unique name if needed
@@ -382,6 +393,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             }
                             ///////////////////
                             string filePath = Path.Combine(saveDirectory, fileName);
+
+                            // Save the file
                             selectedImages[i].Save(filePath, ImageFormat.Jpeg);
                             savedFilePaths.Add(filePath);
                             SHA512hash.Add(checksum);
@@ -389,6 +402,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                 }
             }
+
             else
             {
                 SHA512hash = CalculateSHA512Checksum(new List<Image>());
@@ -453,7 +467,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        if (!isDuplicated)
+                        {
+                            MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะถูกลบออก!");
+                        }
                     }
                     else
                     {
