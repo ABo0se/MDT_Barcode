@@ -22,5 +22,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime LastUsedTime {
+            get {
+                return ((global::System.DateTime)(this["LastUsedTime"]));
+            }
+            set {
+                this["LastUsedTime"] = value;
+            }
+        }
     }
 }

@@ -352,7 +352,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             using (SHA512 sha512 = SHA512.Create())
             using (MemoryStream stream = new MemoryStream())
             {
-                image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                image.Save(stream, ImageFormat.Jpeg); // You can choose the appropriate format
                 stream.Seek(0, SeekOrigin.Begin); // Reset stream position
 
                 byte[] imageBytes = stream.ToArray();
@@ -373,7 +373,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 using (var sha512 = SHA512.Create())
                 using (var stream = new MemoryStream())
                 {
-                    image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                    image.Save(stream, ImageFormat.Jpeg); // You can choose the appropriate format
                     stream.Seek(0, SeekOrigin.Begin); // Reset stream position
 
                     byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
@@ -393,7 +393,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     using (var sha512 = SHA512.Create())
                     using (var stream = new MemoryStream())
                     {
-                        image.Save(stream, ImageFormat.Png); // You can choose the appropriate format
+                        image.Save(stream, ImageFormat.Jpeg); // You can choose the appropriate format
                         stream.Seek(0, SeekOrigin.Begin); // Reset stream position
 
                         byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
