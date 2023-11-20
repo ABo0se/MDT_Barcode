@@ -154,7 +154,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
                     Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
                     Return_Date_TXT.Value.Date < DateTime.Now.Date || Contact_TB.Text == defaultcontact ||
-                    Contact_TB.Text == ""|| Note_TB.Text == defaultnote)
+                    Contact_TB.Text == "")
                 {
                     warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วนและถูกต้อง ก่อนทำการเพิ่่มเข้ามา\n";
                 }

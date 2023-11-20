@@ -27,14 +27,46 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             InitializePage();
         }
+        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+        {
+            BarcodeText.Text = e.Barcode;
+            BarcodeText.ForeColor = Color.Black;
+            FindBarcodeInItemDatabase(BarcodeText.Text, out RentResults data);
+            if (data == null)
+            {
+                MessageBox.Show("ไม่พบครุภัณฑ์ที่บันทึกไว้ในฐานข้อมูลครุภัณฑ์");
+                ResetButtonState();
+                ResetTextState();
+            }
+            else
+            {
+                temporarydata = data;
+                Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
+                if (temporarydata.Status == null)
+                {
+                    ChangeButtonState(false, false, true, false);
+                }
+                if (temporarydata.Status == 0 || temporarydata.Status == 1)
+                {
+                    ChangeButtonState(true, true, false, true);
+                }
+                if (temporarydata.Status == 2)
+                {
+                    ChangeButtonState(true, false, true, false);
+                }
+            }
+        }
         public void InitializePage()
         {
             ResetButtonState();
             ResetTextState();
+            //InitializeBarcode
+            BarcodeScanner2 barcodeScanner = new BarcodeScanner2(BarcodeText);
+            barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
         }
         private void ResetButtonState()
         {
-            ChangeButtonState(false, false, false);
+            ChangeButtonState(false, false, false, false);
         }
         private void ResetTextState()
         {
@@ -46,12 +78,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             Status_TXT.Text = "สถานะ : -";
             temporarydata = null;
-            ChangeButtonState(false, false, false);
+            ChangeButtonState(false, false, false, false);
         }
         public void SoftReset()
         {
             Status_TXT.Text = "สถานะ : -";
-            ChangeButtonState(false, false, false);
+            ChangeButtonState(false, false, false, false);
         }
 
         private void BeginNewTextState()
@@ -96,15 +128,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
                 if (temporarydata.Status == null)
                 {
-                    ChangeButtonState(false, false, true);
+                    ChangeButtonState(false, false, true, false);
                 }
                 if (temporarydata.Status == 0 || temporarydata.Status == 1)
                 {
-                    ChangeButtonState(true, true, true);
+                    ChangeButtonState(true, true, false, true);
                 }
                 if (temporarydata.Status == 2)
                 {
-                    ChangeButtonState(true, false, true);
+                    ChangeButtonState(true, false, true, false);
                 }
             }
         }
@@ -235,11 +267,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
 
         /////////////////////////////////////////////////////////////////////
-        private void ChangeButtonState(bool a, bool b, bool c)
+        private void ChangeButtonState(bool a, bool b, bool c, bool d)
         {
             ShowDetail_B.Enabled = a;
             AdjustDetail_B.Enabled = b;
-            Borrow_Return_Management_B.Enabled = c;
+            Borrow_Management_B.Enabled = c;
+            Return_Management_B.Enabled = d;
         }
         private string DecodingStatus(int? status)
         {
@@ -281,34 +314,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
         }
 
-        private void Borrow_Return_Management_B_Click(object sender, EventArgs e)
-        {
-            if (temporarydata == null) return;
-
-            //BorrowItem
-            if (temporarydata.Status == null || temporarydata.Status == 2)
-            {
-                AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
-                if (AddBForm != null)
-                {
-                    AddBForm.Show();
-                    AddBForm.InitializePage();
-                    AddBForm.AssignBarcodeText(temporarydata);
-                }
-            }
-            if (temporarydata.Status == 0 || temporarydata.Status == 1)
-            {
-                Return_Item ReturnForm = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
-                if (ReturnForm != null)
-                {
-                    ReturnForm.Show();
-                    ReturnForm.InitializePage();
-                    ReturnForm.AssignBarcodeText(temporarydata);
-                }
-            }
-            //ReturnItem
-        }
-
         private void AdjustDetail_B_Click(object sender, EventArgs e)
         {
             if (temporarydata == null) return;
@@ -336,6 +341,37 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void BarcodeText_TextChanged(object sender, EventArgs e)
         {
             SemiHardReset();
+        }
+
+        private void Borrow_Management_B_Click(object sender, EventArgs e)
+        {
+            if (temporarydata == null) return;
+
+            //BorrowItem
+            if (temporarydata.Status == null || temporarydata.Status == 2)
+            {
+                AddBorrowItem AddBForm = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
+                if (AddBForm != null)
+                {
+                    AddBForm.Show();
+                    AddBForm.InitializePage();
+                    AddBForm.AssignBarcodeText(temporarydata);
+                }
+            }
+        }
+
+        private void Return_Management_B_Click(object sender, EventArgs e)
+        {
+            if (temporarydata.Status == 0 || temporarydata.Status == 1)
+            {
+                Return_Item ReturnForm = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
+                if (ReturnForm != null)
+                {
+                    ReturnForm.Show();
+                    ReturnForm.InitializePage();
+                    ReturnForm.AssignBarcodeText(temporarydata);
+                }
+            }
         }
     }
 

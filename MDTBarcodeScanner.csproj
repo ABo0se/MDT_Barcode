@@ -429,6 +429,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TestButton.png" />
     <None Include="Resources\Example_Import_WithData1.xlsx" />
     <None Include="Resources\MDT_Stock_Import_Example.xlsx" />
     <None Include="Resources\THSarabunNew.ttf" />

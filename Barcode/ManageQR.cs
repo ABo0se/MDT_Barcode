@@ -5,22 +5,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using System.IO;
-using PdfSharp.Pdf;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
-using MigraDoc.DocumentObjectModel;
-using MigraDoc.Rendering;
 using OfficeOpenXml.Style;
-using PdfSharp.Pdf.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using Document = iTextSharp.text.Document;
-using PdfReader = iTextSharp.text.pdf.PdfReader;
-using System.Drawing;
-using MySqlX.XDevAPI.Common;
-using Org.BouncyCastle.Utilities.Collections;
-using System.Data.SqlClient;
-using System.Xml.Linq;
+
 
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -465,7 +451,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 string saveDirectory = @"C:\ExcelBarcodeDatabase";
                 Directory.CreateDirectory(saveDirectory);
-                string baseFileName = "Database.xlsx"; // Base file name
+                string baseFileName = "รายละเอียดครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"; // Base file name
                 string fileName = baseFileName;
                 int fileCounter = 1;
                 while (File.Exists(Path.Combine(saveDirectory, fileName)))

@@ -282,6 +282,9 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.TitlePanel, 0, 0);
@@ -305,6 +308,7 @@
             this.Del_Database.TabIndex = 23;
             this.Del_Database.Text = "ลบข้อมูลทั้งหมด";
             this.Del_Database.UseVisualStyleBackColor = true;
+            this.Del_Database.Click += new System.EventHandler(this.Del_Database_Click);
             // 
             // ExportPanel
             // 
@@ -323,8 +327,7 @@
             // 
             // Export_Excel
             // 
-            this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Export_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.Export_Excel.Location = new System.Drawing.Point(3, 3);
             this.Export_Excel.Name = "Export_Excel";
@@ -332,6 +335,7 @@
             this.Export_Excel.TabIndex = 7;
             this.Export_Excel.Text = "นำข้อมูลออกเป็น Excel";
             this.Export_Excel.UseVisualStyleBackColor = true;
+            this.Export_Excel.Click += new System.EventHandler(this.Export_Excel_Click);
             // 
             // BorrowGridView
             // 
@@ -342,6 +346,8 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.BorrowGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.BorrowGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);

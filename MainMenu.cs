@@ -17,99 +17,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public MainMenu()
         {
             InitializeComponent();
-            CreateDataBase();
             InitializeAllForms();
             //FontUtility.ApplyEmbeddedFont(this);
         }
 
-        private void CreateDataBase()
-        {
-            string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Create the first database
-                string firstDatabaseName = "barcodedatacollector";
-                string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
-
-                using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-
-                // Create the second database
-                string secondDatabaseName = "Borrow_Returning_System";
-                string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
-
-                using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-
-                // Additional code for your application...
-
-                // Close the connection
-                connection.Close();
-            }
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
-            using (MySqlConnection connection = new MySqlConnection(connectionString2))
-            {
-                connection.Open();
-                string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
-                                            "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                            "BarcodeNumber VARCHAR(100), " +
-                                            "Product_Name VARCHAR(100), " +
-                                            "Model_Name VARCHAR(100), " +
-                                            "Brand VARCHAR(100), " +
-                                            "Serial_Number VARCHAR(100), " +
-                                            "Price INT(30), " +
-                                            "Room VARCHAR(100), " +
-                                            "ImageData TEXT, " +
-                                            "MD5_ImageValidityChecksum TEXT, " +
-                                            "Note VARCHAR(200), " +
-                                            "Status INT(1), " +
-                                            "ITEM_CONDITION INT(1) " +
-                                            ");";
-
-                using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-                connection.Close();
-
-                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
-                using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
-                {
-                    connection2.Open();
-                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS BORROWING_INFO ( " +
-                                                "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                                "Initial_Borrow_Time DATETIME, " +
-                                                "EST_Return_Date DATETIME, " +
-                                                "ACTUAL_Return_Date DATETIME, " +
-                                                "BarcodeNumber VARCHAR(100), " +
-                                                "Product_Name VARCHAR(100), " +
-                                                "Borrower_Name VARCHAR(100), " +
-                                                "ImageData TEXT, " +
-                                                "MD5_ImageValidityChecksum TEXT, " +
-                                                "HistoryTextlog TEXT, " +
-                                                "Contact VARCHAR(200), " +
-                                                "Note VARCHAR(200), " +
-                                                "Status INT(1) " +
-                                                ");";
-
-                    using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
-                    {
-                        command2.ExecuteNonQuery();
-                    }
-                    connection2.Close();
-                }
-            }
-        }
+        
 
 
         private void InitializeAllForms()
