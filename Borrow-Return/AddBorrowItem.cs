@@ -152,7 +152,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 if (isDataSame)
                 {
-                    warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
+                    if (TemporaryData != null)
+                    {
+                        if (!(TemporaryData.Status == null || TemporaryData.Status == 2))
+                        {
+                            warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
+                        }
+                    }
                 }
 
                 if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||

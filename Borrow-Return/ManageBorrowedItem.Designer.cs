@@ -48,8 +48,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Del_Database = new System.Windows.Forms.Button();
             this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.Import_Excel = new System.Windows.Forms.Button();
-            this.Download_Template = new System.Windows.Forms.Button();
             this.Export_Excel = new System.Windows.Forms.Button();
             this.BorrowGridView = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -313,43 +311,15 @@
             this.ExportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportPanel.AutoSize = true;
-            this.ExportPanel.ColumnCount = 3;
+            this.ExportPanel.ColumnCount = 1;
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.ExportPanel.Controls.Add(this.Import_Excel, 1, 0);
-            this.ExportPanel.Controls.Add(this.Download_Template, 2, 0);
             this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
             this.ExportPanel.Location = new System.Drawing.Point(12, 643);
             this.ExportPanel.Name = "ExportPanel";
             this.ExportPanel.RowCount = 1;
             this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ExportPanel.Size = new System.Drawing.Size(858, 56);
+            this.ExportPanel.Size = new System.Drawing.Size(300, 56);
             this.ExportPanel.TabIndex = 24;
-            // 
-            // Import_Excel
-            // 
-            this.Import_Excel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Import_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Import_Excel.Location = new System.Drawing.Point(289, 3);
-            this.Import_Excel.Name = "Import_Excel";
-            this.Import_Excel.Size = new System.Drawing.Size(280, 50);
-            this.Import_Excel.TabIndex = 8;
-            this.Import_Excel.Text = "นำข้อมูลเข้าจาก Excel";
-            this.Import_Excel.UseVisualStyleBackColor = true;
-            // 
-            // Download_Template
-            // 
-            this.Download_Template.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Download_Template.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Download_Template.Location = new System.Drawing.Point(575, 3);
-            this.Download_Template.Name = "Download_Template";
-            this.Download_Template.Size = new System.Drawing.Size(280, 50);
-            this.Download_Template.TabIndex = 18;
-            this.Download_Template.Text = "โหลดตัวอย่างฟอร์ม";
-            this.Download_Template.UseVisualStyleBackColor = true;
             // 
             // Export_Excel
             // 
@@ -358,7 +328,7 @@
             this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.Export_Excel.Location = new System.Drawing.Point(3, 3);
             this.Export_Excel.Name = "Export_Excel";
-            this.Export_Excel.Size = new System.Drawing.Size(280, 50);
+            this.Export_Excel.Size = new System.Drawing.Size(294, 50);
             this.Export_Excel.TabIndex = 7;
             this.Export_Excel.Text = "นำข้อมูลออกเป็น Excel";
             this.Export_Excel.UseVisualStyleBackColor = true;
@@ -573,8 +543,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button Del_Database;
         private System.Windows.Forms.TableLayoutPanel ExportPanel;
-        private System.Windows.Forms.Button Import_Excel;
-        private System.Windows.Forms.Button Download_Template;
         private System.Windows.Forms.Button Export_Excel;
         private System.Windows.Forms.DataGridView BorrowGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Index;

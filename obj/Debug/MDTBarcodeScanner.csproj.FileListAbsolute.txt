@@ -150,3 +150,4 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Debug\SixLabors.ImageSharp.Drawing.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\Newtonsoft.Json.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\SixLabors.Fonts.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Debug\SixLabors.ImageSharp.Drawing.xml
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return.Borrow_History.resources

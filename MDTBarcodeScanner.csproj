@@ -304,6 +304,12 @@
     <Compile Include="Borrow-Return\Borrow_BarcodeIDChecker.Designer.cs">
       <DependentUpon>Borrow_BarcodeIDChecker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrow-Return\Borrow_History.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrow-Return\Borrow_History.Designer.cs">
+      <DependentUpon>Borrow_History.cs</DependentUpon>
+    </Compile>
     <Compile Include="Borrow-Return\EditBorrowedItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Borrow-Return\Borrow_BarcodeIDChecker.resx">
       <DependentUpon>Borrow_BarcodeIDChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrow-Return\Borrow_History.resx">
+      <DependentUpon>Borrow_History.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrow-Return\EditBorrowedItems.resx">
       <DependentUpon>EditBorrowedItems.cs</DependentUpon>

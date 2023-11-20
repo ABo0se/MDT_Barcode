@@ -17,6 +17,8 @@ using System.Linq;
 using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 using Org.BouncyCastle.Ocsp;
 using iTextSharp.text.pdf.parser;
+using System.Text.Json;
+using PdfSharp.Pdf.Content.Objects;
 
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -103,8 +105,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void UpdatePictureFilePath()
         {
-            Dictionary<string, string> uniqueImage = CleanUpImageData();
             List<SRResults> temporaryData = GetDataFromDB();
+            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData);
+            
             if (temporaryData == null) return;
 
             foreach (SRResults data in temporaryData)
@@ -281,12 +284,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        private Dictionary<string, string> CleanUpImageData()
+        private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata)
         {
             string directoryPath = @"C:\\BarcodeDatabaseImage";
             Dictionary<string, string> imageFiles = new Dictionary<string, string>();
             Dictionary<string, string> uniqueImageFiles = new Dictionary<string, string>();
             Dictionary<string, string> deleteFiles = new Dictionary<string, string>();
+
+            List<string> SHA512DB = new List<string>();
+
+            foreach (SRResults data in DBdata)
+            {
+                List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(data.SHA512);
+                foreach (string SHA512 in SHA512DB2) 
+                {
+                    if (!SHA512DB.Contains(SHA512))
+                    {
+                        SHA512DB.Add(SHA512);
+                    }
+                }
+            }
 
             try
             {
@@ -332,7 +349,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         catch (Exception ex)
                         {
                             // Handle exceptions related to file deletion, e.g., file in use
-                            Console.WriteLine($"Error deleting file {path}: {ex.Message}");
+                            Console.WriteLine($"เกิดข้อผิดพลาดในการลบไฟล์ {path}: {ex.Message}");
                         }
                     }
                 }

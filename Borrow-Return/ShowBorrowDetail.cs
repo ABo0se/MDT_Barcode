@@ -34,7 +34,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         string defaultACTUAlReturnDate = "-";
         string defaultcontact = "-";
         string defaultnote = "-";
-        //TemporaryData
+
+        RentResults TemporaryData = null;
         public ShowBorrowDetail()
         {
             InitializeComponent();
@@ -42,34 +43,35 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         public void AssignBarcodeText(RentResults temporarydata)
         {
-            if (SearchDatabase(temporarydata.BarcodeNumber, out RentResults myResult))
+            if (SearchDatabase(temporarydata.BarcodeNumber, out RentResults Temporarydata))
             {
-                //string serializedRentResults = JsonConvert.SerializeObject(myResult, Formatting.Indented);
+                TemporaryData = Temporarydata;
+                //string serializedRentResults = JsonConvert.SerializeObject(TemporaryData, Formatting.Indented);
 
                 //MessageBox.Show(serializedRentResults);
                 //GetDataNormally
-                BarcodeID_TXT.Text = myResult.BarcodeNumber;
-                Product_Name_TXT.Text = myResult.Product_Name;
-                Borrower_TXT.Text = myResult.Borrower_Name;
-                Status_TXT.Text = DecodingStatus(myResult.Status);
-                EST_Borrow_Date_TXT.Text = myResult.InitialBorrowDate.HasValue
-    ? myResult.InitialBorrowDate.Value.ToString("dd MMMM yyyy")
+                BarcodeID_TXT.Text = TemporaryData.BarcodeNumber;
+                Product_Name_TXT.Text = TemporaryData.Product_Name;
+                Borrower_TXT.Text = TemporaryData.Borrower_Name;
+                Status_TXT.Text = DecodingStatus(TemporaryData.Status);
+                EST_Borrow_Date_TXT.Text = TemporaryData.InitialBorrowDate.HasValue
+    ? TemporaryData.InitialBorrowDate.Value.ToString("dd MMMM yyyy")
     : "-";
 
-                EST_Return_Date_TXT.Text = myResult.EstReturnDate.HasValue
-                    ? myResult.EstReturnDate.Value.ToString("dd MMMM yyyy")
+                EST_Return_Date_TXT.Text = TemporaryData.EstReturnDate.HasValue
+                    ? TemporaryData.EstReturnDate.Value.ToString("dd MMMM yyyy")
                     : "-";
 
-                Return_Date_TXT.Text = myResult.ActualReturnDate.HasValue
-                    ? myResult.ActualReturnDate.Value.ToString("dd MMMM yyyy")
+                Return_Date_TXT.Text = TemporaryData.ActualReturnDate.HasValue
+                    ? TemporaryData.ActualReturnDate.Value.ToString("dd MMMM yyyy")
                     : "-";
 
-                Contact_TXT.Text = myResult.Borrower_Contact;
-                Note_TXT.Text = myResult.Note;
+                Contact_TXT.Text = TemporaryData.Borrower_Contact;
+                Note_TXT.Text = TemporaryData.Note;
                 ////////////////////////////////////
                 selectedImages.Clear();
-                List<string> path = JsonConvert.DeserializeObject<List<string>>(myResult.FilePath);
-                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(myResult.SHA512);
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
+                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(TemporaryData.SHA512);
                 if (path.Count > 0)
                 {
                     for (int i = 0; i < path.Count; i++)
@@ -119,6 +121,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Contact_TXT.Text = defaultcontact;
             Note_TXT.Text = defaultnote;
             //---------------------------
+            TemporaryData = null;
             if (selectedImages != null)
             {
                 selectedImages.Clear();
@@ -167,7 +170,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
                                     Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
                                 };
-
+                                if (mysearchresults.BarcodeHistoryListSerialized != "[]")
+                                {
+                                    mysearchresults.BarcodeHistoryList = JsonConvert.DeserializeObject<List<RentHistory>>(mysearchresults.BarcodeHistoryListSerialized);
+                                }
                                 // If a match is found, return true immediately
                                 return true;
                             }
@@ -336,6 +342,34 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 e.Cancel = true; // Prevent the form from closing
                 this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void Show_History_Click(object sender, EventArgs e)
+        {
+            Borrow_History History = MainMenu.initializedForms.Find(f => f is Borrow_History) as Borrow_History;
+            if (History != null)
+            {
+                if (TemporaryData != null)
+                {
+                    if (TemporaryData.BarcodeHistoryList != null || TemporaryData.BarcodeHistoryList.Count > 0)
+                    {
+                        History.Show();
+                        History.AssignText(TemporaryData.BarcodeHistoryList);
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
+                }
+            }
+            else
+            {
+                MessageBox.Show("ไม่พบหน้าต่างยืม");
             }
         }
     }
