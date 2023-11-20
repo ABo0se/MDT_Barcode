@@ -149,17 +149,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
 
                 string warningMessage = "";
-
-                if (isDataSame)
-                {
-                    if (TemporaryData != null)
-                    {
-                        if (!(TemporaryData.Status == null || TemporaryData.Status == 2))
-                        {
-                            warningMessage += "ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
-                        }
-                    }
-                }
+                bool isexistinDB = false;
 
                 if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
                     Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
@@ -190,6 +180,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     warningMessage += "ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n";
                 }
+                else if (isDataSame)
+                {
+                    if (!(TemporaryData.Status == null || TemporaryData.Status == 2))
+                    {
+                        warningMessage += "ไม่สามารถยืมครุภัณฑ์ที่ทำการยืมอยู่ตอนนี้ได้\n";
+                    }
+                    else if (TemporaryData.Status == 2)
+                    {
+                        isexistinDB = true;
+                    }
+                }
+
                 //////////////////////////////////////////////
                 if (Note_TB.Text == defaultnote || Note_TB.Text == "")
                 {
@@ -202,7 +204,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    AddItemToDB();
+                    if (isexistinDB)
+                    {
+                        EditItemToDB();
+                    }
+                    else
+                    {
+                        AddItemToDB();
+                    }
                 }
             }
             catch (Exception ex)
@@ -261,7 +270,90 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     else
                     {
-                        MessageBox.Show("การยืมลครุภัณฑ์ล้มเหลว.");
+                        MessageBox.Show("การยืมครุภัณฑ์ล้มเหลว.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+            }
+            finally
+            {
+                mySqlConnection2.Close();
+                AddBorrowItem AddItem = MainMenu.initializedForms.Find(f => f is AddBorrowItem) as AddBorrowItem;
+                ManageBorrowedItem ManageRent = MainMenu.initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;
+                if (AddItem != null)
+                {
+                    AddItem.Hide();
+                }
+                if (ManageRent != null)
+                {
+                    ManageRent.SearchDatainDB();
+                }
+            }
+        }
+        private void EditItemToDB()
+        {
+            //Adjust object before we put in database.
+            if (TemporaryData == null)
+            {
+                MessageBox.Show("ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n");
+                return;
+            }
+            TemporaryData.InitialBorrowDate = DateTime.Now.Date;
+            TemporaryData.EstReturnDate = Return_Date_TXT.Value.Date;
+            TemporaryData.Borrower_Name = Borrower_Name_TB.Text;
+            TemporaryData.Borrower_Contact = Contact_TB.Text;
+            TemporaryData.Note = Note_TB.Text;
+            //ถูกยืม
+            TemporaryData.Status = 0;
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+            MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
+
+            try
+            {
+                //TryAddittoDATABASE
+                mySqlConnection2.Open();
+
+                string query = "UPDATE borrowing_info SET " +
+               "Initial_Borrow_Time = @Initial_Borrow_Time, " +
+               "EST_Return_Date = @EST_Return_Date, " +
+               "BarcodeNumber = @BarcodeNumber, " +
+               "Product_Name = @Product_Name, " +
+               "Borrower_Name = @Borrower_Name, " +
+               "Note = @Note, " +
+               "ImageData = @ImageData, " +
+               "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum," +
+               "Contact = @Contact, " +
+               "Status = @Status " +
+               "WHERE BarcodeNumber = @BarcodeNumber";
+
+
+                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
+                {
+                    cmd.Parameters.AddWithValue("@Initial_Borrow_Time", TemporaryData.InitialBorrowDate);
+                    cmd.Parameters.AddWithValue("@EST_Return_Date", TemporaryData.EstReturnDate);
+                    cmd.Parameters.AddWithValue("@BarcodeNumber", TemporaryData.BarcodeNumber);
+                    cmd.Parameters.AddWithValue("@Product_Name", TemporaryData.Product_Name);
+                    cmd.Parameters.AddWithValue("@Borrower_Name", TemporaryData.Borrower_Name);
+                    cmd.Parameters.AddWithValue("@ImageData", TemporaryData.FilePath);
+                    cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", TemporaryData.SHA512);
+                    cmd.Parameters.AddWithValue("@Contact", TemporaryData.Borrower_Contact);
+                    cmd.Parameters.AddWithValue("@Note", TemporaryData.Note);
+                    cmd.Parameters.AddWithValue("@Status", TemporaryData.Status);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("การยืมครุภัณฑ์สำเร็จ!");
+                        //PullDataFromDB();
+                    }
+                    else
+                    {
+                        MessageBox.Show("การยืมครุภัณฑ์ล้มเหลว.");
                     }
                 }
             }

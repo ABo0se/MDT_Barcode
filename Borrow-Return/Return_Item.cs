@@ -147,7 +147,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                                     Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
                                     Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
                                 };
-
+                                if (mysearchresults.BarcodeHistoryListSerialized != "[]")
+                                {
+                                    mysearchresults.BarcodeHistoryList = JsonConvert.DeserializeObject<List<RentHistory>>(mysearchresults.BarcodeHistoryListSerialized);
+                                }
                                 // If a match is found, return true immediately
                                 return true;
                             }
