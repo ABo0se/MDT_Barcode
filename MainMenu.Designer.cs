@@ -33,10 +33,10 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Borrow_Return_Manager = new System.Windows.Forms.Button();
             this.Borrow_Return_System = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.AddItem = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -130,30 +130,6 @@
             this.Borrow_Return_System.UseVisualStyleBackColor = true;
             this.Borrow_Return_System.Click += new System.EventHandler(this.Borrow_Return_System_Click);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label1.Location = new System.Drawing.Point(12, 585);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 27);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Copyright @ 2023 by : ICE";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label2.Location = new System.Drawing.Point(365, 585);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 27);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.2.1";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // AddItem
             // 
             this.AddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -182,6 +158,30 @@
             this.pictureBox1.Size = new System.Drawing.Size(398, 2);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.label1.Location = new System.Drawing.Point(12, 585);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 27);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Copyright @ 2023 by : ICE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
+            this.label2.Location = new System.Drawing.Point(365, 585);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 27);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "V.1.3.0";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainMenu
             // 

@@ -148,7 +148,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     foreach (RentHistory mydata in data.Value)
                     {
                         List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
-                        MessageBox.Show("Paths : " + paths.Count);
                         List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(mydata.SHA512);
 
                         for (int i = paths.Count - 1; i >= 0; i--)

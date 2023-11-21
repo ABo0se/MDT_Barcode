@@ -406,270 +406,148 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void Export_Excel_Click(object sender, EventArgs e)
         {
-            //string filePath = "";
+            string filePath = "";
 
-            //try
-            //{
-            //    string saveDirectory = @"C:\ExcelBarcodeDatabase";
-            //    Directory.CreateDirectory(saveDirectory);
-            //    string baseFileName = "รายละเอียดการยืมคืนครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"; // Base file name
-            //    string fileName = baseFileName;
-            //    int fileCounter = 1;
-            //    while (File.Exists(Path.Combine(saveDirectory, fileName)))
-            //    {
-            //        fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-            //        fileCounter++;
-            //    }
-            //    filePath = Path.Combine(saveDirectory, fileName);
+            try
+            {
+                string saveDirectory = @"C:\ExcelBarcodeDatabase";
+                Directory.CreateDirectory(saveDirectory);
+                string baseFileName = "รายละเอียดการยืมคืนครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"; // Base file name
+                string fileName = baseFileName;
+                int fileCounter = 1;
+                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                {
+                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                    fileCounter++;
+                }
+                filePath = Path.Combine(saveDirectory, fileName);
 
-            //    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-            //    using (var package = new ExcelPackage(new FileInfo(filePath)))
-            //    {
-            //        var worksheet1 = package.Workbook.Worksheets.Add("Data");
+                using (var package = new ExcelPackage(new FileInfo(filePath)))
+                {
+                    var worksheet1 = package.Workbook.Worksheets.Add("Data");
 
-            //        int rowCount = TemporaryData.Count; // Use TemporaryData count
-            //        int colCount = 13; // Set the number of columns based on your SRResults object
+                    int rowCount = TemporaryData.Count; // Use TemporaryData count
+                    int colCount = 13; // Set the number of columns based on your SRResults object
 
-            //        // Set the font properties for the entire worksheet
-            //        worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
-            //        worksheet1.Cells.Style.Font.Size = 12.0f;
+                    // Set the font properties for the entire worksheet
+                    worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
+                    worksheet1.Cells.Style.Font.Size = 12.0f;
 
-            //        // Header row
-            //        for (int col = 1; col <= colCount; col++)
-            //        {
-            //            var headerCell1 = worksheet1.Cells[1, col];
-            //            // Map the header cell to the SRResults properties
-            //            switch (col)
-            //            {
-            //                case 1:
-            //                    headerCell1.Value = "ลำดับที่";
-            //                    break;
-            //                case 2:
-            //                    headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
-            //                    break;
-            //                case 3:
-            //                    headerCell1.Value = "หมายเลขครุภัณฑ์";
-            //                    break;
-            //                case 4:
-            //                    headerCell1.Value = "ชื่อผลิตภัณฑ์";
-            //                    break;
-            //                case 5:
-            //                    headerCell1.Value = "ชื่อผู้ยืมครุภัณฑ์";
-            //                    break;
-            //                case 6:
-            //                    headerCell1.Value = "สถานะการคืนครุภัณฑ์";
-            //                    break;
-            //                case 7:
-            //                    headerCell1.Value = "วันที่ยืมครุภัณฑ์";
-            //                    break;
-            //                case 8:
-            //                    headerCell1.Value = "วันที่คาดว่าจะคืนครุภัณฑ์";
-            //                    break;
-            //                case 9:
-            //                    headerCell1.Value = "วันที่คืนครุภัณฑ์จริง";
-            //                    break;
-            //                case 10:
-            //                    headerCell1.Value = "ช่องทางการติดต่อ";
-            //                    break;
-            //                case 11:
-            //                    headerCell1.Value = "หมายเหตุ";
-            //                    break;
-            //            }
-            //            headerCell1.Style.Font.Bold = true;
-            //            headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //            headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-            //            headerCell1.Style.Font.Size = 14.0f;
-            //        }
+                    // Header row
+                    for (int col = 1; col <= colCount; col++)
+                    {
+                        var headerCell1 = worksheet1.Cells[1, col];
+                        // Map the header cell to the SRResults properties
+                        switch (col)
+                        {
+                            case 1:
+                                headerCell1.Value = "ลำดับที่";
+                                break;
+                            case 2:
+                                headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
+                                break;
+                            case 3:
+                                headerCell1.Value = "หมายเลขครุภัณฑ์";
+                                break;
+                            case 4:
+                                headerCell1.Value = "ชื่อผลิตภัณฑ์";
+                                break;
+                            case 5:
+                                headerCell1.Value = "ชื่อผู้ยืมครุภัณฑ์";
+                                break;
+                            case 6:
+                                headerCell1.Value = "สถานะการคืนครุภัณฑ์";
+                                break;
+                            case 7:
+                                headerCell1.Value = "วันที่ยืมครุภัณฑ์";
+                                break;
+                            case 8:
+                                headerCell1.Value = "วันที่คาดว่าจะคืนครุภัณฑ์";
+                                break;
+                            case 9:
+                                headerCell1.Value = "วันที่คืนครุภัณฑ์จริง";
+                                break;
+                            case 10:
+                                headerCell1.Value = "ช่องทางการติดต่อ";
+                                break;
+                            case 11:
+                                headerCell1.Value = "หมายเหตุ";
+                                break;
+                        }
+                        headerCell1.Style.Font.Bold = true;
+                        headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        headerCell1.Style.Font.Size = 14.0f;
+                    }
 
-            //        // Data rows for worksheet1 (Data)
-            //        for (int row = 0; row < rowCount; row++)
-            //        {
-            //            for (int col = 0; col < colCount; col++)
-            //            {
-            //                var cell1 = worksheet1.Cells[row + 2, col + 1];
-            //                // Map the cell to the corresponding SRResults property
-            //                switch (col)
-            //                {
-            //                    case 0:
-            //                        cell1.Value = row + 1;
-            //                        break;
-            //                    case 1:
-            //                        cell1.Value = TemporaryData[row].Date;
-            //                        break;
-            //                    case 2:
-            //                        cell1.Value = TemporaryData[row].BarcodeNumber;
-            //                        break;
-            //                    case 3:
-            //                        cell1.Value = TemporaryData[row].Product_Name;
-            //                        break;
-            //                    case 4:
-            //                        cell1.Value = TemporaryData[row].ModelNumber;
-            //                        break;
-            //                    case 5:
-            //                        cell1.Value = TemporaryData[row].Brand;
-            //                        break;
-            //                    case 6:
-            //                        cell1.Value = TemporaryData[row].SerialNum;
-            //                        break;
-            //                    case 7:
-            //                        cell1.Value = TemporaryData[row].Price;
-            //                        break;
-            //                    case 8:
-            //                        cell1.Value = TemporaryData[row].Room;
-            //                        break;
-            //                    case 9:
-            //                        cell1.Value = TemporaryData[row].Description;
-            //                        break;
-            //                    case 10:
-            //                        {
-            //                            string tempstatus;
-            //                            switch (TemporaryData[row].Status)
-            //                            {
-            //                                case -1:
-            //                                    {
-            //                                        tempstatus = "ไม่พบข้อมูล";
-            //                                        break;
-            //                                    }
-            //                                case 0:
-            //                                    {
-            //                                        tempstatus = "มีให้ตรวจสอบ";
-            //                                        break;
-            //                                    }
-            //                                case 1:
-            //                                    {
-            //                                        tempstatus = "ไม่มีให้ตรวจสอบ";
-            //                                        break;
-            //                                    }
-            //                                default:
-            //                                    {
-            //                                        tempstatus = "ไม่พบข้อมูล";
-            //                                        break;
-            //                                    }
-            //                            }
-            //                            cell1.Value = tempstatus;
-            //                            break;
-            //                        }
-            //                    case 11:
-            //                        {
-            //                            string tempcondition;
-            //                            switch (TemporaryData[row].Condition)
-            //                            {
-            //                                case -1:
-            //                                    {
-            //                                        tempcondition = "ไม่พบข้อมูล";
-            //                                        break;
-            //                                    }
-            //                                case 0:
-            //                                    {
-            //                                        tempcondition = "ใช้งานได้";
-            //                                        break;
-            //                                    }
-            //                                case 1:
-            //                                    {
-            //                                        tempcondition = "ชำรุดรอซ่อม";
-            //                                        break;
-            //                                    }
-            //                                case 2:
-            //                                    {
-            //                                        tempcondition = "สิ้นสภาพ";
-            //                                        break;
-            //                                    }
-            //                                case 3:
-            //                                    {
-            //                                        tempcondition = "สูญหาย";
-            //                                        break;
-            //                                    }
-            //                                case 4:
-            //                                    {
-            //                                        tempcondition = "จำหน่ายแล้ว";
-            //                                        break;
-            //                                    }
-            //                                case 5:
-            //                                    {
-            //                                        tempcondition = "โอนแล้ว";
-            //                                        break;
-            //                                    }
-            //                                case 6:
-            //                                    {
-            //                                        tempcondition = "อื่นๆ";
-            //                                        break;
-            //                                    }
-            //                                default:
-            //                                    {
-            //                                        tempcondition = "ไม่พบข้อมูล";
-            //                                        break;
-            //                                    }
-            //                            }
-            //                            cell1.Value = tempcondition;
-            //                            break;
-            //                        }
-            //                }
-            //                // Align the first column to the middle
-            //                if (col == 0 || col == 1)
-            //                {
-            //                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-            //                    cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //                }
-            //                else
-            //                {
-            //                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-            //                }
-            //            }
-            //        }
-
-            //        // Auto-size columns based on the content for worksheet1 (Data)
-            //        for (int col = 1; col <= colCount; col++)
-            //        {
-            //            worksheet1.Column(col).AutoFit();
-            //        }
-
-            //        // Create a new worksheet2 named "ImageData"
-            //        var worksheet2 = package.Workbook.Worksheets.Add("ImageData");
-
-            //        // Set the font properties for the entire worksheet2
-            //        worksheet2.Cells.Style.Font.Name = "TH Sarabun New";
-            //        worksheet2.Cells.Style.Font.Size = 12.0f;
-
-            //        // Header row for worksheet2
-            //        var headerCell2 = worksheet2.Cells[1, 1];
-            //        headerCell2.Value = "FilePath";
-            //        headerCell2.Style.Font.Bold = true;
-            //        headerCell2.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //        headerCell2.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-            //        headerCell2.Style.Font.Size = 14.0f;
-
-            //        var headerCell3 = worksheet2.Cells[1, 2];
-            //        headerCell3.Value = "SHA512";
-            //        headerCell3.Style.Font.Bold = true;
-            //        headerCell3.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //        headerCell3.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-            //        headerCell3.Style.Font.Size = 14.0f;
-
-            //        // Data rows for worksheet2 (ImageData)
-            //        for (int i = 0; i < TemporaryData.Count; i++)
-            //        {
-            //            var cell2 = worksheet2.Cells[i + 2, 1];
-            //            cell2.Value = TemporaryData[i].FilePath;
-            //            var cell3 = worksheet2.Cells[i + 2, 2];
-            //            cell3.Value = TemporaryData[i].SHA512;
-            //        }
-
-            //        // Auto-size columns based on the content for worksheet2 (ImageData)
-            //        worksheet2.Column(1).AutoFit();
-
-            //        package.Save();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    return;
-            //}
-            //finally
-            //{
-            //    MessageBox.Show("Export to Excel completed. Output at " + filePath);
-            //}
+                    // Data rows for worksheet1 (Data)
+                    for (int row = 0; row < rowCount; row++)
+                    {
+                        for (int col = 0; col < colCount; col++)
+                        {
+                            var cell1 = worksheet1.Cells[row + 2, col + 1];
+                            // Map the cell to the corresponding SRResults property
+                            switch (col)
+                            {
+                                case 0:
+                                    cell1.Value = row + 1;
+                                    break;
+                                case 1:
+                                    cell1.Value = TemporaryData[row].Date;
+                                    break;
+                                case 2:
+                                    cell1.Value = TemporaryData[row].BarcodeNumber;
+                                    break;
+                                case 3:
+                                    cell1.Value = TemporaryData[row].Product_Name;
+                                    break;
+                                case 4:
+                                    cell1.Value = TemporaryData[row].Borrower_Name;
+                                    break;
+                                case 5:
+                                    cell1.Value = DecodingStatus(TemporaryData[row].Status);
+                                    break;
+                                case 6:
+                                    cell1.Value = TemporaryData[row].InitialBorrowDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    break;
+                                case 7:
+                                    cell1.Value = TemporaryData[row].EstReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    break;
+                                case 8:
+                                    cell1.Value = TemporaryData[row].ActualReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    break;
+                                case 9:
+                                    cell1.Value = TemporaryData[row].Borrower_Contact;
+                                    break;
+                                case 10:
+                                    cell1.Value = TemporaryData[row].Note;
+                                    break;
+                            }
+                            // Align the first column to the middle
+                            if (col == 0 || col == 1)
+                            {
+                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            }
+                            else
+                            {
+                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            finally
+            {
+                MessageBox.Show("Export to Excel completed. Output at " + filePath);
+            }
         }
 
         private void Del_Database_Click(object sender, EventArgs e)
