@@ -8,11 +8,13 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Security.Cryptography;
+using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class ShowItem : Form
     {
+        SRResults myData;
         private MySqlConnection mySqlConnection;
         List<System.Drawing.Image> selectedImages = new List<System.Drawing.Image>();
         int? selectingImage = null;
@@ -47,18 +49,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (TryFetchDataBySerialCode(barcodeText, out SRResults data))
             {
                 //DisplayData
-                BarcodeID_TXT.Text = data.BarcodeNumber;
-                ProductName_TXT.Text = data.Product_Name;
-                ModelName_TXT.Text = data.ModelNumber;
-                Brand_TXT.Text = data.Brand;
-                SN_TXT.Text = data.SerialNum;
-                Price_TXT.Text = data.Price;
-                Stay_TXT.Text = data.Room;
-                Note_TXT.Text = data.Description;
+                myData = data;
+                BarcodeID_TXT.Text = myData.BarcodeNumber;
+                ProductName_TXT.Text = myData.Product_Name;
+                ModelName_TXT.Text = myData.ModelNumber;
+                Brand_TXT.Text = myData.Brand;
+                SN_TXT.Text = myData.SerialNum;
+                Price_TXT.Text = myData.Price;
+                Stay_TXT.Text = myData.Room;
+                Note_TXT.Text = myData.Description;
                 ////////////////////////////////////
                 selectedImages.Clear();
-                List<string> path = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
-                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(myData.FilePath);
+                List<string> SHA512 = JsonConvert.DeserializeObject<List<string>>(myData.SHA512);
                 if (path.Count > 0)
                 {
                     for (int i = 0; i < path.Count; i++)
@@ -92,8 +95,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 ////////////////////////////////////
                 int statusX, conditionX;
-                statusX = data.Status;
-                conditionX = data.Condition;
+                statusX = myData.Status;
+                conditionX = myData.Condition;
                 switch (statusX)
                 {
                     case -1:
@@ -156,6 +159,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         }
                 }
                 ////////////////////////////////////
+            }
+            else
+            {
+                myData = null;
             }
         }
 
@@ -316,9 +323,105 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 return computedHashString.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
             }
         }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private bool SearchDatabase(string BarcodeName, out RentResults mysearchresults)
         {
+            mysearchresults = null;
 
+            try
+            {
+                string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                string query = "SELECT * FROM borrowing_info WHERE BarcodeNumber = @BarcodesearchCriteria";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@BarcodesearchCriteria", BarcodeName);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                mysearchresults = new RentResults
+                                {
+                                    Date = reader.IsDBNull(reader.GetOrdinal("Time")) ? (DateTime?)null : reader.GetDateTime("Time"),
+                                    InitialBorrowDate = reader.IsDBNull(reader.GetOrdinal("Initial_Borrow_Time")) ? (DateTime?)null : reader.GetDateTime("Initial_Borrow_Time"),
+                                    EstReturnDate = reader.IsDBNull(reader.GetOrdinal("EST_Return_Date")) ? (DateTime?)null : reader.GetDateTime("EST_Return_Date"),
+                                    ActualReturnDate = reader.IsDBNull(reader.GetOrdinal("ACTUAL_Return_Date")) ? (DateTime?)null : reader.GetDateTime("ACTUAL_Return_Date"),
+                                    BarcodeNumber = !string.IsNullOrEmpty(reader["BarcodeNumber"]?.ToString()) ? reader["BarcodeNumber"].ToString() : "-",
+                                    Product_Name = !string.IsNullOrEmpty(reader["Product_Name"]?.ToString()) ? reader["Product_Name"].ToString() : "-",
+                                    Borrower_Name = !string.IsNullOrEmpty(reader["Borrower_Name"]?.ToString()) ? reader["Borrower_Name"].ToString() : "-",
+                                    FilePath = !string.IsNullOrEmpty(reader["ImageData"]?.ToString()) ? reader["ImageData"].ToString() : "[]",
+                                    SHA512 = !string.IsNullOrEmpty(reader["MD5_ImageValidityChecksum"]?.ToString()) ? reader["MD5_ImageValidityChecksum"].ToString() : "[]",
+                                    BarcodeHistoryListSerialized = !string.IsNullOrEmpty(reader["HistoryTextlog"]?.ToString()) ? reader["HistoryTextlog"].ToString() : "[]",
+                                    Borrower_Contact = !string.IsNullOrEmpty(reader["Contact"]?.ToString()) ? reader["Contact"].ToString() : "-",
+                                    Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
+                                    Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
+                                };
+                                if (mysearchresults.BarcodeHistoryListSerialized != "[]")
+                                {
+                                    mysearchresults.BarcodeHistoryList = JsonConvert.DeserializeObject<List<RentHistory>>(mysearchresults.BarcodeHistoryListSerialized);
+                                }
+                                // If a match is found, return true immediately
+                                return true;
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex.ToString());
+            }
+
+            // If no match is found, mysearchresults is already set to null by default
+            return false;
+        }
+
+        private void Show_History_Click(object sender, EventArgs e)
+        {
+            Borrow_History History = MainMenu.initializedForms.Find(f => f is Borrow_History) as Borrow_History;
+            if (History != null)
+            {
+                if (myData != null)
+                {
+                    if (SearchDatabase(myData.BarcodeNumber, out RentResults TemporaryData))
+                    {
+                        if (TemporaryData.BarcodeHistoryList != null)
+                        {
+                            if (TemporaryData.BarcodeHistoryList.Count > 0)
+                            {
+                                History.Show();
+                                History.AssignText(TemporaryData.BarcodeHistoryList);
+                            }
+                            else
+                            {
+                                MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
+                }
+            }
+            else
+            {
+                MessageBox.Show("ไม่พบหน้าต่างยืม");
+            }
         }
     }
 }

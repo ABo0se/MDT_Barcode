@@ -330,12 +330,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void ShowDetail_B_Click(object sender, EventArgs e)
         {
             if (temporarydata == null) return;
-            ShowBorrowDetail ShowForm = MainMenu.initializedForms.Find(f => f is ShowBorrowDetail) as ShowBorrowDetail;
+            ShowItem ShowForm = MainMenu.initializedForms.Find(f => f is ShowItem) as ShowItem;
             if (ShowForm != null)
             {
                 ShowForm.Show();
                 ShowForm.InitializePage();
-                ShowForm.AssignBarcodeText(temporarydata);
+                ShowForm.AssignBarcodeText(temporarydata.BarcodeNumber);
             }
         }
 

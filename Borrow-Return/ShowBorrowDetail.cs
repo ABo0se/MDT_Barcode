@@ -15,6 +15,7 @@ using System.Drawing.Imaging;
 using System.Security.Cryptography;
 using MySqlX.XDevAPI.Common;
 using System.Linq.Expressions;
+using Org.BouncyCastle.Utilities.Collections;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -347,8 +348,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 this.Hide();      // Hide the form instead
             }
         }
-
-        private void Show_History_Click(object sender, EventArgs e)
+        private void Show_History_Click_1(object sender, EventArgs e)
         {
             Borrow_History History = MainMenu.initializedForms.Find(f => f is Borrow_History) as Borrow_History;
             if (History != null)
@@ -371,10 +371,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
                     }
-                }
-                else
-                {
-                    MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
                 }
             }
             else

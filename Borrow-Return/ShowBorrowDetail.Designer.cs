@@ -32,7 +32,6 @@
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Show_History = new System.Windows.Forms.Button();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.EST_Borrow_Date_TXT = new System.Windows.Forms.Label();
             this.Borrow_Date = new System.Windows.Forms.Label();
+            this.Show_History = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -76,8 +76,6 @@
             // 
             // Nextpic
             // 
-            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -92,8 +90,6 @@
             // 
             // Prevpic
             // 
-            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -108,9 +104,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(90, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
@@ -121,8 +114,6 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -141,33 +132,19 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 554);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 480);
             this.tableLayoutPanel1.TabIndex = 8;
-            // 
-            // Show_History
-            // 
-            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Show_History.Location = new System.Drawing.Point(0, 504);
-            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
-            this.Show_History.Name = "Show_History";
-            this.Show_History.Size = new System.Drawing.Size(170, 45);
-            this.Show_History.TabIndex = 12;
-            this.Show_History.Text = "ดูประวัติ";
-            this.Show_History.UseVisualStyleBackColor = true;
-            this.Show_History.Click += new System.EventHandler(this.Show_History_Click);
             // 
             // tableLayoutPanel10
             // 
@@ -177,11 +154,11 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.Controls.Add(this.Status_TXT, 1, 0);
             this.tableLayoutPanel10.Controls.Add(this.Status, 0, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 203);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 175);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(599, 44);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(599, 37);
             this.tableLayoutPanel10.TabIndex = 11;
             // 
             // Status_TXT
@@ -189,7 +166,7 @@
             this.Status_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Status_TXT.AutoSize = true;
             this.Status_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Status_TXT.Location = new System.Drawing.Point(207, 4);
+            this.Status_TXT.Location = new System.Drawing.Point(207, 0);
             this.Status_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.Status_TXT.Name = "Status_TXT";
             this.Status_TXT.Size = new System.Drawing.Size(21, 36);
@@ -202,7 +179,7 @@
             this.Status.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Status.AutoSize = true;
             this.Status.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Status.Location = new System.Drawing.Point(0, 4);
+            this.Status.Location = new System.Drawing.Point(0, 0);
             this.Status.Margin = new System.Windows.Forms.Padding(0);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(207, 36);
@@ -219,7 +196,7 @@
             this.ProductNameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ProductNameTableLayout.Controls.Add(this.Product_Name_TXT, 0, 0);
             this.ProductNameTableLayout.Controls.Add(this.ProductNME, 0, 0);
-            this.ProductNameTableLayout.Location = new System.Drawing.Point(0, 107);
+            this.ProductNameTableLayout.Location = new System.Drawing.Point(0, 89);
             this.ProductNameTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this.ProductNameTableLayout.Name = "ProductNameTableLayout";
             this.ProductNameTableLayout.RowCount = 1;
@@ -258,7 +235,7 @@
             // 
             this.PicInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.PicInformation.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.PicInformation.Location = new System.Drawing.Point(0, 9);
+            this.PicInformation.Location = new System.Drawing.Point(0, 6);
             this.PicInformation.Margin = new System.Windows.Forms.Padding(0);
             this.PicInformation.Name = "PicInformation";
             this.PicInformation.Size = new System.Drawing.Size(605, 31);
@@ -275,7 +252,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.Borrower_TXT, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.Borrower, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 157);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 132);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -319,7 +296,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.BarcodeID_TXT, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.Barcode_ID, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 57);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 46);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -363,7 +340,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.Note_TXT, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.Note, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 457);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 390);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
@@ -406,7 +383,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.Contact_TXT, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.Contact, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 407);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 347);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
@@ -449,7 +426,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.Return_Date_TXT, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.Return_Date, 0, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 357);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 304);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
@@ -493,7 +470,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.EST_Return_Date_TXT, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.Borrow_Time, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 307);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 261);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -537,7 +514,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Controls.Add(this.EST_Borrow_Date_TXT, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.Borrow_Date, 0, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 257);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 218);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
@@ -572,20 +549,34 @@
             this.Borrow_Date.Text = "วันที่ยืมครุภัณฑ์ :";
             this.Borrow_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // Show_History
+            // 
+            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Show_History.Location = new System.Drawing.Point(0, 432);
+            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
+            this.Show_History.Name = "Show_History";
+            this.Show_History.Size = new System.Drawing.Size(225, 45);
+            this.Show_History.TabIndex = 37;
+            this.Show_History.Text = "ประวัติการยืมครุภัณฑ์";
+            this.Show_History.UseVisualStyleBackColor = true;
+            this.Show_History.Click += new System.EventHandler(this.Show_History_Click_1);
+            // 
             // ShowBorrowDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(632, 828);
+            this.ClientSize = new System.Drawing.Size(632, 753);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Nextpic);
             this.Controls.Add(this.Prevpic);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(650, 875);
+            this.MinimumSize = new System.Drawing.Size(650, 800);
             this.Name = "ShowBorrowDetail";
-            this.Text = "รายละเอียดครุภัณฑ์ที่ยืม";
+            this.Text = "รายละเอียดครุภัณฑ์ที่ยืมครั้งล่าสุด";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShowBorrowDetail_FormClosing);
             this.Load += new System.EventHandler(this.ShowBorrowDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

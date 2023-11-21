@@ -166,7 +166,7 @@
             this.ShowDetail_B.Name = "ShowDetail_B";
             this.ShowDetail_B.Size = new System.Drawing.Size(171, 41);
             this.ShowDetail_B.TabIndex = 0;
-            this.ShowDetail_B.Text = "ดูประวัติการยืม";
+            this.ShowDetail_B.Text = "ดูรายละเอียด";
             this.ShowDetail_B.UseVisualStyleBackColor = true;
             this.ShowDetail_B.Click += new System.EventHandler(this.ShowDetail_B_Click);
             // 
