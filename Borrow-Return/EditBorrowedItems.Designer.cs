@@ -52,6 +52,8 @@
             this.Nextpic = new System.Windows.Forms.Button();
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.Adjust_History = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.ProductNameTableLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -60,6 +62,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,7 +79,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.Add_Borrowed_Item_toDB, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 264);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -360,14 +363,14 @@
             // 
             // Add_Borrowed_Item_toDB
             // 
-            this.Add_Borrowed_Item_toDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Add_Borrowed_Item_toDB.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Add_Borrowed_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Add_Borrowed_Item_toDB.Location = new System.Drawing.Point(0, 357);
+            this.Add_Borrowed_Item_toDB.Location = new System.Drawing.Point(364, 4);
             this.Add_Borrowed_Item_toDB.Margin = new System.Windows.Forms.Padding(0);
             this.Add_Borrowed_Item_toDB.Name = "Add_Borrowed_Item_toDB";
-            this.Add_Borrowed_Item_toDB.Size = new System.Drawing.Size(605, 40);
+            this.Add_Borrowed_Item_toDB.Size = new System.Drawing.Size(235, 40);
             this.Add_Borrowed_Item_toDB.TabIndex = 7;
-            this.Add_Borrowed_Item_toDB.Text = "ปรับแก้รายละเอียดการยืมครุภัณฑ์";
+            this.Add_Borrowed_Item_toDB.Text = "แก้ข้อมูลการยืมครุภัณฑ์";
             this.Add_Borrowed_Item_toDB.UseVisualStyleBackColor = true;
             this.Add_Borrowed_Item_toDB.Click += new System.EventHandler(this.Add_Borrowed_Item_toDB_Click);
             // 
@@ -416,6 +419,35 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.Adjust_History, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.Add_Borrowed_Item_toDB, 1, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 353);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(599, 49);
+            this.tableLayoutPanel7.TabIndex = 7;
+            // 
+            // Adjust_History
+            // 
+            this.Adjust_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Adjust_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Adjust_History.Location = new System.Drawing.Point(0, 4);
+            this.Adjust_History.Margin = new System.Windows.Forms.Padding(0);
+            this.Adjust_History.Name = "Adjust_History";
+            this.Adjust_History.Size = new System.Drawing.Size(170, 40);
+            this.Adjust_History.TabIndex = 9;
+            this.Adjust_History.Text = "แก้ประวัติการยืม";
+            this.Adjust_History.UseVisualStyleBackColor = true;
+            // 
             // EditBorrowedItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -445,6 +477,7 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -475,5 +508,7 @@
         private System.Windows.Forms.Button Nextpic;
         private System.Windows.Forms.Button Prevpic;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button Adjust_History;
     }
 }
