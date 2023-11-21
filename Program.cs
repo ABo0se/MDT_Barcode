@@ -107,35 +107,133 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void UpdatePictureFilePath()
         {
             List<SRResults> temporaryData = GetDataFromDB();
-            if (temporaryData == null)
-            {
-                return;
-            }
-            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData);
-            foreach (SRResults data in temporaryData)
-            {
-                List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
-                List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
+            Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
+            //if (temporaryData == null)
+            //{
+            //    return;
+            //}
+            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
 
-                for (int i = paths.Count - 1; i >= 0; i--)
+            if (temporaryData != null)
+            {
+                foreach (SRResults data in temporaryData)
                 {
-                    string sha512 = sha512s[i];
-                    if (uniqueImage.ContainsValue(sha512))
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
+                    List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
+
+                    for (int i = paths.Count - 1; i >= 0; i--)
                     {
-                        string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
-                        paths[i] = newPath;
+                        string sha512 = sha512s[i];
+                        if (uniqueImage.ContainsValue(sha512))
+                        {
+                            string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
+                            paths[i] = newPath;
+                        }
+                        else
+                        {
+                            paths.RemoveAt(i);
+                            sha512s.RemoveAt(i);
+                        }
+                    }
+
+                    data.FilePath = JsonConvert.SerializeObject(paths);
+                    data.SHA512 = JsonConvert.SerializeObject(sha512s);
+                }
+                EditmyDataBase(temporaryData);
+            }
+            if (temporaryData2 != null)
+            {
+                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
+                {
+                    foreach (RentHistory mydata in data.Value)
+                    {
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
+                        MessageBox.Show("Paths : " + paths.Count);
+                        List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(mydata.SHA512);
+
+                        for (int i = paths.Count - 1; i >= 0; i--)
+                        {
+                            string sha512 = sha512s[i];
+                            if (uniqueImage.ContainsValue(sha512))
+                            {
+                                string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
+                                paths[i] = newPath;
+                            }
+                            else
+                            {
+                                paths.RemoveAt(i);
+                                sha512s.RemoveAt(i);
+                            }
+                        }
+
+                        mydata.ImageData = JsonConvert.SerializeObject(paths);
+                        mydata.SHA512 = JsonConvert.SerializeObject(sha512s);
+                    }
+                }
+                EditmyDataBase2(temporaryData2);
+            }
+        }
+
+        Dictionary <string, List<RentHistory>> GetDataFromDB2()
+        {
+            Dictionary<string, List<RentHistory>> ResultDataList = new Dictionary<string, List<RentHistory>>();
+            List<RentResults> DataList = new List<RentResults>();
+            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+
+            using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    mySqlConnection.Open();
+
+                    string query = "SELECT * FROM borrowing_info";
+
+                    using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                RentResults data2 = new RentResults
+                                {
+                                    BarcodeNumber = reader["BarcodeNumber"].ToString(),
+                                    BarcodeHistoryListSerialized = reader["HistoryTextlog"].ToString()
+                                };
+                                DataList.Add(data2);
+                            }
+                        }
+                    }
+                    mySqlConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex);
+                }
+                if (DataList.Count <= 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    foreach (RentResults Data in DataList)
+                    {
+                        if (Data.BarcodeHistoryListSerialized != "[]")
+                        {
+                            Data.BarcodeHistoryList = JsonConvert.DeserializeObject<List<RentHistory>>(Data.BarcodeHistoryListSerialized);
+                            ResultDataList.Add(Data.BarcodeNumber, Data.BarcodeHistoryList);
+                        }
+                    }
+                    if (ResultDataList.Count <= 0)
+                    {
+                        return null;
                     }
                     else
                     {
-                        paths.RemoveAt(i);
-                        sha512s.RemoveAt(i);
+                        return ResultDataList;
                     }
                 }
 
-                data.FilePath = JsonConvert.SerializeObject(paths);
-                data.SHA512 = JsonConvert.SerializeObject(sha512s);
             }
-            EditmyDataBase(temporaryData);
         }
 
         private void CreateDataBase()
@@ -373,7 +471,61 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata)
+        private void EditmyDataBase2(Dictionary<string, List<RentHistory>> Data)
+        {
+            if (Data == null) return;
+            foreach (KeyValuePair<string, List<RentHistory>> TempData in Data)
+            {
+                string SerializedHistoryData = JsonConvert.SerializeObject(TempData.Value, Formatting.Indented);
+                ////////////////////////////////////////
+                //Now we update picture in rent borrow database.
+                string connectionString2 = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                MySqlConnection mySqlConnection3 = new MySqlConnection(connectionString2);
+
+                try
+                {
+                    mySqlConnection3.Open();
+
+                    string query = "UPDATE borrowing_info SET " +
+                   "HistoryTextlog = @HistoryTextlog " +
+
+                   "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+
+
+                    //if (PicFilePath == null)
+                    //{
+                    //    PicFilePath = "";
+                    //}
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection3))
+                    {
+                        cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TempData.Key);
+                        cmd.Parameters.AddWithValue("@HistoryTextlog", SerializedHistoryData);
+                        //////////
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            //MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            // MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
+                        }
+                    }
+                    mySqlConnection3.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                }
+
+            }
+            
+        }
+
+        private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata, Dictionary<string, List<RentHistory>> DBdata2)
         {
             string directoryPath = @"C:\\BarcodeDatabaseImage";
             Dictionary<string, string> imageFiles = new Dictionary<string, string>();
@@ -382,18 +534,37 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             List<string> SHA512DB = new List<string>();
 
-            foreach (SRResults data in DBdata)
+            if (DBdata != null)
             {
-                List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(data.SHA512);
-                foreach (string SHA512 in SHA512DB2) 
+                foreach (SRResults data in DBdata)
                 {
-                    if (!SHA512DB.Contains(SHA512))
+                    List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(data.SHA512);
+                    foreach (string SHA512 in SHA512DB2)
                     {
-                        SHA512DB.Add(SHA512);
+                        if (!SHA512DB.Contains(SHA512))
+                        {
+                            SHA512DB.Add(SHA512);
+                        }
                     }
                 }
             }
-
+            if (DBdata2 != null)
+            {
+                foreach (KeyValuePair<string, List<RentHistory>> data in DBdata2)
+                {
+                    foreach (RentHistory mydata in data.Value)
+                    {
+                        List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(mydata.SHA512);
+                        foreach (string SHA512 in SHA512DB2)
+                        {
+                            if (!SHA512DB.Contains(SHA512))
+                            {
+                                SHA512DB.Add(SHA512);
+                            }
+                        }
+                    }
+                }
+            }
             try
             {
                 if (Directory.Exists(directoryPath))

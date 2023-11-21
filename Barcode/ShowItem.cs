@@ -410,7 +410,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     else
                     {
-                        MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
+                        MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
                     }
                 }
                 else
