@@ -139,6 +139,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         public void InitializePage()
         {
             //Initial blank search value;
+            this.ActiveControl = null;
             ResetDateTime();
             SearchDatainDB();
         }

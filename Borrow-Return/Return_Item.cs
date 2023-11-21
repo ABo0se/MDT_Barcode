@@ -59,14 +59,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Borrower_TXT.Text = TemporaryData.Borrower_Name;
                 //Status_TXT.Text = DecodingStatus(myResult.Status);
                 EST_Borrow_Date_TXT.Text = TemporaryData.InitialBorrowDate.HasValue
-    ? TemporaryData.InitialBorrowDate.Value.ToString("dd MMMM yyyy")
+    ? TemporaryData.InitialBorrowDate.Value.ToString("dd MMMM yyyy HH mm ss")
     : "-";
 
                 EST_Return_Date_TXT.Text = TemporaryData.EstReturnDate.HasValue
                     ? TemporaryData.EstReturnDate.Value.ToString("dd MMMM yyyy")
                     : "-";
 
-                Return_Date_TXT.Text = DateTime.Now.Date.ToString("dd MMMM yyyy");
+                Return_Date_TXT.Text = DateTime.Now.ToString("dd MMMM yyyy HH mm ss");
 
                 Contact_TXT.Text = TemporaryData.Borrower_Contact;
                 Note_TXT.Text = TemporaryData.Note;
@@ -298,7 +298,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //Assign data
             if (TemporaryData == null) return;
 
-            TemporaryData.ActualReturnDate = DateTime.Now.Date;
+            TemporaryData.ActualReturnDate = DateTime.Now; 
             TemporaryData.Status = 2;
 
             RentHistory newrent = new RentHistory();

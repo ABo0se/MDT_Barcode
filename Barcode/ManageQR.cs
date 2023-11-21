@@ -39,6 +39,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void InitializeApplication()
         {
+            this.ActiveControl = null;
             SearchDatainDB();
         }
 

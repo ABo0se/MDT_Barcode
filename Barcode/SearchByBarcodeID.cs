@@ -15,6 +15,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Search_Load(object sender, EventArgs e)
         {
+            this.ActiveControl = null;
             InitializeApplication();
         }
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)

@@ -94,6 +94,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             ////////////////////////////////////////////
             //BarcodeID_TXT.Text = defaultBarcode;
             //Product_Name_TXT.Text = defaultProductName;
+            this.ActiveControl = null;
             Return_Date_TXT.Value = DateTime.Now;
             Borrower_Name_TB.Text = defaultBorrowerName;
             Contact_TB.Text = defaultcontact;
@@ -228,7 +229,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 MessageBox.Show("ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n");
                 return;
             }
-            TemporaryData.InitialBorrowDate = DateTime.Now.Date;
+            TemporaryData.InitialBorrowDate = DateTime.Now;
             TemporaryData.EstReturnDate = Return_Date_TXT.Value.Date;
             TemporaryData.Borrower_Name = Borrower_Name_TB.Text;
             TemporaryData.Borrower_Contact = Contact_TB.Text;
@@ -301,7 +302,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 MessageBox.Show("ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n");
                 return;
             }
-            TemporaryData.InitialBorrowDate = DateTime.Now.Date;
+            TemporaryData.InitialBorrowDate = DateTime.Now;
             TemporaryData.EstReturnDate = Return_Date_TXT.Value.Date;
             TemporaryData.Borrower_Name = Borrower_Name_TB.Text;
             TemporaryData.Borrower_Contact = Contact_TB.Text;

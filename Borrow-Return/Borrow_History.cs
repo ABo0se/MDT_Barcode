@@ -119,9 +119,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 PicInformation.Text = (myselectedHistory + 1) + " of " + TemporaryData.Count;
                 Borrower_Name_TXT.Text = TemporaryData[myselectedHistory].Borrower_Name;
                 Borrower_Contact_TXT.Text = TemporaryData[myselectedHistory].Borrower_Contact;
-                Borrow_Date_TXT.Text = TemporaryData[myselectedHistory].InitialBorrowDate.ToString("dd MMMM yyyy");
+                Borrow_Date_TXT.Text = TemporaryData[myselectedHistory].InitialBorrowDate.ToString("dd MMMM yyyy HH:mm:ss");
                 EST_Time_Return_TXT.Text = TemporaryData[myselectedHistory].EstReturnDate.ToString("dd MMMM yyyy");
-                ACTUAL_Return_Date_TXT.Text = TemporaryData[myselectedHistory].ActualReturnDate.ToString("dd MMMM yyyy");
+                ACTUAL_Return_Date_TXT.Text = TemporaryData[myselectedHistory].ActualReturnDate.ToString("dd MMMM yyyy HH:mm:ss");
                 Note_TXT.Text = TemporaryData[myselectedHistory].Note;
             }
         }

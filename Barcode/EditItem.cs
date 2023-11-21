@@ -522,6 +522,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             /////////////////////////////////
+            this.ActiveControl = null;
             if (selectedImages != null)
             {
                 selectedImages.Clear();

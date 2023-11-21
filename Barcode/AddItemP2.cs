@@ -472,6 +472,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             //PicFilePath = "";
             //pictureBox1.Image = Properties.Resources.NoImage;
+            this.ActiveControl = null;
             BarcodeID_TB.Text = BarcodeIDDF;
             ProductName_TB.Text = ProductNameDF;
             Model_TB.Text = ModelDF;

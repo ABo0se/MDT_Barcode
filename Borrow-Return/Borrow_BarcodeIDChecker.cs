@@ -58,6 +58,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
         public void InitializePage()
         {
+            this.ActiveControl = null;
             ResetButtonState();
             ResetTextState();
             //InitializeBarcode
