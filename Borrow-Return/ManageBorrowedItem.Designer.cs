@@ -91,7 +91,7 @@
             this.TitlePanel.Name = "TitlePanel";
             this.TitlePanel.RowCount = 1;
             this.TitlePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TitlePanel.Size = new System.Drawing.Size(1552, 49);
+            this.TitlePanel.Size = new System.Drawing.Size(1402, 49);
             this.TitlePanel.TabIndex = 17;
             // 
             // Borrower_Name
@@ -100,10 +100,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Borrower_Name.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Borrower_Name.Location = new System.Drawing.Point(1195, 3);
+            this.Borrower_Name.Location = new System.Drawing.Point(1095, 3);
             this.Borrower_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Borrower_Name.Name = "Borrower_Name";
-            this.Borrower_Name.Size = new System.Drawing.Size(353, 43);
+            this.Borrower_Name.Size = new System.Drawing.Size(303, 43);
             this.Borrower_Name.TabIndex = 19;
             this.Borrower_Name.TextChanged += new System.EventHandler(this.Borrower_Name_TextChanged);
             // 
@@ -114,7 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(1050, 0);
+            this.label2.Location = new System.Drawing.Point(950, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 49);
@@ -146,7 +146,7 @@
             this.BarcodeSearchBox.Location = new System.Drawing.Point(155, 3);
             this.BarcodeSearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.BarcodeSearchBox.Name = "BarcodeSearchBox";
-            this.BarcodeSearchBox.Size = new System.Drawing.Size(352, 43);
+            this.BarcodeSearchBox.Size = new System.Drawing.Size(302, 43);
             this.BarcodeSearchBox.TabIndex = 3;
             this.BarcodeSearchBox.TextChanged += new System.EventHandler(this.BarcodeSearchBox_TextChanged);
             // 
@@ -157,7 +157,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(515, 0);
+            this.label3.Location = new System.Drawing.Point(465, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(167, 49);
@@ -171,10 +171,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Product_Name_SearchBox.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Product_Name_SearchBox.Location = new System.Drawing.Point(690, 3);
+            this.Product_Name_SearchBox.Location = new System.Drawing.Point(640, 3);
             this.Product_Name_SearchBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Product_Name_SearchBox.Name = "Product_Name_SearchBox";
-            this.Product_Name_SearchBox.Size = new System.Drawing.Size(352, 43);
+            this.Product_Name_SearchBox.Size = new System.Drawing.Size(302, 43);
             this.Product_Name_SearchBox.TabIndex = 12;
             this.Product_Name_SearchBox.TextChanged += new System.EventHandler(this.Product_Name_SearchBox_TextChanged);
             // 
@@ -198,7 +198,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1552, 50);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1402, 50);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
             // StatusBox
@@ -216,9 +216,9 @@
             "เลยกำหนด",
             "พร้อมให้ยืม [มีประวัติ]",
             "ไม่พบข้อมูล"});
-            this.StatusBox.Location = new System.Drawing.Point(1143, 3);
+            this.StatusBox.Location = new System.Drawing.Point(1043, 3);
             this.StatusBox.Name = "StatusBox";
-            this.StatusBox.Size = new System.Drawing.Size(406, 44);
+            this.StatusBox.Size = new System.Drawing.Size(356, 44);
             this.StatusBox.TabIndex = 21;
             this.StatusBox.SelectedIndexChanged += new System.EventHandler(this.StatusBox_SelectedIndexChanged);
             // 
@@ -229,9 +229,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ReturnTime.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
             this.ReturnTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.ReturnTime.Location = new System.Drawing.Point(731, 3);
+            this.ReturnTime.Location = new System.Drawing.Point(681, 3);
             this.ReturnTime.Name = "ReturnTime";
-            this.ReturnTime.Size = new System.Drawing.Size(406, 43);
+            this.ReturnTime.Size = new System.Drawing.Size(356, 43);
             this.ReturnTime.TabIndex = 21;
             this.ReturnTime.ValueChanged += new System.EventHandler(this.ReturnTime_ValueChanged);
             this.ReturnTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReturnTime_KeyDown);
@@ -243,7 +243,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(534, 0);
+            this.label4.Location = new System.Drawing.Point(484, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(190, 50);
@@ -275,7 +275,7 @@
             this.BorrowTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.BorrowTime.Location = new System.Drawing.Point(121, 3);
             this.BorrowTime.Name = "BorrowTime";
-            this.BorrowTime.Size = new System.Drawing.Size(406, 43);
+            this.BorrowTime.Size = new System.Drawing.Size(356, 43);
             this.BorrowTime.TabIndex = 14;
             this.BorrowTime.ValueChanged += new System.EventHandler(this.BorrowTime_ValueChanged);
             this.BorrowTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorrowTime_KeyDown);
@@ -293,7 +293,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1558, 111);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1408, 111);
             this.tableLayoutPanel2.TabIndex = 21;
             // 
             // Del_Database
@@ -301,7 +301,7 @@
             this.Del_Database.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Del_Database.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.Del_Database.ForeColor = System.Drawing.Color.Red;
-            this.Del_Database.Location = new System.Drawing.Point(1393, 643);
+            this.Del_Database.Location = new System.Drawing.Point(1243, 493);
             this.Del_Database.Name = "Del_Database";
             this.Del_Database.Size = new System.Drawing.Size(177, 50);
             this.Del_Database.TabIndex = 23;
@@ -317,11 +317,11 @@
             this.ExportPanel.ColumnCount = 1;
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ExportPanel.Controls.Add(this.Export_Excel, 0, 0);
-            this.ExportPanel.Location = new System.Drawing.Point(12, 643);
+            this.ExportPanel.Location = new System.Drawing.Point(12, 493);
             this.ExportPanel.Name = "ExportPanel";
             this.ExportPanel.RowCount = 1;
             this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ExportPanel.Size = new System.Drawing.Size(300, 56);
+            this.ExportPanel.Size = new System.Drawing.Size(275, 56);
             this.ExportPanel.TabIndex = 24;
             // 
             // Export_Excel
@@ -330,7 +330,7 @@
             this.Export_Excel.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
             this.Export_Excel.Location = new System.Drawing.Point(3, 3);
             this.Export_Excel.Name = "Export_Excel";
-            this.Export_Excel.Size = new System.Drawing.Size(294, 50);
+            this.Export_Excel.Size = new System.Drawing.Size(269, 50);
             this.Export_Excel.TabIndex = 7;
             this.Export_Excel.Text = "นำข้อมูลออกเป็น Excel";
             this.Export_Excel.UseVisualStyleBackColor = true;
@@ -387,7 +387,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.BorrowGridView.RowTemplate.Height = 35;
-            this.BorrowGridView.Size = new System.Drawing.Size(1558, 510);
+            this.BorrowGridView.Size = new System.Drawing.Size(1408, 360);
             this.BorrowGridView.TabIndex = 25;
             this.BorrowGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BorrowGridView_CellContentClick);
             this.BorrowGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BorrowGridView_CellFormatting);
@@ -405,16 +405,16 @@
             // 
             this.BarcodeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.BarcodeID.HeaderText = "หมายเลขครุภัณฑ์";
-            this.BarcodeID.MinimumWidth = 175;
+            this.BarcodeID.MinimumWidth = 150;
             this.BarcodeID.Name = "BarcodeID";
             this.BarcodeID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BarcodeID.Width = 175;
+            this.BarcodeID.Width = 150;
             // 
             // Product_Name
             // 
             this.Product_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Product_Name.HeaderText = "ชื่อครุภัณฑ์";
-            this.Product_Name.MinimumWidth = 225;
+            this.Product_Name.MinimumWidth = 200;
             this.Product_Name.Name = "Product_Name";
             this.Product_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -422,37 +422,37 @@
             // 
             this.Borrow_Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Borrow_Date.HeaderText = "วันที่ยืมครุภัณฑ์";
-            this.Borrow_Date.MinimumWidth = 200;
+            this.Borrow_Date.MinimumWidth = 175;
             this.Borrow_Date.Name = "Borrow_Date";
             this.Borrow_Date.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Borrow_Date.Width = 200;
+            this.Borrow_Date.Width = 175;
             // 
             // Est_Return_Date
             // 
             this.Est_Return_Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Est_Return_Date.HeaderText = "วันที่คาดว่าจะคืนครุภัณฑ์";
-            this.Est_Return_Date.MinimumWidth = 200;
+            this.Est_Return_Date.MinimumWidth = 175;
             this.Est_Return_Date.Name = "Est_Return_Date";
             this.Est_Return_Date.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Est_Return_Date.Width = 200;
+            this.Est_Return_Date.Width = 175;
             // 
             // Borrwerer_Name
             // 
             this.Borrwerer_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Borrwerer_Name.HeaderText = "ชื่อผู้ยืม";
-            this.Borrwerer_Name.MinimumWidth = 200;
+            this.Borrwerer_Name.MinimumWidth = 175;
             this.Borrwerer_Name.Name = "Borrwerer_Name";
             this.Borrwerer_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Borrwerer_Name.Width = 200;
+            this.Borrwerer_Name.Width = 175;
             // 
             // Contact
             // 
             this.Contact.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Contact.HeaderText = "ช่องทางการติดต่อ";
-            this.Contact.MinimumWidth = 200;
+            this.Contact.MinimumWidth = 150;
             this.Contact.Name = "Contact";
             this.Contact.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Contact.Width = 200;
+            this.Contact.Width = 150;
             // 
             // Status
             // 
@@ -507,13 +507,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1582, 703);
+            this.ClientSize = new System.Drawing.Size(1432, 553);
             this.Controls.Add(this.BorrowGridView);
             this.Controls.Add(this.ExportPanel);
             this.Controls.Add(this.Del_Database);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            this.MinimumSize = new System.Drawing.Size(1200, 600);
+            this.MinimumSize = new System.Drawing.Size(1450, 600);
             this.Name = "ManageBorrowedItem";
             this.Text = "ManageBorrowedItem";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageBorrowedItem_FormClosing);

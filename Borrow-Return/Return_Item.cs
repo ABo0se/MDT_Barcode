@@ -240,10 +240,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     warningMessage += "ไม่สามารถเปลี่ยนข้อมูลในระบบได้ เนื่องจากไม่มีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
                 }
 
-                if (selectedImages.Count <= 0)
-                {
-                    warningMessage += "ต้องใส่ภาพยืนยัน ก่อนที่จะทำการคืนครุภัณฑ์\n";
-                }
+                //if (selectedImages.Count <= 0)
+                //{
+                //    warningMessage += "ต้องใส่ภาพยืนยัน ก่อนที่จะทำการคืนครุภัณฑ์\n";
+                //}
                 //if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
                 //    Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
                 //    Return_Date_TXT.Value.Date < DateTime.Now.Date || Contact_TB.Text == defaultcontact ||
@@ -405,7 +405,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("การคืนครุภัณฑ์สำเร็จ!");
+                        if (isdumplicated)
+                        {
+                            MessageBox.Show("การคืนครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะหายไป!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("การคืนครุภัณฑ์สำเร็จ!");
+                        }
                         this.Hide();
                         ManageBorrowedItem Search = MainMenu.initializedForms.Find(f => f is ManageBorrowedItem) as ManageBorrowedItem;
                         if (Search != null)
