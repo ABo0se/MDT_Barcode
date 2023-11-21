@@ -403,5 +403,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         public DateTime ActualReturnDate { get; set; }
         public string Borrower_Contact { get; set; }
         public string Note { get; set; }
+        public string ImageData { get; set; }
+        public string SHA512 { get; set; }
     }
 }

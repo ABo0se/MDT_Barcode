@@ -441,6 +441,8 @@
     <None Include="Images\Previous.png" />
     <None Include="Images\Next.png" />
     <None Include="Resources\Delete Picture.png" />
+    <None Include="Resources\add_item.png" />
+    <None Include="Resources\add_return_item_icon.png" />
     <Content Include="Resources\corruptedfile.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <None Include="Resources\DrawLine.png" />

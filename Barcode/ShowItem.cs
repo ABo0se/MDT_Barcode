@@ -86,7 +86,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    pictureBox1.Image = Properties.Resources.NoImage;
+                    CheckImageButtonBehavior();
+                    ChangePicture(null);
+                    pictureBox1.Refresh();
                 }
                 ////////////////////////////////////
                 int statusX, conditionX;

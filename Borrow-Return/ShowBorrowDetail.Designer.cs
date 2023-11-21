@@ -32,6 +32,7 @@
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Show_History = new System.Windows.Forms.Button();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.EST_Borrow_Date_TXT = new System.Windows.Forms.Label();
             this.Borrow_Date = new System.Windows.Forms.Label();
-            this.Show_History = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -76,6 +76,8 @@
             // 
             // Nextpic
             // 
+            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -90,6 +92,8 @@
             // 
             // Prevpic
             // 
+            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -104,6 +108,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(90, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
@@ -114,6 +121,8 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -145,6 +154,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 554);
             this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // Show_History
+            // 
+            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Show_History.Location = new System.Drawing.Point(0, 504);
+            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
+            this.Show_History.Name = "Show_History";
+            this.Show_History.Size = new System.Drawing.Size(170, 45);
+            this.Show_History.TabIndex = 12;
+            this.Show_History.Text = "ดูประวัติ";
+            this.Show_History.UseVisualStyleBackColor = true;
+            this.Show_History.Click += new System.EventHandler(this.Show_History_Click);
             // 
             // tableLayoutPanel10
             // 
@@ -548,20 +571,6 @@
             this.Borrow_Date.TabIndex = 0;
             this.Borrow_Date.Text = "วันที่ยืมครุภัณฑ์ :";
             this.Borrow_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Show_History
-            // 
-            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Show_History.Location = new System.Drawing.Point(0, 504);
-            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
-            this.Show_History.Name = "Show_History";
-            this.Show_History.Size = new System.Drawing.Size(170, 45);
-            this.Show_History.TabIndex = 12;
-            this.Show_History.Text = "ดูประวัติ";
-            this.Show_History.UseVisualStyleBackColor = true;
-            this.Show_History.Click += new System.EventHandler(this.Show_History_Click);
             // 
             // ShowBorrowDetail
             // 

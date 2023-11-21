@@ -99,7 +99,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    pictureBox1.Image = Properties.Resources.NoImage;
+                    CheckImageButtonBehavior();
+                    ChangePicture(null);
+                    pictureBox1.Refresh();
+                
                 }
                 ////////////////////////////////////
             }
@@ -352,10 +355,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 if (TemporaryData != null)
                 {
-                    if (TemporaryData.BarcodeHistoryList != null || TemporaryData.BarcodeHistoryList.Count > 0)
+                    if (TemporaryData.BarcodeHistoryList != null)
                     {
-                        History.Show();
-                        History.AssignText(TemporaryData.BarcodeHistoryList);
+                        if (TemporaryData.BarcodeHistoryList.Count > 0)
+                        {
+                            History.Show();
+                            History.AssignText(TemporaryData.BarcodeHistoryList);
+                        }
+                        else
+                        {
+                            MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                        }
                     }
                     else
                     {

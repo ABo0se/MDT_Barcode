@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Return_Borrowed_Item_toDB = new System.Windows.Forms.Button();
             this.ProductNameTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.Product_Name_TXT = new System.Windows.Forms.Label();
             this.ProductNME = new System.Windows.Forms.Label();
@@ -55,6 +54,9 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.Note_TXT = new System.Windows.Forms.Label();
             this.Note = new System.Windows.Forms.Label();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.Add_Return_Pic = new System.Windows.Forms.Button();
+            this.Return_Borrowed_Item_toDB = new System.Windows.Forms.Button();
             this.Nextpic = new System.Windows.Forms.Button();
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -67,15 +69,17 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.Return_Borrowed_Item_toDB, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.ProductNameTableLayout, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.PicInformation, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
@@ -85,6 +89,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel9, 0, 9);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 267);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -101,19 +106,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 500);
             this.tableLayoutPanel1.TabIndex = 12;
-            // 
-            // Return_Borrowed_Item_toDB
-            // 
-            this.Return_Borrowed_Item_toDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Return_Borrowed_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Return_Borrowed_Item_toDB.Location = new System.Drawing.Point(0, 455);
-            this.Return_Borrowed_Item_toDB.Margin = new System.Windows.Forms.Padding(0);
-            this.Return_Borrowed_Item_toDB.Name = "Return_Borrowed_Item_toDB";
-            this.Return_Borrowed_Item_toDB.Size = new System.Drawing.Size(605, 40);
-            this.Return_Borrowed_Item_toDB.TabIndex = 10;
-            this.Return_Borrowed_Item_toDB.Text = "คืนครุภัณฑ์";
-            this.Return_Borrowed_Item_toDB.UseVisualStyleBackColor = true;
-            this.Return_Borrowed_Item_toDB.Click += new System.EventHandler(this.Return_Borrowed_Item_toDB_Click);
             // 
             // ProductNameTableLayout
             // 
@@ -477,8 +469,53 @@
             this.Note.Text = "หมายเหตุ :";
             this.Note.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Controls.Add(this.Add_Return_Pic, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.Return_Borrowed_Item_toDB, 1, 0);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 453);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(599, 44);
+            this.tableLayoutPanel9.TabIndex = 10;
+            // 
+            // Add_Return_Pic
+            // 
+            this.Add_Return_Pic.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Add_Return_Pic.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Add_Return_Pic.Location = new System.Drawing.Point(0, 2);
+            this.Add_Return_Pic.Margin = new System.Windows.Forms.Padding(0);
+            this.Add_Return_Pic.Name = "Add_Return_Pic";
+            this.Add_Return_Pic.Size = new System.Drawing.Size(196, 40);
+            this.Add_Return_Pic.TabIndex = 13;
+            this.Add_Return_Pic.Text = "+ อัพโหลดรูป";
+            this.Add_Return_Pic.UseVisualStyleBackColor = true;
+            this.Add_Return_Pic.Click += new System.EventHandler(this.Add_Return_Pic_Click);
+            // 
+            // Return_Borrowed_Item_toDB
+            // 
+            this.Return_Borrowed_Item_toDB.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Return_Borrowed_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Return_Borrowed_Item_toDB.Location = new System.Drawing.Point(403, 2);
+            this.Return_Borrowed_Item_toDB.Margin = new System.Windows.Forms.Padding(0);
+            this.Return_Borrowed_Item_toDB.Name = "Return_Borrowed_Item_toDB";
+            this.Return_Borrowed_Item_toDB.Size = new System.Drawing.Size(196, 40);
+            this.Return_Borrowed_Item_toDB.TabIndex = 10;
+            this.Return_Borrowed_Item_toDB.Text = "คืนครุภัณฑ์";
+            this.Return_Borrowed_Item_toDB.UseVisualStyleBackColor = true;
+            this.Return_Borrowed_Item_toDB.Click += new System.EventHandler(this.Return_Borrowed_Item_toDB_Click);
+            // 
             // Nextpic
             // 
+            this.Nextpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Nextpic.BackColor = System.Drawing.SystemColors.Control;
             this.Nextpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Next;
             this.Nextpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -493,6 +530,8 @@
             // 
             // Prevpic
             // 
+            this.Prevpic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Prevpic.BackColor = System.Drawing.SystemColors.Control;
             this.Prevpic.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Previous;
             this.Prevpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -507,6 +546,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(89, 12);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
@@ -547,6 +589,7 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -584,5 +627,7 @@
         private System.Windows.Forms.Button Prevpic;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Return_Borrowed_Item_toDB;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.Button Add_Return_Pic;
     }
 }
