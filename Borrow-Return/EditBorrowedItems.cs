@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,12 +71,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             if (SearchDatabase(temporarydata.BarcodeNumber, out RentResults myResult))
             {
+                Borrower_Name_TB.Enabled = true;
+                Return_Date_TXT.Enabled = true;
+                Contact_TB.Enabled = true;
+                Note_TB.Enabled = true;
+                Add_Borrowed_Item_toDB.Enabled = true;
+                ////////////////////////
                 if (myResult.Status == 2)
                 {
-                    MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
-                    this.Hide();
-                    return;
+                    Borrower_Name_TB.Enabled = false;
+                    Return_Date_TXT.Enabled = false;
+                    Contact_TB.Enabled = false;
+                    Note_TB.Enabled = false;
+                    Add_Borrowed_Item_toDB.Enabled = false;
                 }
+                /////////
                 TemporaryData = myResult;
                 BarcodeID_TXT.Text = TemporaryData.BarcodeNumber;
                 Product_Name_TXT.Text = TemporaryData.Product_Name;
@@ -165,7 +175,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                                     Note = !string.IsNullOrEmpty(reader["Note"]?.ToString()) ? reader["Note"].ToString() : "-",
                                     Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? 3 : reader.GetInt16("Status")
                                 };
-
+                                if (mysearchresults.BarcodeHistoryListSerialized != "[]")
+                                {
+                                    mysearchresults.BarcodeHistoryList = JsonConvert.DeserializeObject<List<RentHistory>>(mysearchresults.BarcodeHistoryListSerialized);
+                                }
                                 // If a match is found, return true immediately
                                 return true;
                             }
@@ -482,6 +495,48 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 Note_TB.Text = defaultnote;
                 Note_TB.ForeColor = Color.Gray;
+            }
+        }
+
+        private void Adjust_History_Click(object sender, EventArgs e)
+        {
+            Edit_Borrow_History History = MainMenu.initializedForms.Find(f => f is Edit_Borrow_History) as Edit_Borrow_History;
+            if (History != null)
+            {
+                if (TemporaryData != null)
+                {
+                    if (SearchDatabase(TemporaryData.BarcodeNumber, out RentResults TemporaryData2))
+                    {
+                        if (TemporaryData2.BarcodeHistoryList != null)
+                        {
+                            if (TemporaryData2.BarcodeHistoryList.Count > 0)
+                            {
+                                History.Show();
+                                History.AssignText(TemporaryData.BarcodeHistoryList);
+                            }
+                            else
+                            {
+                                MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่พบประวัติการยืมครุภัณฑ์นี้");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบข้อมูลครุภัณฑ์นี้");
+                }
+            }
+            else
+            {
+                MessageBox.Show("ไม่พบหน้าต่างยืม");
             }
         }
     }

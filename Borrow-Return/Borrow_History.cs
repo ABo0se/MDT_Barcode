@@ -180,7 +180,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
                 else
                 {
-                    pictureBox1.Image = Properties.Resources.NoImage;
+                    CheckImageButtonBehavior();
+                    ChangePicture(0);
                 }
                 ////////////////////////////////////
             }

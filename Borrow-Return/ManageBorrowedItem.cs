@@ -286,11 +286,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 EditBorrowedItems Edit = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
                 if (Edit != null && TemporaryData[e.RowIndex] != null)
                 {
-                    if (TemporaryData[e.RowIndex].Status == 2)
-                    {
-                        MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
-                        return;
-                    }
+                    //if (TemporaryData[e.RowIndex].Status == 2)
+                    //{
+                    //    MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
+                    //    return;
+                    //}
                     Edit.Show();
                     Edit.AssignBarcodeText(TemporaryData[e.RowIndex]);
                 }
