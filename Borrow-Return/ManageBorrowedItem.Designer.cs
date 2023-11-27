@@ -515,7 +515,7 @@
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
             this.MinimumSize = new System.Drawing.Size(1450, 600);
             this.Name = "ManageBorrowedItem";
-            this.Text = "ManageBorrowedItem";
+            this.Text = "จัดการระบบ ยืม/คืน ครุภัณฑ์";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageBorrowedItem_FormClosing);
             this.Load += new System.EventHandler(this.ManageBorrowedItem_Load);
             this.TitlePanel.ResumeLayout(false);

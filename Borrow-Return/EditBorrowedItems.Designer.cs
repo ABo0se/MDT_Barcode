@@ -460,7 +460,7 @@
             this.Controls.Add(this.pictureBox1);
             this.MinimumSize = new System.Drawing.Size(650, 725);
             this.Name = "EditBorrowedItems";
-            this.Text = "EditBorrowedItems";
+            this.Text = "แก้ไขข้อมูลการยืม";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditBorrowedItems_FormClosing);
             this.Load += new System.EventHandler(this.EditBorrowedItems_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

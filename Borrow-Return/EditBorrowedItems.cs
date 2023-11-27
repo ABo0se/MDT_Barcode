@@ -512,7 +512,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             if (TemporaryData2.BarcodeHistoryList.Count > 0)
                             {
                                 History.Show();
-                                History.AssignText(TemporaryData.BarcodeHistoryList);
+                                History.AssignText(TemporaryData.BarcodeHistoryList, TemporaryData.BarcodeNumber);
                             }
                             else
                             {

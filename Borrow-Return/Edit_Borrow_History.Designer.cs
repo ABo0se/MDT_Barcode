@@ -459,10 +459,10 @@
             // 
             this.Adjust_History.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Adjust_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Adjust_History.Location = new System.Drawing.Point(429, 2);
+            this.Adjust_History.Location = new System.Drawing.Point(394, 2);
             this.Adjust_History.Margin = new System.Windows.Forms.Padding(0);
             this.Adjust_History.Name = "Adjust_History";
-            this.Adjust_History.Size = new System.Drawing.Size(170, 40);
+            this.Adjust_History.Size = new System.Drawing.Size(205, 40);
             this.Adjust_History.TabIndex = 15;
             this.Adjust_History.Text = "แก้ประวัติการยืม";
             this.Adjust_History.UseVisualStyleBackColor = true;
@@ -493,6 +493,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 

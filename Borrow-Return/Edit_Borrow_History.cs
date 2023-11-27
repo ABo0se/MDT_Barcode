@@ -9,6 +9,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         Dictionary<int, List<Image>> selectedImages = null;
         int? selectingImage = null;
         int? selectedHistory = null;
+        string Barcode = null;
         //
         string defaulttext = "-";
         List<RentHistory> TemporaryData = null;
@@ -31,6 +33,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         public void InitializeForm()
         {
             CheckImageButtonBehavior();
+            Barcode = null;
             selectedHistory = null;
             selectingImage = null;
             selectedImages = null;
@@ -44,12 +47,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             Note_TXT.Text = defaulttext;
         }
 
-        public void AssignText(List<RentHistory> History) 
+        public void AssignText(List<RentHistory> History, string BarcodeNumber) 
         {
             if (History != null)
             {
                 if (History.Count > 0)
                 {
+                    Barcode = BarcodeNumber;
                     selectedImages = new Dictionary<int, List<Image>>();
                     TemporaryData = History;
                     AssignPicture(TemporaryData);
@@ -59,6 +63,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
                 else
                 {
+                    Barcode = null;
                     TemporaryData = null;
                     MessageBox.Show("ไม่ค้นพบประวัติการยืม");
                     this.Hide();
@@ -66,6 +71,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             else
             {
+                Barcode = null;
                 TemporaryData = null;
                 MessageBox.Show("ไม่ค้นพบประวัติการยืม");
                 this.Hide();
@@ -111,7 +117,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
         private void CheckImageButtonBehavior()
         {
-            if (selectedImages != null && selectedImages.Count > 1)
+            if (selectedImages == null)
+            {
+                Prevpic.Enabled = false;
+                Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
+                return;
+            }
+            if (selectingImage == null)
+            {
+                Prevpic.Enabled = false;
+                Nextpic.Enabled = false;
+                Prevpic.Hide();
+                Nextpic.Hide();
+                return;
+            }
+            if (selectedImages[(int)selectingImage].Count > 1)
             {
                 Prevpic.Enabled = true;
                 Nextpic.Enabled = true;
@@ -162,14 +184,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     selectingImage = null;
                     CheckImageButtonBehavior();
                     ChangePicture(myselectedHistory, selectingImage);
-                    
                     return;
                 }
                 if (selectedImages[myselectedHistory].Count > 0)
                 {
                     //MessageBox.Show("Normal");
-                    CheckImageButtonBehavior();
                     selectingImage = 0;
+                    CheckImageButtonBehavior();
                     ChangePicture(myselectedHistory , selectingImage);
                     pictureBox1.Refresh();
                 }
@@ -202,17 +223,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
                             {
                                 mydecenimage.Add(selectedImage);
+                                mydecenimage[i].Tag = "NormalFile";
                                 //selectedImages.Add(selectedImage);
                             }
                             else
                             {
                                 mydecenimage.Add(Properties.Resources.corruptedfile);
+                                mydecenimage[i].Tag = "FileCorrupt";
                                 //selectedImages.Add(Properties.Resources.corruptedfile);
                             }
                         }
                         else
                         {
                             mydecenimage.Add(Properties.Resources.corruptedfile);
+                            mydecenimage[i].Tag = "FileMissing";
                             //selectedImages.Add(Properties.Resources.filemissing);
                         }
                     }
@@ -287,7 +311,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 selectingImage = 0;
             }
-            ChangePicture((int)selectedHistory ,(int)selectingImage);
+            ChangePicture(selectedHistory ,selectingImage);
         }
 
         private void Prevpic_Click(object sender, EventArgs e)
@@ -303,7 +327,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 selectingImage = selectedImages[(int)selectedHistory].Count - 1;
             }
-            ChangePicture((int)selectedHistory, (int)selectingImage);
+            ChangePicture(selectedHistory, selectingImage);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -330,24 +354,28 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
                 if (isremovingsuccessful)
                 {
-                    CheckImageButtonBehavior();
                     if (selectedImages[(int)selectedHistory].Count <= 0)
-                    {
+                    {   
+                        selectingImage = null;
                         ChangePicture((int)selectedHistory ,null);
                     }
                     else if (selectingImage + 1 > selectedImages[(int)selectedHistory].Count)
                     {
-                        ChangePicture((int)selectedHistory, selectedImages[(int)selectedHistory].Count - 1);
+                        selectingImage = selectedImages[(int)selectedHistory].Count - 1;
+                        ChangePicture((int)selectedHistory, selectingImage);
                     }
                     else
                     {
-                        ChangePicture((int)selectedHistory, 0);
+                        selectingImage = 0;
+                        ChangePicture((int)selectedHistory, selectingImage);
                     }
+                    CheckImageButtonBehavior();
                 }
                 else
                 {
-                    ChangePicture((int)selectedHistory, null);
+                    selectingImage = 0;
                     CheckImageButtonBehavior();
+                    ChangePicture((int)selectedHistory, 0);
                 }
             }
             else
@@ -375,7 +403,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     // You can add the selected image to a list to store multiple images
 
                     selectedImages[(int)selectedHistory].Add(selectedImage);
-                    selectedImages[(int)selectedHistory][selectedImages.Count - 1].Tag = "NormalFile";
+                    selectedImages[(int)selectedHistory][selectedImages[(int)selectedHistory].Count - 1].Tag = "NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
                 }
                 CheckImageButtonBehavior();
@@ -389,175 +417,172 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 MessageBox.Show("ไม่พบประวัติของการยืมครุภัณฑ์นี้");
                 return;
             }
+            if (selectedImages == null)
+            {
+                MessageBox.Show("ไม่พบประวัติการเก็บภาพของครุภัณฑ์นี้");
+                return;
+            }
+            if (String.IsNullOrEmpty(Barcode))
+            {
+                MessageBox.Show("ไม่พบข้อมูลของหมายเลขครุภัณฑ์นี้");
+                return;
+            }
             // Create reference for image we used.
             string saveDirectory = @"C:\BarcodeDatabaseImage";
             Directory.CreateDirectory(saveDirectory);
 
-            List<string> oldsavedFilePaths = new List<string>();
-            List<string> oldSHA512hash = new List<string>();
+            //List<string> oldsavedFilePaths = new List<string>();
+            //List<string> oldSHA512hash = new List<string>();
 
-            List<string> savedFilePaths = new List<string>();
-            List<string> SHA512hash = new List<string>();
+
 
             // Retrieve existing SHA-512 checksums from the database (you need to implement this)
 
-            /////////////////
+            ////////////////
 
-            foreach (RentHistory mydata in TemporaryData)
-            {
-                oldsavedFilePaths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
-                oldSHA512hash = JsonConvert.DeserializeObject<List<string>>(mydata.SHA512);
-            }
+
             /////////////////
             bool isDuplicated = false;
 
-            //if (selectedImages.Count > 0)
-            //{
-            //    for (int i = 0; i < selectedImages.Count; i++)
-            //    {
-            //        if (!(selectedImages[i].Tag.ToString() == "FileCorrupt" || selectedImages[i].Tag.ToString() == "FileMissing"))
-            //        {
-            //            string baseFileName = "image.jpg"; // Base file name
-            //            string fileName = baseFileName;
+            //List<List<string>> savedFilePaths = new List<List<string>>();
+            //List<List<string>> SHA512hash = new List<List<string>>();
 
-            //            // Calculate the SHA-512 checksum for the newly saved image
-            //            string checksum = CalculateSHA512Checksum1pic(selectedImages[i]);
+            if (selectedImages[(int)selectedHistory] != null)
+            {
+                for (int i = 0; i < selectedImages[(int)selectedHistory].Count; i++)
+                {
+                    List<string> paths = new List<string>();
+                    List<string> hashs = new List<string>();
+                    //
+                    if (!(selectedImages[(int)selectedHistory][i].Tag.ToString() == "FileCorrupt" || 
+                          selectedImages[(int)selectedHistory][i].Tag.ToString() == "FileMissing"))
+                    {
+                        string baseFileName = "image.jpg"; // Base file name
+                        string fileName = baseFileName;
 
-            //            // Check if the checksum exists in the currently processed data
-            //            for (int j = 0; j < i; j++)
-            //            {
-            //                if (checksum == CalculateSHA512Checksum1pic(selectedImages[j]))
-            //                {
-            //                    // Set isDuplicated to true if the SHA-512 already exists
-            //                    isDuplicated = true;
+                        // Calculate the SHA-512 checksum for the newly saved image
+                        string checksum = CalculateSHA512Checksum1pic(selectedImages[(int)selectedHistory][i]);
 
-            //                    // Optionally, perform some action for duplicates (e.g., show a message)
-            //                    // Console.WriteLine($"Duplicate file found: {selectedImages[i].Tag.ToString()}");
+                        // Check if the checksum exists in the currently processed data
+                        for (int j = 0; j < i; j++)
+                        {
+                            if (checksum == CalculateSHA512Checksum1pic(selectedImages[(int)selectedHistory][j]))
+                            {
+                                // Set isDuplicated to true if the SHA-512 already exists
+                                isDuplicated = true;
 
-            //                    // Continue to the next iteration of the loop
-            //                    continue;
-            //                }
-            //            }
+                                // Optionally, perform some action for duplicates (e.g., show a message)
+                                // Console.WriteLine($"Duplicate file found: {selectedImages[i].Tag.ToString()}");
 
-            //            // If it's not a duplicate or if duplicates are allowed
-            //            if (!isDuplicated)
-            //            {
-            //                int fileCounter = 1;
-            //                // Check if the file already exists and generate a unique name if needed
-            //                while (File.Exists(Path.Combine(saveDirectory, fileName)))
-            //                {
-            //                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-            //                    fileCounter++;
-            //                }
-            //                ///////////////////
-            //                string filePath = Path.Combine(saveDirectory, fileName);
+                                // Continue to the next iteration of the loop
+                                continue;
+                            }
+                        }
 
-            //                // Save the file
-            //                selectedImages[i].Save(filePath, ImageFormat.Jpeg);
-            //                savedFilePaths.Add(filePath);
-            //                SHA512hash.Add(checksum);
-            //            }
-            //        }
-            //    }
-            //}
+                        // If it's not a duplicate
+                        if (!isDuplicated)
+                        {
+                            int fileCounter = 1;
+                            // Check if the file already exists and generate a unique name if needed
+                            while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                            {
+                                fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                                fileCounter++;
+                            }
+                            ///////////////////
+                            string filePath = Path.Combine(saveDirectory, fileName);
 
-            //else
-            //{
-            //    SHA512hash = CalculateSHA512Checksum(new List<Image>());
-            //}
+                            // Save the file
+                            selectedImages[(int)selectedHistory][i].Save(filePath, ImageFormat.Jpeg);
+                            paths.Add(filePath);
+                            hashs.Add(checksum);
+                        }
+                    }
+                    string jsonmd5Data = JsonConvert.SerializeObject(hashs, Formatting.Indented);
+                    Console.WriteLine(jsonmd5Data);
 
-            //string jsonmd5Data = JsonConvert.SerializeObject(SHA512hash, Formatting.Indented);
-            //Console.WriteLine(jsonmd5Data);
+                    string jsonPicData = JsonConvert.SerializeObject(paths, Formatting.Indented);
+                    Console.WriteLine(jsonPicData);
 
-            //string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
-            //Console.WriteLine(jsonPicData);
+                    TemporaryData[i].ImageData = jsonPicData;
+                    TemporaryData[i].SHA512 = jsonmd5Data;
+                }
+            }
+            else
+            {
+                MessageBox.Show("ไม่พบข้อมูลรูปภาพ");
+                return;
+            }
 
+            string AllData = JsonConvert.SerializeObject(TemporaryData, Formatting.Indented);
 
-            //////////////
-            //string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
-            //MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
-
-            //try
-            //{
-            //    mySqlConnection2.Open();
-
-            //    string query = "UPDATE information SET " +
-            //   "BarcodeNumber = @BarcodeNumber, " +
-            //   "Product_Name = @Product_Name, " +
-            //   "Model_Name = @Model_Name, " +
-            //   "Brand = @Brand, " +
-            //   "Serial_Number = @Serial_Number, " +
-            //   "Price = @Price, " +
-            //   "Room = @Room, " +
-            //   "ImageData = @ImageData, " +
-            //   "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum, " +
-            //   "Note = @Note, " + // Add a comma here
-            //   "Status = @Status, " + // Add a comma here
-            //   "ITEM_CONDITION = @ITEM_CONDITION " + // Add a space here
-
-            //   "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+            ////////////
 
 
-            //    //if (PicFilePath == null)
-            //    //{
-            //    //    PicFilePath = "";
-            //    //}
+            ////////////
+            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+            MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
 
-            //    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
-            //    {
-            //        cmd.Parameters.AddWithValue("@Product_Name", ProductName_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Model_Name", Model_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Brand", Brand_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Serial_Number", Serial_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Price", Price_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Room", Room_TB.Text);
-            //        cmd.Parameters.AddWithValue("@ImageData", jsonPicData);
-            //        cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", jsonmd5Data);
-            //        cmd.Parameters.AddWithValue("@Note", Note_TB.Text);
-            //        cmd.Parameters.AddWithValue("@Status", checkstate);
-            //        cmd.Parameters.AddWithValue("@ITEM_CONDITION", conditionstate);
-            //        //////////
-            //        cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TemporaryData.BarcodeNumber);
-            //        cmd.Parameters.AddWithValue("@BarcodeNumber", BarcodeID_TB.Text);
+            try
+            {
+                mySqlConnection2.Open();
+
+                string query = "UPDATE borrowing_info SET " +
+               "HistoryTextlog = @HistoryTextlog " +
+
+               "WHERE BarcodeNumber = @BarcodeNumberReplacement";
 
 
-            //        int rowsAffected = cmd.ExecuteNonQuery();
+                //if (PicFilePath == null)
+                //{
+                //    PicFilePath = "";
+                //}
 
-            //        if (rowsAffected > 0)
-            //        {
-            //            if (!isDuplicated)
-            //            {
-            //                MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะถูกลบออก!");
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("ข้อผิดพลาด : " + ex);
-            //}
-            //finally
-            //{
-            //    mySqlConnection2.Close();
-            //    EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
-            //    if (EditItemForm != null)
-            //    {
-            //        EditItemForm.Hide();
-            //    }
-            //    ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
-            //    if (QRForm != null)
-            //    {
-            //        QRForm.SearchDatainDB();
-            //    }
-            //}
+                using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
+                {
+                    cmd.Parameters.AddWithValue("@HistoryTextlog", AllData);
+                    //////////
+                    cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", Barcode);
+
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        if (!isDuplicated)
+                        {
+                            MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะถูกลบออก!");
+                        }
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex);
+            }
+            finally
+            {
+                mySqlConnection2.Close();
+                EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
+                if (EditItemForm != null)
+                {
+                    EditItemForm.Hide();
+                }
+                ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
+                if (QRForm != null)
+                {
+                    QRForm.SearchDatainDB();
+                }
+            }
         }
         List<string> CalculateSHA512Checksum(List<Image> myImages)
         {
@@ -619,7 +644,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             else
             {
-                MessageBox.Show(((int)selectedHistory).ToString() + "," + ((int)selectingImage).ToString());
                 ChangePicture((int)selectedHistory, (int)selectingImage);
             }
         }
