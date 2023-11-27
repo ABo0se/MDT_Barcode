@@ -472,7 +472,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 using (var sha512 = SHA512.Create())
                 using (var stream = new MemoryStream())
                 {
-                    image.Save(stream, ImageFormat.Jpeg); // You can choose the appropriate format
+                    // Convert the image to JPEG format before saving
+                    ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+                    System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+                    myEncoderParameters.Param[0] = myEncoderParameter;
+                    image.Save(stream, jpgEncoder, myEncoderParameters);
+
                     stream.Seek(0, SeekOrigin.Begin); // Reset stream position
 
                     byte[] sha512ChecksumBytes = sha512.ComputeHash(stream);
@@ -481,6 +488,19 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
             return sha512Values;
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
         List<string> CalculateSHA512Checksum(List<Image> myImages)
         {

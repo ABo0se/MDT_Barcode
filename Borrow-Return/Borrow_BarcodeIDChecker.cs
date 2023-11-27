@@ -52,7 +52,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
                 if (temporarydata.Status == 2)
                 {
-                    ChangeButtonState(true, false, true, false);
+                    ChangeButtonState(true, true, true, false);
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 }
                 if (temporarydata.Status == 2)
                 {
-                    ChangeButtonState(true, false, true, false);
+                    ChangeButtonState(true, true, true, false);
                 }
             }
         }
