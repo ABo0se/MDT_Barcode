@@ -155,9 +155,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     // Load the selected image into the PictureBox
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
+                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
 
-                    // You can add the selected image to a list to store multiple images
+                    if (!File.Exists(outputPath))
+                    {
+                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        // You can add the selected image to a list to store multiple images
+                        selectedImage = System.Drawing.Image.FromFile(outputPath);
+                    }
                     selectedImages.Add(selectedImage);
+
+                    // Optionally, you can display each image in a separate PictureBox
                     selectedImages[selectedImages.Count - 1].Tag ="NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
                 }

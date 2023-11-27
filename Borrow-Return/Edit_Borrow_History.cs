@@ -133,7 +133,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Nextpic.Hide();
                 return;
             }
-            if (selectedImages[(int)selectingImage].Count > 1)
+            if (selectedImages[(int)selectedHistory].Count > 1)
             {
                 Prevpic.Enabled = true;
                 Nextpic.Enabled = true;
@@ -299,9 +299,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void Nextpic_Click(object sender, EventArgs e)
         {
-            if (selectedImages == null || selectingImage == null) return;
-            if (selectedImages[(int)selectedHistory] == null) return;
-            if (selectedImages.Count < 2) return;
+            if (selectedImages == null || selectingImage == null)
+            {
+                return;
+            }
+            if (selectedImages[(int)selectedHistory] == null)
+            {
+                return;
+            }
+            if (selectedImages[(int)selectedHistory].Count < 2)
+            {
+                return;
+            }
             if ((selectingImage + 1) < selectedImages[(int)selectedHistory].Count)
             {
                 selectingImage++;
@@ -316,9 +325,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void Prevpic_Click(object sender, EventArgs e)
         {
-            if (selectedImages == null || selectingImage == null) return;
-            if (selectedImages[(int)selectedHistory] == null) return;
-            if (selectedImages.Count < 2) return;
+            if (selectedImages == null || selectingImage == null)
+            {
+               
+                return;
+            }
+            if (selectedImages[(int)selectedHistory] == null)
+            {
+                
+                return;
+            }
+            if (selectedImages[(int)selectedHistory].Count < 2)
+            {
+                return;
+            }
             if ((selectingImage - 1) >= 0)
             {
                 selectingImage--;
@@ -339,7 +359,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             //Confirmation Box
             if (selectedImages[(int)selectedHistory].Count <= 0) return;
             DialogResult result = MessageBox.Show
-            ("Are you sure to delete this image?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            ("ต้องการจะลบภาพนี้หรือไม่?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             // Check the user's response
             if (result == DialogResult.Yes)
@@ -355,7 +375,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 if (isremovingsuccessful)
                 {
                     if (selectedImages[(int)selectedHistory].Count <= 0)
-                    {   
+                    {
+                        //MessageBox.Show("Working");
                         selectingImage = null;
                         ChangePicture((int)selectedHistory ,null);
                     }
@@ -398,16 +419,27 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
                     // Load the selected image into the PictureBox
-                    Image selectedImage =Image.FromFile(selectedFilePath);
+                    System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
 
-                    // You can add the selected image to a list to store multiple images
+                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+
+                    if (!File.Exists(outputPath))
+                    {
+                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        // You can add the selected image to a list to store multiple images
+                        selectedImage = System.Drawing.Image.FromFile(outputPath);
+                    }
 
                     selectedImages[(int)selectedHistory].Add(selectedImage);
                     selectedImages[(int)selectedHistory][selectedImages[(int)selectedHistory].Count - 1].Tag = "NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
                 }
+                
+                //MessageBox.Show(((int)selectedHistory).ToString() + " " + (selectedImages[(int)selectedHistory].Count - 1).ToString());
+                selectingImage = selectedImages[(int)selectedHistory].Count - 1;
+
                 CheckImageButtonBehavior();
-                ChangePicture((int)selectedHistory, 0);
+                ChangePicture((int)selectedHistory, selectingImage);
             }
         }
         private void Adjust_History_Click(object sender, EventArgs e)
@@ -449,53 +481,65 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
             if (selectedImages[(int)selectedHistory] != null)
             {
-                for (int i = 0; i < selectedImages[(int)selectedHistory].Count; i++)
+                //MessageBox.Show(selectedImages.Count.ToString());
+                for (int i = 0; i < selectedImages.Count; i++)
                 {
                     List<string> paths = new List<string>();
                     List<string> hashs = new List<string>();
-                    //
-                    if (!(selectedImages[(int)selectedHistory][i].Tag.ToString() == "FileCorrupt" || 
-                          selectedImages[(int)selectedHistory][i].Tag.ToString() == "FileMissing"))
+                    MessageBox.Show(selectedImages[i].Count.ToString());
+                    if (selectedImages[i].Count <= 0)
                     {
-                        string baseFileName = "image.jpg"; // Base file name
-                        string fileName = baseFileName;
-
-                        // Calculate the SHA-512 checksum for the newly saved image
-                        string checksum = CalculateSHA512Checksum1pic(selectedImages[(int)selectedHistory][i]);
-
-                        // Check if the checksum exists in the currently processed data
-                        for (int j = 0; j < i; j++)
+                        TemporaryData[i].ImageData = "[]";
+                        TemporaryData[i].SHA512 = "[]";
+                        continue;
+                    }
+                    // Check if the checksum exists in the currently processed data
+                    for (int j = 0; j < selectedImages[i].Count; j++)
+                    {
+                        if (!(selectedImages[i][j].Tag.ToString() == "FileCorrupt" ||
+                          selectedImages[i][j].Tag.ToString() == "FileMissing"))
                         {
-                            if (checksum == CalculateSHA512Checksum1pic(selectedImages[(int)selectedHistory][j]))
+                            string baseFileName = "image.jpg"; // Base file name
+                            string fileName = baseFileName;
+
+                            // Calculate the SHA-512 checksum for the newly saved image
+                            string checksum = CalculateSHA512Checksum1pic(selectedImages[i][j]);
+
+
+                            foreach (string myhash in hashs)
                             {
-                                // Set isDuplicated to true if the SHA-512 already exists
-                                isDuplicated = true;
+                                if (checksum == myhash)
+                                {
+                                    // Set isDuplicated to true if the SHA-512 already exists
+                                    isDuplicated = true;
 
-                                // Optionally, perform some action for duplicates (e.g., show a message)
-                                // Console.WriteLine($"Duplicate file found: {selectedImages[i].Tag.ToString()}");
+                                    // Optionally, perform some action for duplicates (e.g., show a message)
+                                    // Console.WriteLine($"Duplicate file found: {selectedImages[i].Tag.ToString()}");
 
-                                // Continue to the next iteration of the loop
-                                continue;
+                                    // Continue to the next iteration of the loop
+                                    continue;
+                                }
                             }
-                        }
 
-                        // If it's not a duplicate
-                        if (!isDuplicated)
-                        {
-                            int fileCounter = 1;
-                            // Check if the file already exists and generate a unique name if needed
-                            while (File.Exists(Path.Combine(saveDirectory, fileName)))
+
+                            // If it's not a duplicate
+                            if (!isDuplicated)
                             {
-                                fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                                fileCounter++;
-                            }
-                            ///////////////////
-                            string filePath = Path.Combine(saveDirectory, fileName);
+                                int fileCounter = 1;
+                                // Check if the file already exists and generate a unique name if needed
+                                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                                {
+                                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                                    fileCounter++;
+                                }
+                                ///////////////////
+                                string filePath = Path.Combine(saveDirectory, fileName);
 
-                            // Save the file
-                            selectedImages[(int)selectedHistory][i].Save(filePath, ImageFormat.Jpeg);
-                            paths.Add(filePath);
-                            hashs.Add(checksum);
+                                // Save the file
+                                selectedImages[i][j].Save(filePath, ImageFormat.Jpeg);
+                                paths.Add(filePath);
+                                hashs.Add(checksum);
+                            }
                         }
                     }
                     string jsonmd5Data = JsonConvert.SerializeObject(hashs, Formatting.Indented);
