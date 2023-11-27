@@ -63,6 +63,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_item {
+            get {
+                object obj = ResourceManager.GetObject("add_item", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_return_item_icon {
+            get {
+                object obj = ResourceManager.GetObject("add_return_item_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap corruptedfile {
             get {
                 object obj = ResourceManager.GetObject("corruptedfile", resourceCulture);
@@ -163,9 +183,29 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Return_Product {
+            get {
+                object obj = ResourceManager.GetObject("Return_Product", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TestButton {
+            get {
+                object obj = ResourceManager.GetObject("TestButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
