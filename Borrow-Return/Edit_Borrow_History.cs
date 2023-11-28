@@ -486,7 +486,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 {
                     List<string> paths = new List<string>();
                     List<string> hashs = new List<string>();
-                    MessageBox.Show(selectedImages[i].Count.ToString());
+                    //MessageBox.Show(selectedImages[i].Count.ToString());
                     if (selectedImages[i].Count <= 0)
                     {
                         TemporaryData[i].ImageData = "[]";

@@ -48,12 +48,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
                 string query = "SELECT * FROM borrowing_info WHERE " +
-                    "(BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
-                    "AND (Product_Name LIKE @Product_Name OR @Product_Name = '') " +
-                    "AND (Borrower_Name LIKE @Borrower_Name OR @Borrower_Name = '') " +
-                    "AND (Initial_Borrow_Time = COALESCE(@Initial_Borrow_Time, Initial_Borrow_Time) OR @Initial_Borrow_Time IS NULL) " +
-                    "AND (EST_Return_Date = COALESCE(@EST_Return_Date, EST_Return_Date) OR @EST_Return_Date IS NULL) " +
-                    "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1 OR @StatussearchCriteria = -2)";
+    "(BarcodeNumber LIKE @BarcodesearchCriteria OR @BarcodesearchCriteria = 'ค้นหารหัสครุภัณฑ์' OR @BarcodesearchCriteria = '') " +
+    "AND (Product_Name LIKE @Product_Name OR @Product_Name = '') " +
+    "AND (Borrower_Name LIKE @Borrower_Name OR @Borrower_Name = '') " +
+    "AND (DATE(Initial_Borrow_Time) = COALESCE(DATE(@Initial_Borrow_Time), DATE(Initial_Borrow_Time)) OR @Initial_Borrow_Time IS NULL) " +
+    "AND (DATE(EST_Return_Date) = COALESCE(DATE(@EST_Return_Date), DATE(EST_Return_Date)) OR @EST_Return_Date IS NULL) " +
+    "AND (Status = @StatussearchCriteria OR @StatussearchCriteria = -1 OR @StatussearchCriteria = -2)";
+
                 ////////////////////////////////////////////////////
                 //MessageBox.Show(BarcodeSearchBox.Text);
                 //MessageBox.Show(Product_Name_SearchBox.Text);
