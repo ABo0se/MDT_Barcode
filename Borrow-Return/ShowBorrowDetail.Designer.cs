@@ -32,6 +32,7 @@
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Show_History = new System.Windows.Forms.Button();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.Status = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.EST_Borrow_Date_TXT = new System.Windows.Forms.Label();
             this.Borrow_Date = new System.Windows.Forms.Label();
-            this.Show_History = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -145,6 +145,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 480);
             this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // Show_History
+            // 
+            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Show_History.Location = new System.Drawing.Point(0, 432);
+            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
+            this.Show_History.Name = "Show_History";
+            this.Show_History.Size = new System.Drawing.Size(225, 45);
+            this.Show_History.TabIndex = 37;
+            this.Show_History.Text = "ประวัติการยืมครุภัณฑ์";
+            this.Show_History.UseVisualStyleBackColor = true;
+            this.Show_History.Click += new System.EventHandler(this.Show_History_Click_1);
             // 
             // tableLayoutPanel10
             // 
@@ -484,7 +498,7 @@
             this.EST_Return_Date_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.EST_Return_Date_TXT.AutoSize = true;
             this.EST_Return_Date_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(235, 0);
+            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(180, 0);
             this.EST_Return_Date_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.EST_Return_Date_TXT.Name = "EST_Return_Date_TXT";
             this.EST_Return_Date_TXT.Size = new System.Drawing.Size(21, 36);
@@ -500,9 +514,9 @@
             this.Borrow_Time.Location = new System.Drawing.Point(0, 0);
             this.Borrow_Time.Margin = new System.Windows.Forms.Padding(0);
             this.Borrow_Time.Name = "Borrow_Time";
-            this.Borrow_Time.Size = new System.Drawing.Size(235, 36);
+            this.Borrow_Time.Size = new System.Drawing.Size(180, 36);
             this.Borrow_Time.TabIndex = 0;
-            this.Borrow_Time.Text = "วันที่คาดว่าจะคืนครุภัณฑ์ :";
+            this.Borrow_Time.Text = "กำหนดคืนครุภัณฑ์ :";
             this.Borrow_Time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel8
@@ -548,20 +562,6 @@
             this.Borrow_Date.TabIndex = 0;
             this.Borrow_Date.Text = "วันที่ยืมครุภัณฑ์ :";
             this.Borrow_Date.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Show_History
-            // 
-            this.Show_History.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Show_History.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Show_History.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Show_History.Location = new System.Drawing.Point(0, 432);
-            this.Show_History.Margin = new System.Windows.Forms.Padding(0);
-            this.Show_History.Name = "Show_History";
-            this.Show_History.Size = new System.Drawing.Size(225, 45);
-            this.Show_History.TabIndex = 37;
-            this.Show_History.Text = "ประวัติการยืมครุภัณฑ์";
-            this.Show_History.UseVisualStyleBackColor = true;
-            this.Show_History.Click += new System.EventHandler(this.Show_History_Click_1);
             // 
             // ShowBorrowDetail
             // 

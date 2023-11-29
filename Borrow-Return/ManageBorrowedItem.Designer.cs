@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TitlePanel = new System.Windows.Forms.TableLayoutPanel();
             this.Borrower_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,7 +59,6 @@
             this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action_1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Action_2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Action_4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.TitlePanel.SuspendLayout();
@@ -216,9 +215,9 @@
             "เลยกำหนด",
             "พร้อมให้ยืม [มีประวัติ]",
             "ไม่พบข้อมูล"});
-            this.StatusBox.Location = new System.Drawing.Point(1043, 3);
+            this.StatusBox.Location = new System.Drawing.Point(1041, 3);
             this.StatusBox.Name = "StatusBox";
-            this.StatusBox.Size = new System.Drawing.Size(356, 44);
+            this.StatusBox.Size = new System.Drawing.Size(358, 44);
             this.StatusBox.TabIndex = 21;
             this.StatusBox.SelectedIndexChanged += new System.EventHandler(this.StatusBox_SelectedIndexChanged);
             // 
@@ -229,9 +228,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ReturnTime.CalendarFont = new System.Drawing.Font("TH Sarabun New", 16F);
             this.ReturnTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.ReturnTime.Location = new System.Drawing.Point(681, 3);
+            this.ReturnTime.Location = new System.Drawing.Point(678, 3);
             this.ReturnTime.Name = "ReturnTime";
-            this.ReturnTime.Size = new System.Drawing.Size(356, 43);
+            this.ReturnTime.Size = new System.Drawing.Size(357, 43);
             this.ReturnTime.TabIndex = 21;
             this.ReturnTime.ValueChanged += new System.EventHandler(this.ReturnTime_ValueChanged);
             this.ReturnTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReturnTime_KeyDown);
@@ -243,12 +242,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(484, 0);
+            this.label4.Location = new System.Drawing.Point(485, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(190, 50);
+            this.label4.Size = new System.Drawing.Size(186, 50);
             this.label4.TabIndex = 21;
-            this.label4.Text = "เวลาที่คาดว่าจะคืน  :";
+            this.label4.Text = "กำหนดคืนครุภัณฑ์  :";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
@@ -275,7 +274,7 @@
             this.BorrowTime.Font = new System.Drawing.Font("TH Sarabun New", 16F);
             this.BorrowTime.Location = new System.Drawing.Point(121, 3);
             this.BorrowTime.Name = "BorrowTime";
-            this.BorrowTime.Size = new System.Drawing.Size(356, 43);
+            this.BorrowTime.Size = new System.Drawing.Size(357, 43);
             this.BorrowTime.TabIndex = 14;
             this.BorrowTime.ValueChanged += new System.EventHandler(this.BorrowTime_ValueChanged);
             this.BorrowTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorrowTime_KeyDown);
@@ -342,20 +341,20 @@
             this.BorrowGridView.AllowUserToDeleteRows = false;
             this.BorrowGridView.AllowUserToResizeColumns = false;
             this.BorrowGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BorrowGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.BorrowGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BorrowGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BorrowGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.BorrowGridView.ColumnHeadersHeight = 41;
             this.BorrowGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.BorrowGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -368,24 +367,23 @@
             this.Contact,
             this.Status,
             this.Action_1,
-            this.Action_2,
             this.Action_3,
             this.Action_4});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BorrowGridView.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BorrowGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.BorrowGridView.Location = new System.Drawing.Point(12, 127);
             this.BorrowGridView.Name = "BorrowGridView";
             this.BorrowGridView.RowHeadersVisible = false;
             this.BorrowGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.BorrowGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.BorrowGridView.RowTemplate.Height = 35;
             this.BorrowGridView.Size = new System.Drawing.Size(1408, 360);
             this.BorrowGridView.TabIndex = 25;
@@ -430,7 +428,7 @@
             // Est_Return_Date
             // 
             this.Est_Return_Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Est_Return_Date.HeaderText = "วันที่คาดว่าจะคืนครุภัณฑ์";
+            this.Est_Return_Date.HeaderText = "กำหนดคืนครุภัณฑ์";
             this.Est_Return_Date.MinimumWidth = 175;
             this.Est_Return_Date.Name = "Est_Return_Date";
             this.Est_Return_Date.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -472,16 +470,6 @@
             this.Action_1.Name = "Action_1";
             this.Action_1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Action_1.Width = 40;
-            // 
-            // Action_2
-            // 
-            this.Action_2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Action_2.HeaderText = "";
-            this.Action_2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Action_2.MinimumWidth = 40;
-            this.Action_2.Name = "Action_2";
-            this.Action_2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Action_2.Width = 40;
             // 
             // Action_3
             // 
@@ -560,7 +548,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Contact;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewImageColumn Action_1;
-        private System.Windows.Forms.DataGridViewImageColumn Action_2;
         private System.Windows.Forms.DataGridViewImageColumn Action_3;
         private System.Windows.Forms.DataGridViewImageColumn Action_4;
     }

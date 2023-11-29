@@ -179,6 +179,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Search.SoftReset();
             }
             ////////////////////////////////////////////
+            this.ActiveControl = null;
             BarcodeID_TXT.Text = defaultBarcode;
             Product_Name_TXT.Text = defaultProductName;
             Borrower_TXT.Text = defaultBorrowerName;
@@ -187,6 +188,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Return_Date_TXT.Text = defaultACTUAlReturnDate;
             Contact_TXT.Text = defaultcontact;
             Note_TXT.Text = defaultnote;
+            Note_TXT.ForeColor = Color.Gray;
             //---------------------------
             if (selectedImages != null)
             {
@@ -208,94 +210,108 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Return_Borrowed_Item_toDB_Click(object sender, EventArgs e)
         {
-            //Serach before we do something.
-            List<string> dbData = new List<string>();
-            string dbConnectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
-            MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
+            //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
+            DialogResult result2 = MessageBox.Show
+            ("ต้องการคืนครุภัณฑ์หรือไม่?\n"
+            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            try
+            // Check the user's response
+            if (result2 == DialogResult.Yes)
             {
-                mySqlConnection.Open();
-                string selectQuery = "SELECT BarcodeNumber FROM borrowing_info";
+                //Serach before we do something.
+                List<string> dbData = new List<string>();
+                string dbConnectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
 
-                // Use MySqlCommand instead of SqlCommand for MySQL
-                MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
-
-                // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                try
                 {
-                    string rowData = reader["BarcodeNumber"].ToString();
-                    dbData.Add(rowData);
+                    mySqlConnection.Open();
+                    string selectQuery = "SELECT BarcodeNumber FROM borrowing_info";
+
+                    // Use MySqlCommand instead of SqlCommand for MySQL
+                    MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection);
+
+                    // SqlDataReader is for SQL Server, use MySqlDataReader for MySQL
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string rowData = reader["BarcodeNumber"].ToString();
+                        dbData.Add(rowData);
+                    }
+
+                    // Compare the data
+                    bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
+
+                    string warningMessage = "";
+
+                    if (!isDataSame)
+                    {
+                        warningMessage += "ไม่สามารถเปลี่ยนข้อมูลในระบบได้ เนื่องจากไม่มีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
+                    }
+
+                    //if (selectedImages.Count <= 0)
+                    //{
+                    //    warningMessage += "ต้องใส่ภาพยืนยัน ก่อนที่จะทำการคืนครุภัณฑ์\n";
+                    //}
+                    //if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
+                    //    Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
+                    //    Return_Date_TXT.Value.Date < DateTime.Now.Date || Contact_TB.Text == defaultcontact ||
+                    //    Contact_TB.Text == "" || Note_TB.Text == defaultnote)
+                    //{
+                    //    warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วนและถูกต้อง ก่อนทำการเพิ่่มเข้ามา\n";
+                    //}
+
+                    //if (BarcodeID_TXT.Text.Length > 50)
+                    //{
+                    //    warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
+                    //}
+
+                    //if (Borrower_Name_TB.Text.Length > 100 || Contact_TB.Text.Length > 100)
+                    //{
+                    //    warningMessage += "ความยาวของข้อมูลผู้ยืม ห้ามเกิน 100 ตัวอักษร\n";
+                    //}
+                    //if (Return_Date_TXT.Value.Date < DateTime.Now.Date)
+                    //{
+                    //    warningMessage += "กรุณากรอกวันที่ให้ถูกต้อง\n";
+                    //}
+                    //if (Note_TB.Text.Length > 200)
+                    //{
+                    //    warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
+                    //}
+                    if (TemporaryData == null)
+                    {
+                        warningMessage += "ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n";
+                    }
+                    //////////////////////////////////////////////
+                    //if (Note_TB.Text == defaultnote || Note_TB.Text == "")
+                    //{
+                    //    Note_TB.Text = "-";
+                    //}
+                    ///////////////////////
+                    if (!string.IsNullOrEmpty(warningMessage))
+                    {
+                        MessageBox.Show(warningMessage);
+                    }
+                    else
+                    {
+                        EditItemToDB();
+                    }
                 }
-
-                // Compare the data
-                bool isDataSame = dbData.Contains(TemporaryData.BarcodeNumber); // Check if the barcode is already in the database
-
-                string warningMessage = "";
-
-                if (!isDataSame)
+                catch (Exception ex)
                 {
-                    warningMessage += "ไม่สามารถเปลี่ยนข้อมูลในระบบได้ เนื่องจากไม่มีรหัสครุภัณฑ์นี้ในระบบการยืม-คืนอยู่แล้ว\n";
+                    MessageBox.Show(ex.ToString());
                 }
-
-                //if (selectedImages.Count <= 0)
-                //{
-                //    warningMessage += "ต้องใส่ภาพยืนยัน ก่อนที่จะทำการคืนครุภัณฑ์\n";
-                //}
-                //if (Product_Name_TXT.Text == defaultProductName || BarcodeID_TXT.Text == defaultBarcode || Borrower_Name_TB.Text == defaultProductName ||
-                //    Borrower_Name_TB.Text == "" || Borrower_Name_TB.Text == defaultBorrowerName ||
-                //    Return_Date_TXT.Value.Date < DateTime.Now.Date || Contact_TB.Text == defaultcontact ||
-                //    Contact_TB.Text == "" || Note_TB.Text == defaultnote)
-                //{
-                //    warningMessage += "กรุณากรอกรายละเอียดของครุภัณฑ์ให้ครบถ้วนและถูกต้อง ก่อนทำการเพิ่่มเข้ามา\n";
-                //}
-
-                //if (BarcodeID_TXT.Text.Length > 50)
-                //{
-                //    warningMessage += "ความยาว Barcode ห้ามเกิน 50 ตัวอักษร\n";
-                //}
-
-                //if (Borrower_Name_TB.Text.Length > 100 || Contact_TB.Text.Length > 100)
-                //{
-                //    warningMessage += "ความยาวของข้อมูลผู้ยืม ห้ามเกิน 100 ตัวอักษร\n";
-                //}
-                //if (Return_Date_TXT.Value.Date < DateTime.Now.Date)
-                //{
-                //    warningMessage += "กรุณากรอกวันที่ให้ถูกต้อง\n";
-                //}
-                //if (Note_TB.Text.Length > 200)
-                //{
-                //    warningMessage += "ความยาวของหมายเหตุห้ามเกิน 200 ตัวอักษร\n";
-                //}
-                if (TemporaryData == null)
+                finally
                 {
-                    warningMessage += "ไม่มีข้อมูลที่ใช้อ้างอิงครุภัณฑ์ที่อยู่ในระบบตอนนี้\n";
-                }
-                //////////////////////////////////////////////
-                //if (Note_TB.Text == defaultnote || Note_TB.Text == "")
-                //{
-                //    Note_TB.Text = "-";
-                //}
-                ///////////////////////
-                if (!string.IsNullOrEmpty(warningMessage))
-                {
-                    MessageBox.Show(warningMessage);
-                }
-                else
-                {
-                    EditItemToDB();
+                    mySqlConnection.Close();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+
             }
-            finally
-            {
-                mySqlConnection.Close();
-            }
+            
         }
 
         private void EditItemToDB()
@@ -598,12 +614,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     // Load the selected image into the PictureBox
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                    string extension = Path.GetExtension(selectedFilePath);
 
-                    if (!File.Exists(outputPath))
+                    if (extension != "jpg")
                     {
-                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        // You can add the selected image to a list to store multiple images
+                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                        if (!File.Exists(outputPath))
+                        {
+                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            // You can add the selected image to a list to store multiple images
+                        }
                         selectedImage = System.Drawing.Image.FromFile(outputPath);
                     }
 
@@ -632,6 +652,102 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
             return sha512Values;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //Before we delete picture.
+            //Delete existing picture in picture box
+            //
+            //Your custom logic when the button is clicked
+            //Confirmation Box
+            if (selectedImages.Count <= 0) return;
+            DialogResult result = MessageBox.Show
+            ("ต้องการลบรูปภาพนี้หรือไม่?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
+            {
+                // User clicked "Yes," perform the action
+                bool isremovingsuccessful = false;
+                if (selectedImages.Count > 0)
+                {
+                    //if (selectedImages[(int)selectingImage] == Properties.Resources.corruptedfile)
+                    //{
+
+                    //}
+                    selectedImages.Remove(selectedImages[(int)selectingImage]);
+                    isremovingsuccessful = true;
+                }
+                if (isremovingsuccessful)
+                {
+                    CheckImageButtonBehavior();
+                    if (selectedImages.Count <= 0)
+                    {
+                        ChangePicture(null);
+                    }
+                    else if (selectingImage + 1 > selectedImages.Count)
+                    {
+                        ChangePicture(selectedImages.Count - 1);
+                    }
+                    else
+                    {
+                        ChangePicture(selectingImage);
+                    }
+                }
+                else
+                {
+                    ChangePicture(null);
+                    CheckImageButtonBehavior();
+                }
+            }
+            else
+            {
+                // User clicked "No" or closed the dialog, do nothing or handle as needed
+            }
+            ////////////////////////////////////////////////////////////////
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.Delete_Picture;
+            }
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else
+            {
+                ChangePicture((int)selectingImage);
+            }
+        }
+
+        private void Note_TXT_Enter(object sender, EventArgs e)
+        {
+            if (Note_TXT.Text == defaultnote)
+            {
+                Note_TXT.Text = "";
+                Note_TXT.ForeColor = Color.Black;
+            }
+        }
+
+        private void Note_TXT_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(Note_TXT.Text) || Note_TXT.Text == defaultnote)
+            {
+                Note_TXT.Text = defaultnote;
+                Note_TXT.ForeColor = Color.Gray;
+            }
         }
     }
 }

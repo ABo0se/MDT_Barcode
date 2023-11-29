@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -409,6 +410,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void Adjust_Picture_Click(object sender, EventArgs e)
         {
+            ////////////
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All Files (*.*)|*.*";
             openFileDialog.Title = "Select Image(s) to Upload";
@@ -420,14 +422,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 {
                     // Load the selected image into the PictureBox
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-
-                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
-
-                    if (!File.Exists(outputPath))
+                    
+                    string extension = Path.GetExtension(selectedFilePath);
+                    if (extension != "jpg")
                     {
-                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        // You can add the selected image to a list to store multiple images
-                        selectedImage = System.Drawing.Image.FromFile(outputPath);
+                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                        if (!File.Exists(outputPath))
+                        {
+                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            // You can add the selected image to a list to store multiple images
+                            selectedImage = System.Drawing.Image.FromFile(outputPath);
+                        }
                     }
 
                     selectedImages[(int)selectedHistory].Add(selectedImage);
