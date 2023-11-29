@@ -44,15 +44,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
                 if (temporarydata.Status == null)
                 {
-                    ChangeButtonState(false, false, true, false);
+                    ChangeButtonState(false, true, false);
                 }
                 if (temporarydata.Status == 0 || temporarydata.Status == 1)
                 {
-                    ChangeButtonState(true, true, false, true);
+                    ChangeButtonState(true, false, true);
                 }
                 if (temporarydata.Status == 2)
                 {
-                    ChangeButtonState(true, true, true, false);
+                    ChangeButtonState(true, true, false);
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
         private void ResetButtonState()
         {
-            ChangeButtonState(false, false, false, false);
+            ChangeButtonState(false, false, false);
         }
         private void ResetTextState()
         {
@@ -79,12 +79,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         {
             Status_TXT.Text = "สถานะ : -";
             temporarydata = null;
-            ChangeButtonState(false, false, false, false);
+            ChangeButtonState(false,  false, false);
         }
         public void SoftReset()
         {
             Status_TXT.Text = "สถานะ : -";
-            ChangeButtonState(false, false, false, false);
+            ChangeButtonState(false,  false, false);
         }
 
         private void BeginNewTextState()
@@ -129,15 +129,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
                 if (temporarydata.Status == null)
                 {
-                    ChangeButtonState(false, false, true, false);
+                    ChangeButtonState(false,true, false);
                 }
                 if (temporarydata.Status == 0 || temporarydata.Status == 1)
                 {
-                    ChangeButtonState(true, true, false, true);
+                    ChangeButtonState(true, false, true);
                 }
                 if (temporarydata.Status == 2)
                 {
-                    ChangeButtonState(true, true, true, false);
+                    ChangeButtonState(true, true, false);
                 }
             }
         }
@@ -268,12 +268,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         }
 
         /////////////////////////////////////////////////////////////////////
-        private void ChangeButtonState(bool a, bool b, bool c, bool d)
+        private void ChangeButtonState(bool a, bool b, bool c)
         {
             ShowDetail_B.Enabled = a;
-            AdjustDetail_B.Enabled = b;
-            Borrow_Management_B.Enabled = c;
-            Return_Management_B.Enabled = d;
+            Borrow_Management_B.Enabled = b;
+            Return_Management_B.Enabled = c;
         }
         private string DecodingStatus(int? status)
         {

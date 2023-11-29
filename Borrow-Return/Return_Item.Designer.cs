@@ -318,7 +318,7 @@
             this.EST_Return_Date_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.EST_Return_Date_TXT.AutoSize = true;
             this.EST_Return_Date_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(234, 0);
+            this.EST_Return_Date_TXT.Location = new System.Drawing.Point(180, 0);
             this.EST_Return_Date_TXT.Margin = new System.Windows.Forms.Padding(0);
             this.EST_Return_Date_TXT.Name = "EST_Return_Date_TXT";
             this.EST_Return_Date_TXT.Size = new System.Drawing.Size(21, 36);
@@ -334,9 +334,9 @@
             this.Borrow_Time.Location = new System.Drawing.Point(0, 0);
             this.Borrow_Time.Margin = new System.Windows.Forms.Padding(0);
             this.Borrow_Time.Name = "Borrow_Time";
-            this.Borrow_Time.Size = new System.Drawing.Size(234, 36);
+            this.Borrow_Time.Size = new System.Drawing.Size(180, 36);
             this.Borrow_Time.TabIndex = 0;
-            this.Borrow_Time.Text = "วันที่จะทำการคืนครุภัณฑ์ :";
+            this.Borrow_Time.Text = "กำหนดคืนครุภัณฑ์ :";
             this.Borrow_Time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel7
@@ -556,6 +556,9 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
             // Return_Item
             // 

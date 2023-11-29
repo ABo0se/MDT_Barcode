@@ -280,23 +280,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     Search.AssignBarcodeText(TemporaryData[e.RowIndex]);
                 }
             }
+            //if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            //{
+            //    // Your custom logic when the button is clicked
+            //    // Edit
+            //    EditBorrowedItems Edit = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
+            //    if (Edit != null && TemporaryData[e.RowIndex] != null)
+            //    {
+            //        //if (TemporaryData[e.RowIndex].Status == 2)
+            //        //{
+            //        //    MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
+            //        //    return;
+            //        //}
+            //        Edit.Show();
+            //        Edit.AssignBarcodeText(TemporaryData[e.RowIndex]);
+            //    }
+            //}
             if (e.ColumnIndex == 9 && e.RowIndex >= 0)
-            {
-                // Your custom logic when the button is clicked
-                // Edit
-                EditBorrowedItems Edit = MainMenu.initializedForms.Find(f => f is EditBorrowedItems) as EditBorrowedItems;
-                if (Edit != null && TemporaryData[e.RowIndex] != null)
-                {
-                    //if (TemporaryData[e.RowIndex].Status == 2)
-                    //{
-                    //    MessageBox.Show("ไม่สามารถปรับเปลี่ยนรายละเอียดครุภัณฑ์ที่คืนแล้วได้");
-                    //    return;
-                    //}
-                    Edit.Show();
-                    Edit.AssignBarcodeText(TemporaryData[e.RowIndex]);
-                }
-            }
-            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
                 //Your custom logic when the button is clicked
                 Return_Item Return = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
@@ -304,7 +304,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 {
                     if (TemporaryData[e.RowIndex].Status == 2)
                     {
-                        MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
+                        //MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
                         return;
                     }
                     Return.Show();
@@ -313,7 +313,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 // Return
 
             }
-            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
                 //Delete
                 DialogResult result = MessageBox.Show
@@ -388,17 +388,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 e.Value = Properties.Resources.search;
                 //e.FormattingApplied = true; // Add this line
             }
+            //if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            //{
+            //    e.Value = Properties.Resources.EditIcon;
+            //    //e.FormattingApplied = true; // Add this line
+            //}
             if (e.ColumnIndex == 9 && e.RowIndex >= 0)
-            {
-                e.Value = Properties.Resources.EditIcon;
-                //e.FormattingApplied = true; // Add this line
-            }
-            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.Return_Product;
                 //e.FormattingApplied = true; // Add this line
             }
-            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
                 e.Value = Properties.Resources.DeleteIcon;
                 //e.FormattingApplied = true; // Add this line

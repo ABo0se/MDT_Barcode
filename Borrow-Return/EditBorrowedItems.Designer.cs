@@ -260,9 +260,9 @@
             this.Borrow_Time.Location = new System.Drawing.Point(0, 6);
             this.Borrow_Time.Margin = new System.Windows.Forms.Padding(0);
             this.Borrow_Time.Name = "Borrow_Time";
-            this.Borrow_Time.Size = new System.Drawing.Size(249, 36);
+            this.Borrow_Time.Size = new System.Drawing.Size(195, 36);
             this.Borrow_Time.TabIndex = 0;
-            this.Borrow_Time.Text = "วันที่จะทำการคืนครุภัณฑ์ * :";
+            this.Borrow_Time.Text = "กำหนดคืนครุภัณฑ์ * :";
             this.Borrow_Time.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Return_Date_TXT
@@ -270,7 +270,7 @@
             this.Return_Date_TXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Return_Date_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Return_Date_TXT.Location = new System.Drawing.Point(252, 3);
+            this.Return_Date_TXT.Location = new System.Drawing.Point(198, 3);
             this.Return_Date_TXT.Name = "Return_Date_TXT";
             this.Return_Date_TXT.Size = new System.Drawing.Size(200, 43);
             this.Return_Date_TXT.TabIndex = 1;

@@ -155,18 +155,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     // Load the selected image into the PictureBox
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                    string extension = Path.GetExtension(selectedFilePath);
 
-                    if (!File.Exists(outputPath))
+                    if (extension != "jpg")
                     {
-                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        // You can add the selected image to a list to store multiple images
+                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                        if (!File.Exists(outputPath))
+                        {
+                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            // You can add the selected image to a list to store multiple images
+                        }
                         selectedImage = System.Drawing.Image.FromFile(outputPath);
                     }
+
                     selectedImages.Add(selectedImage);
 
-                    // Optionally, you can display each image in a separate PictureBox
-                    selectedImages[selectedImages.Count - 1].Tag ="NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
                 }
                 CheckImageButtonBehavior();
@@ -183,7 +186,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //Confirmation Box
             if (selectedImages.Count <= 0) return;
             DialogResult result = MessageBox.Show
-            ("Are you sure to delete this image?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            ("ต้องการลบรูปภาพนี้หรือไม่?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             // Check the user's response
             if (result == DialogResult.Yes)

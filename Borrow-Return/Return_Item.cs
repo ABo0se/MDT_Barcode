@@ -598,12 +598,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     // Load the selected image into the PictureBox
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                    string extension = Path.GetExtension(selectedFilePath);
 
-                    if (!File.Exists(outputPath))
+                    if (extension != "jpg")
                     {
-                        selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        // You can add the selected image to a list to store multiple images
+                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
+                        if (!File.Exists(outputPath))
+                        {
+                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            // You can add the selected image to a list to store multiple images
+                        }
                         selectedImage = System.Drawing.Image.FromFile(outputPath);
                     }
 
@@ -632,6 +636,84 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
             return sha512Values;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            //Before we delete picture.
+            //Delete existing picture in picture box
+            //
+            //Your custom logic when the button is clicked
+            //Confirmation Box
+            if (selectedImages.Count <= 0) return;
+            DialogResult result = MessageBox.Show
+            ("ต้องการลบรูปภาพนี้หรือไม่?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
+            {
+                // User clicked "Yes," perform the action
+                bool isremovingsuccessful = false;
+                if (selectedImages.Count > 0)
+                {
+                    //if (selectedImages[(int)selectingImage] == Properties.Resources.corruptedfile)
+                    //{
+
+                    //}
+                    selectedImages.Remove(selectedImages[(int)selectingImage]);
+                    isremovingsuccessful = true;
+                }
+                if (isremovingsuccessful)
+                {
+                    CheckImageButtonBehavior();
+                    if (selectedImages.Count <= 0)
+                    {
+                        ChangePicture(null);
+                    }
+                    else if (selectingImage + 1 > selectedImages.Count)
+                    {
+                        ChangePicture(selectedImages.Count - 1);
+                    }
+                    else
+                    {
+                        ChangePicture(selectingImage);
+                    }
+                }
+                else
+                {
+                    ChangePicture(null);
+                    CheckImageButtonBehavior();
+                }
+            }
+            else
+            {
+                // User clicked "No" or closed the dialog, do nothing or handle as needed
+            }
+            ////////////////////////////////////////////////////////////////
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.Delete_Picture;
+            }
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else
+            {
+                ChangePicture((int)selectingImage);
+            }
         }
     }
 }
