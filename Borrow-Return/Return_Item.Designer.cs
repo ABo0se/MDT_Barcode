@@ -52,7 +52,6 @@
             this.Contact_TXT = new System.Windows.Forms.Label();
             this.Contact = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.Note_TXT = new System.Windows.Forms.Label();
             this.Note = new System.Windows.Forms.Label();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.Add_Return_Pic = new System.Windows.Forms.Button();
@@ -60,6 +59,7 @@
             this.Nextpic = new System.Windows.Forms.Button();
             this.Prevpic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Note_TXT = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.ProductNameTableLayout.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -435,33 +435,20 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.Note_TXT, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.Note, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 407);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 403);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(605, 36);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(605, 43);
             this.tableLayoutPanel6.TabIndex = 6;
-            // 
-            // Note_TXT
-            // 
-            this.Note_TXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Note_TXT.AutoSize = true;
-            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
-            this.Note_TXT.Location = new System.Drawing.Point(108, 0);
-            this.Note_TXT.Margin = new System.Windows.Forms.Padding(0);
-            this.Note_TXT.Name = "Note_TXT";
-            this.Note_TXT.Size = new System.Drawing.Size(21, 36);
-            this.Note_TXT.TabIndex = 9;
-            this.Note_TXT.Text = "-";
-            this.Note_TXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Note
             // 
             this.Note.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Note.AutoSize = true;
             this.Note.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Note.Location = new System.Drawing.Point(0, 0);
+            this.Note.Location = new System.Drawing.Point(0, 3);
             this.Note.Margin = new System.Windows.Forms.Padding(0);
             this.Note.Name = "Note";
             this.Note.Size = new System.Drawing.Size(108, 36);
@@ -560,6 +547,18 @@
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
+            // Note_TXT
+            // 
+            this.Note_TXT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Note_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F);
+            this.Note_TXT.Location = new System.Drawing.Point(108, 0);
+            this.Note_TXT.Margin = new System.Windows.Forms.Padding(0);
+            this.Note_TXT.Name = "Note_TXT";
+            this.Note_TXT.Size = new System.Drawing.Size(497, 43);
+            this.Note_TXT.TabIndex = 13;
+            this.Note_TXT.Enter += new System.EventHandler(this.Note_TXT_Enter);
+            this.Note_TXT.Leave += new System.EventHandler(this.Note_TXT_Leave);
+            // 
             // Return_Item
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -612,7 +611,6 @@
         private System.Windows.Forms.Label BarcodeID_TXT;
         private System.Windows.Forms.Label Barcode_ID;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label Note_TXT;
         private System.Windows.Forms.Label Note;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label Contact_TXT;
@@ -632,5 +630,6 @@
         private System.Windows.Forms.Button Return_Borrowed_Item_toDB;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Button Add_Return_Pic;
+        private System.Windows.Forms.TextBox Note_TXT;
     }
 }

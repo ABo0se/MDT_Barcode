@@ -181,7 +181,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 else
                 {
                     CheckImageButtonBehavior();
-                    ChangePicture(0);
+                    ChangePicture(null);
                 }
                 ////////////////////////////////////
             }
@@ -193,10 +193,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             if ((selectedHistory - 1) >= 0)
             {
                 selectedHistory--;
+                //MessageBox.Show(selectedHistory.ToString());
             }
             else
             {
                 selectedHistory = TemporaryData.Count - 1;
+                //MessageBox.Show(selectedHistory.ToString());
             }
             ChangeHistory((int)selectedHistory);
         }
