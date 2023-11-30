@@ -711,7 +711,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             finally
             {
-                MessageBox.Show("Export to Excel completed. Output at " + filePath);
+                MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! ที่อยู่ของไฟล์คุณอยู่ที่ " + filePath);
             }
         }
 
@@ -851,7 +851,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void ImportExcelInDatabase(List<SRResults> resultlist)
         {
-            bool importfile = false;
+            bool importfile;
+            bool isimportsuccess = true;
             ////////
             DialogResult result2 = MessageBox.Show
                         ("ต้องการที่จะนำเข้าข้อมูลที่อยู่ไฟล์ภาพหรือไม่?\n"
@@ -906,10 +907,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex)
             {
+                isimportsuccess = false;
                 MessageBox.Show(ex.Message);
             }
             finally
             {
+                if (isimportsuccess)
+                MessageBox.Show("การนำเข้าข้อมูลสำเร็จ!");
                 mySqlConnection.Close(); // Make sure to close the connection when done
             }
         }
