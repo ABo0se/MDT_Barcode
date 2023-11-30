@@ -615,7 +615,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             finally
             {
-                MessageBox.Show("Export to Excel completed. Output at " + filePath);
+                MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! Output at " + filePath);
             }
         }
 

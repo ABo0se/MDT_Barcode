@@ -178,9 +178,9 @@
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
             this.label2.Location = new System.Drawing.Point(365, 585);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 27);
+            this.label2.Size = new System.Drawing.Size(52, 27);
             this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.3.1";
+            this.label2.Text = "V.1.3.2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainMenu

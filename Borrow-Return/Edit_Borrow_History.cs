@@ -434,7 +434,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             selectedImage = System.Drawing.Image.FromFile(outputPath);
                         }
                     }
-
+                    selectedImage.Tag = "NormalFile";
                     selectedImages[(int)selectedHistory].Add(selectedImage);
                     selectedImages[(int)selectedHistory][selectedImages[(int)selectedHistory].Count - 1].Tag = "NormalFile";
                     // Optionally, you can display each image in a separate PictureBox
