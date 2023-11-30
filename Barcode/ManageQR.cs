@@ -738,79 +738,77 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Import_Excel_Click(object sender, EventArgs e)
         {
+
+        }
+        private void Add_Data(OpenFileDialog openFileDialog)
+        {
             List<SRResults> myexcelresult = new List<SRResults>();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xlsx;*.xls|All Files|*.*";
+            // User selected a file, you can now get the file path:
+            string excelFilePath = openFileDialog.FileName;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            // Call your data import method here, passing the excelFilePath as a parameter:
+            try
             {
-                // User selected a file, you can now get the file path:
-                string excelFilePath = openFileDialog.FileName;
+                //myexcelresult = ImportDataFromExcel(excelFilePath, "Add");
+                ////CurrentProblemLOL
+                //if (myexcelresult == null)
+                //{
+                //    return;
+                //}
+                ////Your custom logic when the button is clicked
+                ////Confirmation Box
+                //DialogResult result = MessageBox.Show
+                //("ต้องการจะนำข้อมููลเข้ามาในฐานข้อมูลหรือไม่?"
+                //, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Call your data import method here, passing the excelFilePath as a parameter:
-                try
-                {
-                    myexcelresult = ImportDataFromExcel(excelFilePath);
-                    //CurrentProblemLOL
-                    if (myexcelresult == null)
-                    {
-                        return;
-                    }
-                    //Your custom logic when the button is clicked
-                    //Confirmation Box
-                    DialogResult result = MessageBox.Show
-                    ("ต้องการจะนำข้อมููลเข้ามาในฐานข้อมูลหรือไม่?"
-                    , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //// Check the user's response
+                //if (result == DialogResult.Yes)
+                //{
+                //    //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
+                //    DialogResult result2 = MessageBox.Show
+                //    ("ต้องการจะแทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามาหรือไม่?" + Environment.NewLine +
+                //    "Yes : แทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามา" + Environment.NewLine +
+                //    "No : เพิ่มข้อมูลและยังคงเก็บข้อมูลเดิมเอาไว้"
+                //    , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    // Check the user's response
-                    if (result == DialogResult.Yes)
-                    {
-                        //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
-                        DialogResult result2 = MessageBox.Show
-                        ("ต้องการจะแทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามาหรือไม่?" + Environment.NewLine +
-                        "Yes : แทนที่ข้อมูลด้วยไฟล์ที่นำเข้ามา" + Environment.NewLine +
-                        "No : เพิ่มข้อมูลและยังคงเก็บข้อมูลเดิมเอาไว้"
-                        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    // Check the user's response
+                //    if (result2 == DialogResult.Yes)
+                //    {
+                //        ////////////////////////////////////////////////////
+                //        //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
+                //        DialogResult result4 = MessageBox.Show
+                //        ("ต้องการที่จะลบฐานข้อมูลเก่าและแทนที่ด้วยข้อมูลที่นำเข้ามาหรือไม่?\n"
+                //        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        // Check the user's response
-                        if (result2 == DialogResult.Yes)
-                        {
-                            ////////////////////////////////////////////////////
-                            //Choose whether if you want to delete your old data in database, or update not dumplicate barcode data to database.
-                            DialogResult result4 = MessageBox.Show
-                            ("ต้องการที่จะลบฐานข้อมูลเก่าและแทนที่ด้วยข้อมูลที่นำเข้ามาหรือไม่?\n"
-                            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //        // Check the user's response
+                //        if (result4 == DialogResult.Yes)
+                //        {
+                //            //Replace all data in the database.
+                //            DeleteDataInDB();
+                //            ImportExcelInDatabase(myexcelresult);
+                //            SearchDatainDB();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        //Add and update data in database.
+                //        ImportExcelInDatabase(myexcelresult);
+                //        SearchDatainDB();
+                //    }
+                //}
+                //else
+                //{
+                //    //No action
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            finally
+            {
 
-                            // Check the user's response
-                            if (result4 == DialogResult.Yes)
-                            {
-                                //Replace all data in the database.
-                                DeleteDataInDB();
-                                ImportExcelInDatabase(myexcelresult);
-                                SearchDatainDB();
-                            }
-                        }
-                        else
-                        {
-                            //Add and update data in database.
-                            ImportExcelInDatabase(myexcelresult);
-                            SearchDatainDB();
-                        }
-                    }
-                    else
-                    {
-                        //No action
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                finally
-                {
-                    
-                }
             }
         }
 
@@ -849,24 +847,24 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
         }
-        private void ImportExcelInDatabase(List<SRResults> resultlist)
+        private void ImportExcelInDatabase(List<SRResults> resultlist, string action)
         {
-            bool importfile;
+            //bool importfile;
             bool isimportsuccess = true;
             ////////
-            DialogResult result2 = MessageBox.Show
-                        ("ต้องการที่จะนำเข้าข้อมูลที่อยู่ไฟล์ภาพหรือไม่?\n"
-                        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //DialogResult result2 = MessageBox.Show
+            //            ("ต้องการที่จะนำเข้าข้อมูลที่อยู่ไฟล์ภาพหรือไม่?\n"
+            //            , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            // Check the user's response
-            if (result2 == DialogResult.Yes)
-            {
-                importfile = true;
-            }
-            else
-            {
-                importfile = false;
-            }
+            //// Check the user's response
+            //if (result2 == DialogResult.Yes)
+            //{
+            //    importfile = true;
+            //}
+            //else
+            //{
+            //    importfile = false;
+            //}
             //////////////////////////////////////////////
             List<string> dbData = new List<string>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
@@ -889,26 +887,40 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         string rowData = reader["BarcodeNumber"].ToString();
                         dbData.Add(rowData);
                     }
-
-                // Compare the data
-                foreach (SRResults result in resultlist)
+                // AdjustFromHere
+                if (action == "Add")
                 {
-                    bool isDataSame = dbData.Contains(result.BarcodeNumber); // Check if the barcode is already in the database
+                    foreach (SRResults result in resultlist)
+                    {
+                        bool isDataSame = dbData.Contains(result.BarcodeNumber); // Check if the barcode is already in the database
 
-                    if (isDataSame)
-                    {
-                        UpdateBarcodeNumber(result, importfile);
+                        if (!isDataSame)
+                        {
+                            AddBarcodeNumber(result);
+                        }
                     }
-                    else
+                }
+                else if (action == "Update")
+                {
+                    foreach (SRResults result in resultlist)
                     {
-                        AddBarcodeNumber(result, importfile);
+                        bool isDataSame = dbData.Contains(result.BarcodeNumber); // Check if the barcode is already in the database
+
+                        if (isDataSame)
+                        {
+                            UpdateBarcodeNumber(result);
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("คำสั่งไม่ถูกต้อง");
                 }
             }
             catch (Exception ex)
             {
                 isimportsuccess = false;
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
             finally
             {
@@ -918,20 +930,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        private void AddBarcodeNumber(SRResults result, bool filepathreplacement)
+        private void AddBarcodeNumber(SRResults result)
         {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             string importedfilepath, SHA512;
-            if (filepathreplacement)
-            {
+            //if (filepathreplacement)
+            //{
                 importedfilepath = result.FilePath;
                 SHA512 = result.SHA512;
-            }
-            else
-            {
-                importedfilepath = "[]";
-                SHA512 = "[]";
-            }
+            //}
+            //else
+            //{
+            //    importedfilepath = "[]";
+            //    SHA512 = "[]";
+            //}
             try
             {
                 using (MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString))
@@ -978,20 +990,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
 
 
-    private void UpdateBarcodeNumber(SRResults result, bool filepathreplacement)
+    private void UpdateBarcodeNumber(SRResults result)
     {
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             string importedfilepath, SHA512;
-            if (filepathreplacement)
-            {
+            //if (filepathreplacement)
+            //{
                 importedfilepath = result.FilePath;
                 SHA512 = result.SHA512;
-            }
-            else
-            {
-                importedfilepath = "[]";
-                SHA512 = "[]";
-            }
+            //}
+            //else
+            //{
+            //    importedfilepath = "[]";
+            //    SHA512 = "[]";
+            //}
             try
     {
         using (MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString))
@@ -1252,6 +1264,48 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             else
             {
                 MessageBox.Show("ไม่พบไฟล์ที่จะดาวน์โหลด");
+            }
+        }
+
+        private void Add_Excel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xlsx;*.xls|All Files|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DialogResult result = MessageBox.Show
+                        ("ต้องการเพิ่มข้อมูลครุภัณฑ์ที่ไม่มีในฐานข้อมูลหรือไม่?\n"
+                        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Check the user's response
+                if (result == DialogResult.Yes)
+                {
+                    //Add excel data in the database.
+                    ImportExcelInDatabase(ImportDataFromExcel(openFileDialog.FileName),"Add");
+                    SearchDatainDB();
+                }
+            }
+        }
+
+        private void Update_Excel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xlsx;*.xls|All Files|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DialogResult result = MessageBox.Show
+                        ("ต้องการอัพเดทข้อมูลครุภัณฑ์ที่มีอยู่ในฐานข้อมูลหรือไม่?\n"
+                        , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Check the user's response
+                if (result == DialogResult.Yes)
+                {
+                    //Add excel data in the database.
+                    ImportExcelInDatabase(ImportDataFromExcel(openFileDialog.FileName), "Update");
+                    SearchDatainDB();
+                }
             }
         }
     }

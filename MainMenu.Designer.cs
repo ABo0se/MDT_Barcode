@@ -180,7 +180,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 27);
             this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.3.2";
+            this.label2.Text = "V.1.3.3";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainMenu
