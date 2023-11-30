@@ -18,6 +18,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using OfficeOpenXml.Drawing.Chart.ChartEx;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 {
@@ -30,7 +31,52 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             InitializeComponent();
             //InitializePage();
         }
+        private bool FindBarcodeInItemDatabase(string serialCode, out string data)
+        {
+            data = null;
+            MySqlConnection mySqlConnection = new MySqlConnection("server=127.0.0.1; user=root; database=barcodedatacollector; password=");
 
+            try
+            {
+                mySqlConnection.Open();
+                string selectQuery = "SELECT * FROM information WHERE BarcodeNumber = @BarcodeNumber";
+
+                using (MySqlCommand command = new MySqlCommand(selectQuery, mySqlConnection))
+                {
+                    command.Parameters.AddWithValue("@BarcodeNumber", serialCode);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (data == null) 
+                                data = reader["BarcodeNumber"].ToString();
+                        }
+                    }
+                }
+
+                // If data is still null, no matching record was found
+                if (data == null)
+                {
+                    return false;
+                }
+
+                // Data found
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+
+            // Return false if an exception occurred
+            return false;
+        }
         public void SearchDatainDB()
         {
             SearchDatabase(out List<RentResults> data2);
@@ -276,8 +322,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 ShowBorrowDetail Search = MainMenu.initializedForms.Find(f => f is ShowBorrowDetail) as ShowBorrowDetail;
                 if (Search != null && TemporaryData[e.RowIndex] != null)
                 {
-                    Search.Show();
-                    Search.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                    FindBarcodeInItemDatabase(TemporaryData[e.RowIndex].BarcodeNumber, out string data);
+                    if (data != null)
+                    {
+                        Search.Show();
+                        Search.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("ไม่พบรายละเอียดของครุภัณฑ์ในฐานข้อมูล");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ไม่พบหน้าต่างที่แสดงผลรายละเอียดการยืม หรือ ไม่มีรายละเอียดของครุภัณฑ์");
                 }
             }
             //if (e.ColumnIndex == 9 && e.RowIndex >= 0)
@@ -302,16 +360,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 Return_Item Return = MainMenu.initializedForms.Find(f => f is Return_Item) as Return_Item;
                 if (Return != null && TemporaryData[e.RowIndex] != null)
                 {
-                    if (TemporaryData[e.RowIndex].Status == 2)
+                    FindBarcodeInItemDatabase(TemporaryData[e.RowIndex].BarcodeNumber, out string data);
+                    if (data != null)
                     {
-                        //MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
-                        return;
+                        if (TemporaryData[e.RowIndex].Status == 2)
+                        {
+                            //MessageBox.Show("ไม่สามารถคืนครุภัณฑ์ที่ไม่ถูกยืมได้");
+                            return;
+                        }
+                        Return.Show();
+                        Return.AssignBarcodeText(TemporaryData[e.RowIndex]);
                     }
-                    Return.Show();
-                    Return.AssignBarcodeText(TemporaryData[e.RowIndex]);
+                    else
+                    {
+                        MessageBox.Show("ไม่พบรายละเอียดของครุภัณฑ์ในฐานข้อมูล");
+                    }
                 }
-                // Return
-
+                else
+                {
+                    MessageBox.Show("ไม่พบหน้าต่างที่แสดงผลรายละเอียดการยืม หรือ ไม่มีรายละเอียดของครุภัณฑ์");
+                }
             }
             if (e.ColumnIndex == 10 && e.RowIndex >= 0)
             {
