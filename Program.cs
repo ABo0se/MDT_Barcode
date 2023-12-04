@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
-
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 using System.Configuration;
@@ -16,7 +15,6 @@ using System.Text;
 using System.Linq;
 using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 using Org.BouncyCastle.Ocsp;
-using iTextSharp.text.pdf.parser;
 using System.Text.Json;
 using PdfSharp.Pdf.Content.Objects;
 
@@ -237,90 +235,97 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CreateDataBase()
         {
-            string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
+                string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
 
-                // Create the first database
-                string firstDatabaseName = "barcodedatacollector";
-                string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
-
-                using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+
+                    // Create the first database
+                    string firstDatabaseName = "barcodedatacollector";
+                    string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
+
+                    using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Create the second database
+                    string secondDatabaseName = "Borrow_Returning_System";
+                    string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
+
+                    using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Additional code for your application...
+
+                    // Close the connection
+                    connection.Close();
                 }
 
-                // Create the second database
-                string secondDatabaseName = "Borrow_Returning_System";
-                string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
+                string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
+                using (MySqlConnection connection = new MySqlConnection(connectionString2))
                 {
-                    command.ExecuteNonQuery();
-                }
-
-                // Additional code for your application...
-
-                // Close the connection
-                connection.Close();
-            }
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
-            using (MySqlConnection connection = new MySqlConnection(connectionString2))
-            {
-                connection.Open();
-                string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
-                                            "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                            "BarcodeNumber VARCHAR(100), " +
-                                            "Product_Name VARCHAR(100), " +
-                                            "Model_Name VARCHAR(100), " +
-                                            "Brand VARCHAR(100), " +
-                                            "Serial_Number VARCHAR(100), " +
-                                            "Price INT(30), " +
-                                            "Room VARCHAR(100), " +
-                                            "ImageData TEXT, " +
-                                            "MD5_ImageValidityChecksum TEXT, " +
-                                            "Note VARCHAR(200), " +
-                                            "Status INT(1), " +
-                                            "ITEM_CONDITION INT(1) " +
-                                            ");";
-
-                using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-                connection.Close();
-
-                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
-                using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
-                {
-                    connection2.Open();
-                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS borrowing_info ( " +
+                    connection.Open();
+                    string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
                                                 "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                                "Initial_Borrow_Time DATETIME, " +
-                                                "EST_Return_Date DATETIME, " +
-                                                "ACTUAL_Return_Date DATETIME, " +
                                                 "BarcodeNumber VARCHAR(100), " +
                                                 "Product_Name VARCHAR(100), " +
-                                                "Borrower_Name VARCHAR(100), " +
+                                                "Model_Name VARCHAR(100), " +
+                                                "Brand VARCHAR(100), " +
+                                                "Serial_Number VARCHAR(100), " +
+                                                "Price INT(30), " +
+                                                "Room VARCHAR(100), " +
                                                 "ImageData TEXT, " +
                                                 "MD5_ImageValidityChecksum TEXT, " +
-                                                "HistoryTextlog TEXT, " +
-                                                "Contact VARCHAR(200), " +
                                                 "Note VARCHAR(200), " +
-                                                "Status INT(1) " +
+                                                "Status INT(1), " +
+                                                "ITEM_CONDITION INT(1) " +
                                                 ");";
 
-                    using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
+                    using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
                     {
-                        command2.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                     }
-                    connection2.Close();
+                    connection.Close();
+
+                    string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
+                    using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
+                    {
+                        connection2.Open();
+                        string createTableQuery2 = "CREATE TABLE IF NOT EXISTS borrowing_info ( " +
+                                                    "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                    "Initial_Borrow_Time DATETIME, " +
+                                                    "EST_Return_Date DATETIME, " +
+                                                    "ACTUAL_Return_Date DATETIME, " +
+                                                    "BarcodeNumber VARCHAR(100), " +
+                                                    "Product_Name VARCHAR(100), " +
+                                                    "Borrower_Name VARCHAR(100), " +
+                                                    "ImageData TEXT, " +
+                                                    "MD5_ImageValidityChecksum TEXT, " +
+                                                    "HistoryTextlog TEXT, " +
+                                                    "Contact VARCHAR(200), " +
+                                                    "Note VARCHAR(200), " +
+                                                    "Status INT(1) " +
+                                                    ");";
+
+                        using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
+                        {
+                            command2.ExecuteNonQuery();
+                        }
+                        connection2.Close();
+                    }
                 }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
         }
         private List<SRResults> GetDataFromDB()
@@ -526,7 +531,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata, Dictionary<string, List<RentHistory>> DBdata2)
         {
-            string directoryPath = @"C:\\BarcodeDatabaseImage";
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
             Dictionary<string, string> imageFiles = new Dictionary<string, string>();
             Dictionary<string, string> uniqueImageFiles = new Dictionary<string, string>();
             Dictionary<string, string> deleteFiles = new Dictionary<string, string>();
@@ -566,9 +574,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             try
             {
-                if (Directory.Exists(directoryPath))
+                if (Directory.Exists(DataFolder))
                 {
-                    string[] files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories);
+                    string[] files = Directory.GetFiles(DataFolder, "*.*", SearchOption.AllDirectories);
 
                     foreach (string file in files)
                     {
@@ -614,7 +622,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    Console.WriteLine("Directory not found: " + directoryPath);
+                    Console.WriteLine("Directory not found: " + DataFolder);
+                }
+                ////////////////////////////////////////////////////////
+                if (Directory.Exists(TemporaryDataFolder))
+                {
+                    DeleteAllPictures(TemporaryDataFolder);
+                }
+                else
+                {
+                    Console.WriteLine("Directory not found: " + TemporaryDataFolder);
                 }
             }
             catch (Exception ex)
@@ -787,6 +804,25 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             DateTime lastUsedTime = Properties.Settings.Default.LastUsedTime;
             previousDate = lastUsedTime.Date;
         }
+        public void DeleteAllPictures(string folderPath)
+        {
+            try
+            {
+                // Get all file paths in the folder with a specific extension (e.g., ".jpg")
+                string[] pictureFiles = Directory.GetFiles(folderPath, "*.jpg");
 
+                foreach (string filePath in pictureFiles)
+                {
+                    // Delete each file
+                    File.Delete(filePath);
+                }
+
+                Console.WriteLine("All pictures deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting pictures: {ex.Message}");
+            }
+        }
     }
 }

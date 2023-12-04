@@ -476,146 +476,151 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void Export_Excel_Click(object sender, EventArgs e)
         {
             string filePath = "";
-
-            try
+            bool successful = true;
+            // Use a SaveFileDialog to prompt the user for the save location
+            SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                string saveDirectory = @"C:\ExcelBarcodeDatabase";
-                Directory.CreateDirectory(saveDirectory);
-                string baseFileName = "รายละเอียดการยืมคืนครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"; // Base file name
-                string fileName = baseFileName;
-                int fileCounter = 1;
-                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                Title = "Save File",
+                Filter = "All Files|*.*", // You can set specific file filters here
+                FileName = "รายละเอียดครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                    fileCounter++;
-                }
-                filePath = Path.Combine(saveDirectory, fileName);
+                    filePath = saveFileDialog.FileName;
 
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-
-                using (var package = new ExcelPackage(new FileInfo(filePath)))
-                {
-                    var worksheet1 = package.Workbook.Worksheets.Add("Data");
-
-                    int rowCount = TemporaryData.Count; // Use TemporaryData count
-                    int colCount = 13; // Set the number of columns based on your SRResults object
-
-                    // Set the font properties for the entire worksheet
-                    worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
-                    worksheet1.Cells.Style.Font.Size = 12.0f;
-
-                    // Header row
-                    for (int col = 1; col <= colCount; col++)
+                    if (!filePath.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
                     {
-                        var headerCell1 = worksheet1.Cells[1, col];
-                        // Map the header cell to the SRResults properties
-                        switch (col)
-                        {
-                            case 1:
-                                headerCell1.Value = "ลำดับที่";
-                                break;
-                            case 2:
-                                headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
-                                break;
-                            case 3:
-                                headerCell1.Value = "หมายเลขครุภัณฑ์";
-                                break;
-                            case 4:
-                                headerCell1.Value = "ชื่อผลิตภัณฑ์";
-                                break;
-                            case 5:
-                                headerCell1.Value = "ชื่อผู้ยืมครุภัณฑ์";
-                                break;
-                            case 6:
-                                headerCell1.Value = "สถานะการคืนครุภัณฑ์";
-                                break;
-                            case 7:
-                                headerCell1.Value = "วันที่ยืมครุภัณฑ์";
-                                break;
-                            case 8:
-                                headerCell1.Value = "วันที่คาดว่าจะคืนครุภัณฑ์";
-                                break;
-                            case 9:
-                                headerCell1.Value = "วันที่คืนครุภัณฑ์จริง";
-                                break;
-                            case 10:
-                                headerCell1.Value = "ช่องทางการติดต่อ";
-                                break;
-                            case 11:
-                                headerCell1.Value = "หมายเหตุ";
-                                break;
-                        }
-                        headerCell1.Style.Font.Bold = true;
-                        headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        headerCell1.Style.Font.Size = 14.0f;
+                        filePath += ".xlsx";
                     }
 
-                    // Data rows for worksheet1 (Data)
-                    for (int row = 0; row < rowCount; row++)
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                    using (var package = new ExcelPackage(new FileInfo(filePath)))
                     {
-                        for (int col = 0; col < colCount; col++)
+                        var worksheet1 = package.Workbook.Worksheets.Add("Data");
+
+                        int rowCount = TemporaryData.Count; // Use TemporaryData count
+                        int colCount = 13; // Set the number of columns based on your SRResults object
+
+                        // Set the font properties for the entire worksheet
+                        worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
+                        worksheet1.Cells.Style.Font.Size = 12.0f;
+
+                        // Header row
+                        for (int col = 1; col <= colCount; col++)
                         {
-                            var cell1 = worksheet1.Cells[row + 2, col + 1];
-                            // Map the cell to the corresponding SRResults property
+                            var headerCell1 = worksheet1.Cells[1, col];
+                            // Map the header cell to the SRResults properties
                             switch (col)
                             {
-                                case 0:
-                                    cell1.Value = row + 1;
-                                    break;
                                 case 1:
-                                    cell1.Value = TemporaryData[row].Date;
+                                    headerCell1.Value = "ลำดับที่";
                                     break;
                                 case 2:
-                                    cell1.Value = TemporaryData[row].BarcodeNumber;
+                                    headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
                                     break;
                                 case 3:
-                                    cell1.Value = TemporaryData[row].Product_Name;
+                                    headerCell1.Value = "หมายเลขครุภัณฑ์";
                                     break;
                                 case 4:
-                                    cell1.Value = TemporaryData[row].Borrower_Name;
+                                    headerCell1.Value = "ชื่อผลิตภัณฑ์";
                                     break;
                                 case 5:
-                                    cell1.Value = DecodingStatus(TemporaryData[row].Status);
+                                    headerCell1.Value = "ชื่อผู้ยืมครุภัณฑ์";
                                     break;
                                 case 6:
-                                    cell1.Value = TemporaryData[row].InitialBorrowDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    headerCell1.Value = "สถานะการคืนครุภัณฑ์";
                                     break;
                                 case 7:
-                                    cell1.Value = TemporaryData[row].EstReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    headerCell1.Value = "วันที่ยืมครุภัณฑ์";
                                     break;
                                 case 8:
-                                    cell1.Value = TemporaryData[row].ActualReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                    headerCell1.Value = "วันที่คาดว่าจะคืนครุภัณฑ์";
                                     break;
                                 case 9:
-                                    cell1.Value = TemporaryData[row].Borrower_Contact;
+                                    headerCell1.Value = "วันที่คืนครุภัณฑ์จริง";
                                     break;
                                 case 10:
-                                    cell1.Value = TemporaryData[row].Note;
+                                    headerCell1.Value = "ช่องทางการติดต่อ";
+                                    break;
+                                case 11:
+                                    headerCell1.Value = "หมายเหตุ";
                                     break;
                             }
-                            // Align the first column to the middle
-                            if (col == 0 || col == 1)
+                            headerCell1.Style.Font.Bold = true;
+                            headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            headerCell1.Style.Font.Size = 14.0f;
+                        }
+
+                        // Data rows for worksheet1 (Data)
+                        for (int row = 0; row < rowCount; row++)
+                        {
+                            for (int col = 0; col < colCount; col++)
                             {
-                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            }
-                            else
-                            {
-                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                var cell1 = worksheet1.Cells[row + 2, col + 1];
+                                // Map the cell to the corresponding SRResults property
+                                switch (col)
+                                {
+                                    case 0:
+                                        cell1.Value = row + 1;
+                                        break;
+                                    case 1:
+                                        cell1.Value = TemporaryData[row].Date;
+                                        break;
+                                    case 2:
+                                        cell1.Value = TemporaryData[row].BarcodeNumber;
+                                        break;
+                                    case 3:
+                                        cell1.Value = TemporaryData[row].Product_Name;
+                                        break;
+                                    case 4:
+                                        cell1.Value = TemporaryData[row].Borrower_Name;
+                                        break;
+                                    case 5:
+                                        cell1.Value = DecodingStatus(TemporaryData[row].Status);
+                                        break;
+                                    case 6:
+                                        cell1.Value = TemporaryData[row].InitialBorrowDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                        break;
+                                    case 7:
+                                        cell1.Value = TemporaryData[row].EstReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                        break;
+                                    case 8:
+                                        cell1.Value = TemporaryData[row].ActualReturnDate.Value.ToString("dd MMMM yyyy HH:mm:ss");
+                                        break;
+                                    case 9:
+                                        cell1.Value = TemporaryData[row].Borrower_Contact;
+                                        break;
+                                    case 10:
+                                        cell1.Value = TemporaryData[row].Note;
+                                        break;
+                                }
+                                // Align the first column to the middle
+                                if (col == 0 || col == 1)
+                                {
+                                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                    cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                }
+                                else
+                                {
+                                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-            finally
-            {
-                MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! Output at " + filePath);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+                finally
+                {
+                    MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! Output at " + filePath);
+                }
             }
         }
 
@@ -646,7 +651,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
         private void DeleteDataInDB()
         {
-            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_systemv; password=";
+            string connectionString = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
             using (MySqlConnection mySqlConnection = new MySqlConnection(connectionString))
             {
                 try
@@ -661,11 +666,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 
                         if (rowsAffected >= 0)
                         {
-                            Console.WriteLine("ข้อมูลถูกลบเรียบร้อยแล้ว!");
+                            MessageBox.Show("ข้อมูลถูกลบเรียบร้อยแล้ว!");
                         }
                         else
                         {
-                            Console.WriteLine("เกิดข้อผิดพลาดในการลบข้อมูล");
+                            MessageBox.Show("ไม่มีข้อมูลที่ถูกลบ");
                         }
                     }
                 }

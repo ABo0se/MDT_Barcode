@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -319,7 +319,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //EmbedImage
             //Create reference for image we used.
             bool isdumplicated = false;
-            string saveDirectory = @"C:\BarcodeDatabaseImage";
+            string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
             List<string> newSHA512hashes = new List<string>();
             Directory.CreateDirectory(saveDirectory);
 
@@ -612,29 +612,39 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
-                    // Load the selected image into the PictureBox
+                    // Load the selected image into memory without saving to a file
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
                     string extension = Path.GetExtension(selectedFilePath);
 
-                    if (extension != "jpg")
+                    if (extension != ".jpg")
                     {
-                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
-                        if (!File.Exists(outputPath))
-                        {
-                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            // You can add the selected image to a list to store multiple images
-                        }
-                        selectedImage = System.Drawing.Image.FromFile(outputPath);
+                        // Convert to JPEG format if not already in that format
+                        selectedImage = ConvertToJpeg(selectedImage);
                     }
+
+                    // Set the tag for each image
+                    selectedImage.Tag = "NormalFile";
 
                     selectedImages.Add(selectedImage);
 
                     // Optionally, you can display each image in a separate PictureBox
                 }
+
                 CheckImageButtonBehavior();
                 ChangePicture(0);
             }
         }
+
+        private System.Drawing.Image ConvertToJpeg(System.Drawing.Image image)
+        {
+            // Convert the image to JPEG format
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return System.Drawing.Image.FromStream(memoryStream);
+            }
+        }
+
         string CalculateSHA512Checksum1pic(Image image)
         {
             string sha512Values = string.Empty;

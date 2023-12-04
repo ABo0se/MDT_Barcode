@@ -407,10 +407,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             ////////////////////////////////////////////////////////////////
 
         }
-
         private void Adjust_Picture_Click(object sender, EventArgs e)
         {
-            ////////////
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All Files (*.*)|*.*";
             openFileDialog.Title = "Select Image(s) to Upload";
@@ -420,33 +418,45 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
-                    // Load the selected image into the PictureBox
+                    // Load the selected image into memory without saving to a file
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    
+
+                    // Check if the image needs to be converted to JPG
                     string extension = Path.GetExtension(selectedFilePath);
-                    if (extension != "jpg")
+                    if (extension.ToLower() != ".jpg")
                     {
-                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
-                        if (!File.Exists(outputPath))
-                        {
-                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            // You can add the selected image to a list to store multiple images
-                            selectedImage = System.Drawing.Image.FromFile(outputPath);
-                        }
+                        // Convert to JPEG format
+                        selectedImage = ConvertToJpeg(selectedImage);
                     }
+
+                    // Set the tag for each image
                     selectedImage.Tag = "NormalFile";
+
+                    // Add the selected image to the appropriate list in the selectedImages list
                     selectedImages[(int)selectedHistory].Add(selectedImage);
-                    selectedImages[(int)selectedHistory][selectedImages[(int)selectedHistory].Count - 1].Tag = "NormalFile";
+
                     // Optionally, you can display each image in a separate PictureBox
                 }
-                
-                //MessageBox.Show(((int)selectedHistory).ToString() + " " + (selectedImages[(int)selectedHistory].Count - 1).ToString());
-                selectingImage = selectedImages[(int)selectedHistory].Count - 1;
 
+                // Set the currently selected image index
+                int selectingImage = selectedImages[(int)selectedHistory].Count - 1;
+
+                // Perform necessary actions based on the added images
                 CheckImageButtonBehavior();
                 ChangePicture((int)selectedHistory, selectingImage);
             }
         }
+
+        private System.Drawing.Image ConvertToJpeg(System.Drawing.Image image)
+        {
+            // Convert the image to JPEG format
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return System.Drawing.Image.FromStream(memoryStream);
+            }
+        }
+
         private void Adjust_History_Click(object sender, EventArgs e)
         {
             if (TemporaryData == null)
@@ -465,7 +475,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 return;
             }
             // Create reference for image we used.
-            string saveDirectory = @"C:\BarcodeDatabaseImage";
+            string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
             Directory.CreateDirectory(saveDirectory);
 
             //List<string> oldsavedFilePaths = new List<string>();
