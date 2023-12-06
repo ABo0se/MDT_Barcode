@@ -169,6 +169,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             try
             {
                 // Create the new directory if it doesn't exist
+                if (!Directory.Exists(newParentDirectory))
                 Directory.CreateDirectory(newParentDirectory);
 
                 // Get all files in the old parent directory

@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(608, 101);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(708, 101);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -114,20 +114,20 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(608, 44);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(702, 44);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // FilePath_TXT
             // 
             this.FilePath_TXT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.FilePath_TXT.AutoSize = true;
-            this.FilePath_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.FilePath_TXT.Location = new System.Drawing.Point(176, 4);
+            this.FilePath_TXT.Font = new System.Drawing.Font("TH Sarabun New", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilePath_TXT.Location = new System.Drawing.Point(131, 4);
             this.FilePath_TXT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FilePath_TXT.Name = "FilePath_TXT";
-            this.FilePath_TXT.Size = new System.Drawing.Size(430, 36);
+            this.FilePath_TXT.Size = new System.Drawing.Size(569, 36);
             this.FilePath_TXT.TabIndex = 4;
-            this.FilePath_TXT.Text = "FilePath";
+            this.FilePath_TXT.Text = "-";
             // 
             // label1
             // 
@@ -137,15 +137,15 @@
             this.label1.Location = new System.Drawing.Point(2, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 36);
+            this.label1.Size = new System.Drawing.Size(125, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ที่อยู่ของไฟล์ภาพ :";
+            this.label1.Text = "ที่อยู่ไฟล์ภาพ";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(632, 118);
+            this.ClientSize = new System.Drawing.Size(732, 118);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

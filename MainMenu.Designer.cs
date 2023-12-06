@@ -181,7 +181,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label2.Location = new System.Drawing.Point(364, 586);
+            this.label2.Location = new System.Drawing.Point(364, 582);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 27);
             this.label2.TabIndex = 5;
@@ -197,7 +197,7 @@
             this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ExportPanel.Controls.Add(this.Settings, 0, 0);
             this.ExportPanel.Controls.Add(this.label1, 1, 0);
-            this.ExportPanel.Location = new System.Drawing.Point(12, 582);
+            this.ExportPanel.Location = new System.Drawing.Point(12, 578);
             this.ExportPanel.Name = "ExportPanel";
             this.ExportPanel.RowCount = 1;
             this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));

@@ -106,6 +106,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (Setting != null)
             {
                 Setting.Show();
+                Setting.GetFilePath();
             }
         }
     }
