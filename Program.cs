@@ -18,6 +18,8 @@ using Org.BouncyCastle.Ocsp;
 using System.Text.Json;
 using PdfSharp.Pdf.Content.Objects;
 using Microsoft.Win32;
+using System.Diagnostics.Eventing.Reader;
+using System.Threading;
 
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -30,21 +32,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Initialize the host
             using (var host = CreateHostBuilder().Build())
             {
-                // Start the background service
-                var dateChangeService = host.Services.GetRequiredService<DateChangeService>();
-                dateChangeService.CheckForDateChange(); // Run the initial check
                 host.Start();
+
+                var dateChangeService = host.Services.GetRequiredService<DateChangeService>();
+
+                dateChangeService.CheckForDateChange(true);
 
                 // Run the main form
                 Application.Run(new MainMenu());
 
-                // Stop the host when the main form is closed
+                // The main form has been closed, stop the host
                 host.StopAsync().Wait();
             }
         }
+
 
         public static IHostBuilder CreateHostBuilder()
         {
@@ -52,46 +55,90 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<DateChangeService>();
-                    // Other service configurations...
+                    // Add other service configurations...
                 });
         }
     }
 
-    public class DateChangeService : BackgroundService
+    public class DateChangeService : BackgroundService, IDisposable
     {
         private DateTime previousDate = DateTime.MinValue;
+        private System.Threading.Timer timer;
 
-        protected override async Task ExecuteAsync(System.Threading.CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            
             // Load the last used time when the service starts
             LoadLastUsedTime();
 
+            // Set up a timer to run the CheckForDateChange method every minute
+            timer = new System.Threading.Timer(CheckForDateChangeCallback, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+
+            // Ensure the service continues running until cancellation is requested
             while (!stoppingToken.IsCancellationRequested)
             {
-                CheckForDateChange();
-
-                // Save the last used time at regular intervals
-                SaveLastUsedTime();
-
-                // Adjust the interval as needed
-                await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+                await Task.Delay(1000); // Small delay to avoid high CPU usage
+                SaveLastUsedTime(DateTime.Now);
+                MessageBox.Show(DateTime.Now.ToString());
             }
         }
 
-        public void CheckForDateChange()
+        private void CheckForDateChangeCallback(object state)
+        {
+            // Invoke the UI-related operation on the main thread
+            if (Application.OpenForms.Count > 0)
+            {
+                Application.OpenForms[0].Invoke(new Action(() =>
+                {
+                    CheckForDateChange(false);
+                }));
+            }
+            else
+            {
+                // If there is no open form, consider handling it appropriately
+                CheckForDateChange(false);
+            }
+        }
+
+        public void CheckForDateChange(bool isstartprogram)
         {
             DateTime currentDate = DateTime.Now.Date;
 
             // Check if the date has changed
-            if (currentDate > previousDate)
+            if (currentDate > previousDate || isstartprogram)
             {
                 // Perform actions for the new day
+                MessageBox.Show(previousDate.ToString());
                 PerformOverProvisioningActions();
-                Console.WriteLine("The date has changed to the next day.");
+                Console.WriteLine("The date has changed to the next day, or we just started the program.");
 
                 // Update the previous date
                 previousDate = currentDate;
             }
+        }
+        public void SaveLastUsedTime(DateTime lastUsedTime)
+        {
+            //
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", lastUsedTime.ToString());
+        }
+
+        public DateTime LoadLastUsedTime()
+        {
+            object lutstring = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", null);
+            if (lutstring != null)
+            {
+                if (DateTime.TryParse(lutstring.ToString(), out DateTime lastUsedTime))
+                {
+                    return lastUsedTime;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
+            }
+
+            // Default value if key or value not found
+            return DateTime.MinValue;
         }
 
         private void PerformOverProvisioningActions()
@@ -848,7 +895,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                     return;
                     //return if error
                 }
@@ -856,9 +903,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 //Phase 2 use data
                 foreach (RentResults data in ResultDataList)
                 {
-                    if (data.EstReturnDate.Value.Date < DateTime.Now.Date && data.Status == 1)
+                    //MessageBox.Show("EST : " + data.EstReturnDate.Value.Date.ToString());
+                    //MessageBox.Show("NOW : " + DateTime.Now.Date.ToString());
+                    if (data.EstReturnDate.Value.Date < DateTime.Now.Date && data.Status == 0)
                     {
-                        data.Status = 2;
+                        //MessageBox.Show("Working");
+                        data.Status = 1;
                     }
                 }
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -911,19 +961,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
 
-        private void SaveLastUsedTime()
-        {
-            // Save the last used time to persistent storage (e.g., application settings)
-            Properties.Settings.Default.LastUsedTime = DateTime.Now;
-            Properties.Settings.Default.Save();
-        }
 
-        private void LoadLastUsedTime()
-        {
-            // Load the last used time from persistent storage (e.g., application settings)
-            DateTime lastUsedTime = Properties.Settings.Default.LastUsedTime;
-            previousDate = lastUsedTime.Date;
-        }
         public void DeleteAllPictures(string folderPath)
         {
             try

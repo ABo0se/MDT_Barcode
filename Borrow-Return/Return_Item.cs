@@ -70,6 +70,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 Contact_TXT.Text = TemporaryData.Borrower_Contact;
                 Note_TXT.Text = TemporaryData.Note;
+                Note_TXT.ForeColor = Color.Black;
                 ////////////////////////////////////
                 //selectedImages.Clear();
                 //List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);

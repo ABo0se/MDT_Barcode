@@ -44,10 +44,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
                 GlobalVariable.SetFilePath(DataFolder);
                 //UpdatePictureFilePath();
-                MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน แอพพลิเคชั่นจะเปิดใช้งานใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + GlobalVariable.FilePath);
+                MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน คุณจะต้องเริ่มการทำงานของโปรแกรมใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + GlobalVariable.FilePath);
                 FilePath_TXT.Text = GlobalVariable.FilePath;
                 // Restart the application
-                Application.Restart();
+                //Application.Restart();
                 // Exit the current instance
                 Environment.Exit(0);
             }
@@ -93,9 +93,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     path = folderDialog.SelectedPath;
                     Console.WriteLine("Selected Folder: " + path);
                     GlobalVariable.SetFilePath(path);
-                    MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน แอพพลิเคชั่นจะเปิดใช้งานใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + path);
+                    MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน คุณจะต้องเริ่มการทำงานของโปรแกรมใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + path);
                     //FilePath_TXT.Text = path;
-                    Application.Restart();
+                    //Application.Restart();
                     // Exit the current instance
                     Environment.Exit(0);
                 }
