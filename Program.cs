@@ -20,85 +20,33 @@ using PdfSharp.Pdf.Content.Objects;
 using Microsoft.Win32;
 using System.Diagnostics.Eventing.Reader;
 using System.Threading;
-
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     static class Program
     {
+        public static DateChangeService service = new DateChangeService();
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (var host = CreateHostBuilder().Build())
-            {
-                host.Start();
+            // Run the main form
+            service.previousDate = service.LoadLastUsedTime();
+            // MessageBox.Show("Method called at: " + DateTime.Now);
+            service.CheckForDateChange(true);
 
-                var dateChangeService = host.Services.GetRequiredService<DateChangeService>();
+            Application.Run(new MainMenu());
 
-                dateChangeService.CheckForDateChange(true);
-
-                // Run the main form
-                Application.Run(new MainMenu());
-
-                // The main form has been closed, stop the host
-                host.StopAsync().Wait();
-            }
-        }
-
-
-        public static IHostBuilder CreateHostBuilder()
-        {
-            return Host.CreateDefaultBuilder()
-                .ConfigureServices((hostContext, services) =>
-                {
-                    services.AddSingleton<DateChangeService>();
-                    // Add other service configurations...
-                });
         }
     }
 
-    public class DateChangeService : BackgroundService, IDisposable
+    public class DateChangeService
     {
-        private DateTime previousDate = DateTime.MinValue;
-        private System.Threading.Timer timer;
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            
-            // Load the last used time when the service starts
-            LoadLastUsedTime();
-
-            // Set up a timer to run the CheckForDateChange method every minute
-            timer = new System.Threading.Timer(CheckForDateChangeCallback, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
-
-            // Ensure the service continues running until cancellation is requested
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                await Task.Delay(1000); // Small delay to avoid high CPU usage
-                SaveLastUsedTime(DateTime.Now);
-                MessageBox.Show(DateTime.Now.ToString());
-            }
-        }
-
-        private void CheckForDateChangeCallback(object state)
-        {
-            // Invoke the UI-related operation on the main thread
-            if (Application.OpenForms.Count > 0)
-            {
-                Application.OpenForms[0].Invoke(new Action(() =>
-                {
-                    CheckForDateChange(false);
-                }));
-            }
-            else
-            {
-                // If there is no open form, consider handling it appropriately
-                CheckForDateChange(false);
-            }
-        }
+        public DateTime previousDate;
 
         public void CheckForDateChange(bool isstartprogram)
         {
@@ -107,10 +55,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             // Check if the date has changed
             if (currentDate > previousDate || isstartprogram)
             {
-                // Perform actions for the new day
-                MessageBox.Show(previousDate.ToString());
-                PerformOverProvisioningActions();
-                Console.WriteLine("The date has changed to the next day, or we just started the program.");
+                //// Perform actions for the new day
+                //if (currentDate > previousDate)
+                //    MessageBox.Show("The date has changed to the next day.");
+                //if (isstartprogram)
+                //    MessageBox.Show("We started program.");
+
+                PerformOverProvisioningActions(isstartprogram);
+                
 
                 // Update the previous date
                 previousDate = currentDate;
@@ -141,13 +93,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             return DateTime.MinValue;
         }
 
-        private void PerformOverProvisioningActions()
+        private void PerformOverProvisioningActions(bool isstartprogram)
         {
             // Your logic for the new day goes here
             Console.WriteLine("Performing actions for the new day...");
-            GlobalVariable.GetPictureFilePath();
-            CreateDataBase();
-            UpdatePictureFilePath();
+            if (isstartprogram)
+            {
+                GlobalVariable.GetPictureFilePath();
+                CreateDataBase();
+                UpdatePictureFilePath();
+            }
             UpdateStatusDatabase();
         }
 
