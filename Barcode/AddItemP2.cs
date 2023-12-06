@@ -240,9 +240,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             // Use the user's application data folder for saving images
             string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
-            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
             string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
-
+            //GlobalVariable.FilePath
+            //Path.Combine(applicationDataFolder, "PictureData");
             if (!Directory.Exists(TemporaryDataFolder))
             {
                 // Create the subfolder if it doesn't exist

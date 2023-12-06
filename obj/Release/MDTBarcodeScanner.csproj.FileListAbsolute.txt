@@ -153,3 +153,4 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\PdfSharp.Charting.resources.dl
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDTBarcodeScanner.csproj.CopyComplete
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDT Barcode Scanner.pdb
+D:\Coding Sector\MDTBarcodeScanner\obj\Release\USB_Barcode_Scanner_Tutorial___C_Sharp.Settings.resources

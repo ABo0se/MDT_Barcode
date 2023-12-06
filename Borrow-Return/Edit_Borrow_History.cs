@@ -490,7 +490,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             }
             // Create reference for image we used.
             string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
-            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
             string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
 
             if (!Directory.Exists(TemporaryDataFolder))
@@ -658,16 +658,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             finally
             {
                 mySqlConnection2.Close();
-                EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
-                if (EditItemForm != null)
-                {
-                    EditItemForm.Hide();
-                }
-                ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
-                if (QRForm != null)
-                {
-                    QRForm.SearchDatainDB();
-                }
+                //EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
+                //if (EditItemForm != null)
+                //{
+                //    EditItemForm.Hide();
+                //}
+                //ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
+                //if (QRForm != null)
+                //{
+                //    QRForm.SearchDatainDB();
+                //}
             }
         }
         List<string> CalculateSHA512Checksum(List<Image> myImages)

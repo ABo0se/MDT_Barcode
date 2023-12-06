@@ -110,6 +110,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
             //////////////////////////////////////////////////////////////////////////////////////////////////
             //ChangeAllPathsInDB
+            List<string> parentpath = new List<string>();
             if (temporaryData != null)
             {
                 foreach (SRResults data in temporaryData)
@@ -118,7 +119,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     for (int i = paths.Count - 1; i >= 0; i--)
                     {
-                        //string oldpath = Path.GetDirectoryName(paths[i]);
+                        string oldparentpath = Path.GetDirectoryName(paths[i]);
+                        if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) &&
+                                (oldparentpath != GlobalVariable.FilePath))
+                        {
+                            parentpath.Add(oldparentpath);
+                        }
                         string filename = Path.GetFileName(paths[i]);
                         string newPath = Path.Combine(GlobalVariable.FilePath, filename);
                         paths[i] = newPath;
@@ -137,7 +143,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                         for (int i = paths.Count - 1; i >= 0; i--)
                         {
-                            //string oldpath = Path.GetDirectoryName(paths[i]);
+                            string oldparentpath = Path.GetDirectoryName(paths[i]);
+                            if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) && 
+                                (oldparentpath != GlobalVariable.FilePath))
+                            {
+                                parentpath.Add(oldparentpath);
+                            }
                             string filename = Path.GetFileName(paths[i]);
                             string newPath = Path.Combine(GlobalVariable.FilePath, filename);
                             paths[i] = newPath;
@@ -147,8 +158,51 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                 }
             }
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            //MoveFileData
+            // Old parent directory
+            //string oldParentDirectory = @"C:\OldParent\";
+
+            // New parent directory
+            string newParentDirectory = GlobalVariable.FilePath;
+
+            try
+            {
+                // Create the new directory if it doesn't exist
+                Directory.CreateDirectory(newParentDirectory);
+
+                // Get all files in the old parent directory
+                foreach (string myparentpath in parentpath)
+                {
+                    string[] filesInOldParent = Directory.GetFiles(myparentpath);
+
+                    // Move each file to the new parent directory
+                    foreach (string filePathInOldParent in filesInOldParent)
+                    {
+                        // Get the file name
+                        string fileName = Path.GetFileName(filePathInOldParent);
+
+                        // Combine the new parent directory with the file name to form the new path
+                        string newFilePath = Path.Combine(newParentDirectory, fileName);
+
+                        // Move the file to the new location
+                        File.Move(filePathInOldParent, newFilePath);
+
+                        Console.WriteLine($"File '{fileName}' moved successfully.");
+                    }
+
+                    Console.WriteLine("All files moved successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error moving files: {ex.Message}");
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+            }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
             //////////////////////////////////////////////////////////////////////////////////////////////////
             //Cleanup dumplicate data
             if (temporaryData != null)
@@ -463,7 +517,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
                 ////////////////////////////////////////
                 //Now we update picture in rent borrow database.
@@ -509,7 +563,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
             }
         }
@@ -561,7 +615,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
 
             }
@@ -571,7 +625,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata, Dictionary<string, List<RentHistory>> DBdata2)
         {
             string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
-            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            //string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
             string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
 
             Dictionary<string, string> imageFiles = new Dictionary<string, string>();
@@ -824,7 +879,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("ข้อผิดพลาด : " + ex);
+                        MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                     }
                 }
             }
@@ -868,34 +923,47 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     {
         // Auto-implemented property to store some data
         public static string FilePath { get; set; }
+        //public static string DefaultPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory"), "PictureData");
 
         // Add other methods and properties as needed
         public static void SetFilePath(string path)
         {
             // Code to perform some action using MyVariable and FilePath
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", path);
             FilePath = path;
         }
         public static void GetPictureFilePath()
         {
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            //GetTemporaryDataPath
+            string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+            //GetExistingPath
             object settingValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", null);
-
+            string path;
             if (settingValue != null)
             {
                 // Use the setting value
-                GlobalVariable.SetFilePath(settingValue.ToString());
+                SetFilePath(settingValue.ToString());
+                path = settingValue.ToString();
                 // Do something with stringValue...
             }
             else
             {
                 // Use the default value
-                string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
                 string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
                 //
-                GlobalVariable.SetFilePath(DataFolder.ToString());
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", DataFolder);
+                SetFilePath(DataFolder.ToString());
+                path = DataFolder;
+            }
+            //Create path if not exist.
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (!Directory.Exists(temporaryDataFolder))
+            {
+                Directory.CreateDirectory(temporaryDataFolder);
             }
         }
     }
-
-
 }

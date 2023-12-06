@@ -102,7 +102,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void Settings_Click(object sender, EventArgs e)
         {
-
+            Settings Setting = initializedForms.Find(f => f is Settings) as Settings;
+            if (Setting != null)
+            {
+                Setting.Show();
+            }
         }
     }
 

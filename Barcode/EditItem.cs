@@ -373,7 +373,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             // Create reference for image we used.
             string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
-            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
             string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
 
             if (!Directory.Exists(TemporaryDataFolder))
@@ -381,10 +381,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Create the subfolder if it doesn't exist
                 Directory.CreateDirectory(TemporaryDataFolder);
             }
-            if (!Directory.Exists(applicationDataFolder))
+            if (!Directory.Exists(DataFolder))
             {
                 // Create the subfolder if it doesn't exist
-                Directory.CreateDirectory(applicationDataFolder);
+                Directory.CreateDirectory(DataFolder);
             }
 
             List<string> oldsavedFilePaths = new List<string>();

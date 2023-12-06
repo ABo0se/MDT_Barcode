@@ -321,7 +321,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             bool isdumplicated = false;
             // Use the user's application data folder for saving images
             string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
-            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
             string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
             //string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
             List<string> newSHA512hashes = new List<string>();
@@ -331,10 +331,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Create the subfolder if it doesn't exist
                 Directory.CreateDirectory(TemporaryDataFolder);
             }
-            if (!Directory.Exists(applicationDataFolder))
+            if (!Directory.Exists(DataFolder))
             {
                 // Create the subfolder if it doesn't exist
-                Directory.CreateDirectory(applicationDataFolder);
+                Directory.CreateDirectory(DataFolder);
             }
 
             List<string> savedFilePaths = new List<string>();
