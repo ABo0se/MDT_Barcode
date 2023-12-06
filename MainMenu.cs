@@ -99,6 +99,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 ManageQRForm.Show();
             }
         }
+
+        private void Settings_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public static class FontUtility

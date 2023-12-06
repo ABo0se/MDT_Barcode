@@ -17,6 +17,7 @@ using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 using Org.BouncyCastle.Ocsp;
 using System.Text.Json;
 using PdfSharp.Pdf.Content.Objects;
+using Microsoft.Win32;
 
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
@@ -97,6 +98,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             // Your logic for the new day goes here
             Console.WriteLine("Performing actions for the new day...");
+            GlobalVariable.GetPictureFilePath();
             CreateDataBase();
             UpdatePictureFilePath();
             UpdateStatusDatabase();
@@ -106,12 +108,49 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             List<SRResults> temporaryData = GetDataFromDB();
             Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
-            //if (temporaryData == null)
-            //{
-            //    return;
-            //}
-            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //ChangeAllPathsInDB
+            if (temporaryData != null)
+            {
+                foreach (SRResults data in temporaryData)
+                {
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
 
+                    for (int i = paths.Count - 1; i >= 0; i--)
+                    {
+                        //string oldpath = Path.GetDirectoryName(paths[i]);
+                        string filename = Path.GetFileName(paths[i]);
+                        string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                        paths[i] = newPath;
+                    }
+
+                    data.FilePath = JsonConvert.SerializeObject(paths);
+                }
+            }
+            if (temporaryData2 != null)
+            {
+                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
+                {
+                    foreach (RentHistory mydata in data.Value)
+                    {
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
+
+                        for (int i = paths.Count - 1; i >= 0; i--)
+                        {
+                            //string oldpath = Path.GetDirectoryName(paths[i]);
+                            string filename = Path.GetFileName(paths[i]);
+                            string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                            paths[i] = newPath;
+                        }
+
+                        mydata.ImageData = JsonConvert.SerializeObject(paths);
+                    }
+                }
+            }
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //Cleanup dumplicate data
             if (temporaryData != null)
             {
                 foreach (SRResults data in temporaryData)
@@ -825,4 +864,38 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
         }
     }
+    public static class GlobalVariable
+    {
+        // Auto-implemented property to store some data
+        public static string FilePath { get; set; }
+
+        // Add other methods and properties as needed
+        public static void SetFilePath(string path)
+        {
+            // Code to perform some action using MyVariable and FilePath
+            FilePath = path;
+        }
+        public static void GetPictureFilePath()
+        {
+            object settingValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", null);
+
+            if (settingValue != null)
+            {
+                // Use the setting value
+                GlobalVariable.SetFilePath(settingValue.ToString());
+                // Do something with stringValue...
+            }
+            else
+            {
+                // Use the default value
+                string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+                string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+                //
+                GlobalVariable.SetFilePath(DataFolder.ToString());
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", DataFolder);
+            }
+        }
+    }
+
+
 }
