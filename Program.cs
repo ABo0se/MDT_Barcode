@@ -108,74 +108,42 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             List<SRResults> temporaryData = GetDataFromDB();
             Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            //ChangeAllPathsInDB
-            List<string> parentpath = new List<string>();
-            if (temporaryData != null)
-            {
-                foreach (SRResults data in temporaryData)
-                {
-                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
 
-                    for (int i = paths.Count - 1; i >= 0; i--)
-                    {
-                        string oldparentpath = Path.GetDirectoryName(paths[i]);
-                        if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) &&
-                                (oldparentpath != GlobalVariable.FilePath))
-                        {
-                            parentpath.Add(oldparentpath);
-                        }
-                        string filename = Path.GetFileName(paths[i]);
-                        string newPath = Path.Combine(GlobalVariable.FilePath, filename);
-                        paths[i] = newPath;
-                    }
+            // Change all paths in the database
+            UpdatePathsInDatabase(temporaryData, out List<string> ppath1);
+            UpdatePathsInDatabase(temporaryData2, out List<string> ppath2);
 
-                    data.FilePath = JsonConvert.SerializeObject(paths);
-                }
-            }
-            if (temporaryData2 != null)
-            {
-                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
-                {
-                    foreach (RentHistory mydata in data.Value)
-                    {
-                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
+            // Move files to the new parent directory
+            MoveFilesToNewParentDirectory(ppath1);
+            MoveFilesToNewParentDirectory(ppath2);
 
-                        for (int i = paths.Count - 1; i >= 0; i--)
-                        {
-                            string oldparentpath = Path.GetDirectoryName(paths[i]);
-                            if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) && 
-                                (oldparentpath != GlobalVariable.FilePath))
-                            {
-                                parentpath.Add(oldparentpath);
-                            }
-                            string filename = Path.GetFileName(paths[i]);
-                            string newPath = Path.Combine(GlobalVariable.FilePath, filename);
-                            paths[i] = newPath;
-                        }
+            // Cleanup duplicate data
+            Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
 
-                        mydata.ImageData = JsonConvert.SerializeObject(paths);
-                    }
-                }
-            }
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            //MoveFileData
-            // Old parent directory
-            //string oldParentDirectory = @"C:\OldParent\";
+            // Cleanup duplicate data in the database
+            CleanupDuplicateData(temporaryData, uniqueImage);
+            CleanupDuplicateData(temporaryData2, uniqueImage);
 
-            // New parent directory
+            // Edit the database records
+            EditmyDataBase(temporaryData);
+            EditmyDataBase2(temporaryData2);
+        }
+        private void MoveFilesToNewParentDirectory(List<string> parentPaths)
+        {
             string newParentDirectory = GlobalVariable.FilePath;
 
             try
             {
                 // Create the new directory if it doesn't exist
                 if (!Directory.Exists(newParentDirectory))
-                Directory.CreateDirectory(newParentDirectory);
-
-                // Get all files in the old parent directory
-                foreach (string myparentpath in parentpath)
                 {
-                    string[] filesInOldParent = Directory.GetFiles(myparentpath);
+                    Directory.CreateDirectory(newParentDirectory);
+                }
+
+                // Get all files in the old parent directories
+                foreach (string parentPath in parentPaths)
+                {
+                    string[] filesInOldParent = Directory.GetFiles(parentPath);
 
                     // Move each file to the new parent directory
                     foreach (string filePathInOldParent in filesInOldParent)
@@ -186,10 +154,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Combine the new parent directory with the file name to form the new path
                         string newFilePath = Path.Combine(newParentDirectory, fileName);
 
-                        // Move the file to the new location
-                        File.Move(filePathInOldParent, newFilePath);
-
-                        Console.WriteLine($"File '{fileName}' moved successfully.");
+                        if (!Directory.Exists(newFilePath))
+                        {
+                            File.Move(filePathInOldParent, newFilePath);
+                            Console.WriteLine($"File '{fileName}' moved successfully.");
+                        }
                     }
 
                     Console.WriteLine("All files moved successfully.");
@@ -200,18 +169,43 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 Console.WriteLine($"Error moving files: {ex.Message}");
                 MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
+        }
 
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////
-        Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            //Cleanup dumplicate data
-            if (temporaryData != null)
+        private void CleanupDuplicateData(List<SRResults> data, Dictionary<string, string> uniqueImage)
+        {
+            foreach (SRResults result in data)
             {
-                foreach (SRResults data in temporaryData)
+                List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
+                List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(result.SHA512);
+
+                for (int i = paths.Count - 1; i >= 0; i--)
                 {
-                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
-                    List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
+                    string sha512 = sha512s[i];
+                    if (uniqueImage.ContainsValue(sha512))
+                    {
+                        string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
+                        paths[i] = newPath;
+                    }
+                    else
+                    {
+                        paths.RemoveAt(i);
+                        sha512s.RemoveAt(i);
+                    }
+                }
+
+                result.FilePath = JsonConvert.SerializeObject(paths);
+                result.SHA512 = JsonConvert.SerializeObject(sha512s);
+            }
+        }
+
+        private void CleanupDuplicateData(Dictionary<string, List<RentHistory>> data, Dictionary<string, string> uniqueImage)
+        {
+            foreach (var entry in data)
+            {
+                foreach (RentHistory rentHistory in entry.Value)
+                {
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
+                    List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(rentHistory.SHA512);
 
                     for (int i = paths.Count - 1; i >= 0; i--)
                     {
@@ -228,40 +222,71 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         }
                     }
 
-                    data.FilePath = JsonConvert.SerializeObject(paths);
-                    data.SHA512 = JsonConvert.SerializeObject(sha512s);
+                    rentHistory.ImageData = JsonConvert.SerializeObject(paths);
+                    rentHistory.SHA512 = JsonConvert.SerializeObject(sha512s);
                 }
-                EditmyDataBase(temporaryData);
             }
-            if (temporaryData2 != null)
+        }
+
+
+        private void UpdatePathsInDatabase(List<SRResults> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+
+            if (data != null)
             {
-                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
+                foreach (SRResults result in data)
                 {
-                    foreach (RentHistory mydata in data.Value)
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
+
+                    for (int i = paths.Count - 1; i >= 0; i--)
                     {
-                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
-                        List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(mydata.SHA512);
+                        string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                        if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
+                        {
+                            parentPaths.Add(oldParentPath);
+                        }
+
+                        string filename = Path.GetFileName(paths[i]);
+                        string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                        paths[i] = newPath;
+                    }
+
+                    result.FilePath = JsonConvert.SerializeObject(paths);
+                }
+            }
+        }
+
+        private void UpdatePathsInDatabase(Dictionary<string, List<RentHistory>> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+
+            if (data != null)
+            {
+                foreach (var entry in data)
+                {
+                    foreach (RentHistory rentHistory in entry.Value)
+                    {
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
 
                         for (int i = paths.Count - 1; i >= 0; i--)
                         {
-                            string sha512 = sha512s[i];
-                            if (uniqueImage.ContainsValue(sha512))
+                            string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                            if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
                             {
-                                string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
-                                paths[i] = newPath;
+                                parentPaths.Add(oldParentPath);
                             }
-                            else
-                            {
-                                paths.RemoveAt(i);
-                                sha512s.RemoveAt(i);
-                            }
+
+                            string filename = Path.GetFileName(paths[i]);
+                            string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                            paths[i] = newPath;
                         }
 
-                        mydata.ImageData = JsonConvert.SerializeObject(paths);
-                        mydata.SHA512 = JsonConvert.SerializeObject(sha512s);
+                        rentHistory.ImageData = JsonConvert.SerializeObject(paths);
                     }
                 }
-                EditmyDataBase2(temporaryData2);
             }
         }
 

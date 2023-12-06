@@ -43,7 +43,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
                 GlobalVariable.SetFilePath(DataFolder);
-                UpdatePictureFilePath();
+                //UpdatePictureFilePath();
+                MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน แอพพลิเคชั่นจะเปิดใช้งานใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + GlobalVariable.FilePath);
+                FilePath_TXT.Text = GlobalVariable.FilePath;
+                // Restart the application
+                Application.Restart();
+                // Exit the current instance
+                Environment.Exit(0);
             }
             else
             {
@@ -87,10 +93,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     path = folderDialog.SelectedPath;
                     Console.WriteLine("Selected Folder: " + path);
                     GlobalVariable.SetFilePath(path);
-                    MessageBox.Show("การเปลี่ยนที่อยู่ไฟล์เก็บภาพสำเร็จ!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + path);
-                    FilePath_TXT.Text = path;
-                    //
-                    UpdatePictureFilePath();
+                    MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน แอพพลิเคชั่นจะเปิดใช้งานใหม่!\n" + "ที่อยู๋ไฟล์ภาพล่าสุดอยู่ที่ : " + path);
+                    //FilePath_TXT.Text = path;
+                    Application.Restart();
+                    // Exit the current instance
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -111,74 +118,95 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             List<SRResults> temporaryData = GetDataFromDB();
             Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
-            //////////////////////////////////////////////////////////////////////////////////////////////////
-            //ChangeAllPathsInDB
-            List<string> parentpath = new List<string>();
-            if (temporaryData != null)
+
+            // Change all paths in the database
+            UpdatePathsInDatabase(temporaryData, out List<string> ppath1);
+            UpdatePathsInDatabase(temporaryData2, out List<string> ppath2);
+
+            // Move files to the new parent directory
+            MoveFilesToNewParentDirectory(ppath1);
+
+            // Clean up and edit the database records
+            EditmyDataBase(temporaryData);
+            EditmyDataBase2(temporaryData2);
+        }
+
+        private void UpdatePathsInDatabase(List<SRResults> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+
+            if (data != null)
             {
-                foreach (SRResults data in temporaryData)
+                foreach (SRResults result in data)
                 {
-                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
 
                     for (int i = paths.Count - 1; i >= 0; i--)
                     {
-                        string oldparentpath = Path.GetDirectoryName(paths[i]);
-                        if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) &&
-                                (oldparentpath != GlobalVariable.FilePath))
+                        string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                        if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
                         {
-                            parentpath.Add(oldparentpath);
+                            parentPaths.Add(oldParentPath);
                         }
+
                         string filename = Path.GetFileName(paths[i]);
                         string newPath = Path.Combine(GlobalVariable.FilePath, filename);
                         paths[i] = newPath;
                     }
 
-                    data.FilePath = JsonConvert.SerializeObject(paths);
+                    result.FilePath = JsonConvert.SerializeObject(paths);
                 }
             }
-            if (temporaryData2 != null)
+        }
+
+        private void UpdatePathsInDatabase(Dictionary<string, List<RentHistory>> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+            if (data != null)
             {
-                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
+                foreach (var entry in data)
                 {
-                    foreach (RentHistory mydata in data.Value)
+                    foreach (RentHistory rentHistory in entry.Value)
                     {
-                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
 
                         for (int i = paths.Count - 1; i >= 0; i--)
                         {
-                            string oldparentpath = Path.GetDirectoryName(paths[i]);
-                            if (!parentpath.Contains(oldparentpath) && Directory.Exists(oldparentpath) &&
-                                (oldparentpath != GlobalVariable.FilePath))
+                            string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                            if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
                             {
-                                parentpath.Add(oldparentpath);
+                                parentPaths.Add(oldParentPath);
                             }
+
                             string filename = Path.GetFileName(paths[i]);
                             string newPath = Path.Combine(GlobalVariable.FilePath, filename);
                             paths[i] = newPath;
                         }
 
-                        mydata.ImageData = JsonConvert.SerializeObject(paths);
+                        rentHistory.ImageData = JsonConvert.SerializeObject(paths);
                     }
                 }
             }
-            ////////////////////////////////////////////////////////////////////////////////////////////
-            //MoveFileData
-            // Old parent directory
-            //string oldParentDirectory = @"C:\OldParent\";
+        }
 
-            // New parent directory
+        private void MoveFilesToNewParentDirectory(List<string> parentPaths)
+        {
             string newParentDirectory = GlobalVariable.FilePath;
 
             try
             {
                 // Create the new directory if it doesn't exist
                 if (!Directory.Exists(newParentDirectory))
-                    Directory.CreateDirectory(newParentDirectory);
-
-                // Get all files in the old parent directory
-                foreach (string myparentpath in parentpath)
                 {
-                    string[] filesInOldParent = Directory.GetFiles(myparentpath);
+                    Directory.CreateDirectory(newParentDirectory);
+                }
+
+                // Get all files in the old parent directories
+                foreach (string parentPath in parentPaths)
+                {
+                    string[] filesInOldParent = Directory.GetFiles(parentPath);
 
                     // Move each file to the new parent directory
                     foreach (string filePathInOldParent in filesInOldParent)
@@ -189,10 +217,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Combine the new parent directory with the file name to form the new path
                         string newFilePath = Path.Combine(newParentDirectory, fileName);
 
-                        // Move the file to the new location
-                        File.Move(filePathInOldParent, newFilePath);
-
-                        Console.WriteLine($"File '{fileName}' moved successfully.");
+                        if (!Directory.Exists(newFilePath))
+                        {
+                            File.Move(filePathInOldParent, newFilePath);
+                            Console.WriteLine($"File '{fileName}' moved successfully.");
+                        }
                     }
 
                     Console.WriteLine("All files moved successfully.");
@@ -204,6 +233,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
         }
+
         private List<SRResults> GetDataFromDB()
         {
             List<SRResults> ResultDataList = new List<SRResults>();
@@ -310,6 +340,159 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
 
             }
+        }
+        private void EditmyDataBase(List<SRResults> Data)
+        {
+            if (Data == null) return;
+
+            ////////////
+            foreach (SRResults TempData in Data)
+            {
+                //Update in initinal database.
+                string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+                MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
+
+                try
+                {
+                    mySqlConnection2.Open();
+
+                    string query = "UPDATE information SET " +
+                   "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum, " +
+                   "ImageData = @ImageData " +
+
+                   "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+
+
+                    //if (PicFilePath == null)
+                    //{
+                    //    PicFilePath = "";
+                    //}
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
+                    {
+                        cmd.Parameters.AddWithValue("@ImageData", TempData.FilePath);
+                        cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", TempData.SHA512);
+                        //////////
+                        cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TempData.BarcodeNumber);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            //MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            // MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
+                        }
+                    }
+                    mySqlConnection2.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                }
+                ////////////////////////////////////////
+                //Now we update picture in rent borrow database.
+                string connectionString2 = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                MySqlConnection mySqlConnection3 = new MySqlConnection(connectionString2);
+
+                try
+                {
+                    mySqlConnection3.Open();
+
+                    string query = "UPDATE borrowing_info SET " +
+                   "MD5_ImageValidityChecksum = @MD5_ImageValidityChecksum, " +
+                   "ImageData = @ImageData " +
+
+                   "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+
+
+                    //if (PicFilePath == null)
+                    //{
+                    //    PicFilePath = "";
+                    //}
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection3))
+                    {
+                        cmd.Parameters.AddWithValue("@ImageData", TempData.FilePath);
+                        cmd.Parameters.AddWithValue("@MD5_ImageValidityChecksum", TempData.SHA512);
+                        //////////
+                        cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TempData.BarcodeNumber);
+
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            //MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            // MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
+                        }
+                    }
+                    mySqlConnection3.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                }
+            }
+        }
+
+        private void EditmyDataBase2(Dictionary<string, List<RentHistory>> Data)
+        {
+            if (Data == null) return;
+            foreach (KeyValuePair<string, List<RentHistory>> TempData in Data)
+            {
+                string SerializedHistoryData = JsonConvert.SerializeObject(TempData.Value, Formatting.Indented);
+                ////////////////////////////////////////
+                //Now we update picture in rent borrow database.
+                string connectionString2 = "server=127.0.0.1; user=root; database=borrow_returning_system; password=";
+                MySqlConnection mySqlConnection3 = new MySqlConnection(connectionString2);
+
+                try
+                {
+                    mySqlConnection3.Open();
+
+                    string query = "UPDATE borrowing_info SET " +
+                   "HistoryTextlog = @HistoryTextlog " +
+
+                   "WHERE BarcodeNumber = @BarcodeNumberReplacement";
+
+
+                    //if (PicFilePath == null)
+                    //{
+                    //    PicFilePath = "";
+                    //}
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection3))
+                    {
+                        cmd.Parameters.AddWithValue("@BarcodeNumberReplacement", TempData.Key);
+                        cmd.Parameters.AddWithValue("@HistoryTextlog", SerializedHistoryData);
+                        //////////
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            //MessageBox.Show("การปรับเปลี่ยนข้อมูลสำเร็จ!");
+                        }
+                        else
+                        {
+                            // MessageBox.Show("การปรับเปลี่ยนข้อมูลล้มเหลว");
+                        }
+                    }
+                    mySqlConnection3.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                }
+
+            }
+
         }
     }
 }
