@@ -319,9 +319,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //EmbedImage
             //Create reference for image we used.
             bool isdumplicated = false;
-            string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
+            // Use the user's application data folder for saving images
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+            //string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
             List<string> newSHA512hashes = new List<string>();
-            Directory.CreateDirectory(saveDirectory);
+
+            if (!Directory.Exists(TemporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(TemporaryDataFolder);
+            }
+            if (!Directory.Exists(applicationDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(applicationDataFolder);
+            }
 
             List<string> savedFilePaths = new List<string>();
 
@@ -347,18 +361,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
 
                     // Save the file if it's not a duplicate
-                    string baseFileName = "image.jpeg"; // Base file name
-                    string fileName = baseFileName;
-                    int fileCounter = 1;
-
+                    string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                    string outputPath = Path.Combine(DataFolder, uniqueFileName);
                     // Check if the file already exists and generate a unique name if needed
-                    while (File.Exists(Path.Combine(saveDirectory, fileName)))
-                    {
-                        fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                        fileCounter++;
-                    }
+                    //while (File.Exists(Path.Combine(temporarySaveDirectory, fileName)))
+                    //{
+                    //    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                    //    fileCounter++;
+                    //}
 
-                    string filePath = Path.Combine(saveDirectory, fileName);
+                    string filePath = outputPath;
                     selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 
                     // Add the saved file path and SHA-512 hash to the lists
@@ -608,26 +620,39 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             openFileDialog.Title = "Select Image(s) to Upload";
             openFileDialog.Multiselect = true; // Allow multiple file selection
 
+            // Use the user's application data folder for saving images
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+
+            // Append a subfolder named "TemporaryPictureData"
+            string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
+            //MessageBox.Show(temporaryDataFolder);
+
+            if (!Directory.Exists(temporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(temporaryDataFolder);
+            }
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
-                    // Load the selected image into memory without saving to a file
-                    System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    string extension = Path.GetExtension(selectedFilePath);
+                    Image selectedImage = Image.FromFile(selectedFilePath);
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
+                    string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                    string outputPath = Path.Combine(temporaryDataFolder, uniqueFileName);
 
-                    if (extension != ".jpg")
-                    {
-                        // Convert to JPEG format if not already in that format
-                        selectedImage = ConvertToJpeg(selectedImage);
-                    }
+                    selectedImage.Save(outputPath, ImageFormat.Jpeg);
 
-                    // Set the tag for each image
-                    selectedImage.Tag = "NormalFile";
+                    // Add the saved image to the list
+                    selectedImage = Image.FromFile(outputPath);
 
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
                     selectedImages.Add(selectedImage);
 
                     // Optionally, you can display each image in a separate PictureBox
+
                 }
 
                 CheckImageButtonBehavior();

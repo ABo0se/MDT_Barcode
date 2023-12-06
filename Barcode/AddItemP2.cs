@@ -83,7 +83,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
                     Image selectedImage = Image.FromFile(selectedFilePath);
-                    MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
                     string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
                     string outputPath = Path.Combine(temporaryDataFolder, uniqueFileName);
 
@@ -248,10 +248,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Create the subfolder if it doesn't exist
                 Directory.CreateDirectory(TemporaryDataFolder);
             }
-            if (!Directory.Exists(applicationDataFolder))
+            if (!Directory.Exists(DataFolder))
             {
                 // Create the subfolder if it doesn't exist
-                Directory.CreateDirectory(applicationDataFolder);
+                Directory.CreateDirectory(DataFolder);
             }
 
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
@@ -260,12 +260,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             try
             {
                 //MessageBox.Show(temporaryDataFolder);
-
-                if (!Directory.Exists(DataFolder))
-                {
-                    // Create the subfolder if it doesn't exist
-                    Directory.CreateDirectory(DataFolder);
-                }
 
                 List<string> newSHA512hashes = new List<string>();
                 List<string> savedFilePaths = new List<string>();
@@ -938,6 +932,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 Console.WriteLine($"Error deleting pictures: {ex.Message}");
             }
+        }
+
+        private void tableLayoutPanel10_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

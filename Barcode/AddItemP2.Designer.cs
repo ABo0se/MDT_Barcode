@@ -66,8 +66,8 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.Quality = new System.Windows.Forms.Label();
-            this.Add_Item_toDB = new System.Windows.Forms.Button();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.Add_Item_toDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.StatsPanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -472,7 +472,7 @@
             this.ProductNameTableLayout.Name = "ProductNameTableLayout";
             this.ProductNameTableLayout.RowCount = 1;
             this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.ProductNameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.ProductNameTableLayout.Size = new System.Drawing.Size(605, 43);
             this.ProductNameTableLayout.TabIndex = 2;
             // 
@@ -532,7 +532,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(605, 43);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -659,20 +659,6 @@
             this.Quality.Text = "สภาพ * :";
             this.Quality.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Add_Item_toDB
-            // 
-            this.Add_Item_toDB.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Add_Item_toDB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Add_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Add_Item_toDB.Location = new System.Drawing.Point(475, 3);
-            this.Add_Item_toDB.Margin = new System.Windows.Forms.Padding(0);
-            this.Add_Item_toDB.Name = "Add_Item_toDB";
-            this.Add_Item_toDB.Size = new System.Drawing.Size(130, 45);
-            this.Add_Item_toDB.TabIndex = 2;
-            this.Add_Item_toDB.Text = "เพิ่มสิ่งของ";
-            this.Add_Item_toDB.UseVisualStyleBackColor = true;
-            this.Add_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
-            // 
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
@@ -687,6 +673,21 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.Size = new System.Drawing.Size(605, 52);
             this.tableLayoutPanel10.TabIndex = 11;
+            this.tableLayoutPanel10.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel10_Paint);
+            // 
+            // Add_Item_toDB
+            // 
+            this.Add_Item_toDB.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Add_Item_toDB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Add_Item_toDB.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Add_Item_toDB.Location = new System.Drawing.Point(475, 3);
+            this.Add_Item_toDB.Margin = new System.Windows.Forms.Padding(0);
+            this.Add_Item_toDB.Name = "Add_Item_toDB";
+            this.Add_Item_toDB.Size = new System.Drawing.Size(130, 45);
+            this.Add_Item_toDB.TabIndex = 2;
+            this.Add_Item_toDB.Text = "เพิ่มสิ่งของ";
+            this.Add_Item_toDB.UseVisualStyleBackColor = true;
+            this.Add_Item_toDB.Click += new System.EventHandler(this.Add_Item_toDB_Click);
             // 
             // AddItemP2
             // 
