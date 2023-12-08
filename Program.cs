@@ -175,6 +175,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CleanupDuplicateData(List<SRResults> data, Dictionary<string, string> uniqueImage)
         {
+            if (data == null)
+                return;
             foreach (SRResults result in data)
             {
                 List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
@@ -202,6 +204,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CleanupDuplicateData(Dictionary<string, List<RentHistory>> data, Dictionary<string, string> uniqueImage)
         {
+            if (data == null)
+                return;
             foreach (var entry in data)
             {
                 foreach (RentHistory rentHistory in entry.Value)
@@ -446,7 +450,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                MessageBox.Show("ไม่พบฐานข้อมูล XAMPP ทำงานอยู่");
+                Environment.Exit(0);
+                //MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
         }
         private List<SRResults> GetDataFromDB()
