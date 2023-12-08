@@ -451,7 +451,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (isDataSame)
                 {
                     MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมี Barcode นี้อยู่แล้ว");
-                    this.Hide();
+                    //this.Hide();
                 }
                 else
                 {

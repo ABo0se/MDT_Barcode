@@ -21,6 +21,7 @@ using Microsoft.Win32;
 using System.Diagnostics.Eventing.Reader;
 using System.Threading;
 using Org.BouncyCastle.Asn1.Mozilla;
+using System.Collections;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -33,7 +34,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             // Run the main form
             service.previousDate = service.LoadLastUsedTime();
             // MessageBox.Show("Method called at: " + DateTime.Now);
@@ -90,6 +90,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
 
             // Default value if key or value not found
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", DateTime.MinValue.ToString());
             return DateTime.MinValue;
         }
 
@@ -121,18 +122,62 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
             // Cleanup duplicate data
             Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
+            List<string> UniqueImageFilePath = new List<string>(uniqueImage.Keys);
+            List<string> UsedFilePath = new List<string>();
 
             // Cleanup duplicate data in the database
-            CleanupDuplicateData(temporaryData, uniqueImage);
-            CleanupDuplicateData(temporaryData2, uniqueImage);
+            CleanupDuplicateData(temporaryData, uniqueImage, out List<string> usedPath1);
+            CleanupDuplicateData(temporaryData2, uniqueImage, out List<string> usedPath2);
+
+            UsedFilePath = usedPath1.Union(usedPath2).ToList();
+
+            if (UniqueImageFilePath.Count > UsedFilePath.Count)
+            {
+                DeleteExcessiveFile(UniqueImageFilePath, UsedFilePath);
+            }
 
             // Edit the database records
             EditmyDataBase(temporaryData);
             EditmyDataBase2(temporaryData2);
         }
+
+        private void DeleteExcessiveFile(List<string> UniqueImageFilePath, List<string> UsedFilePath)
+        {
+            foreach (string uniqueImagePath in UniqueImageFilePath)
+            {
+                // Check if the unique image path is not in the used file paths
+                if (!UsedFilePath.Contains(uniqueImagePath))
+                {
+                    try
+                    {
+                        // Delete the file
+                        File.Delete(uniqueImagePath);
+                        Console.WriteLine($"File '{uniqueImagePath}' deleted successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error deleting file '{uniqueImagePath}': {ex.Message}");
+                    }
+                }
+            }
+        }
+
         private void MoveFilesToNewParentDirectory(List<string> parentPaths)
         {
+            string oldDirectory = GlobalVariable.OldFilePath;
+            if (oldDirectory != null)
+            {
+                parentPaths.Add(oldDirectory);
+            }
+            if (parentPaths == null)
+                return;
+            if (parentPaths.Count == 0) 
+                return;
+
             string newParentDirectory = GlobalVariable.FilePath;
+            
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            //string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
 
             try
             {
@@ -147,7 +192,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     string[] filesInOldParent = Directory.GetFiles(parentPath);
 
-                    // Move each file to the new parent directory
+                    // Move each JPEG image to the new parent directory
                     foreach (string filePathInOldParent in filesInOldParent)
                     {
                         // Get the file name
@@ -156,26 +201,46 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         // Combine the new parent directory with the file name to form the new path
                         string newFilePath = Path.Combine(newParentDirectory, fileName);
 
-                        if (!Directory.Exists(newFilePath))
+                        //MessageBox.Show((!Directory.Exists(newFilePath)).ToString());
+                        if (!Directory.Exists(newFilePath) && IsJpegImage(parentPath))
                         {
                             File.Move(filePathInOldParent, newFilePath);
                             Console.WriteLine($"File '{fileName}' moved successfully.");
                         }
                     }
-
-                    Console.WriteLine("All files moved successfully.");
                 }
+                GlobalVariable.SetFilePath(GlobalVariable.FilePath, null);
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine($"Error moving files: {ex.Message}");
-                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                MessageBox.Show("ข้อผิดพลาด : " + ex);
             }
         }
 
-        private void CleanupDuplicateData(List<SRResults> data, Dictionary<string, string> uniqueImage)
+        private static bool IsJpegImage(string filePath)
         {
-            if (data == null)
+            try
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] header = new byte[2];
+                    fs.Read(header, 0, 2);
+                    // Check if the file has the JPEG magic number
+                    return header[0] == 0xFF && header[1] == 0xD8;
+                }
+            }
+            catch
+            {
+                return false; // An error occurred or the file is not accessible
+            }
+        }
+
+        private void CleanupDuplicateData(List<SRResults> data, Dictionary<string, string> uniqueImage, out List<string> usedPath1)
+        {
+            usedPath1 = new List<string>();
+            if (data == null || uniqueImage == null)
                 return;
             foreach (SRResults result in data)
             {
@@ -189,6 +254,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     {
                         string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
                         paths[i] = newPath;
+                        usedPath1.Add(newPath);
                     }
                     else
                     {
@@ -196,40 +262,44 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         sha512s.RemoveAt(i);
                     }
                 }
-
                 result.FilePath = JsonConvert.SerializeObject(paths);
                 result.SHA512 = JsonConvert.SerializeObject(sha512s);
             }
         }
 
-        private void CleanupDuplicateData(Dictionary<string, List<RentHistory>> data, Dictionary<string, string> uniqueImage)
+        private void CleanupDuplicateData(Dictionary<string, List<RentHistory>> data, Dictionary<string, string> uniqueImage, out List<string> usedPath2)
         {
+            usedPath2 = new List<string>();
             if (data == null)
                 return;
             foreach (var entry in data)
             {
-                foreach (RentHistory rentHistory in entry.Value)
+                if (entry.Value != null)
                 {
-                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
-                    List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(rentHistory.SHA512);
-
-                    for (int i = paths.Count - 1; i >= 0; i--)
+                    foreach (RentHistory rentHistory in entry.Value)
                     {
-                        string sha512 = sha512s[i];
-                        if (uniqueImage.ContainsValue(sha512))
-                        {
-                            string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
-                            paths[i] = newPath;
-                        }
-                        else
-                        {
-                            paths.RemoveAt(i);
-                            sha512s.RemoveAt(i);
-                        }
-                    }
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
+                        List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(rentHistory.SHA512);
 
-                    rentHistory.ImageData = JsonConvert.SerializeObject(paths);
-                    rentHistory.SHA512 = JsonConvert.SerializeObject(sha512s);
+                        for (int i = paths.Count - 1; i >= 0; i--)
+                        {
+                            string sha512 = sha512s[i];
+                            if (uniqueImage.ContainsValue(sha512))
+                            {
+                                string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
+                                paths[i] = newPath;
+                                usedPath2.Add(newPath);
+                            }
+                            else
+                            {
+                                paths.RemoveAt(i);
+                                sha512s.RemoveAt(i);
+                            }
+                        }
+
+                        rentHistory.ImageData = JsonConvert.SerializeObject(paths);
+                        rentHistory.SHA512 = JsonConvert.SerializeObject(sha512s);
+                    }
                 }
             }
         }
@@ -238,13 +308,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void UpdatePathsInDatabase(List<SRResults> data, out List<string> parentPaths)
         {
             parentPaths = new List<string>();
-
             if (data != null)
             {
                 foreach (SRResults result in data)
                 {
                     List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
-
                     for (int i = paths.Count - 1; i >= 0; i--)
                     {
                         string oldParentPath = Path.GetDirectoryName(paths[i]);
@@ -253,7 +321,6 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             parentPaths.Add(oldParentPath);
                         }
-
                         string filename = Path.GetFileName(paths[i]);
                         string newPath = Path.Combine(GlobalVariable.FilePath, filename);
                         paths[i] = newPath;
@@ -272,25 +339,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 foreach (var entry in data)
                 {
-                    foreach (RentHistory rentHistory in entry.Value)
+                    if (entry.Value != null)
                     {
-                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
-
-                        for (int i = paths.Count - 1; i >= 0; i--)
+                        foreach (RentHistory rentHistory in entry.Value)
                         {
-                            string oldParentPath = Path.GetDirectoryName(paths[i]);
+                            List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
 
-                            if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
+                            for (int i = paths.Count - 1; i >= 0; i--)
                             {
-                                parentPaths.Add(oldParentPath);
+                                string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                                if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
+                                {
+                                    parentPaths.Add(oldParentPath);
+                                }
+                                string filename = Path.GetFileName(paths[i]);
+                                string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                                paths[i] = newPath;
                             }
-
-                            string filename = Path.GetFileName(paths[i]);
-                            string newPath = Path.Combine(GlobalVariable.FilePath, filename);
-                            paths[i] = newPath;
+                            rentHistory.ImageData = JsonConvert.SerializeObject(paths);
                         }
-
-                        rentHistory.ImageData = JsonConvert.SerializeObject(paths);
                     }
                 }
             }
@@ -489,7 +557,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("An error occurred: " + ex.Message);
                 }
                 if (ResultDataList.Count <= 0)
                 {
@@ -651,9 +719,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 {
                     MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
-
-            }
-            
+            }         
         }
 
         private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata, Dictionary<string, List<RentHistory>> DBdata2)
@@ -687,14 +753,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 foreach (KeyValuePair<string, List<RentHistory>> data in DBdata2)
                 {
-                    foreach (RentHistory mydata in data.Value)
+                    if (data.Value != null)
                     {
-                        List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(mydata.SHA512);
-                        foreach (string SHA512 in SHA512DB2)
+                        foreach (RentHistory mydata in data.Value)
                         {
-                            if (!SHA512DB.Contains(SHA512))
+                            List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(mydata.SHA512);
+                            foreach (string SHA512 in SHA512DB2)
                             {
-                                SHA512DB.Add(SHA512);
+                                if (!SHA512DB.Contains(SHA512))
+                                {
+                                    SHA512DB.Add(SHA512);
+                                }
                             }
                         }
                     }
@@ -764,7 +833,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
 
             return uniqueImageFiles;
@@ -947,13 +1016,36 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     public static class GlobalVariable
     {
         // Auto-implemented property to store some data
+        public static string OldFilePath { get; set; }
         public static string FilePath { get; set; }
         //public static string DefaultPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory"), "PictureData");
 
         // Add other methods and properties as needed
-        public static void SetFilePath(string path)
+        public static void SetFilePath(string path, string oldPath)
         {
             // Code to perform some action using MyVariable and FilePath
+            if (oldPath != null && Directory.Exists(oldPath))
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", oldPath);
+                OldFilePath = oldPath;
+            }
+            else
+            {
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\MDT_Inventory", true))
+                {
+                    if (key != null)
+                    {
+                        // Delete the specified value (subkey)
+                        key.DeleteValue("OldFilePath");
+                        OldFilePath = null;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Key not found");
+                        OldFilePath = null;
+                    }
+                }
+            }
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", path);
             FilePath = path;
         }
@@ -963,13 +1055,30 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             //GetTemporaryDataPath
             string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
             //GetExistingPath
-            object settingValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", null);
+            object currentpath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", null);
+            object oldpath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", null);
             string path;
-            if (settingValue != null)
+            if (currentpath != null)
             {
                 // Use the setting value
-                SetFilePath(settingValue.ToString());
-                path = settingValue.ToString();
+                if (oldpath != null)
+                {
+                    if (Directory.Exists(oldpath.ToString()))
+                    {
+                        SetFilePath(currentpath.ToString(), oldpath.ToString());
+                        path = currentpath.ToString();
+                    }
+                    else
+                    {
+                        SetFilePath(currentpath.ToString(), null);
+                        path = currentpath.ToString();
+                    }
+                }
+                else
+                {
+                    SetFilePath(currentpath.ToString(), null);
+                    path = currentpath.ToString();
+                }
                 // Do something with stringValue...
             }
             else
@@ -977,7 +1086,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Use the default value
                 string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
                 //
-                SetFilePath(DataFolder.ToString());
+                SetFilePath(DataFolder, null);
                 path = DataFolder;
             }
             //Create path if not exist.
