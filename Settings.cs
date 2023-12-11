@@ -45,12 +45,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
                 GlobalVariable.SetFilePath(DataFolder, oldpath);
                 //UpdatePictureFilePath();
-                MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน คุณจะต้องเริ่มการทำงานของโปรแกรมใหม่!\n" + "ที่อยู่ไฟล์ภาพล่าสุดอยู่ที่ : " + GlobalVariable.FilePath);
+                MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน!\n" + "ที่อยู่ไฟล์ภาพล่าสุดอยู่ที่ : " + GlobalVariable.FilePath);
                 FilePath_TXT.Text = GlobalVariable.FilePath;
                 // Restart the application
                 //Application.Restart();
                 // Exit the current instance
-                Environment.Exit(0);
+                // Environment.Exit(0);
             }
             else
             {
@@ -94,11 +94,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     string newpath = folderDialog.SelectedPath;
                     Console.WriteLine("Selected Folder: " + newpath);
                     GlobalVariable.SetFilePath(newpath, oldpath);
-                    MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน คุณจะต้องเริ่มการทำงานของโปรแกรมใหม่!\n" + "ที่อยู่ไฟล์ภาพล่าสุดอยู่ที่ : " + newpath);
+                    MessageBox.Show("ที่อยู่ไฟล์ภาพของคุณถูกเปลี่ยน!\n" + "ที่อยู่ไฟล์ภาพล่าสุดอยู่ที่ : " + newpath);
                     //FilePath_TXT.Text = path;
                     //Application.Restart();
                     // Exit the current instance
-                    Environment.Exit(0);
+                    // Environment.Exit(0);
                 }
                 else
                 {
@@ -113,6 +113,23 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 e.Cancel = true; // Prevent the form from closing
                 this.Hide();      // Hide the form instead
+            }
+        }
+
+        private void Repair_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show
+            ("ต้องการที่จะซ่อมแซมไฟล์ข้อมูลในครั้งต่อไปที่เปิดโปรแกรมหรือไม่?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
+            {
+                GlobalVariable.SetCleanup(true);
+            }
+            else
+            {
+                GlobalVariable.SetCleanup(false);
+                // User clicked "No" or closed the dialog, do nothing or handle as needed
             }
         }
     }

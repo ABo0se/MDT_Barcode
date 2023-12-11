@@ -40,8 +40,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             // Your code to be executed at the start of every minute
             //MessageBox.Show("Method called at: " + DateTime.Now);
-            
-            Program.service.CheckForDateChange(false);
+            Program.service.CheckForDateChange(false, false);
         }
 
         // If you need to stop the task at some point (for example, when closing the form)

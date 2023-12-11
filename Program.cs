@@ -22,6 +22,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Threading;
 using Org.BouncyCastle.Asn1.Mozilla;
 using System.Collections;
+using Google.Protobuf.WellKnownTypes;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -37,10 +38,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             // Run the main form
             service.previousDate = service.LoadLastUsedTime();
             // MessageBox.Show("Method called at: " + DateTime.Now);
-            service.CheckForDateChange(true);
+            ///////////////
+            GlobalVariable.GetCleanupData();
+            bool cleanup = GlobalVariable.cleanuppath;
+            ///////////////
+            service.CheckForDateChange(true, cleanup);
 
             Application.Run(new MainMenu());
-
         }
     }
 
@@ -48,7 +52,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
     {
         public DateTime previousDate;
 
-        public void CheckForDateChange(bool isstartprogram)
+        public void CheckForDateChange(bool isstartprogram, bool changefilepath)
         {
             DateTime currentDate = DateTime.Now.Date;
 
@@ -61,7 +65,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 //if (isstartprogram)
                 //    MessageBox.Show("We started program.");
 
-                PerformOverProvisioningActions(isstartprogram);
+                PerformOverProvisioningActions(isstartprogram, changefilepath);
                 
 
                 // Update the previous date
@@ -94,14 +98,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             return DateTime.MinValue;
         }
 
-        private void PerformOverProvisioningActions(bool isstartprogram)
+        private void PerformOverProvisioningActions(bool isstartprogram, bool changefilepath)
         {
             // Your logic for the new day goes here
             Console.WriteLine("Performing actions for the new day...");
             if (isstartprogram)
             {
                 GlobalVariable.GetPictureFilePath();
-                CreateDataBase();
+                CreateDataBase(); 
+            }
+            if (changefilepath)
+            {
                 UpdatePictureFilePath();
             }
             UpdateStatusDatabase();
@@ -1019,8 +1026,36 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         public static string OldFilePath { get; set; }
         public static string FilePath { get; set; }
         //public static string DefaultPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory"), "PictureData");
-
+        public static bool cleanuppath { get; set; }
         // Add other methods and properties as needed
+        public static void SetCleanup(bool mybool)
+        {
+            cleanuppath = mybool;
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "Cleanup", cleanuppath ? 1 : 0, RegistryValueKind.DWord);
+        }
+        public static void GetCleanupData()
+        {
+            try
+            {
+                object registryValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "Cleanup", null);
+
+                if (registryValue != null)
+                {
+                    int intValue = Convert.ToInt32(registryValue);
+                    bool myBoolValue = (intValue == 1);
+                    cleanuppath = myBoolValue;
+                }
+                else
+                {
+                    cleanuppath = false;
+                    //MessageBox.Show("Registry value not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show($"ข้อผิดพลาด : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public static void SetFilePath(string path, string oldPath)
         {
             // Code to perform some action using MyVariable and FilePath

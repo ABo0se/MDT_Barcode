@@ -569,14 +569,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Price_TB);
             BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Room_TB);
             BarcodeScanner2 barcodeScanner8 = new BarcodeScanner2(Note_TB);
-            barcodeScanner1.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner3.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner4.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner5.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner6.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner1.BarcodeScanned += BarcodeScanner_BarcodeScanned1;
+            barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
+            barcodeScanner3.BarcodeScanned += BarcodeScanner_BarcodeScanned3;
+            barcodeScanner4.BarcodeScanned += BarcodeScanner_BarcodeScanned4;
+            barcodeScanner5.BarcodeScanned += BarcodeScanner_BarcodeScanned5;
+            barcodeScanner6.BarcodeScanned += BarcodeScanner_BarcodeScanned6;
+            barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned7;
+            barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned8;
             /////////////////////////////////
             this.ActiveControl = null;
             if (selectedImages != null || TemporaryPathData != null)
@@ -621,9 +621,44 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             ConditionBoxEdit.SelectedIndex = conditionstate;
         }
 
-        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+        private void BarcodeScanner_BarcodeScanned1(object sender, BarcodeScannerEventArgs e)
         {
             SearchBarcodeData(e.Barcode, sender);
+        }
+        private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
+        {
+            ProductName_TB.Text = e.Barcode;
+            ProductName_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned3(object sender, BarcodeScannerEventArgs e)
+        {
+            Model_TB.Text = e.Barcode;
+            Model_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned4(object sender, BarcodeScannerEventArgs e)
+        {
+            Brand_TB.Text = e.Barcode;
+            Brand_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned5(object sender, BarcodeScannerEventArgs e)
+        {
+            Serial_TB.Text = e.Barcode;
+            Serial_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned6(object sender, BarcodeScannerEventArgs e)
+        {
+            Price_TB.Text = e.Barcode;
+            Price_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned7(object sender, BarcodeScannerEventArgs e)
+        {
+            Room_TB.Text = e.Barcode;
+            Room_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned8(object sender, BarcodeScannerEventArgs e)
+        {
+            Note_TB.Text = e.Barcode;
+            Note_TB.ForeColor = Color.Black;
         }
 
         private void SearchBarcodeData(string barcode, object sender)
@@ -663,34 +698,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     if (sender == BarcodeID_TB)
                     {
                         BarcodeID_TB.Text = barcode;
-                        //MessageBox.Show("Matched");
+                        BarcodeID_TB.ForeColor = Color.Black;
                     }
                     else
                     {
                         BarcodeID_TB.Text = barcode;
-                        ///
-                        ProductName_TB.Text = ProductNameDF;
-                        Model_TB.Text = ModelDF;
-                        Brand_TB.Text = BrandDF;
-                        Serial_TB.Text = SerialDF;
-                        Price_TB.Text = PriceDF;
-                        Room_TB.Text = RoomDF;
-                        Note_TB.Text = NoteDF;
-
                         BarcodeID_TB.ForeColor = Color.Black;
-                        ProductName_TB.ForeColor = Color.Gray;
-                        Model_TB.ForeColor = Color.Gray;
-                        Brand_TB.ForeColor = Color.Gray;
-                        Serial_TB.ForeColor = Color.Gray;
-                        Price_TB.ForeColor = Color.Gray;
-                        Room_TB.ForeColor = Color.Gray;
-                        Note_TB.ForeColor = Color.Gray;
-
-                        S_Have.Checked = false;
-                        S_Donthave.Checked = false;
-                        ConditionBoxEdit.SelectedIndex = -1;
-                        checkstate = -1;
-                        conditionstate = -1;
                     }
                 }
             }
