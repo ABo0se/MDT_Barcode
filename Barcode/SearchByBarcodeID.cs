@@ -21,10 +21,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
         {
             BarcodeText.Text = e.Barcode;
+            BarcodeText.Text.Replace(" ", "");
             SearchBarcodeData(BarcodeText.Text);
         }
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            BarcodeText.Text.Replace(" ", "");
             SearchBarcodeData(BarcodeText.Text);
         }
         private void SearchBarcodeData(string barcode)

@@ -1234,7 +1234,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                         SRResults excelData = new SRResults
                         {
-                            BarcodeNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 3].Text) ? "-" : worksheet1.Cells[row, 3].Text,
+                            BarcodeNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 3].Text) ? "-" : worksheet1.Cells[row, 3].Text.Replace(" ", ""),
                             Product_Name = string.IsNullOrEmpty(worksheet1.Cells[row, 4].Text) ? "-" : worksheet1.Cells[row, 4].Text,
                             ModelNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 5].Text) ? "-" : worksheet1.Cells[row, 5].Text,
                             Brand = string.IsNullOrEmpty(worksheet1.Cells[row, 6].Text) ? "-" : worksheet1.Cells[row, 6].Text,

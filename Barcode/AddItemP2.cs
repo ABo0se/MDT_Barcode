@@ -23,14 +23,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         //List<string> selectFilePath = new List<string>();
         int? selectingImage = null;
         /////////////////////////////////////////////
-        string BarcodeIDDF = "[ตัวอย่าง : 460650003296]";
-        string ProductNameDF = "[ตัวอย่าง : Occulus Quest 2023]";
-        string ModelDF = "[ตัวอย่าง : KD-43X8000H]";
-        string BrandDF = "[ตัวอย่าง : Google]";
-        string SerialDF = "[ตัวอย่าง : ABC12345XYZ]";
-        string PriceDF = "[ตัวอย่าง : 1000]";
+        string BarcodeIDDF = "[ตัวอย่าง : 65A1234567]";
+        string ProductNameDF = "[ตัวอย่าง : เครื่องคอมพิวเตอร์พกพา]";
+        string ModelDF = "[ตัวอย่าง : Gigabyte]";
+        string BrandDF = "[ตัวอย่าง : AORUS 15XE4]";
+        string SerialDF = "[ตัวอย่าง : M213D56T9]";
+        string PriceDF = "[ตัวอย่าง : 10000]";
         string RoomDF = "[ตัวอย่าง : 516]";
-        string NoteDF = "[ตัวอย่าง : วัสดุนี้ได้ซื้อในราคาพิเศษ]";
+        string NoteDF = "[ตัวอย่าง : พร้อมกระเป๋าและสายชาร์จ]";
         ////////////////////////////////////////////
         public AddItemP2()
         {
@@ -166,7 +166,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             List<string> dbData = new List<string>();
             string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
-
+            BarcodeID_TB.Text = BarcodeID_TB.Text.Replace(" ", "");
             try
             {
                 mySqlConnection.Open();

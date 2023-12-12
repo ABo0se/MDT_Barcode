@@ -24,13 +24,13 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         List<Image> selectedImages = new List<Image>();
         int? selectingImage = null;
         //DefaultValue
-        string defaultBarcode = "[ตัวอย่าง : 4250352120]";
-        string defaultProductName = "[ตัวอย่าง : Occulus Quest 2D]";
-        string defaultBorrowerName = "[ตัวอย่าง : นางแป้บ ซิลอน]";
+        string defaultBarcode = "[ตัวอย่าง : 65A1234567]";
+        string defaultProductName = "[ตัวอย่าง : เครื่องคอมพิวเตอร์พกพา]";
+        string defaultBorrowerName = "[ตัวอย่าง : นายเรียนดี มีวินัย]";
         string defaultPicstatus = "0 of 0";
         //DateTime defaultReturnDate = DateTime.Now;
-        string defaultcontact = "[ตัวอย่าง : 0878675185]";
-        string defaultnote = "[ตัวอย่าง : วัสดุนี้จะต้องถูกยืมเป็นระยะเวลานาน]";
+        string defaultcontact = "[ตัวอย่าง : 0812345678]";
+        string defaultnote = "";
         //TemporaryData
         RentResults TemporaryData;
         public AddBorrowItem()
