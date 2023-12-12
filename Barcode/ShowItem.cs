@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Security.Cryptography;
 using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
+using System.Runtime.ExceptionServices;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -243,7 +244,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            if (myData == null) return;
+            if (selectingImage == null) return;
+            if (selectedImages == null) return;
+            if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            {
+                List<string> path = JsonConvert.DeserializeObject<List<string>>(myData.FilePath);
+                try
+                {
+                    Process.Start("explorer.exe", $"/select, \"{path[(int)selectingImage]}\"");
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                }
+            }
         }
 
         private void CheckImageButtonBehavior()
@@ -421,6 +436,46 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             else
             {
                 MessageBox.Show("ไม่พบหน้าต่างยืม");
+            }
+        }
+
+        private void ShowPic_Enter(object sender, EventArgs e)
+        {
+            if (selectedImages == null)
+            { 
+                return; 
+            }
+            if (selectedImages.Count <= 0)
+            {
+                return;
+            }
+            if (selectedImages[(int)selectingImage] == null)
+            { 
+                return; 
+            }
+            else if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            {
+                pictureBox1.Image = Properties.Resources.search;
+            }
+        }
+
+        private void ShowPic_Leave(object sender, EventArgs e)
+        {
+            if (selectedImages == null)
+            {
+                ChangePicture(null);
+            }
+            if (selectedImages.Count <= 0)
+            {
+                ChangePicture(null);
+            }
+            else if (selectedImages[(int)selectingImage] != null)
+            {
+                pictureBox1.Image = selectedImages[(int)selectingImage];
+            }
+            else
+            {
+                ChangePicture(null);
             }
         }
     }

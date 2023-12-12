@@ -152,3 +152,4 @@ D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDTBarcodeScanner.csproj.CoreCompil
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDTBarcodeScanner.csproj.CopyComplete
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Debug\MDT Barcode Scanner.pdb
+D:\Coding Sector\MDTBarcodeScanner\obj\Debug\USB_Barcode_Scanner_Tutorial___C_Sharp.Settings.resources

@@ -37,8 +37,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.Settings = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ExportPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Search
@@ -161,12 +164,14 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label1.Location = new System.Drawing.Point(12, 585);
+            this.label1.Location = new System.Drawing.Point(38, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 27);
+            this.label1.Size = new System.Drawing.Size(209, 35);
             this.label1.TabIndex = 4;
             this.label1.Text = "Copyright @ 2023 by : ICE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -176,20 +181,52 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
-            this.label2.Location = new System.Drawing.Point(365, 585);
+            this.label2.Location = new System.Drawing.Point(364, 582);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 27);
             this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.3.3";
+            this.label2.Text = "V.1.3.4";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ExportPanel
+            // 
+            this.ExportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ExportPanel.AutoSize = true;
+            this.ExportPanel.ColumnCount = 2;
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.ExportPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ExportPanel.Controls.Add(this.Settings, 0, 0);
+            this.ExportPanel.Controls.Add(this.label1, 1, 0);
+            this.ExportPanel.Location = new System.Drawing.Point(12, 578);
+            this.ExportPanel.Name = "ExportPanel";
+            this.ExportPanel.RowCount = 1;
+            this.ExportPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.ExportPanel.Size = new System.Drawing.Size(250, 35);
+            this.ExportPanel.TabIndex = 16;
+            // 
+            // Settings
+            // 
+            this.Settings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Settings.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.Settings;
+            this.Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Settings.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Settings.Location = new System.Drawing.Point(0, 0);
+            this.Settings.Margin = new System.Windows.Forms.Padding(0);
+            this.Settings.Name = "Settings";
+            this.Settings.Size = new System.Drawing.Size(35, 35);
+            this.Settings.TabIndex = 17;
+            this.Settings.UseVisualStyleBackColor = true;
+            this.Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(428, 623);
+            this.Controls.Add(this.ExportPanel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -203,6 +240,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ExportPanel.ResumeLayout(false);
+            this.ExportPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +258,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel ExportPanel;
+        private System.Windows.Forms.Button Settings;
     }
 }

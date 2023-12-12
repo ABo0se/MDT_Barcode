@@ -407,46 +407,70 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             ////////////////////////////////////////////////////////////////
 
         }
-
         private void Adjust_Picture_Click(object sender, EventArgs e)
         {
-            ////////////
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All Files (*.*)|*.*";
             openFileDialog.Title = "Select Image(s) to Upload";
             openFileDialog.Multiselect = true; // Allow multiple file selection
 
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+
+            // Append a subfolder named "TemporaryPictureData"
+            string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
+            //MessageBox.Show(temporaryDataFolder);
+
+            if (!Directory.Exists(temporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(temporaryDataFolder);
+            }
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
-                    // Load the selected image into the PictureBox
+                    // Load the selected image into memory without saving to a file
                     System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    
-                    string extension = Path.GetExtension(selectedFilePath);
-                    if (extension != "jpg")
-                    {
-                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
-                        if (!File.Exists(outputPath))
-                        {
-                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            // You can add the selected image to a list to store multiple images
-                            selectedImage = System.Drawing.Image.FromFile(outputPath);
-                        }
-                    }
+
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
+                    string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                    string outputPath = Path.Combine(temporaryDataFolder, uniqueFileName);
+
+                    selectedImage.Save(outputPath, ImageFormat.Jpeg);
+
+                    // Add the saved image to the list
+                    selectedImage = Image.FromFile(outputPath);
+
+                    // Set the tag for each image
                     selectedImage.Tag = "NormalFile";
+
+                    // Add the selected image to the appropriate list in the selectedImages list
                     selectedImages[(int)selectedHistory].Add(selectedImage);
-                    selectedImages[(int)selectedHistory][selectedImages[(int)selectedHistory].Count - 1].Tag = "NormalFile";
+
                     // Optionally, you can display each image in a separate PictureBox
                 }
-                
-                //MessageBox.Show(((int)selectedHistory).ToString() + " " + (selectedImages[(int)selectedHistory].Count - 1).ToString());
-                selectingImage = selectedImages[(int)selectedHistory].Count - 1;
 
+                // Set the currently selected image index
+                int selectingImage = selectedImages[(int)selectedHistory].Count - 1;
+
+                // Perform necessary actions based on the added images
                 CheckImageButtonBehavior();
                 ChangePicture((int)selectedHistory, selectingImage);
             }
         }
+
+        private System.Drawing.Image ConvertToJpeg(System.Drawing.Image image)
+        {
+            // Convert the image to JPEG format
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return System.Drawing.Image.FromStream(memoryStream);
+            }
+        }
+
         private void Adjust_History_Click(object sender, EventArgs e)
         {
             if (TemporaryData == null)
@@ -465,8 +489,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 return;
             }
             // Create reference for image we used.
-            string saveDirectory = @"C:\BarcodeDatabaseImage";
-            Directory.CreateDirectory(saveDirectory);
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            string DataFolder = GlobalVariable.FilePath;
+            string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
+            if (!Directory.Exists(TemporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(TemporaryDataFolder);
+            }
+            if (!Directory.Exists(DataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(DataFolder);
+            }
 
             //List<string> oldsavedFilePaths = new List<string>();
             //List<string> oldSHA512hash = new List<string>();
@@ -530,15 +566,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             // If it's not a duplicate
                             if (!isDuplicated)
                             {
-                                int fileCounter = 1;
+                                string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                                string outputPath = Path.Combine(DataFolder, uniqueFileName);
                                 // Check if the file already exists and generate a unique name if needed
-                                while (File.Exists(Path.Combine(saveDirectory, fileName)))
-                                {
-                                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                                    fileCounter++;
-                                }
-                                ///////////////////
-                                string filePath = Path.Combine(saveDirectory, fileName);
+                                //while (File.Exists(Path.Combine(temporarySaveDirectory, fileName)))
+                                //{
+                                //    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                                //    fileCounter++;
+                                //}
+
+                                string filePath = outputPath;
 
                                 // Save the file
                                 selectedImages[i][j].Save(filePath, ImageFormat.Jpeg);
@@ -621,16 +658,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             finally
             {
                 mySqlConnection2.Close();
-                EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
-                if (EditItemForm != null)
-                {
-                    EditItemForm.Hide();
-                }
-                ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
-                if (QRForm != null)
-                {
-                    QRForm.SearchDatainDB();
-                }
+                //EditItem EditItemForm = MainMenu.initializedForms.Find(f => f is EditItem) as EditItem;
+                //if (EditItemForm != null)
+                //{
+                //    EditItemForm.Hide();
+                //}
+                //ManageQR QRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
+                //if (QRForm != null)
+                //{
+                //    QRForm.SearchDatainDB();
+                //}
             }
         }
         List<string> CalculateSHA512Checksum(List<Image> myImages)

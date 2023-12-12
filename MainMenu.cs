@@ -7,22 +7,52 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics.Metrics;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     public partial class MainMenu : Form
     {
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        //
         public static List<Form> initializedForms = new List<Form>();
         ///////////////////////////////////
         public MainMenu()
         {
             InitializeComponent();
             InitializeAllForms();
+
+            // Start a background thread to perform the task every minute
+            timer.Interval = 60000;
+            timer.Tick += MinuteTask;
+            timer.Start();
             //FontUtility.ApplyEmbeddedFont(this);
         }
 
-        
+        private void MinuteTask(object sender, EventArgs e)
+        {
+            UpdateTimer();
+        }
 
+        private void UpdateTimer()
+        {
+            // Your code to be executed at the start of every minute
+            //MessageBox.Show("Method called at: " + DateTime.Now);
+            Program.service.CheckForDateChange(false, false);
+        }
+
+        // If you need to stop the task at some point (for example, when closing the form)
+        private void StopTask()
+        {
+            if (Program.service != null)
+            {
+                Program.service.SaveLastUsedTime(DateTime.Now);
+                //MessageBox.Show("Method called at: " + DateTime.Now);
+            }
+            timer.Stop();
+        }
 
         private void InitializeAllForms()
         {
@@ -73,6 +103,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 form.Close();// Close all initialized forms
             }
+            StopTask();
             Application.Exit();
         }
 
@@ -97,6 +128,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (ManageQRForm != null)
             {
                 ManageQRForm.Show();
+            }
+        }
+
+        private void Settings_Click(object sender, EventArgs e)
+        {
+            Settings Setting = initializedForms.Find(f => f is Settings) as Settings;
+            if (Setting != null)
+            {
+                Setting.Show();
+                Setting.GetFilePath();
             }
         }
     }

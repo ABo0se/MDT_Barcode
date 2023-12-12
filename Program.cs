@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
-
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 using System.Configuration;
@@ -16,91 +15,104 @@ using System.Text;
 using System.Linq;
 using USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return;
 using Org.BouncyCastle.Ocsp;
-using iTextSharp.text.pdf.parser;
 using System.Text.Json;
 using PdfSharp.Pdf.Content.Objects;
-
+using Microsoft.Win32;
+using System.Diagnostics.Eventing.Reader;
+using System.Threading;
+using Org.BouncyCastle.Asn1.Mozilla;
+using System.Collections;
+using Google.Protobuf.WellKnownTypes;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
     static class Program
     {
+        public static DateChangeService service = new DateChangeService();
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Run the main form
+            service.previousDate = service.LoadLastUsedTime();
+            // MessageBox.Show("Method called at: " + DateTime.Now);
+            ///////////////
+            GlobalVariable.GetCleanupData();
+            bool cleanup = GlobalVariable.cleanuppath;
+            //MessageBox.Show(cleanup.ToString());
+            ///////////////
+            service.CheckForDateChange(true, cleanup);
+            GlobalVariable.SetCleanup(false);
 
-            // Initialize the host
-            using (var host = CreateHostBuilder().Build())
-            {
-                // Start the background service
-                var dateChangeService = host.Services.GetRequiredService<DateChangeService>();
-                dateChangeService.CheckForDateChange(); // Run the initial check
-                host.Start();
-
-                // Run the main form
-                Application.Run(new MainMenu());
-
-                // Stop the host when the main form is closed
-                host.StopAsync().Wait();
-            }
-        }
-
-        public static IHostBuilder CreateHostBuilder()
-        {
-            return Host.CreateDefaultBuilder()
-                .ConfigureServices((hostContext, services) =>
-                {
-                    services.AddSingleton<DateChangeService>();
-                    // Other service configurations...
-                });
+            Application.Run(new MainMenu());
         }
     }
 
-    public class DateChangeService : BackgroundService
+    public class DateChangeService
     {
-        private DateTime previousDate = DateTime.MinValue;
+        public DateTime previousDate;
 
-        protected override async Task ExecuteAsync(System.Threading.CancellationToken stoppingToken)
-        {
-            // Load the last used time when the service starts
-            LoadLastUsedTime();
-
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                CheckForDateChange();
-
-                // Save the last used time at regular intervals
-                SaveLastUsedTime();
-
-                // Adjust the interval as needed
-                await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
-            }
-        }
-
-        public void CheckForDateChange()
+        public void CheckForDateChange(bool isstartprogram, bool changefilepath)
         {
             DateTime currentDate = DateTime.Now.Date;
 
             // Check if the date has changed
-            if (currentDate > previousDate)
+            if (currentDate > previousDate || isstartprogram)
             {
-                // Perform actions for the new day
-                PerformOverProvisioningActions();
-                Console.WriteLine("The date has changed to the next day.");
+                //// Perform actions for the new day
+                //if (currentDate > previousDate)
+                //    MessageBox.Show("The date has changed to the next day.");
+                //if (isstartprogram)
+                //    MessageBox.Show("We started program.");
+
+                PerformOverProvisioningActions(isstartprogram, changefilepath);
+                
 
                 // Update the previous date
                 previousDate = currentDate;
             }
         }
+        public void SaveLastUsedTime(DateTime lastUsedTime)
+        {
+            //
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", lastUsedTime.ToString());
+        }
 
-        private void PerformOverProvisioningActions()
+        public DateTime LoadLastUsedTime()
+        {
+            object lutstring = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", null);
+            if (lutstring != null)
+            {
+                if (DateTime.TryParse(lutstring.ToString(), out DateTime lastUsedTime))
+                {
+                    return lastUsedTime;
+                }
+                else
+                {
+                    return DateTime.MinValue;
+                }
+            }
+
+            // Default value if key or value not found
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "LastUsedTime", DateTime.MinValue.ToString());
+            return DateTime.MinValue;
+        }
+
+        private void PerformOverProvisioningActions(bool isstartprogram, bool changefilepath)
         {
             // Your logic for the new day goes here
             Console.WriteLine("Performing actions for the new day...");
-            CreateDataBase();
-            UpdatePictureFilePath();
+            if (isstartprogram)
+            {
+                GlobalVariable.GetPictureFilePath();
+                CreateDataBase(); 
+            }
+            if (changefilepath)
+            {
+                UpdatePictureFilePath();
+            }
             UpdateStatusDatabase();
         }
 
@@ -108,47 +120,179 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             List<SRResults> temporaryData = GetDataFromDB();
             Dictionary<string, List<RentHistory>> temporaryData2 = GetDataFromDB2();
-            //if (temporaryData == null)
-            //{
-            //    return;
-            //}
+
+            // Change all paths in the database
+            UpdatePathsInDatabase(temporaryData, out List<string> ppath1);
+            UpdatePathsInDatabase(temporaryData2, out List<string> ppath2);
+
+            // Move files to the new parent directory
+            MoveFilesToNewParentDirectory(ppath1);
+            MoveFilesToNewParentDirectory(ppath2);
+
+            // Cleanup duplicate data
             Dictionary<string, string> uniqueImage = CleanUpImageData(temporaryData, temporaryData2);
+            List<string> UniqueImageFilePath = new List<string>(uniqueImage.Keys);
+            List<string> UsedFilePath = new List<string>();
 
-            if (temporaryData != null)
+            // Cleanup duplicate data in the database
+            CleanupDuplicateData(temporaryData, uniqueImage, out List<string> usedPath1);
+            CleanupDuplicateData(temporaryData2, uniqueImage, out List<string> usedPath2);
+
+            UsedFilePath = usedPath1.Union(usedPath2).ToList();
+
+            if (UniqueImageFilePath.Count > UsedFilePath.Count)
             {
-                foreach (SRResults data in temporaryData)
-                {
-                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(data.FilePath);
-                    List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(data.SHA512);
+                DeleteExcessiveFile(UniqueImageFilePath, UsedFilePath);
+            }
 
-                    for (int i = paths.Count - 1; i >= 0; i--)
+            // Edit the database records
+            EditmyDataBase(temporaryData);
+            EditmyDataBase2(temporaryData2);
+        }
+
+        private void DeleteExcessiveFile(List<string> UniqueImageFilePath, List<string> UsedFilePath)
+        {
+            foreach (string uniqueImagePath in UniqueImageFilePath)
+            {
+                // Check if the unique image path is not in the used file paths
+                if (!UsedFilePath.Contains(uniqueImagePath))
+                {
+                    try
                     {
-                        string sha512 = sha512s[i];
-                        if (uniqueImage.ContainsValue(sha512))
+                        // Delete the file
+                        File.Delete(uniqueImagePath);
+                        Console.WriteLine($"File '{uniqueImagePath}' deleted successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error deleting file '{uniqueImagePath}': {ex.Message}");
+                    }
+                }
+            }
+        }
+
+        private void MoveFilesToNewParentDirectory(List<string> parentPaths)
+        {
+            string oldDirectory = GlobalVariable.OldFilePath;
+            if (oldDirectory != null)
+            {
+                parentPaths.Add(oldDirectory);
+            }
+            
+            if (parentPaths == null)
+                return;
+            if (parentPaths.Count == 0) 
+                return;
+
+            string newParentDirectory = GlobalVariable.FilePath;
+            
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            //string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
+            try
+            {
+                // Create the new directory if it doesn't exist
+                if (!Directory.Exists(newParentDirectory))
+                {
+                    Directory.CreateDirectory(newParentDirectory);
+                }
+
+                // Get all files in the old parent directories
+                foreach (string parentPath in parentPaths)
+                {
+                    string[] filesInOldParent = Directory.GetFiles(parentPath);
+                    //MessageBox.Show("1");
+                    // Move each JPEG image to the new parent directory
+                    foreach (string filePathInOldParent in filesInOldParent)
+                    {
+                        //MessageBox.Show("2");
+                        // Get the file name
+                        string fileName = Path.GetFileName(filePathInOldParent);
+
+                        // Combine the new parent directory with the file name to form the new path
+                        string newFilePath = Path.Combine(newParentDirectory, fileName);
+
+                        //MessageBox.Show((!Directory.Exists(newFilePath)).ToString());
+                        //MessageBox.Show((!Directory.Exists(newFilePath)).ToString() + " / " + IsJpegImage(filePathInOldParent).ToString());
+                        if (!Directory.Exists(newFilePath) && IsJpegImage(filePathInOldParent))
                         {
-                            string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
-                            paths[i] = newPath;
-                        }
-                        else
-                        {
-                            paths.RemoveAt(i);
-                            sha512s.RemoveAt(i);
+                            //MessageBox.Show("3");
+                            File.Move(filePathInOldParent, newFilePath);
+                            //MessageBox.Show($"File '{fileName}' moved successfully.");
                         }
                     }
-
-                    data.FilePath = JsonConvert.SerializeObject(paths);
-                    data.SHA512 = JsonConvert.SerializeObject(sha512s);
                 }
-                EditmyDataBase(temporaryData);
+                GlobalVariable.SetFilePath(GlobalVariable.FilePath, null);
             }
-            if (temporaryData2 != null)
+
+            catch (Exception ex)
             {
-                foreach (KeyValuePair<string, List<RentHistory>> data in temporaryData2)
+                Console.WriteLine($"Error moving files: {ex.Message}");
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+            }
+        }
+
+        private static bool IsJpegImage(string filePath)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    foreach (RentHistory mydata in data.Value)
+                    byte[] header = new byte[2];
+                    fs.Read(header, 0, 2);
+                    // Check if the file has the JPEG magic number
+                    return header[0] == 0xFF && header[1] == 0xD8;
+                }
+            }
+            catch
+            {
+                return false; // An error occurred or the file is not accessible
+            }
+        }
+
+        private void CleanupDuplicateData(List<SRResults> data, Dictionary<string, string> uniqueImage, out List<string> usedPath1)
+        {
+            usedPath1 = new List<string>();
+            if (data == null || uniqueImage == null)
+                return;
+            foreach (SRResults result in data)
+            {
+                List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
+                List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(result.SHA512);
+
+                for (int i = paths.Count - 1; i >= 0; i--)
+                {
+                    string sha512 = sha512s[i];
+                    if (uniqueImage.ContainsValue(sha512))
                     {
-                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(mydata.ImageData);
-                        List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(mydata.SHA512);
+                        string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
+                        paths[i] = newPath;
+                        usedPath1.Add(newPath);
+                    }
+                    else
+                    {
+                        paths.RemoveAt(i);
+                        sha512s.RemoveAt(i);
+                    }
+                }
+                result.FilePath = JsonConvert.SerializeObject(paths);
+                result.SHA512 = JsonConvert.SerializeObject(sha512s);
+            }
+        }
+
+        private void CleanupDuplicateData(Dictionary<string, List<RentHistory>> data, Dictionary<string, string> uniqueImage, out List<string> usedPath2)
+        {
+            usedPath2 = new List<string>();
+            if (data == null)
+                return;
+            foreach (var entry in data)
+            {
+                if (entry.Value != null)
+                {
+                    foreach (RentHistory rentHistory in entry.Value)
+                    {
+                        List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
+                        List<string> sha512s = JsonConvert.DeserializeObject<List<string>>(rentHistory.SHA512);
 
                         for (int i = paths.Count - 1; i >= 0; i--)
                         {
@@ -157,6 +301,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             {
                                 string newPath = uniqueImage.First(kvp => kvp.Value == sha512).Key;
                                 paths[i] = newPath;
+                                usedPath2.Add(newPath);
                             }
                             else
                             {
@@ -165,11 +310,70 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             }
                         }
 
-                        mydata.ImageData = JsonConvert.SerializeObject(paths);
-                        mydata.SHA512 = JsonConvert.SerializeObject(sha512s);
+                        rentHistory.ImageData = JsonConvert.SerializeObject(paths);
+                        rentHistory.SHA512 = JsonConvert.SerializeObject(sha512s);
                     }
                 }
-                EditmyDataBase2(temporaryData2);
+            }
+        }
+
+
+        private void UpdatePathsInDatabase(List<SRResults> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+            if (data != null)
+            {
+                foreach (SRResults result in data)
+                {
+                    List<string> paths = JsonConvert.DeserializeObject<List<string>>(result.FilePath);
+                    for (int i = paths.Count - 1; i >= 0; i--)
+                    {
+                        string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                        if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
+                        {
+                            parentPaths.Add(oldParentPath);
+                        }
+                        string filename = Path.GetFileName(paths[i]);
+                        string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                        paths[i] = newPath;
+                    }
+
+                    result.FilePath = JsonConvert.SerializeObject(paths);
+                }
+            }
+        }
+
+        private void UpdatePathsInDatabase(Dictionary<string, List<RentHistory>> data, out List<string> parentPaths)
+        {
+            parentPaths = new List<string>();
+
+            if (data != null)
+            {
+                foreach (var entry in data)
+                {
+                    if (entry.Value != null)
+                    {
+                        foreach (RentHistory rentHistory in entry.Value)
+                        {
+                            List<string> paths = JsonConvert.DeserializeObject<List<string>>(rentHistory.ImageData);
+
+                            for (int i = paths.Count - 1; i >= 0; i--)
+                            {
+                                string oldParentPath = Path.GetDirectoryName(paths[i]);
+
+                                if (!parentPaths.Contains(oldParentPath) && Directory.Exists(oldParentPath))
+                                {
+                                    parentPaths.Add(oldParentPath);
+                                }
+                                string filename = Path.GetFileName(paths[i]);
+                                string newPath = Path.Combine(GlobalVariable.FilePath, filename);
+                                paths[i] = newPath;
+                            }
+                            rentHistory.ImageData = JsonConvert.SerializeObject(paths);
+                        }
+                    }
+                }
             }
         }
 
@@ -206,7 +410,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("An error occurred: " + ex.Message);
                 }
                 if (DataList.Count <= 0)
                 {
@@ -237,90 +441,99 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
         private void CreateDataBase()
         {
-            string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                connection.Open();
+                string connectionString = "server=127.0.0.1; user=root; password=; charset=utf8;";
 
-                // Create the first database
-                string firstDatabaseName = "barcodedatacollector";
-                string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
-
-                using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+
+                    // Create the first database
+                    string firstDatabaseName = "barcodedatacollector";
+                    string createFirstDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {firstDatabaseName}";
+
+                    using (MySqlCommand command = new MySqlCommand(createFirstDatabaseQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Create the second database
+                    string secondDatabaseName = "Borrow_Returning_System";
+                    string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
+
+                    using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Additional code for your application...
+
+                    // Close the connection
+                    connection.Close();
                 }
 
-                // Create the second database
-                string secondDatabaseName = "Borrow_Returning_System";
-                string createSecondDatabaseQuery = $"CREATE DATABASE IF NOT EXISTS {secondDatabaseName}";
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                using (MySqlCommand command = new MySqlCommand(createSecondDatabaseQuery, connection))
+                string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
+                using (MySqlConnection connection = new MySqlConnection(connectionString2))
                 {
-                    command.ExecuteNonQuery();
-                }
-
-                // Additional code for your application...
-
-                // Close the connection
-                connection.Close();
-            }
-
-            //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            string connectionString2 = "server=127.0.0.1; user=root; database=barcodedatacollector; password=; charset=utf8;";
-            using (MySqlConnection connection = new MySqlConnection(connectionString2))
-            {
-                connection.Open();
-                string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
-                                            "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                            "BarcodeNumber VARCHAR(100), " +
-                                            "Product_Name VARCHAR(100), " +
-                                            "Model_Name VARCHAR(100), " +
-                                            "Brand VARCHAR(100), " +
-                                            "Serial_Number VARCHAR(100), " +
-                                            "Price INT(30), " +
-                                            "Room VARCHAR(100), " +
-                                            "ImageData TEXT, " +
-                                            "MD5_ImageValidityChecksum TEXT, " +
-                                            "Note VARCHAR(200), " +
-                                            "Status INT(1), " +
-                                            "ITEM_CONDITION INT(1) " +
-                                            ");";
-
-                using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
-                {
-                    command.ExecuteNonQuery();
-                }
-                connection.Close();
-
-                string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
-                using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
-                {
-                    connection2.Open();
-                    string createTableQuery2 = "CREATE TABLE IF NOT EXISTS borrowing_info ( " +
+                    connection.Open();
+                    string createTableQuery = "CREATE TABLE IF NOT EXISTS information ( " +
                                                 "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                                                "Initial_Borrow_Time DATETIME, " +
-                                                "EST_Return_Date DATETIME, " +
-                                                "ACTUAL_Return_Date DATETIME, " +
                                                 "BarcodeNumber VARCHAR(100), " +
                                                 "Product_Name VARCHAR(100), " +
-                                                "Borrower_Name VARCHAR(100), " +
+                                                "Model_Name VARCHAR(100), " +
+                                                "Brand VARCHAR(100), " +
+                                                "Serial_Number VARCHAR(100), " +
+                                                "Price INT(30), " +
+                                                "Room VARCHAR(100), " +
                                                 "ImageData TEXT, " +
                                                 "MD5_ImageValidityChecksum TEXT, " +
-                                                "HistoryTextlog TEXT, " +
-                                                "Contact VARCHAR(200), " +
                                                 "Note VARCHAR(200), " +
-                                                "Status INT(1) " +
+                                                "Status INT(1), " +
+                                                "ITEM_CONDITION INT(1) " +
                                                 ");";
 
-                    using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
+                    using (MySqlCommand command = new MySqlCommand(createTableQuery, connection))
                     {
-                        command2.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                     }
-                    connection2.Close();
+                    connection.Close();
+
+                    string connectionString3 = "server=127.0.0.1; user=root; database=Borrow_Returning_System; password=; charset=utf8;";
+                    using (MySqlConnection connection2 = new MySqlConnection(connectionString3))
+                    {
+                        connection2.Open();
+                        string createTableQuery2 = "CREATE TABLE IF NOT EXISTS borrowing_info ( " +
+                                                    "Time DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                                                    "Initial_Borrow_Time DATETIME, " +
+                                                    "EST_Return_Date DATETIME, " +
+                                                    "ACTUAL_Return_Date DATETIME, " +
+                                                    "BarcodeNumber VARCHAR(100), " +
+                                                    "Product_Name VARCHAR(100), " +
+                                                    "Borrower_Name VARCHAR(100), " +
+                                                    "ImageData TEXT, " +
+                                                    "MD5_ImageValidityChecksum TEXT, " +
+                                                    "HistoryTextlog TEXT, " +
+                                                    "Contact VARCHAR(200), " +
+                                                    "Note VARCHAR(200), " +
+                                                    "Status INT(1) " +
+                                                    ");";
+
+                        using (MySqlCommand command2 = new MySqlCommand(createTableQuery2, connection2))
+                        {
+                            command2.ExecuteNonQuery();
+                        }
+                        connection2.Close();
+                    }
                 }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("ไม่พบฐานข้อมูล XAMPP ทำงานอยู่");
+                Environment.Exit(0);
+                //MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
         }
         private List<SRResults> GetDataFromDB()
@@ -357,7 +570,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("An error occurred: " + ex.Message);
                 }
                 if (ResultDataList.Count <= 0)
                 {
@@ -419,7 +632,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
                 ////////////////////////////////////////
                 //Now we update picture in rent borrow database.
@@ -465,7 +678,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
             }
         }
@@ -517,16 +730,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ข้อผิดพลาด : " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
-
-            }
-            
+            }         
         }
 
         private Dictionary<string, string> CleanUpImageData(List<SRResults> DBdata, Dictionary<string, List<RentHistory>> DBdata2)
         {
-            string directoryPath = @"C:\\BarcodeDatabaseImage";
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            //string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+            string DataFolder = GlobalVariable.FilePath;
+            string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
             Dictionary<string, string> imageFiles = new Dictionary<string, string>();
             Dictionary<string, string> uniqueImageFiles = new Dictionary<string, string>();
             Dictionary<string, string> deleteFiles = new Dictionary<string, string>();
@@ -551,14 +766,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 foreach (KeyValuePair<string, List<RentHistory>> data in DBdata2)
                 {
-                    foreach (RentHistory mydata in data.Value)
+                    if (data.Value != null)
                     {
-                        List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(mydata.SHA512);
-                        foreach (string SHA512 in SHA512DB2)
+                        foreach (RentHistory mydata in data.Value)
                         {
-                            if (!SHA512DB.Contains(SHA512))
+                            List<string> SHA512DB2 = System.Text.Json.JsonSerializer.Deserialize<List<string>>(mydata.SHA512);
+                            foreach (string SHA512 in SHA512DB2)
                             {
-                                SHA512DB.Add(SHA512);
+                                if (!SHA512DB.Contains(SHA512))
+                                {
+                                    SHA512DB.Add(SHA512);
+                                }
                             }
                         }
                     }
@@ -566,9 +784,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             }
             try
             {
-                if (Directory.Exists(directoryPath))
+                if (Directory.Exists(DataFolder))
                 {
-                    string[] files = Directory.GetFiles(directoryPath, "*.*", SearchOption.AllDirectories);
+                    string[] files = Directory.GetFiles(DataFolder, "*.*", SearchOption.AllDirectories);
 
                     foreach (string file in files)
                     {
@@ -614,12 +832,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 else
                 {
-                    Console.WriteLine("Directory not found: " + directoryPath);
+                    Console.WriteLine("Directory not found: " + DataFolder);
+                }
+                ////////////////////////////////////////////////////////
+                if (Directory.Exists(TemporaryDataFolder))
+                {
+                    DeleteAllPictures(TemporaryDataFolder);
+                }
+                else
+                {
+                    Console.WriteLine("Directory not found: " + TemporaryDataFolder);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
 
             return uniqueImageFiles;
@@ -711,7 +938,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                     return;
                     //return if error
                 }
@@ -719,9 +946,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 //Phase 2 use data
                 foreach (RentResults data in ResultDataList)
                 {
-                    if (data.EstReturnDate.Value.Date < DateTime.Now.Date && data.Status == 1)
+                    //MessageBox.Show("EST : " + data.EstReturnDate.Value.Date.ToString());
+                    //MessageBox.Show("NOW : " + DateTime.Now.Date.ToString());
+                    if (data.EstReturnDate.Value.Date < DateTime.Now.Date && data.Status == 0)
                     {
-                        data.Status = 2;
+                        //MessageBox.Show("Working");
+                        data.Status = 1;
                     }
                 }
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -768,25 +998,155 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("ข้อผิดพลาด : " + ex);
+                        MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                     }
                 }
             }
         }
 
-        private void SaveLastUsedTime()
-        {
-            // Save the last used time to persistent storage (e.g., application settings)
-            Properties.Settings.Default.LastUsedTime = DateTime.Now;
-            Properties.Settings.Default.Save();
-        }
 
-        private void LoadLastUsedTime()
+        public void DeleteAllPictures(string folderPath)
         {
-            // Load the last used time from persistent storage (e.g., application settings)
-            DateTime lastUsedTime = Properties.Settings.Default.LastUsedTime;
-            previousDate = lastUsedTime.Date;
-        }
+            try
+            {
+                // Get all file paths in the folder with a specific extension (e.g., ".jpg")
+                string[] pictureFiles = Directory.GetFiles(folderPath, "*.jpg");
 
+                foreach (string filePath in pictureFiles)
+                {
+                    // Delete each file
+                    File.Delete(filePath);
+                }
+
+                Console.WriteLine("All pictures deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting pictures: {ex.Message}");
+            }
+        }
+    }
+    public static class GlobalVariable
+    {
+        // Auto-implemented property to store some data
+        public static string OldFilePath { get; set; }
+        public static string FilePath { get; set; }
+        //public static string DefaultPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory"), "PictureData");
+        public static bool cleanuppath { get; set; }
+        // Add other methods and properties as needed
+        public static void SetCleanup(bool mybool)
+        {
+            cleanuppath = mybool;
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "Cleanup", cleanuppath ? 1 : 0, RegistryValueKind.DWord);
+        }
+        public static void GetCleanupData()
+        {
+            try
+            {
+                object registryValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "Cleanup", null);
+
+                if (registryValue != null)
+                {
+                    int intValue = Convert.ToInt32(registryValue);
+                    bool myBoolValue = (intValue == 1);
+                    cleanuppath = myBoolValue;
+                }
+                else
+                {
+                    cleanuppath = false;
+                    //MessageBox.Show("Registry value not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show($"ข้อผิดพลาด : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static void SetFilePath(string path, string oldPath)
+        {
+            // Code to perform some action using MyVariable and FilePath
+            if (oldPath != null && Directory.Exists(oldPath))
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", oldPath);
+                OldFilePath = oldPath;
+            }
+            else
+            {
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("Software\\MDT_Inventory", true))
+                {
+                    if (key != null)
+                    {
+                        // Delete the specified value (subkey)
+                        object registryValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", null);
+                        if (registryValue != null)
+                        {
+                            key.DeleteValue("OldFilePath");
+                            OldFilePath = null;
+                        }
+                        else
+                        {
+                            OldFilePath = null;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Key not found");
+                        OldFilePath = null;
+                    }
+                }
+            }
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", path);
+            FilePath = path;
+        }
+        public static void GetPictureFilePath()
+        {
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            //GetTemporaryDataPath
+            string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+            //GetExistingPath
+            object currentpath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "PictureFilePath", null);
+            object oldpath = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", null);
+            string path;
+            if (currentpath != null)
+            {
+                // Use the setting value
+                if (oldpath != null)
+                {
+                    if (Directory.Exists(oldpath.ToString()))
+                    {
+                        SetFilePath(currentpath.ToString(), oldpath.ToString());
+                        path = currentpath.ToString();
+                    }
+                    else
+                    {
+                        SetFilePath(currentpath.ToString(), null);
+                        path = currentpath.ToString();
+                    }
+                }
+                else
+                {
+                    SetFilePath(currentpath.ToString(), null);
+                    path = currentpath.ToString();
+                }
+                // Do something with stringValue...
+            }
+            else
+            {
+                // Use the default value
+                string DataFolder = Path.Combine(applicationDataFolder, "PictureData");
+                //
+                SetFilePath(DataFolder, null);
+                path = DataFolder;
+            }
+            //Create path if not exist.
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (!Directory.Exists(temporaryDataFolder))
+            {
+                Directory.CreateDirectory(temporaryDataFolder);
+            }
+        }
     }
 }

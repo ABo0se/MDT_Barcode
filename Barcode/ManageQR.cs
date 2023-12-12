@@ -389,7 +389,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("การลบข้อมูลสำเร็๗.");
+                        MessageBox.Show("การลบข้อมูลสำเร็จ.");
                         //MessageBox.Show("Data deleted successfully!");
                     }
                     else
@@ -447,271 +447,279 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void Export_Excel_Click(object sender, EventArgs e)
         {
             string filePath = "";
-
-            try
+            bool successful = true;
+            // Use a SaveFileDialog to prompt the user for the save location
+            SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                string saveDirectory = @"C:\ExcelBarcodeDatabase";
-                Directory.CreateDirectory(saveDirectory);
-                string baseFileName = "รายละเอียดครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"; // Base file name
-                string fileName = baseFileName;
-                int fileCounter = 1;
-                while (File.Exists(Path.Combine(saveDirectory, fileName)))
+                Title = "Save File",
+                Filter = "All Files|*.*", // You can set specific file filters here
+                FileName = "รายละเอียดครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                    fileCounter++;
-                }
-                filePath = Path.Combine(saveDirectory, fileName);
+                    filePath = saveFileDialog.FileName;
 
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-                using (var package = new ExcelPackage(new FileInfo(filePath)))
-                {
-                    var worksheet1 = package.Workbook.Worksheets.Add("Data");
-
-                    int rowCount = TemporaryData.Count; // Use TemporaryData count
-                    int colCount = 13; // Set the number of columns based on your SRResults object
-
-                    // Set the font properties for the entire worksheet
-                    worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
-                    worksheet1.Cells.Style.Font.Size = 12.0f;
-
-                    // Header row
-                    for (int col = 1; col <= colCount; col++)
+                    if (!filePath.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
                     {
-                        var headerCell1 = worksheet1.Cells[1, col];
-                        // Map the header cell to the SRResults properties
-                        switch (col)
-                        {
-                            case 1:
-                                headerCell1.Value = "ลำดับที่";
-                                break;
-                            case 2:
-                                headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
-                                break;
-                            case 3:
-                                headerCell1.Value = "หมายเลขครุภัณฑ์";
-                                break;
-                            case 4:
-                                headerCell1.Value = "ชื่อผลิตภัณฑ์";
-                                break;
-                            case 5:
-                                headerCell1.Value = "ยี่ห้อ";
-                                break;
-                            case 6:
-                                headerCell1.Value = "หมายเลขรุ่น";
-                                break;
-                            case 7:
-                                headerCell1.Value = "S/N";
-                                break;
-                            case 8:
-                                headerCell1.Value = "ราคา";
-                                break;
-                            case 9:
-                                headerCell1.Value = "ประจำอยู่ที่";
-                                break;
-                            case 10:
-                                headerCell1.Value = "รายละเอียด";
-                                break;
-                            case 11:
-                                headerCell1.Value = "สถานะ";
-                                break;
-                            case 12:
-                                headerCell1.Value = "สภาพ";
-                                break;
-                        }
-                        headerCell1.Style.Font.Bold = true;
-                        headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                        headerCell1.Style.Font.Size = 14.0f;
+                        filePath += ".xlsx";
                     }
 
-                    // Data rows for worksheet1 (Data)
-                    for (int row = 0; row < rowCount; row++)
+                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                    using (var package = new ExcelPackage(new FileInfo(filePath)))
                     {
-                        for (int col = 0; col < colCount; col++)
+                        var worksheet1 = package.Workbook.Worksheets.Add("Data");
+
+                        int rowCount = TemporaryData.Count; // Use TemporaryData count
+                        int colCount = 13; // Set the number of columns based on your SRResults object
+
+                        // Set the font properties for the entire worksheet
+                        worksheet1.Cells.Style.Font.Name = "TH Sarabun New";
+                        worksheet1.Cells.Style.Font.Size = 12.0f;
+
+                        // Header row
+                        for (int col = 1; col <= colCount; col++)
                         {
-                            var cell1 = worksheet1.Cells[row + 2, col + 1];
-                            // Map the cell to the corresponding SRResults property
+                            var headerCell1 = worksheet1.Cells[1, col];
+                            // Map the header cell to the SRResults properties
                             switch (col)
                             {
-                                case 0:
-                                    cell1.Value = row + 1;
-                                    break;
                                 case 1:
-                                    cell1.Value = TemporaryData[row].FormattedDate;
+                                    headerCell1.Value = "ลำดับที่";
                                     break;
                                 case 2:
-                                    cell1.Value = TemporaryData[row].BarcodeNumber;
+                                    headerCell1.Value = "วันที่บันทึกในฐานข้อมูล";
                                     break;
                                 case 3:
-                                    cell1.Value = TemporaryData[row].Product_Name;
+                                    headerCell1.Value = "หมายเลขครุภัณฑ์";
                                     break;
                                 case 4:
-                                    cell1.Value = TemporaryData[row].ModelNumber;
+                                    headerCell1.Value = "ชื่อผลิตภัณฑ์";
                                     break;
                                 case 5:
-                                    cell1.Value = TemporaryData[row].Brand;
+                                    headerCell1.Value = "ยี่ห้อ";
                                     break;
                                 case 6:
-                                    cell1.Value = TemporaryData[row].SerialNum;
+                                    headerCell1.Value = "หมายเลขรุ่น";
                                     break;
                                 case 7:
-                                    cell1.Value = TemporaryData[row].Price;
+                                    headerCell1.Value = "S/N";
                                     break;
                                 case 8:
-                                    cell1.Value = TemporaryData[row].Room;
+                                    headerCell1.Value = "ราคา";
                                     break;
                                 case 9:
-                                    cell1.Value = TemporaryData[row].Description;
+                                    headerCell1.Value = "ประจำอยู่ที่";
                                     break;
                                 case 10:
-                                    {
-                                        string tempstatus;
-                                        switch (TemporaryData[row].Status)
-                                        {
-                                            case -1:
-                                                {
-                                                    tempstatus = "ไม่พบข้อมูล";
-                                                    break;
-                                                }
-                                            case 0:
-                                                {
-                                                    tempstatus = "มีให้ตรวจสอบ";
-                                                    break;
-                                                }
-                                            case 1:
-                                                {
-                                                    tempstatus = "ไม่มีให้ตรวจสอบ";
-                                                    break;
-                                                }
-                                            default:
-                                                {
-                                                    tempstatus = "ไม่พบข้อมูล";
-                                                    break;
-                                                }
-                                        }
-                                        cell1.Value = tempstatus;
-                                        break;
-                                    }
+                                    headerCell1.Value = "รายละเอียด";
+                                    break;
                                 case 11:
-                                    {
-                                        string tempcondition;
-                                        switch (TemporaryData[row].Condition)
-                                        {
-                                            case -1:
-                                                {
-                                                    tempcondition = "ไม่พบข้อมูล";
-                                                    break;
-                                                }
-                                            case 0:
-                                                {
-                                                    tempcondition = "ใช้งานได้";
-                                                    break;
-                                                }
-                                            case 1:
-                                                {
-                                                    tempcondition = "ชำรุดรอซ่อม";
-                                                    break;
-                                                }
-                                            case 2:
-                                                {
-                                                    tempcondition = "สิ้นสภาพ";
-                                                    break;
-                                                }
-                                            case 3:
-                                                {
-                                                    tempcondition = "สูญหาย";
-                                                    break;
-                                                }
-                                            case 4:
-                                                {
-                                                    tempcondition = "จำหน่ายแล้ว";
-                                                    break;
-                                                }
-                                            case 5:
-                                                {
-                                                    tempcondition = "โอนแล้ว";
-                                                    break;
-                                                }
-                                            case 6:
-                                                {
-                                                    tempcondition = "อื่นๆ";
-                                                    break;
-                                                }
-                                            default:
-                                                {
-                                                    tempcondition = "ไม่พบข้อมูล";
-                                                    break;
-                                                }
-                                        }
-                                        cell1.Value = tempcondition;
-                                        break;
-                                    }
-                                }
-                            // Align the first column to the middle
-                            if (col == 0 || col == 1)
-                            {
-                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                                cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                    headerCell1.Value = "สถานะ";
+                                    break;
+                                case 12:
+                                    headerCell1.Value = "สภาพ";
+                                    break;
                             }
-                            else
+                            headerCell1.Style.Font.Bold = true;
+                            headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            headerCell1.Style.Font.Size = 14.0f;
+                        }
+
+                        // Data rows for worksheet1 (Data)
+                        for (int row = 0; row < rowCount; row++)
+                        {
+                            for (int col = 0; col < colCount; col++)
                             {
-                                cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                var cell1 = worksheet1.Cells[row + 2, col + 1];
+                                // Map the cell to the corresponding SRResults property
+                                switch (col)
+                                {
+                                    case 0:
+                                        cell1.Value = row + 1;
+                                        break;
+                                    case 1:
+                                        cell1.Value = TemporaryData[row].FormattedDate;
+                                        break;
+                                    case 2:
+                                        cell1.Value = TemporaryData[row].BarcodeNumber;
+                                        break;
+                                    case 3:
+                                        cell1.Value = TemporaryData[row].Product_Name;
+                                        break;
+                                    case 4:
+                                        cell1.Value = TemporaryData[row].ModelNumber;
+                                        break;
+                                    case 5:
+                                        cell1.Value = TemporaryData[row].Brand;
+                                        break;
+                                    case 6:
+                                        cell1.Value = TemporaryData[row].SerialNum;
+                                        break;
+                                    case 7:
+                                        cell1.Value = TemporaryData[row].Price;
+                                        break;
+                                    case 8:
+                                        cell1.Value = TemporaryData[row].Room;
+                                        break;
+                                    case 9:
+                                        cell1.Value = TemporaryData[row].Description;
+                                        break;
+                                    case 10:
+                                        {
+                                            string tempstatus;
+                                            switch (TemporaryData[row].Status)
+                                            {
+                                                case -1:
+                                                    {
+                                                        tempstatus = "ไม่พบข้อมูล";
+                                                        break;
+                                                    }
+                                                case 0:
+                                                    {
+                                                        tempstatus = "มีให้ตรวจสอบ";
+                                                        break;
+                                                    }
+                                                case 1:
+                                                    {
+                                                        tempstatus = "ไม่มีให้ตรวจสอบ";
+                                                        break;
+                                                    }
+                                                default:
+                                                    {
+                                                        tempstatus = "ไม่พบข้อมูล";
+                                                        break;
+                                                    }
+                                            }
+                                            cell1.Value = tempstatus;
+                                            break;
+                                        }
+                                    case 11:
+                                        {
+                                            string tempcondition;
+                                            switch (TemporaryData[row].Condition)
+                                            {
+                                                case -1:
+                                                    {
+                                                        tempcondition = "ไม่พบข้อมูล";
+                                                        break;
+                                                    }
+                                                case 0:
+                                                    {
+                                                        tempcondition = "ใช้งานได้";
+                                                        break;
+                                                    }
+                                                case 1:
+                                                    {
+                                                        tempcondition = "ชำรุดรอซ่อม";
+                                                        break;
+                                                    }
+                                                case 2:
+                                                    {
+                                                        tempcondition = "สิ้นสภาพ";
+                                                        break;
+                                                    }
+                                                case 3:
+                                                    {
+                                                        tempcondition = "สูญหาย";
+                                                        break;
+                                                    }
+                                                case 4:
+                                                    {
+                                                        tempcondition = "จำหน่ายแล้ว";
+                                                        break;
+                                                    }
+                                                case 5:
+                                                    {
+                                                        tempcondition = "โอนแล้ว";
+                                                        break;
+                                                    }
+                                                case 6:
+                                                    {
+                                                        tempcondition = "อื่นๆ";
+                                                        break;
+                                                    }
+                                                default:
+                                                    {
+                                                        tempcondition = "ไม่พบข้อมูล";
+                                                        break;
+                                                    }
+                                            }
+                                            cell1.Value = tempcondition;
+                                            break;
+                                        }
+                                }
+                                // Align the first column to the middle
+                                if (col == 0 || col == 1)
+                                {
+                                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                    cell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                }
+                                else
+                                {
+                                    cell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                }
                             }
                         }
+
+                        // Auto-size columns based on the content for worksheet1 (Data)
+                        for (int col = 1; col <= colCount; col++)
+                        {
+                            worksheet1.Column(col).AutoFit();
+                        }
+
+                        // Create a new worksheet2 named "ImageData"
+                        var worksheet2 = package.Workbook.Worksheets.Add("ImageData");
+
+                        // Set the font properties for the entire worksheet2
+                        worksheet2.Cells.Style.Font.Name = "TH Sarabun New";
+                        worksheet2.Cells.Style.Font.Size = 12.0f;
+
+                        // Header row for worksheet2
+                        var headerCell2 = worksheet2.Cells[1, 1];
+                        headerCell2.Value = "FilePath";
+                        headerCell2.Style.Font.Bold = true;
+                        headerCell2.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        headerCell2.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        headerCell2.Style.Font.Size = 14.0f;
+
+                        var headerCell3 = worksheet2.Cells[1, 2];
+                        headerCell3.Value = "SHA512";
+                        headerCell3.Style.Font.Bold = true;
+                        headerCell3.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        headerCell3.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        headerCell3.Style.Font.Size = 14.0f;
+
+                        // Data rows for worksheet2 (ImageData)
+                        for (int i = 0; i < TemporaryData.Count; i++)
+                        {
+                            var cell2 = worksheet2.Cells[i + 2, 1];
+                            cell2.Value = TemporaryData[i].FilePath;
+                            var cell3 = worksheet2.Cells[i + 2, 2];
+                            cell3.Value = TemporaryData[i].SHA512;
+                        }
+
+                        // Auto-size columns based on the content for worksheet2 (ImageData)
+                        worksheet2.Column(1).AutoFit();
+
+                        package.Save();
+                        //MessageBox.Show(filePath);
                     }
-
-                    // Auto-size columns based on the content for worksheet1 (Data)
-                    for (int col = 1; col <= colCount; col++)
-                    {
-                        worksheet1.Column(col).AutoFit();
-                    }
-
-                    // Create a new worksheet2 named "ImageData"
-                    var worksheet2 = package.Workbook.Worksheets.Add("ImageData");
-
-                    // Set the font properties for the entire worksheet2
-                    worksheet2.Cells.Style.Font.Name = "TH Sarabun New";
-                    worksheet2.Cells.Style.Font.Size = 12.0f;
-
-                    // Header row for worksheet2
-                    var headerCell2 = worksheet2.Cells[1, 1];
-                    headerCell2.Value = "FilePath";
-                    headerCell2.Style.Font.Bold = true;
-                    headerCell2.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    headerCell2.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                    headerCell2.Style.Font.Size = 14.0f;
-
-                    var headerCell3 = worksheet2.Cells[1, 2];
-                    headerCell3.Value = "SHA512";
-                    headerCell3.Style.Font.Bold = true;
-                    headerCell3.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    headerCell3.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-                    headerCell3.Style.Font.Size = 14.0f;
-
-                    // Data rows for worksheet2 (ImageData)
-                    for (int i = 0; i < TemporaryData.Count; i++)
-                    {
-                        var cell2 = worksheet2.Cells[i + 2, 1];
-                        cell2.Value = TemporaryData[i].FilePath;
-                        var cell3 = worksheet2.Cells[i + 2, 2];
-                        cell3.Value = TemporaryData[i].SHA512;
-                    }
-
-                    // Auto-size columns based on the content for worksheet2 (ImageData)
-                    worksheet2.Column(1).AutoFit();
-
-                    package.Save();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-            finally
-            {
-                MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! ที่อยู่ของไฟล์คุณอยู่ที่ " + filePath);
+                catch (Exception ex)
+                {
+                    successful = false;
+                    MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
+                    return;
+                }
+                finally
+                {
+                    if (successful)
+                    MessageBox.Show("นำข้อมูลออกเป็นไฟล์ Excel สำเร็จ! ที่อยู่ของไฟล์คุณอยู่ที่ " + filePath);
+                }
             }
         }
 
@@ -851,6 +859,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         {
             //bool importfile;
             bool isimportsuccess = true;
+            if (resultlist == null)
+            {
+                return;
+            }
             ////////
             //DialogResult result2 = MessageBox.Show
             //            ("ต้องการที่จะนำเข้าข้อมูลที่อยู่ไฟล์ภาพหรือไม่?\n"
@@ -1064,134 +1076,233 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             List<SRResults> excelDataList = new List<SRResults>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             bool hasWarnings = false;
+            string warningmessage = "";
 
             using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
             {
                 var worksheet1 = package.Workbook.Worksheets["Data"]; // Assuming data is on the first worksheet
                 var worksheet2 = package.Workbook.Worksheets["ImageData"];
-
-                for (int row = 2; row <= worksheet1.Dimension.End.Row; row++) // Assuming the first row contains headers
+                bool isformcorrect = true;
+                for (int col = 1; col <= worksheet1.Dimension.End.Column; col++)
                 {
-                    int tempstatus = -1;
-                    int tempcondition = -1;
-                    switch (worksheet1.Cells[row, 11].Text)
+                    switch (col)
                     {
-                        case "ไม่พบข้อมูล":
-                            tempstatus = -1;
-                            break;
-                        case "มีให้ตรวจสอบ":
-                            tempstatus = 0;
-                            break;
-                        case "ไม่มีให้ตรวจสอบ":
-                            tempstatus = 1;
-                            break;
-                        default:
-                            tempstatus = -1;
-                            break;
-                    }
-                    switch (worksheet1.Cells[row, 12].Text)
-                    {
-                        case "ไม่พบข้อมูล":
-                            tempcondition = -1;
-                            break;
-                        case "ใช้งานได้":
-                            tempcondition = 0;
-                            break;
-                        case "ชำรุดรอซ่อม":
-                            tempcondition = 1;
-                            break;
-                        case "สิ้นสภาพ":
-                            tempcondition = 2;
-                            break;
-                        case "สูญหาย":
-                            tempcondition = 3;
-                            break;
-                        case "จำหน่ายแล้ว":
-                            tempcondition = 4;
-                            break;
-                        case "โอนแล้ว":
-                            tempcondition = 5;
-                            break;
-                        case "อื่นๆ":
-                            tempcondition = 6;
-                            break;
-                        default:
-                            tempcondition = -1;
-                            break;
-                    }
-
-                    // Convert the formatted date string to DateTime
-                    string formattedDateStr = worksheet1.Cells[row, 2].Text; // Assuming the date is in column 10
-                    DateTime formattedDate;
-
-                    if (DateTime.TryParseExact(formattedDateStr, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out formattedDate))
-                    {
-                        // The value was successfully parsed
-                    }
-                    else
-                    {
-                        // Parsing failed, use DateTime.Now as a fallback
-                        formattedDate = DateTime.Now;
-                    }
-
-                    string formattedDateStrForDisplay = formattedDate.ToString("dd-MM-yyyy HH:mm:ss"); // Format for display
-                    string warningmessage = "";
-
-                    SRResults excelData = new SRResults
-                    {
-                        BarcodeNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 3].Text) ? "-" : worksheet1.Cells[row, 3].Text,
-                        Product_Name = string.IsNullOrEmpty(worksheet1.Cells[row, 4].Text) ? "-" : worksheet1.Cells[row, 4].Text,
-                        ModelNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 5].Text) ? "-" : worksheet1.Cells[row, 5].Text,
-                        Brand = string.IsNullOrEmpty(worksheet1.Cells[row, 6].Text) ? "-" : worksheet1.Cells[row, 6].Text,
-                        SerialNum = string.IsNullOrEmpty(worksheet1.Cells[row, 7].Text) ? "-" : worksheet1.Cells[row, 7].Text,
-                        Price = string.IsNullOrEmpty(worksheet1.Cells[row, 8].Text) ? "0" : worksheet1.Cells[row, 8].Text,
-                        Room = string.IsNullOrEmpty(worksheet1.Cells[row, 9].Text) ? "-" : worksheet1.Cells[row, 9].Text,
-                        Description = string.IsNullOrEmpty(worksheet1.Cells[row, 10].Text) ? "-" : worksheet1.Cells[row, 10].Text,
-                        FilePath = string.IsNullOrEmpty(worksheet2.Cells[row, 1].Text) ? "[]" : worksheet2.Cells[row, 1].Text,
-                        SHA512 = string.IsNullOrEmpty(worksheet2.Cells[row, 2].Text) ? "[]" : worksheet2.Cells[row, 2].Text,
-                        Status = tempstatus,
-                        Condition = tempcondition,
-                        Date = formattedDate,
-                        FormattedDate = formattedDateStrForDisplay
-                    };
-                    if (excelData.BarcodeNumber == "-" || excelData.Product_Name == "-")
-                    {
-                        warningmessage += "ข้อมูลของหมายเลขครุภัณฑ์ และ ชื่อผลิตภัณฑ์ ต้องถูกบันทึกไว้ในข้อมูลที่จะนำเข้ามา\n";
-                    }
-                    if (excelData.BarcodeNumber.Length > 50)
-                    {
-                        warningmessage += "ความยาวหมายเลขครุภัณฑ์ห้ามเกิน 50 ตัวอักษร\n";
-                    }
-                    if (excelData.Product_Name.Length > 100 || excelData.ModelNumber.Length > 100 || excelData.Brand.Length > 100 ||
-                        excelData.SerialNum.Length > 100 || excelData.Room.Length > 100)
-                    {
-                        warningmessage += "ความยาวข้อมูลครุภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
-                    }
-                    if (excelData.Price.Length > 30)
-                    {
-                        warningmessage += "ความยาวข้อมูลราคาห้ามเกิน 30 ตัวอักษร\n";
-                    }
-                    if (excelData.Description.Length > 200)
-                    {
-                        warningmessage += "ความยาวรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
-                    }
-                    if (!int.TryParse(excelData.Price, out int result))
-                    {
-                        warningmessage += "กรุณากรอกราคาเป็นตัวเลขเท่านั้น\n";
-                    }
-                    if (warningmessage != "")
-                    {
-                        MessageBox.Show(warningmessage);
-                        excelDataList.Clear();
-                        hasWarnings = true;
-                        break; // Exit the loop immediately when a warning is encountered
-                    }
-                    else
-                    {
-                        excelDataList.Add(excelData);
+                        case 1:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "ลำดับที่")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "วันที่บันทึกในฐานข้อมูล")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "หมายเลขครุภัณฑ์")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 4:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "ชื่อผลิตภัณฑ์")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 5:
+                            {
+                                //MessageBox.Show(worksheet1.Cells[1, col].Text);
+                                if (worksheet1.Cells[1, col].Text != "ยี่ห้อ")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 6:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "หมายเลขรุ่น")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 7:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "S/N")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 8:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "ราคา")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 9:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "ประจำอยู่ที่")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 10:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "รายละเอียด")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 11:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "สถานะ")
+                                    isformcorrect = false;
+                                break;
+                            }
+                        case 12:
+                            {
+                                if (worksheet1.Cells[1, col].Text != "สภาพ")
+                                    isformcorrect = false;
+                                break;
+                            }
                     }
                 }
+                //MessageBox.Show(isformcorrect.ToString());
+                if (isformcorrect)
+                {
+                    int myrow = 0;
+                    for (int row = 2; row <= worksheet1.Dimension.End.Row; row++) // Assuming the first row contains headers
+                    {
+                        int tempstatus = -1;
+                        int tempcondition = -1;
+                        switch (worksheet1.Cells[row, 11].Text)
+                        {
+                            case "ไม่พบข้อมูล":
+                                tempstatus = -1;
+                                break;
+                            case "มีให้ตรวจสอบ":
+                                tempstatus = 0;
+                                break;
+                            case "ไม่มีให้ตรวจสอบ":
+                                tempstatus = 1;
+                                break;
+                            default:
+                                tempstatus = -1;
+                                break;
+                        }
+                        switch (worksheet1.Cells[row, 12].Text)
+                        {
+                            case "ไม่พบข้อมูล":
+                                tempcondition = -1;
+                                break;
+                            case "ใช้งานได้":
+                                tempcondition = 0;
+                                break;
+                            case "ชำรุดรอซ่อม":
+                                tempcondition = 1;
+                                break;
+                            case "สิ้นสภาพ":
+                                tempcondition = 2;
+                                break;
+                            case "สูญหาย":
+                                tempcondition = 3;
+                                break;
+                            case "จำหน่ายแล้ว":
+                                tempcondition = 4;
+                                break;
+                            case "โอนแล้ว":
+                                tempcondition = 5;
+                                break;
+                            case "อื่นๆ":
+                                tempcondition = 6;
+                                break;
+                            default:
+                                tempcondition = -1;
+                                break;
+                        }
+
+                        // Convert the formatted date string to DateTime
+                        string formattedDateStr = worksheet1.Cells[row, 2].Text; // Assuming the date is in column 10
+                        DateTime formattedDate;
+
+                        if (DateTime.TryParseExact(formattedDateStr, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out formattedDate))
+                        {
+                            // The value was successfully parsed
+                        }
+                        else
+                        {
+                            // Parsing failed, use DateTime.Now as a fallback
+                            formattedDate = DateTime.Now;
+                        }
+
+                        string formattedDateStrForDisplay = formattedDate.ToString("dd-MM-yyyy HH:mm:ss"); // Format for display
+
+                        SRResults excelData = new SRResults
+                        {
+                            BarcodeNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 3].Text) ? "-" : worksheet1.Cells[row, 3].Text.Replace(" ", ""),
+                            Product_Name = string.IsNullOrEmpty(worksheet1.Cells[row, 4].Text) ? "-" : worksheet1.Cells[row, 4].Text,
+                            ModelNumber = string.IsNullOrEmpty(worksheet1.Cells[row, 5].Text) ? "-" : worksheet1.Cells[row, 5].Text,
+                            Brand = string.IsNullOrEmpty(worksheet1.Cells[row, 6].Text) ? "-" : worksheet1.Cells[row, 6].Text,
+                            SerialNum = string.IsNullOrEmpty(worksheet1.Cells[row, 7].Text) ? "-" : worksheet1.Cells[row, 7].Text,
+                            Price = string.IsNullOrEmpty(worksheet1.Cells[row, 8].Text) ? "0" : worksheet1.Cells[row, 8].Text,
+                            Room = string.IsNullOrEmpty(worksheet1.Cells[row, 9].Text) ? "-" : worksheet1.Cells[row, 9].Text,
+                            Description = string.IsNullOrEmpty(worksheet1.Cells[row, 10].Text) ? "-" : worksheet1.Cells[row, 10].Text,
+                            FilePath = string.IsNullOrEmpty(worksheet2.Cells[row, 1].Text) ? "[]" : worksheet2.Cells[row, 1].Text,
+                            SHA512 = string.IsNullOrEmpty(worksheet2.Cells[row, 2].Text) ? "[]" : worksheet2.Cells[row, 2].Text,
+                            Status = tempstatus,
+                            Condition = tempcondition,
+                            Date = formattedDate,
+                            FormattedDate = formattedDateStrForDisplay
+                        };
+                        //MessageBox.Show((row-1).ToString() + "/" + excelData.BarcodeNumber + "/" + excelData.Product_Name);
+                        
+
+                        if (excelData.BarcodeNumber == "-" || excelData.Product_Name == "-")
+                        {
+                            excelData = null;
+                            continue;
+                            //warningmessage += "ข้อมูลของหมายเลขครุภัณฑ์ และ ชื่อผลิตภัณฑ์ ต้องถูกบันทึกไว้ในข้อมูลที่จะนำเข้ามา\n";
+                        }
+                        if (excelData.BarcodeNumber.Length > 50)
+                        {
+                            warningmessage += "ความยาวหมายเลขครุภัณฑ์ห้ามเกิน 50 ตัวอักษร\n";
+                        }
+                        if (excelData.Product_Name.Length > 100 || excelData.ModelNumber.Length > 100 || excelData.Brand.Length > 100 ||
+                            excelData.SerialNum.Length > 100 || excelData.Room.Length > 100)
+                        {
+                            warningmessage += "ความยาวข้อมูลครุภัณฑ์ห้ามเกิน 100 ตัวอักษร\n";
+                        }
+                        if (excelData.Price.Length > 30)
+                        {
+                            warningmessage += "ความยาวข้อมูลราคาห้ามเกิน 30 ตัวอักษร\n";
+                        }
+                        if (excelData.Description.Length > 200)
+                        {
+                            warningmessage += "ความยาวรายละเอียดครุภัณฑ์ห้ามเกิน 200 ตัวอักษร\n";
+                        }
+                        if (!int.TryParse(excelData.Price, out int result))
+                        {
+                            warningmessage += "กรุณากรอกราคาเป็นตัวเลขเท่านั้น\n";
+                        }
+                        if (warningmessage != "")
+                        {
+                            MessageBox.Show(warningmessage);
+                            excelDataList.Clear();
+                            hasWarnings = true;
+                            break; // Exit the loop immediately when a warning is encountered
+                        }
+                        else
+                        {
+                            excelDataList.Add(excelData);
+                        }
+                        //myrow = row;
+                    }
+                }
+                else
+                {
+                    warningmessage += "แบบฟอร์ม Excel ไม่ถูกต้อง\n";
+                    MessageBox.Show(warningmessage);
+                    excelDataList.Clear();
+                    hasWarnings = true;
+                    //break; // Exit the loop immediately when a warning is encountered
+                }
             }
+
 
             if (hasWarnings)
             {
@@ -1220,6 +1331,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (result3 == DialogResult.Yes)
                 {
                     DeleteDataInDB();
+                    MessageBox.Show("ลบข้อมูลสำเร็จ!");
                     SearchDatainDB();
                 }
             }
@@ -1245,7 +1357,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFilePath = saveFileDialog.FileName;
+                    string selectedFilePath = saveFileDialog.FileName + ".xlsx";
 
                     // Create a memory stream from the resource bytes
                     using (MemoryStream resourceStream = new MemoryStream(resourceBytes))
@@ -1302,9 +1414,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 // Check the user's response
                 if (result == DialogResult.Yes)
                 {
-                    //Add excel data in the database.
-                    ImportExcelInDatabase(ImportDataFromExcel(openFileDialog.FileName), "Update");
-                    SearchDatainDB();
+                    DialogResult result2 = MessageBox.Show
+                       ("คำเตือน! ข้อมูลในฐานข้อมูลจะถูกแทนที่ด้วยข้อมูลที่นำมาจาก Excel\n"
+                       , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // Check the user's response
+                    if (result2 == DialogResult.Yes)
+                    {
+                        //Add excel data in the database.
+                        ImportExcelInDatabase(ImportDataFromExcel(openFileDialog.FileName), "Update");
+                        SearchDatainDB();
+                    }
                 }
             }
         }

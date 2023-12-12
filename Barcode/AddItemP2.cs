@@ -20,16 +20,17 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         int checkstate = -1;
         int conditionstate = -1;
         List<Image> selectedImages = new List<Image>();
+        //List<string> selectFilePath = new List<string>();
         int? selectingImage = null;
         /////////////////////////////////////////////
-        string BarcodeIDDF = "[ตัวอย่าง : 460650003296]";
-        string ProductNameDF = "[ตัวอย่าง : Occulus Quest 2023]";
-        string ModelDF = "[ตัวอย่าง : KD-43X8000H]";
-        string BrandDF = "[ตัวอย่าง : Google]";
-        string SerialDF = "[ตัวอย่าง : ABC12345XYZ]";
-        string PriceDF = "[ตัวอย่าง : 1000]";
+        string BarcodeIDDF = "[ตัวอย่าง : 65A1234567]";
+        string ProductNameDF = "[ตัวอย่าง : เครื่องคอมพิวเตอร์พกพา]";
+        string ModelDF = "[ตัวอย่าง : Gigabyte]";
+        string BrandDF = "[ตัวอย่าง : AORUS 15XE4]";
+        string SerialDF = "[ตัวอย่าง : M213D56T9]";
+        string PriceDF = "[ตัวอย่าง : 10000]";
         string RoomDF = "[ตัวอย่าง : 516]";
-        string NoteDF = "[ตัวอย่าง : วัสดุนี้ได้ซื้อในราคาพิเศษ]";
+        string NoteDF = "[ตัวอย่าง : พร้อมกระเป๋าและสายชาร์จ]";
         ////////////////////////////////////////////
         public AddItemP2()
         {
@@ -63,45 +64,109 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             openFileDialog.Title = "Select Image(s) to Upload";
             openFileDialog.Multiselect = true; // Allow multiple file selection
 
+            // Use the user's application data folder for saving images
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+
+            // Append a subfolder named "TemporaryPictureData"
+            string temporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+
+            //MessageBox.Show(temporaryDataFolder);
+
+            if (!Directory.Exists(temporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(temporaryDataFolder);
+            }
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 foreach (string selectedFilePath in openFileDialog.FileNames)
                 {
-                    // Load the selected image into the PictureBox
-                    System.Drawing.Image selectedImage = System.Drawing.Image.FromFile(selectedFilePath);
-                    string extension = Path.GetExtension(selectedFilePath);
+                    Image selectedImage = Image.FromFile(selectedFilePath);
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
+                    string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                    string outputPath = Path.Combine(temporaryDataFolder, uniqueFileName);
 
-                    if (extension != "jpg")
-                    {
-                        string outputPath = Path.ChangeExtension(selectedFilePath, "jpg");
-                        if (!File.Exists(outputPath))
-                        {
-                            selectedImage.Save(outputPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            // You can add the selected image to a list to store multiple images
-                        }
-                        selectedImage = System.Drawing.Image.FromFile(outputPath);
-                    }
+                    selectedImage.Save(outputPath, ImageFormat.Jpeg);
 
+                    // Add the saved image to the list
+                    selectedImage = Image.FromFile(outputPath);
+
+                    //MessageBox.Show(CalculateSHA512Checksum1pic(selectedImage));
                     selectedImages.Add(selectedImage);
 
                     // Optionally, you can display each image in a separate PictureBox
+
                 }
+
                 CheckImageButtonBehavior();
                 ChangePicture(0);
             }
         }
-        private void BarcodeScanner_BarcodeScanned(object sender, BarcodeScannerEventArgs e)
+
+
+
+
+
+        //string saveDirectory = @"C:\Program Files\MDT_Inventory\DBImages";
+
+
+        //private System.Drawing.Image ConvertToJpeg(System.Drawing.Image image)
+        //{
+        //    // Convert the image to JPEG format
+        //    using (MemoryStream memoryStream = new MemoryStream())
+        //    {
+        //        image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //        return System.Drawing.Image.FromStream(memoryStream);
+        //    }
+        //}
+
+        private void BarcodeScanner_BarcodeScanned1(object sender, BarcodeScannerEventArgs e)
         {
             SearchBarcodeData(e.Barcode, sender);
         }
-
+        private void BarcodeScanner_BarcodeScanned2(object sender, BarcodeScannerEventArgs e)
+        {
+            ProductName_TB.Text = e.Barcode;
+            ProductName_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned3(object sender, BarcodeScannerEventArgs e)
+        {
+            Model_TB.Text = e.Barcode;
+            Model_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned4(object sender, BarcodeScannerEventArgs e)
+        {
+            Brand_TB.Text = e.Barcode;
+            Brand_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned5(object sender, BarcodeScannerEventArgs e)
+        {
+            Serial_TB.Text = e.Barcode;
+            Serial_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned6(object sender, BarcodeScannerEventArgs e)
+        {
+            Price_TB.Text = e.Barcode;
+            Price_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned7(object sender, BarcodeScannerEventArgs e)
+        {
+            Room_TB.Text = e.Barcode;
+            Room_TB.ForeColor = Color.Black;
+        }
+        private void BarcodeScanner_BarcodeScanned8(object sender, BarcodeScannerEventArgs e)
+        {
+            Note_TB.Text = e.Barcode;
+            Note_TB.ForeColor = Color.Black;
+        }
         private void Add_Item_toDB_Click(object sender, EventArgs e)
         {
             //Serach before we do something.
             List<string> dbData = new List<string>();
             string dbConnectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
             MySqlConnection mySqlConnection = new MySqlConnection(dbConnectionString);
-
+            BarcodeID_TB.Text = BarcodeID_TB.Text.Replace(" ", "");
             try
             {
                 mySqlConnection.Open();
@@ -204,32 +269,52 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         }
         private void AddItemToDB()
         {
-            //List<byte[]> ImageList = new List<byte[]>();
+            // List<byte[]> ImageList = new List<byte[]>();
             string connectionString = "server=127.0.0.1; user=root; database=barcodedatacollector; password=";
+
+            // Use the user's application data folder for saving images
+            string applicationDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MDT_Inventory");
+            string DataFolder = GlobalVariable.FilePath;
+            string TemporaryDataFolder = Path.Combine(applicationDataFolder, "TemporaryPictureData");
+            //GlobalVariable.FilePath
+            //Path.Combine(applicationDataFolder, "PictureData");
+            if (!Directory.Exists(TemporaryDataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(TemporaryDataFolder);
+            }
+            if (!Directory.Exists(DataFolder))
+            {
+                // Create the subfolder if it doesn't exist
+                Directory.CreateDirectory(DataFolder);
+            }
+
             MySqlConnection mySqlConnection2 = new MySqlConnection(connectionString);
-            bool isdumplicated = false;
+            bool isduplicated = false;
+
             try
             {
-                //Create reference for image we used.
-                string saveDirectory = @"C:\BarcodeDatabaseImage";
+                //MessageBox.Show(temporaryDataFolder);
+
                 List<string> newSHA512hashes = new List<string>();
-                Directory.CreateDirectory(saveDirectory);
-                
                 List<string> savedFilePaths = new List<string>();
 
                 if (selectedImages.Count > 0)
                 {
                     for (int i = 0; i < selectedImages.Count; i++)
                     {
+
                         // Calculate SHA-512 checksum for the current image
                         string sha512Checksum = CalculateSHA512Checksum1pic(selectedImages[i]);
+                        //MessageBox.Show(sha512Checksum);
 
                         // Check if the checksum already exists in the newSHA512hashes
                         if (newSHA512hashes.Contains(sha512Checksum))
                         {
                             // Find the index of the duplicate in the newSHA512hashes
                             int duplicateIndex = newSHA512hashes.IndexOf(sha512Checksum);
-                            isdumplicated = true;
+                            isduplicated = true;
+
                             // Console.WriteLine($"Duplicate file found and not saved: {selectedImages[i].Tag.ToString()}");
 
                             // Optionally, perform some action for duplicate (e.g., show a message)
@@ -238,24 +323,27 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             continue;
                         }
 
-                        // Save the file if it's not a duplicate
-                        string baseFileName = "image.jpeg"; // Base file name
-                        string fileName = baseFileName;
-                        int fileCounter = 1;
+                        // Save the file to the temporary directory if it's not a duplicate
+                        // string baseFileName = $"image_{DateTime.Now:yyyyMMddHHmmss}_{i}.jpeg"; // Unique file name
+                                                                                               //string fileName = baseFileName;
+                                                                                               //int fileCounter = 1;
 
+                        string uniqueFileName = $"Image_{Guid.NewGuid()}.jpg"; // Generate a unique file name
+                        string outputPath = Path.Combine(DataFolder, uniqueFileName);
                         // Check if the file already exists and generate a unique name if needed
-                        while (File.Exists(Path.Combine(saveDirectory, fileName)))
-                        {
-                            fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
-                            fileCounter++;
-                        }
+                        //while (File.Exists(Path.Combine(temporarySaveDirectory, fileName)))
+                        //{
+                        //    fileName = $"{Path.GetFileNameWithoutExtension(baseFileName)}_{fileCounter}{Path.GetExtension(baseFileName)}";
+                        //    fileCounter++;
+                        //}
 
-                        string filePath = Path.Combine(saveDirectory, fileName);
-                        selectedImages[i].Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-
+                        string filePath = outputPath;
+                        selectedImages[i].Save(filePath, ImageFormat.Jpeg);
+                        //MessageBox.Show(filePath);
                         // Add the saved file path and SHA-512 hash to the lists
                         savedFilePaths.Add(filePath);
                         newSHA512hashes.Add(sha512Checksum);
+                        //MessageBox.Show(sha512Checksum);
                     }
                 }
 
@@ -264,12 +352,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 string jsonPicData = JsonConvert.SerializeObject(savedFilePaths, Formatting.Indented);
                 Console.WriteLine(jsonPicData);
 
-                //TryAddittoDATABASE
+                // Try to add to the DATABASE
                 mySqlConnection2.Open();
 
                 string query = "INSERT INTO information (BarcodeNumber, Product_Name, Model_Name, Brand, Serial_Number, Price, Room, Note, ImageData, MD5_ImageValidityChecksum, Status, ITEM_CONDITION) " +
-               "VALUES (@BarcodeNumber, @Product_Name, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
-
+                               "VALUES (@BarcodeNumber, @Product_Name, @Model_Name, @Brand, @Serial_Number, @Price, @Room, @Note, @ImageData, @MD5_ImageValidityChecksum, @Status, @ITEM_CONDITION)";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, mySqlConnection2))
                 {
@@ -290,7 +377,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 
                     if (rowsAffected > 0)
                     {
-                        if (!isdumplicated)
+                        if (!isduplicated)
                         {
                             MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ!");
                         }
@@ -298,7 +385,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         {
                             MessageBox.Show("การนำเข้าข้อมูลครุภัณฑ์สำเร็จ ภาพที่ซ้ำกันจะถูกลบออก!");
                         }
-                        //PullDataFromDB();
+                        // PullDataFromDB();
                     }
                     else
                     {
@@ -313,6 +400,9 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             finally
             {
                 mySqlConnection2.Close();
+                //DeletePic
+                DeleteAllPictures(TemporaryDataFolder);
+
                 AddItemP2 AddItemForm = MainMenu.initializedForms.Find(f => f is AddItemP2) as AddItemP2;
                 ManageQR ManageQRForm = MainMenu.initializedForms.Find(f => f is ManageQR) as ManageQR;
                 if (AddItemForm != null)
@@ -325,6 +415,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
             }
         }
+
         List<string> CalculateSHA512Checksum(List<Image> myImages)
         {
             List<string> sha512Values = new List<string>();
@@ -394,7 +485,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (isDataSame)
                 {
                     MessageBox.Show("ไม่สามารถเพิ่มข้อมูลลงในระบบได้ เนื่องจากมี Barcode นี้อยู่แล้ว");
-                    this.Hide();
+                    //this.Hide();
                 }
                 else
                 {
@@ -402,46 +493,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     if (sender == BarcodeID_TB)
                     {
                         BarcodeID_TB.Text = barcode;
+                        BarcodeID_TB.ForeColor = Color.Black;
                     }
                     else
                     {
                         BarcodeID_TB.Text = barcode;
-                        ///
-                        if (selectedImages != null)
-                        {
-                            selectedImages.Clear();
-                        }
-                        else
-                        {
-                            selectedImages = new List<Image>();
-                        }
-                        ChangePicture(null);
-                        CheckImageButtonBehavior();
-
-                        BarcodeID_TB.Text = barcode;
-                        ProductName_TB.Text = ProductNameDF;
-                        Model_TB.Text = ModelDF;
-                        Brand_TB.Text = BrandDF;
-                        Serial_TB.Text = SerialDF;
-                        Price_TB.Text = PriceDF;
-                        Room_TB.Text = RoomDF;
-                        Note_TB.Text = NoteDF;
-
                         BarcodeID_TB.ForeColor = Color.Black;
-                        ProductName_TB.ForeColor = Color.Gray;
-                        Model_TB.ForeColor = Color.Gray;
-                        Brand_TB.ForeColor = Color.Gray;
-                        Serial_TB.ForeColor = Color.Gray;
-                        Price_TB.ForeColor = Color.Gray;
-                        Room_TB.ForeColor = Color.Gray;
-                        Note_TB.ForeColor = Color.Gray;
-
-                        S_Have.Checked = false;
-                        S_Donthave.Checked = false;
-                        ConditionBox.SelectedIndex = -1;
-                        checkstate = -1;
-                        conditionstate = -1;
-                        
                     }
                 }
             }
@@ -460,14 +517,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             BarcodeScanner2 barcodeScanner6 = new BarcodeScanner2(Price_TB);
             BarcodeScanner2 barcodeScanner7 = new BarcodeScanner2(Room_TB);
             BarcodeScanner2 barcodeScanner8 = new BarcodeScanner2(Note_TB);
-            barcodeScanner1.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner3.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner4.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner5.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner6.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned;
-            barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+            barcodeScanner1.BarcodeScanned += BarcodeScanner_BarcodeScanned1;
+            barcodeScanner2.BarcodeScanned += BarcodeScanner_BarcodeScanned2;
+            barcodeScanner3.BarcodeScanned += BarcodeScanner_BarcodeScanned3;
+            barcodeScanner4.BarcodeScanned += BarcodeScanner_BarcodeScanned4;
+            barcodeScanner5.BarcodeScanned += BarcodeScanner_BarcodeScanned5;
+            barcodeScanner6.BarcodeScanned += BarcodeScanner_BarcodeScanned6;
+            barcodeScanner7.BarcodeScanned += BarcodeScanner_BarcodeScanned7;
+            barcodeScanner8.BarcodeScanned += BarcodeScanner_BarcodeScanned8;
             /////////////////////////////////
             if (selectedImages != null)
             {
@@ -856,6 +913,31 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 ProductName_TB.ForeColor = Color.Black;
             }
+        }
+        public void DeleteAllPictures(string folderPath)
+        {
+            try
+            {
+                // Get all file paths in the folder with a specific extension (e.g., ".jpg")
+                string[] pictureFiles = Directory.GetFiles(folderPath, "*.jpg");
+
+                foreach (string filePath in pictureFiles)
+                {
+                    // Delete each file
+                    File.Delete(filePath);
+                }
+
+                Console.WriteLine("All pictures deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting pictures: {ex.Message}");
+            }
+        }
+
+        private void tableLayoutPanel10_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
