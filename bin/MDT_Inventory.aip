@@ -48,87 +48,87 @@
     <ROW Component="AI_CustomARPName" ComponentId="{A53149D0-C796-4EAD-AF57-09166C884072}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{D0B54536-7A41-4AB6-909B-0BC5E5D8920A}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{D5E7AF60-FFB8-4D70-BB07-38F8744A5B46}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="BarcodeScannerClass.dll" ComponentId="{DD9A20F5-9E48-4093-A991-50D14338BB9C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BarcodeScannerClass.dll"/>
-    <ROW Component="BouncyCastle.Crypto.dll" ComponentId="{862690FC-AA56-49E4-A3B4-4EF4D89F85C6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Crypto.dll"/>
-    <ROW Component="BouncyCastle.Cryptography.dll" ComponentId="{4EBCEF69-3439-4C94-A581-95DEF16C5BCB}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Cryptography.dll"/>
-    <ROW Component="BouncyCastle.Cryptography.xml" ComponentId="{4EFCCCAA-F6AF-41B5-8C57-EDF8F96704BE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Cryptography.xml" Type="0"/>
-    <ROW Component="EPPlus.Interfaces.dll" ComponentId="{0AF1E57C-B6FC-4BF2-A294-5B39BE0AC1B6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.Interfaces.dll"/>
-    <ROW Component="EPPlus.System.Drawing.dll" ComponentId="{3C84F808-3CEC-4576-821E-55E5289B99EE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.System.Drawing.dll"/>
-    <ROW Component="EPPlus.dll" ComponentId="{565192B3-69B9-4606-B718-708331A178A6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.dll"/>
-    <ROW Component="Google.Protobuf.dll" ComponentId="{806F3132-2744-43BB-8FED-3233E25F6C2B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Google.Protobuf.dll"/>
-    <ROW Component="K4os.Compression.LZ4.Streams.dll" ComponentId="{CD857697-F2ED-40EE-A2B0-F8FB2AD273C7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Compression.LZ4.Streams.dll"/>
-    <ROW Component="K4os.Compression.LZ4.dll" ComponentId="{026913DF-C26F-4D55-B9E7-1F173A1E1BAB}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Compression.LZ4.dll"/>
-    <ROW Component="K4os.Hash.xxHash.dll" ComponentId="{46242AB2-BE0B-49F3-B2AC-C064768C7464}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Hash.xxHash.dll"/>
-    <ROW Component="MDTBarcodeScanner.exe" ComponentId="{8D0353AC-717E-4013-89EF-C88A6BF13176}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MDTBarcodeScanner.exe"/>
-    <ROW Component="Microsoft.Bcl.AsyncInterfaces.dll" ComponentId="{AC560FC1-7C90-48C9-B87D-CF71EB715F66}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Bcl.AsyncInterfaces.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.Abstractions.dll" ComponentId="{5F81C7F4-1DF4-4557-B26D-56BA206D8B43}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.Binder.dll" ComponentId="{BBAD8204-1FDF-44A9-9AB3-B7F52D45404B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Binder.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.CommandLine.dll" ComponentId="{6F936B58-9810-4C26-A336-1396650710CA}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.CommandLine.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" ComponentId="{40CBA4FB-4F74-4049-9DEE-DB63C9E09A6A}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.EnvironmentVariables.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.FileExtensions.dll" ComponentId="{9BE39E02-5F5F-42A7-A082-AECEA3AFE5E9}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.FileExtensions.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.Json.dll" ComponentId="{2C70737C-0C0D-43CE-987E-14F360F6FEB3}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Json.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.UserSecrets.dll" ComponentId="{83C0FDAF-52C5-489C-823B-CAC63118BF1C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.UserSecrets.dll"/>
-    <ROW Component="Microsoft.Extensions.Configuration.dll" ComponentId="{8D395317-18DC-4C5A-BC6D-583AE9E8FC0F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.dll"/>
-    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{3E6810F7-D7EB-412C-8269-FB48277F7C98}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.DependencyInjection.dll" ComponentId="{E8963CF3-6D71-489F-969D-8BC133428CE7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
-    <ROW Component="Microsoft.Extensions.Diagnostics.Abstractions.dll" ComponentId="{577A4A9C-5984-4C98-B004-31A4C47F227D}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Diagnostics.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Diagnostics.dll" ComponentId="{7BAA69C4-6850-4580-9EAC-4CEBF6885C9A}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Diagnostics.dll"/>
-    <ROW Component="Microsoft.Extensions.FileProviders.Abstractions.dll" ComponentId="{1144683C-75FD-433C-AAD4-5D8A3750259C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileProviders.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.FileProviders.Physical.dll" ComponentId="{76FF66EB-DC67-4A65-85DF-7DF221546C00}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileProviders.Physical.dll"/>
-    <ROW Component="Microsoft.Extensions.FileSystemGlobbing.dll" ComponentId="{CC83259E-F1D0-457F-A6EE-0E1BB0B99085}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileSystemGlobbing.dll"/>
-    <ROW Component="Microsoft.Extensions.Hosting.Abstractions.dll" ComponentId="{EBD197B2-DA9C-4C70-B058-E97B93451D9D}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Hosting.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Hosting.dll" ComponentId="{A1FC3753-32DA-4AE7-AC1C-C1EC271E8E4D}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Hosting.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{AE86A219-92B9-465E-BA59-AF2159B7A456}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Configuration.dll" ComponentId="{C8F2D789-E8A4-4177-8B90-A2ADE4E07F83}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Configuration.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Console.dll" ComponentId="{D124E47E-5A67-4427-B7B9-C3D6DDBE6411}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Console.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.Debug.dll" ComponentId="{AC5EA78F-4810-490E-9A5A-626656B2B6BE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Debug.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.EventLog.dll" ComponentId="{E2C89904-F787-49C7-9F4D-8A1BE610C699}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.EventLog.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.EventSource.dll" ComponentId="{28A95092-6064-48DD-BE86-04DCAE9B1991}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.EventSource.dll"/>
-    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{3A09CD87-1A31-412C-811D-FFFB19FE0BC2}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
-    <ROW Component="Microsoft.Extensions.Options.ConfigurationExtensions.dll" ComponentId="{E166F122-1FA5-4F8F-8523-3FB8E5E8C567}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.ConfigurationExtensions.dll"/>
-    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{17D28D5F-A2A2-4D9B-BB2B-8DEC1967CEB4}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
-    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{1038EF04-3C68-4DEA-BD86-D1BDB393DEA5}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
-    <ROW Component="Microsoft.IO.RecyclableMemoryStream.dll" ComponentId="{DAFE3D04-E051-4ECC-8C9A-CDF77B6786EE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.IO.RecyclableMemoryStream.dll"/>
-    <ROW Component="MigraDoc.DocumentObjectModel.dll" ComponentId="{1C6F9B55-298F-4C49-B3AE-E42273D15A26}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.dll"/>
-    <ROW Component="MigraDoc.DocumentObjectModel.resources.dll" ComponentId="{8CCD4269-2052-4370-A883-8E6FA74E329D}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.resources.dll"/>
-    <ROW Component="MigraDoc.DocumentObjectModel.resources.dll_1" ComponentId="{BDADC565-0159-4D72-834B-BCD7F79397A4}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.resources.dll_1"/>
-    <ROW Component="MigraDoc.Rendering.dll" ComponentId="{5A318CDA-3CF2-4B17-9BEC-E956FFD44B66}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.dll"/>
-    <ROW Component="MigraDoc.Rendering.resources.dll" ComponentId="{5561ABB3-D63B-4D51-9F17-88AA073E9A2D}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.resources.dll"/>
-    <ROW Component="MigraDoc.Rendering.resources.dll_1" ComponentId="{409A576F-71D5-40FB-89B4-A495FA79D655}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.resources.dll_1"/>
-    <ROW Component="MigraDoc.RtfRendering.dll" ComponentId="{E05DE434-374B-4021-BB4C-161CC2653DCE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.dll"/>
-    <ROW Component="MigraDoc.RtfRendering.resources.dll" ComponentId="{2AD8C6D9-1BED-4145-9EB7-5837EC0869D3}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.resources.dll"/>
-    <ROW Component="MigraDoc.RtfRendering.resources.dll_1" ComponentId="{B041E0F6-ACC9-4309-A349-1A7B0D672FB1}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.resources.dll_1"/>
-    <ROW Component="MySql.Data.dll" ComponentId="{5EC88E60-B48D-4FAD-9F33-B4FCAA91F30C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MySql.Data.dll"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{10B8A826-4277-4FC2-8601-84D8C04429F2}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
-    <ROW Component="NuGet.Frameworks.dll" ComponentId="{87E4EB4E-B486-46FC-8202-7CACB3C4088B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="NuGet.Frameworks.dll"/>
-    <ROW Component="PdfSharp.Charting.dll" ComponentId="{9A017326-E805-460E-8779-1EDB545026DF}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.Charting.dll"/>
-    <ROW Component="PdfSharp.Charting.resources.dll" ComponentId="{61429BE6-397F-4063-9983-DD7FBBE09CEC}" Directory_="de_Dir" Attributes="0" KeyPath="PdfSharp.Charting.resources.dll"/>
-    <ROW Component="PdfSharp.Charting.resources.dll_1" ComponentId="{183B354C-677C-470A-B396-DD3364AE9F9B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.Charting.resources.dll_1"/>
-    <ROW Component="PdfSharp.dll" ComponentId="{A2693766-FA95-437B-A0AE-DB93B0B20B23}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.dll"/>
-    <ROW Component="PdfSharp.resources.dll" ComponentId="{0BD67B3F-7AD2-49E2-A740-85CE0FFA3B4C}" Directory_="de_Dir" Attributes="0" KeyPath="PdfSharp.resources.dll"/>
-    <ROW Component="PdfSharp.resources.dll_1" ComponentId="{517944CB-4B89-4562-9DE3-2FE93E619C17}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.resources.dll_1"/>
+    <ROW Component="BarcodeScannerClass.dll" ComponentId="{015FDE0E-26BB-4CEB-ADCC-C1735A9F77AB}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BarcodeScannerClass.dll"/>
+    <ROW Component="BouncyCastle.Crypto.dll" ComponentId="{FB867CE5-ABF8-428E-920E-3D2B27E35923}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Crypto.dll"/>
+    <ROW Component="BouncyCastle.Cryptography.dll" ComponentId="{716F3F61-F26A-4D8A-9984-C3DE36E09B19}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Cryptography.dll"/>
+    <ROW Component="BouncyCastle.Cryptography.xml" ComponentId="{92FE953B-6578-49BC-B5FC-B04C1FF22B8D}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="BouncyCastle.Cryptography.xml" Type="0"/>
+    <ROW Component="EPPlus.Interfaces.dll" ComponentId="{36D2CC05-4A71-49B7-AFF1-73C0479CE8DE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.Interfaces.dll"/>
+    <ROW Component="EPPlus.System.Drawing.dll" ComponentId="{21B10812-EAD6-44EE-AB04-6C9F6FD96167}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.System.Drawing.dll"/>
+    <ROW Component="EPPlus.dll" ComponentId="{2FD8E313-70B4-45DB-A876-D0D939C466E6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="EPPlus.dll"/>
+    <ROW Component="Google.Protobuf.dll" ComponentId="{9C1AA931-A4C1-4746-93C6-F67E09950CB6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Google.Protobuf.dll"/>
+    <ROW Component="K4os.Compression.LZ4.Streams.dll" ComponentId="{9C7B23BF-B824-4460-9B2A-711D80C9A8AA}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Compression.LZ4.Streams.dll"/>
+    <ROW Component="K4os.Compression.LZ4.dll" ComponentId="{F608DC26-4CFA-4A7D-9420-E6FFCC0DE574}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Compression.LZ4.dll"/>
+    <ROW Component="K4os.Hash.xxHash.dll" ComponentId="{1A413CC8-3DF6-412D-A77A-FBFE6CA47432}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="K4os.Hash.xxHash.dll"/>
+    <ROW Component="MDTBarcodeScanner.exe" ComponentId="{A07522C3-9FA4-4210-AB58-86AA5BF8F6A4}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MDTBarcodeScanner.exe"/>
+    <ROW Component="Microsoft.Bcl.AsyncInterfaces.dll" ComponentId="{67A660CA-D84E-439F-8252-328A1CB28F3E}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Bcl.AsyncInterfaces.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Abstractions.dll" ComponentId="{6645F140-7612-4FF2-BB7F-7C920CB78F4E}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Binder.dll" ComponentId="{83A7B4AF-D0F3-48DB-AC37-6510857C1BBD}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Binder.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.CommandLine.dll" ComponentId="{E512174B-494B-483B-B11D-C973A2449F91}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.CommandLine.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" ComponentId="{C1E463BB-8251-4E8A-A07F-2EA96B1E902F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.EnvironmentVariables.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.FileExtensions.dll" ComponentId="{0473C5E9-6E63-4AE2-9426-89F722238B48}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.FileExtensions.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.Json.dll" ComponentId="{FB29C3EA-A6CE-46EF-BD0E-EF34B5AC19B0}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.Json.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.UserSecrets.dll" ComponentId="{EB869325-1208-4F28-8092-DD616DCCCC39}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.UserSecrets.dll"/>
+    <ROW Component="Microsoft.Extensions.Configuration.dll" ComponentId="{3A9A07CD-2C74-426B-A89E-1A8EC3F83309}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Configuration.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.Abstractions.dll" ComponentId="{98DD5EE1-C746-4617-A482-6BA5F0A78318}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.DependencyInjection.dll" ComponentId="{FA2F6B74-8C15-4783-A8AA-E151E021072A}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.DependencyInjection.dll"/>
+    <ROW Component="Microsoft.Extensions.Diagnostics.Abstractions.dll" ComponentId="{9A1B637B-B993-4D7A-ADB5-58364ACE5987}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Diagnostics.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Diagnostics.dll" ComponentId="{5DB23B75-5E3B-4792-A173-0125956018A2}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Diagnostics.dll"/>
+    <ROW Component="Microsoft.Extensions.FileProviders.Abstractions.dll" ComponentId="{136580CB-3D9C-4226-9BE5-FC2DAFEF1FF6}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileProviders.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.FileProviders.Physical.dll" ComponentId="{81848028-D69F-448A-BF6D-54F1912CA379}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileProviders.Physical.dll"/>
+    <ROW Component="Microsoft.Extensions.FileSystemGlobbing.dll" ComponentId="{73E852E9-093E-478A-B7EA-799A1F6ED11E}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.FileSystemGlobbing.dll"/>
+    <ROW Component="Microsoft.Extensions.Hosting.Abstractions.dll" ComponentId="{14A18DA4-F853-4CB4-91AF-B7035AADE2A1}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Hosting.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Hosting.dll" ComponentId="{ED44C407-6A7B-4A23-A671-66A78C1DC070}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Hosting.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{AF4B1842-6BB8-4092-928A-1CC360D41B8B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Configuration.dll" ComponentId="{809BE6E7-42AB-425C-AD40-B9AEA468981B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Configuration.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Console.dll" ComponentId="{486BA890-A40F-406F-92F2-D1CAC012F6EB}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Console.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Debug.dll" ComponentId="{4321E2B8-6068-45B3-B75D-BD83181AD740}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Debug.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.EventLog.dll" ComponentId="{2087A610-1AA4-44C7-854E-612CFA87685C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.EventLog.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.EventSource.dll" ComponentId="{A042B26F-2859-4FC3-B575-648D256F957B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.EventSource.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.dll" ComponentId="{736CFD5D-95A7-405B-BD32-BEE5D465289F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.ConfigurationExtensions.dll" ComponentId="{25CB87C3-CCAA-4FFC-A037-E2F2BC4E13E3}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.ConfigurationExtensions.dll"/>
+    <ROW Component="Microsoft.Extensions.Options.dll" ComponentId="{58211251-D163-441A-A033-63EA24C41846}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Options.dll"/>
+    <ROW Component="Microsoft.Extensions.Primitives.dll" ComponentId="{67BEEADC-7D54-43B2-88E6-D7E86404FA23}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Primitives.dll"/>
+    <ROW Component="Microsoft.IO.RecyclableMemoryStream.dll" ComponentId="{B1396F60-F5C7-40E0-A685-C45F6D1AB979}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Microsoft.IO.RecyclableMemoryStream.dll"/>
+    <ROW Component="MigraDoc.DocumentObjectModel.dll" ComponentId="{E2E32FCD-C9A9-49D5-A503-F1450FF65C10}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.dll"/>
+    <ROW Component="MigraDoc.DocumentObjectModel.resources.dll" ComponentId="{DA5109F6-9407-4B37-9CF0-0C05A24CB0D4}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.resources.dll"/>
+    <ROW Component="MigraDoc.DocumentObjectModel.resources.dll_1" ComponentId="{EB696986-B496-4907-BB36-E3DB4F8854C0}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.DocumentObjectModel.resources.dll_1"/>
+    <ROW Component="MigraDoc.Rendering.dll" ComponentId="{5189FF18-C7EB-4052-BDAD-92F1918A9491}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.dll"/>
+    <ROW Component="MigraDoc.Rendering.resources.dll" ComponentId="{D5AB02B5-C7E0-4946-AAE5-3A4E0F2ED9B8}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.resources.dll"/>
+    <ROW Component="MigraDoc.Rendering.resources.dll_1" ComponentId="{FADAEF54-F7F7-4FEA-B99E-FF8940017B2B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.Rendering.resources.dll_1"/>
+    <ROW Component="MigraDoc.RtfRendering.dll" ComponentId="{38F39809-FDDA-49F4-A493-E29DE61401F7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.dll"/>
+    <ROW Component="MigraDoc.RtfRendering.resources.dll" ComponentId="{C84E91EF-A44B-49D4-99E7-667BF17A92D5}" Directory_="de_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.resources.dll"/>
+    <ROW Component="MigraDoc.RtfRendering.resources.dll_1" ComponentId="{DECC327C-3487-46EF-917E-E7B9D2E324D9}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MigraDoc.RtfRendering.resources.dll_1"/>
+    <ROW Component="MySql.Data.dll" ComponentId="{854214B5-8FC5-47A2-B25C-C2C10FA99DFF}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="MySql.Data.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{A961B0CE-512C-45ED-9A5B-30598DD0B5E3}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="NuGet.Frameworks.dll" ComponentId="{89963FB0-32D3-4614-BCD9-20BF29AD5E64}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="NuGet.Frameworks.dll"/>
+    <ROW Component="PdfSharp.Charting.dll" ComponentId="{17DCA323-E561-4FB4-A430-D083E2EEB169}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.Charting.dll"/>
+    <ROW Component="PdfSharp.Charting.resources.dll" ComponentId="{03BCAD8D-913B-4CF3-BEE0-FB7CFC3FE72B}" Directory_="de_Dir" Attributes="0" KeyPath="PdfSharp.Charting.resources.dll"/>
+    <ROW Component="PdfSharp.Charting.resources.dll_1" ComponentId="{A476A59F-5B39-4B3B-9E5B-8C26A81EA11D}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.Charting.resources.dll_1"/>
+    <ROW Component="PdfSharp.dll" ComponentId="{4D60FE07-B7F2-431D-AC00-8B40B1D4BB52}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.dll"/>
+    <ROW Component="PdfSharp.resources.dll" ComponentId="{4E751AB6-66A0-4E4F-AB8E-DAA8DBE65B06}" Directory_="de_Dir" Attributes="0" KeyPath="PdfSharp.resources.dll"/>
+    <ROW Component="PdfSharp.resources.dll_1" ComponentId="{5AB3B7D1-7215-47CD-9791-00E4230A0695}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="PdfSharp.resources.dll_1"/>
     <ROW Component="ProductInformation" ComponentId="{EE4B118E-272B-4547-B0E0-800D2054A5D8}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{19571E26-7BB2-405E-8EF8-22761DF91278}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="SixLabors.Fonts.dll" ComponentId="{EC3D8B44-5D8C-4F2F-8B49-E346947C05DF}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="SixLabors.Fonts.dll"/>
-    <ROW Component="SixLabors.ImageSharp.Drawing.dll" ComponentId="{C19B867B-3227-4A0F-9BF2-4EC9E22C9447}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="SixLabors.ImageSharp.Drawing.dll"/>
-    <ROW Component="System.Buffers.dll" ComponentId="{A28D08C5-8626-4BC4-B822-3A6181911654}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Buffers.dll"/>
-    <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{FF0AC554-90E5-4907-96CF-671795ED09AD}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.ComponentModel.Annotations.dll"/>
-    <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{04C37C3F-D95D-46C8-84AF-B943478DA46A}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
-    <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{064EDABB-4D3A-47BF-95C6-389B82C46320}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
-    <ROW Component="System.IO.Pipelines.dll" ComponentId="{5C4E9B13-0BB0-4DED-97E4-9060AF3A1F7C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.IO.Pipelines.dll"/>
-    <ROW Component="System.Memory.dll" ComponentId="{55F27C62-F81B-4962-8541-8D68E3FAAAB4}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Memory.dll"/>
-    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{B5CD6F5F-2209-4AB1-8CE0-BCDEFB6A2D26}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
-    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{DBABAB53-6CFC-4EEA-9685-5760644C70E7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
-    <ROW Component="System.Security.AccessControl.dll" ComponentId="{A8B99D77-BBC3-4DB5-85E2-E6BE30FD1477}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
-    <ROW Component="System.Security.Permissions.dll" ComponentId="{391DF687-2F5C-451A-A532-46C5CAF1EB38}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
-    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{84E730F3-64A3-4582-8351-B560E0ADB601}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
-    <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{A5AAA587-B40C-47A0-9ABC-3BD9485249A8}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Text.Encodings.Web.dll"/>
-    <ROW Component="System.Text.Json.dll" ComponentId="{EFA513A5-CC02-4681-B65C-06025A83BAAD}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Text.Json.dll"/>
-    <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{86647F9D-F8D4-49E1-BA41-8327E95DAAF8}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
-    <ROW Component="System.ValueTuple.dll" ComponentId="{33A7F1F4-5D14-47B1-9BF2-16F5F77D1EBA}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.ValueTuple.dll"/>
-    <ROW Component="USBBarcodeScanner.dll" ComponentId="{C556F9F7-21E1-46E8-A319-80A5D415047A}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="USBBarcodeScanner.dll"/>
-    <ROW Component="ZstdSharp.dll" ComponentId="{5E5CA2C9-6E88-4F57-AC0E-438701E806A7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="ZstdSharp.dll"/>
-    <ROW Component="itextsharp.dll" ComponentId="{79B4FAFB-167C-4CCC-9A12-6C3FC0F9A993}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="itextsharp.dll"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{8715388D-2513-4741-9207-589990975CEF}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SixLabors.Fonts.dll" ComponentId="{62E32010-0CF2-4BC4-AA78-878EA4859C08}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="SixLabors.Fonts.dll"/>
+    <ROW Component="SixLabors.ImageSharp.Drawing.dll" ComponentId="{E7639A97-4650-4ED3-A418-1625089885C2}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="SixLabors.ImageSharp.Drawing.dll"/>
+    <ROW Component="System.Buffers.dll" ComponentId="{D560D21E-8BD8-44ED-A8CD-1AEF489D2463}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Buffers.dll"/>
+    <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{07BFDAF2-DEA5-4151-BF7F-4112B1B3864F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.ComponentModel.Annotations.dll"/>
+    <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{5045A192-0393-4788-99BA-2A726E06A584}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{BC071575-32A6-4A53-A796-D8038F725C8C}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Component="System.IO.Pipelines.dll" ComponentId="{BC75BBD8-F5B2-4CB4-9582-8AADFBF82B90}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.IO.Pipelines.dll"/>
+    <ROW Component="System.Memory.dll" ComponentId="{24199045-5280-4DA3-902F-0F67595A102F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{6546DBA7-5935-4717-8E4E-BAACE02AA47B}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{8F18887B-9E8C-49DC-B625-57318A7C0087}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Security.AccessControl.dll" ComponentId="{C325179A-2AA5-412F-9490-378B28AA46FE}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
+    <ROW Component="System.Security.Permissions.dll" ComponentId="{62A2202F-5867-43D2-BCF7-E75BB14733FF}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
+    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{EA06B655-DE42-4805-94B7-77D1E4D03A82}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
+    <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{8542ECA1-0EAA-4955-9FEE-5AB9AC75C4BA}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Text.Encodings.Web.dll"/>
+    <ROW Component="System.Text.Json.dll" ComponentId="{3D12B497-1DB0-40DF-B985-285CF02B6FAD}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Text.Json.dll"/>
+    <ROW Component="System.Threading.Tasks.Extensions.dll" ComponentId="{F3572A9C-F1B8-473E-8768-CCCDCB12EB49}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.Threading.Tasks.Extensions.dll"/>
+    <ROW Component="System.ValueTuple.dll" ComponentId="{2BA2B2A6-F736-4F3A-85E7-FA8E44DB31F7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="System.ValueTuple.dll"/>
+    <ROW Component="USBBarcodeScanner.dll" ComponentId="{F02FD189-5F89-4373-AC55-BD134B0A04CA}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="USBBarcodeScanner.dll"/>
+    <ROW Component="ZstdSharp.dll" ComponentId="{D2F081A3-A320-4A5B-85E3-D718E124944F}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="ZstdSharp.dll"/>
+    <ROW Component="itextsharp.dll" ComponentId="{FA047634-0848-4AA2-A901-CF7C4F7187A7}" Directory_="MDT_Inventory_V.1.3.4_Dir" Attributes="0" KeyPath="itextsharp.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -548,8 +548,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="MDT_Inventory" Directory_="SHORTCUTDIR" Name="MDT_IN~1|MDT_Inventory" Component_="MDTBarcodeScanner.exe" Target="[#MDTBarcodeScanner.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="MDT_Inventory_V.1.3.4_Dir"/>
-    <ROW Shortcut="MDT_Inventory_1" Directory_="DesktopFolder" Name="MDT_IN~1|MDT_Inventory" Component_="MDTBarcodeScanner.exe" Target="[#MDTBarcodeScanner.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="MDT_Inventory_V.1.3.4_Dir"/>
-    <ROW Shortcut="MDT_Inventory_2" Directory_="StartMenuFolder" Name="MDT_IN~1|MDT_Inventory" Component_="MDTBarcodeScanner.exe" Target="[#MDTBarcodeScanner.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="MDT_Inventory_V.1.3.4_Dir"/>
+    <ROW Shortcut="MDT_Inventory_1" Directory_="StartMenuFolder" Name="MDT_IN~1|MDT_Inventory" Component_="MDTBarcodeScanner.exe" Target="[#MDTBarcodeScanner.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="MDT_Inventory_V.1.3.4_Dir"/>
+    <ROW Shortcut="MDT_Inventory_2" Directory_="DesktopFolder" Name="MDT_IN~1|MDT_Inventory" Component_="MDTBarcodeScanner.exe" Target="[#MDTBarcodeScanner.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="MDT_Inventory_V.1.3.4_Dir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
