@@ -83,16 +83,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             Image selectedImage = Image.FromFile(path[i]);
                             if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
                             {
+                                selectedImage.Tag = "NormalFile";
                                 selectedImages.Add(selectedImage);
                             }
                             else
                             {
-                                selectedImages.Add(Properties.Resources.corruptedfile);
+                                Image myimage = Properties.Resources.corruptedfile;
+                                myimage.Tag = "FileCorrupt";
+                                selectedImages.Add(myimage);
                             }
                         }
                         else
                         {
-                            selectedImages.Add(Properties.Resources.filemissing);
+                            Image myimage = Properties.Resources.filemissing;
+                            myimage.Tag = "FileMissing";
+                            selectedImages.Add(myimage);
                         }
                     }
                     CheckImageButtonBehavior();
@@ -385,7 +390,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (TemporaryData == null) return;
             if (selectingImage == null) return;
             if (selectedImages == null) return;
-            if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null) return;
+            if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData.FilePath);
                 try
@@ -413,7 +419,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 return;
             }
-            else if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null)
+            {
+                return;
+            }
+            else if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 pictureBox1.Image = Properties.Resources.search;
             }

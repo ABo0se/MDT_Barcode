@@ -72,16 +72,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                             Image selectedImage = Image.FromFile(path[i]);
                             if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
                             {
+                                selectedImage.Tag = "NormalFile";
                                 selectedImages.Add(selectedImage);
                             }
                             else
                             {
-                                selectedImages.Add(Properties.Resources.corruptedfile);
+                                Image myimage = Properties.Resources.corruptedfile;
+                                myimage.Tag = "FileCorrupt";
+                                selectedImages.Add(myimage);
                             }
                         }
                         else
                         {
-                            selectedImages.Add(Properties.Resources.filemissing);
+                            Image myimage = Properties.Resources.filemissing;
+                            myimage.Tag = "FileMissing";
+                            selectedImages.Add(myimage);
                         }
                     }
                     CheckImageButtonBehavior();
@@ -101,20 +106,20 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 switch (statusX)
                 {
                     case -1:
-                    {
-                        Status_TXT.Text = "ไม่พบข้อมูล";
-                        break;
-                    }
+                        {
+                            Status_TXT.Text = "ไม่พบข้อมูล";
+                            break;
+                        }
                     case 0:
-                    {
-                        Status_TXT.Text = "มีให้ตรวจสอบ";
-                        break;
-                    }
+                        {
+                            Status_TXT.Text = "มีให้ตรวจสอบ";
+                            break;
+                        }
                     case 1:
-                    {
-                        Status_TXT.Text = "มีให้ตรวจสอบ";
-                        break;
-                    }
+                        {
+                            Status_TXT.Text = "มีให้ตรวจสอบ";
+                            break;
+                        }
                 }
                 switch (conditionX)
                 {
@@ -217,11 +222,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             return false;
         }
 
-    
+
 
         public void InitializePage()
         {
-            BarcodeID_TXT.Text = ProductName_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text = 
+            BarcodeID_TXT.Text = ProductName_TXT.Text = ModelName_TXT.Text = Brand_TXT.Text =
             SN_TXT.Text = Price_TXT.Text = Stay_TXT.Text = Note_TXT.Text = Status_TXT.Text = Condition_TXT.Text = string.Empty;
             if (selectedImages != null)
             {
@@ -247,14 +252,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (myData == null) return;
             if (selectingImage == null) return;
             if (selectedImages == null) return;
-            if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null) return;
+            if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 List<string> path = JsonConvert.DeserializeObject<List<string>>(myData.FilePath);
                 try
                 {
                     Process.Start("explorer.exe", $"/select, \"{path[(int)selectingImage]}\"");
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
                 }
@@ -442,18 +448,22 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         private void ShowPic_Enter(object sender, EventArgs e)
         {
             if (selectedImages == null)
-            { 
-                return; 
+            {
+                return;
             }
             if (selectedImages.Count <= 0)
             {
                 return;
             }
             if (selectedImages[(int)selectingImage] == null)
-            { 
-                return; 
+            {
+                return;
             }
-            else if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null)
+            {
+                return;
+            }
+            else if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 pictureBox1.Image = Properties.Resources.search;
             }

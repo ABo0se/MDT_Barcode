@@ -163,16 +163,21 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             Image selectedImage = Image.FromFile(path[i]);
                             if (VerifyImageSHA512Hash(selectedImage, SHA512[i]))
                             {
+                                selectedImage.Tag = "NormalFile";
                                 selectedImages.Add(selectedImage);
                             }
                             else
                             {
-                                selectedImages.Add(Properties.Resources.corruptedfile);
+                                Image myimage = Properties.Resources.corruptedfile;
+                                myimage.Tag = "FileCorrupt";
+                                selectedImages.Add(myimage);
                             }
                         }
                         else
                         {
-                            selectedImages.Add(Properties.Resources.filemissing);
+                            Image myimage = Properties.Resources.filemissing;
+                            myimage.Tag = "FileMissing";
+                            selectedImages.Add(myimage);
                         }
                     }
                     CheckImageButtonBehavior();
@@ -270,8 +275,8 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             if (TemporaryData == null) return;
             if (selectingImage == null) return;
             if (selectedImages == null) return;
-            if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile &&
-                selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null) return;
+            if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 List<string> path = JsonConvert.DeserializeObject<List<string>>(TemporaryData[(int)selectedHistory].ImageData);
                 try
@@ -300,7 +305,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 return;
             }
-            else if (selectedImages[(int)selectingImage] != Properties.Resources.corruptedfile && selectedImages[(int)selectingImage] != Properties.Resources.filemissing)
+            if (selectedImages[(int)selectingImage].Tag == null)
+            {
+                return;
+            }
+            if (selectedImages[(int)selectingImage].Tag.ToString() == "NormalFile")
             {
                 pictureBox1.Image = Properties.Resources.search;
             }
