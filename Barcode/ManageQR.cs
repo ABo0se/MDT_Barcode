@@ -1331,6 +1331,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 if (result3 == DialogResult.Yes)
                 {
                     DeleteDataInDB();
+                    MessageBox.Show("ลบข้อมูลสำเร็จ!");
                     SearchDatainDB();
                 }
             }

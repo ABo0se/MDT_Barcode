@@ -41,8 +41,10 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             ///////////////
             GlobalVariable.GetCleanupData();
             bool cleanup = GlobalVariable.cleanuppath;
+            //MessageBox.Show(cleanup.ToString());
             ///////////////
             service.CheckForDateChange(true, cleanup);
+            GlobalVariable.SetCleanup(false);
 
             Application.Run(new MainMenu());
         }
@@ -176,6 +178,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             {
                 parentPaths.Add(oldDirectory);
             }
+            
             if (parentPaths == null)
                 return;
             if (parentPaths.Count == 0) 
@@ -198,10 +201,11 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 foreach (string parentPath in parentPaths)
                 {
                     string[] filesInOldParent = Directory.GetFiles(parentPath);
-
+                    //MessageBox.Show("1");
                     // Move each JPEG image to the new parent directory
                     foreach (string filePathInOldParent in filesInOldParent)
                     {
+                        //MessageBox.Show("2");
                         // Get the file name
                         string fileName = Path.GetFileName(filePathInOldParent);
 
@@ -209,10 +213,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                         string newFilePath = Path.Combine(newParentDirectory, fileName);
 
                         //MessageBox.Show((!Directory.Exists(newFilePath)).ToString());
-                        if (!Directory.Exists(newFilePath) && IsJpegImage(parentPath))
+                        //MessageBox.Show((!Directory.Exists(newFilePath)).ToString() + " / " + IsJpegImage(filePathInOldParent).ToString());
+                        if (!Directory.Exists(newFilePath) && IsJpegImage(filePathInOldParent))
                         {
+                            //MessageBox.Show("3");
                             File.Move(filePathInOldParent, newFilePath);
-                            Console.WriteLine($"File '{fileName}' moved successfully.");
+                            //MessageBox.Show($"File '{fileName}' moved successfully.");
                         }
                     }
                 }
@@ -222,7 +228,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             catch (Exception ex)
             {
                 Console.WriteLine($"Error moving files: {ex.Message}");
-                MessageBox.Show("ข้อผิดพลาด : " + ex);
+                MessageBox.Show("ข้อผิดพลาด : " + ex.Message);
             }
         }
 
@@ -404,7 +410,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex);
+                    MessageBox.Show("An error occurred: " + ex.Message);
                 }
                 if (DataList.Count <= 0)
                 {
@@ -1071,8 +1077,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
                     if (key != null)
                     {
                         // Delete the specified value (subkey)
-                        key.DeleteValue("OldFilePath");
-                        OldFilePath = null;
+                        object registryValue = Registry.GetValue("HKEY_CURRENT_USER\\Software\\MDT_Inventory", "OldFilePath", null);
+                        if (registryValue != null)
+                        {
+                            key.DeleteValue("OldFilePath");
+                            OldFilePath = null;
+                        }
+                        else
+                        {
+                            OldFilePath = null;
+                        }
                     }
                     else
                     {

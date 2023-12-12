@@ -640,6 +640,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                 if (result3 == DialogResult.Yes)
                 {
                     DeleteDataInDB();
+                    MessageBox.Show("ลบข้อมูลทั้งหมดเรียบร้อย!");
                     SearchDatainDB();
                 }
             }

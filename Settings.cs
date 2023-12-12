@@ -125,10 +125,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             if (result == DialogResult.Yes)
             {
                 GlobalVariable.SetCleanup(true);
+                MessageBox.Show("การซ่อมแซมไฟล์ข้อมูลจะทำงานเมื่อเปิดโปรแกรมครั้งถัดไป");
             }
             else
             {
                 GlobalVariable.SetCleanup(false);
+                MessageBox.Show("การซ่อมแซมไฟล์ข้อมูลถูกยกเลิก");
                 // User clicked "No" or closed the dialog, do nothing or handle as needed
             }
         }
