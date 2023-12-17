@@ -34,9 +34,9 @@
             this.BarcodeText = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.Return_Management_B = new System.Windows.Forms.Button();
             this.ShowDetail_B = new System.Windows.Forms.Button();
             this.Borrow_Management_B = new System.Windows.Forms.Button();
+            this.Return_Management_B = new System.Windows.Forms.Button();
             this.Status_TXT = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -99,6 +99,7 @@
             this.BarcodeText.TabIndex = 1;
             this.BarcodeText.TextChanged += new System.EventHandler(this.BarcodeText_TextChanged);
             this.BarcodeText.Enter += new System.EventHandler(this.BarcodeText_Enter);
+            this.BarcodeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BarcodeText_KeyDown);
             this.BarcodeText.Leave += new System.EventHandler(this.BarcodeText_Leave);
             // 
             // tableLayoutPanel2
@@ -139,20 +140,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(552, 50);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
-            // Return_Management_B
-            // 
-            this.Return_Management_B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Return_Management_B.Enabled = false;
-            this.Return_Management_B.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
-            this.Return_Management_B.Location = new System.Drawing.Point(373, 4);
-            this.Return_Management_B.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.Return_Management_B.Name = "Return_Management_B";
-            this.Return_Management_B.Size = new System.Drawing.Size(174, 41);
-            this.Return_Management_B.TabIndex = 6;
-            this.Return_Management_B.Text = "คืนครุภัณฑ์";
-            this.Return_Management_B.UseVisualStyleBackColor = true;
-            this.Return_Management_B.Click += new System.EventHandler(this.Return_Management_B_Click);
-            // 
             // ShowDetail_B
             // 
             this.ShowDetail_B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -180,6 +167,20 @@
             this.Borrow_Management_B.Text = "ยืมครุภัณฑ์";
             this.Borrow_Management_B.UseVisualStyleBackColor = true;
             this.Borrow_Management_B.Click += new System.EventHandler(this.Borrow_Management_B_Click);
+            // 
+            // Return_Management_B
+            // 
+            this.Return_Management_B.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Return_Management_B.Enabled = false;
+            this.Return_Management_B.Font = new System.Drawing.Font("TH Sarabun New", 16F, System.Drawing.FontStyle.Bold);
+            this.Return_Management_B.Location = new System.Drawing.Point(373, 4);
+            this.Return_Management_B.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Return_Management_B.Name = "Return_Management_B";
+            this.Return_Management_B.Size = new System.Drawing.Size(174, 41);
+            this.Return_Management_B.TabIndex = 6;
+            this.Return_Management_B.Text = "คืนครุภัณฑ์";
+            this.Return_Management_B.UseVisualStyleBackColor = true;
+            this.Return_Management_B.Click += new System.EventHandler(this.Return_Management_B_Click);
             // 
             // Status_TXT
             // 

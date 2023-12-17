@@ -56,6 +56,7 @@
             this.BarcodeText.Name = "BarcodeText";
             this.BarcodeText.Size = new System.Drawing.Size(315, 43);
             this.BarcodeText.TabIndex = 1;
+            this.BarcodeText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BarcodeText_KeyDown);
             // 
             // SearchButton
             // 

@@ -449,6 +449,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\searchbutton1.png" />
     <None Include="Resources\Settings.png" />
     <None Include="Resources\MDT_Stock_Import_Example_file.xlsx" />
     <None Include="Resources\TestButton.png" />
@@ -465,12 +466,16 @@
     <None Include="Resources\Delete Picture.png" />
     <None Include="Resources\add_item.png" />
     <None Include="Resources\add_return_item_icon.png" />
+    <None Include="Resources\addbutton1.png" />
+    <None Include="Resources\borrowrent1.png" />
     <Content Include="Resources\corruptedfile.png" />
     <Content Include="Resources\DeleteIcon.png" />
     <None Include="Resources\DrawLine.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\filemissing.png" />
     <None Include="Resources\Return_Product.png" />
+    <None Include="Resources\manageborrow.png" />
+    <None Include="Resources\managebutton1.png" />
     <Content Include="Resources\search.png" />
     <None Include="Resources\Test.png" />
   </ItemGroup>

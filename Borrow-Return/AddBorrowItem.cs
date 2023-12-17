@@ -24,12 +24,12 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         List<Image> selectedImages = new List<Image>();
         int? selectingImage = null;
         //DefaultValue
-        string defaultBarcode = "[ตัวอย่าง : 65A1234567]";
-        string defaultProductName = "[ตัวอย่าง : เครื่องคอมพิวเตอร์พกพา]";
-        string defaultBorrowerName = "[ตัวอย่าง : นายเรียนดี มีวินัย]";
+        string defaultBarcode = "65A1234567";
+        string defaultProductName = "เครื่องคอมพิวเตอร์พกพา";
+        string defaultBorrowerName = "นายเรียนดี มีวินัย";
         string defaultPicstatus = "0 of 0";
         //DateTime defaultReturnDate = DateTime.Now;
-        string defaultcontact = "[ตัวอย่าง : 0812345678]";
+        string defaultcontact = "0812345678";
         string defaultnote = "";
         //TemporaryData
         RentResults TemporaryData;

@@ -83,6 +83,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addbutton1 {
+            get {
+                object obj = ResourceManager.GetObject("addbutton1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap borrowrent1 {
+            get {
+                object obj = ResourceManager.GetObject("borrowrent1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap corruptedfile {
             get {
                 object obj = ResourceManager.GetObject("corruptedfile", resourceCulture);
@@ -136,6 +156,26 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         internal static System.Drawing.Bitmap filemissing {
             get {
                 object obj = ResourceManager.GetObject("filemissing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap manageborrow {
+            get {
+                object obj = ResourceManager.GetObject("manageborrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap managebutton1 {
+            get {
+                object obj = ResourceManager.GetObject("managebutton1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +236,16 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Properties {
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap searchbutton1 {
+            get {
+                object obj = ResourceManager.GetObject("searchbutton1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

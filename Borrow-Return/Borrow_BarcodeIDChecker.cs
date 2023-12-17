@@ -16,7 +16,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 {
     public partial class Borrow_BarcodeIDChecker : Form
     {
-        string defaultText = "[สแกน หรือ กรอกหมายเลขครุภัณฑ์]";
+        string defaultText = "สแกน/กรอกหมายเลขครุภัณฑ์";
         RentResults temporarydata = null;
         public Borrow_BarcodeIDChecker()
         {
@@ -115,6 +115,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
         private void SearchButton_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(BarcodeText.Text);
+            BarcodeText.Text = BarcodeText.Text.Replace(" ", "");
             FindBarcodeInItemDatabase(BarcodeText.Text, out RentResults data);
             
             if (data == null)
@@ -370,6 +371,39 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                     ReturnForm.Show();
                     ReturnForm.InitializePage();
                     ReturnForm.AssignBarcodeText(temporarydata);
+                }
+            }
+        }
+
+        private void BarcodeText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BarcodeText.Text = BarcodeText.Text.Replace(" ", "");
+                FindBarcodeInItemDatabase(BarcodeText.Text, out RentResults data);
+
+                if (data == null)
+                {
+                    MessageBox.Show("ไม่พบครุภัณฑ์ที่บันทึกไว้ในฐานข้อมูลครุภัณฑ์");
+                    ResetButtonState();
+                    ResetTextState();
+                }
+                else
+                {
+                    temporarydata = data;
+                    Status_TXT.Text = "สถานะ : " + DecodingStatus(data.Status);
+                    if (temporarydata.Status == null)
+                    {
+                        ChangeButtonState(false, true, false);
+                    }
+                    if (temporarydata.Status == 0 || temporarydata.Status == 1)
+                    {
+                        ChangeButtonState(true, false, true);
+                    }
+                    if (temporarydata.Status == 2)
+                    {
+                        ChangeButtonState(true, true, false);
+                    }
                 }
             }
         }

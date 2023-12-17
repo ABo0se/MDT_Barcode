@@ -23,14 +23,14 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
         //List<string> selectFilePath = new List<string>();
         int? selectingImage = null;
         /////////////////////////////////////////////
-        string BarcodeIDDF = "[ตัวอย่าง : 65A1234567]";
-        string ProductNameDF = "[ตัวอย่าง : เครื่องคอมพิวเตอร์พกพา]";
-        string ModelDF = "[ตัวอย่าง : Gigabyte]";
-        string BrandDF = "[ตัวอย่าง : AORUS 15XE4]";
-        string SerialDF = "[ตัวอย่าง : M213D56T9]";
-        string PriceDF = "[ตัวอย่าง : 10000]";
-        string RoomDF = "[ตัวอย่าง : 516]";
-        string NoteDF = "[ตัวอย่าง : พร้อมกระเป๋าและสายชาร์จ]";
+        string BarcodeIDDF = "65A1234567";
+        string ProductNameDF = "เครื่องคอมพิวเตอร์พกพา";
+        string ModelDF = "Gigabyte";
+        string BrandDF = "AORUS 15XE4";
+        string SerialDF = "M213D56T9";
+        string PriceDF = "10000";
+        string RoomDF = "MTA-516";
+        string NoteDF = "พร้อมกระเป๋าและสายชาร์จ";
         ////////////////////////////////////////////
         public AddItemP2()
         {

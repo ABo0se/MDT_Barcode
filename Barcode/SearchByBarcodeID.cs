@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using USB_Barcode_Scanner;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp
 {
@@ -100,6 +101,15 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp
             barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
             //QRText.Text = "กรุณาสแกน Barcode ครุภัณฑ์ของท่าน.";
             BarcodeText.Text = "";
+        }
+
+        private void BarcodeText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BarcodeText.Text = BarcodeText.Text.Replace(" ", "");
+                SearchBarcodeData(BarcodeText.Text);
+            }
         }
     }
 }
