@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using OfficeOpenXml.Drawing.Chart.ChartEx;
+using System.IO.Packaging;
 
 namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
 {
@@ -482,7 +483,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
             {
                 Title = "Save File",
                 Filter = "All Files|*.*", // You can set specific file filters here
-                FileName = "รายละเอียดครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"
+                FileName = "รายละเอียดการยืมคืนครุภัณฑ์_" + DateTime.Now.Date.ToString("dd MMMM yyyy") + ".xlsx"
             };
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -553,6 +554,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                             headerCell1.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             headerCell1.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                             headerCell1.Style.Font.Size = 14.0f;
+                            worksheet1.Column(col).AutoFit();
                         }
 
                         // Data rows for worksheet1 (Data)
@@ -568,7 +570,18 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                                         cell1.Value = row + 1;
                                         break;
                                     case 1:
-                                        cell1.Value = TemporaryData[row].Date;
+                                        string formattedDate;
+                                        if (DateTime.TryParse(TemporaryData[row].ToString(), out DateTime dateValue))
+                                        {
+                                            formattedDate = dateValue.ToString("dd-MM-yyyy HH:mm:ss");
+                                            // Do something with formattedDate
+                                        }
+                                        else
+                                        {
+                                            formattedDate = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+                                            // Handle the case where parsing fails
+                                        }
+                                        cell1.Value = formattedDate;
                                         break;
                                     case 2:
                                         cell1.Value = TemporaryData[row].BarcodeNumber;
@@ -610,6 +623,7 @@ namespace USB_Barcode_Scanner_Tutorial___C_Sharp.Borrow_Return
                                 }
                             }
                         }
+                        package.Save();
                     }
                 }
                 catch (Exception ex)
