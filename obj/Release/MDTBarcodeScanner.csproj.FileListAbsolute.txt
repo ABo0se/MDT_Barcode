@@ -1,3 +1,9 @@
+D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Options.ConfigurationExtensions.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Release\PdfSharp.Charting.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Threading.Tasks.Extensions.xml
+D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\MigraDoc.Rendering.resources.dll
+D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\MDT Barcode Scanner.exe.config
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\MDT Barcode Scanner.pdb
@@ -94,14 +100,12 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.FileSystemGl
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Hosting.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Hosting.Abstractions.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.xml
-D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.Configuration.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.Console.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.Debug.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.EventLog.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Logging.EventSource.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Options.xml
-D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Options.ConfigurationExtensions.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.Extensions.Primitives.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\MigraDoc.DocumentObjectModel.xml
@@ -110,7 +114,6 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Release\MigraDoc.RtfRendering.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\MySql.Data.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\Newtonsoft.Json.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\PdfSharp.xml
-D:\Coding Sector\MDTBarcodeScanner\bin\Release\PdfSharp.Charting.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\SixLabors.Fonts.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\SixLabors.ImageSharp.Drawing.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Buffers.xml
@@ -125,10 +128,8 @@ D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Security.Permissions.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Security.Principal.Windows.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Text.Encodings.Web.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Text.Json.xml
-D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.Threading.Tasks.Extensions.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\System.ValueTuple.xml
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\MigraDoc.DocumentObjectModel.resources.dll
-D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\MigraDoc.Rendering.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\MigraDoc.RtfRendering.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\PdfSharp.resources.dll
 D:\Coding Sector\MDTBarcodeScanner\bin\Release\de\PdfSharp.Charting.resources.dll
@@ -152,5 +153,4 @@ D:\Coding Sector\MDTBarcodeScanner\obj\Release\USB_Barcode_Scanner_Tutorial___C_
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDTBarcodeScanner.csproj.GenerateResource.cache
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDTBarcodeScanner.csproj.CoreCompileInputs.cache
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDTBarcodeScanner.csproj.CopyComplete
-D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDT Barcode Scanner.exe
 D:\Coding Sector\MDTBarcodeScanner\obj\Release\MDT Barcode Scanner.pdb

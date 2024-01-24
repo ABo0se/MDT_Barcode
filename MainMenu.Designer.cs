@@ -33,15 +33,15 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Borrow_Return_Manager = new System.Windows.Forms.Button();
             this.Borrow_Return_System = new System.Windows.Forms.Button();
+            this.AddItem = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ExportPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Settings = new System.Windows.Forms.Button();
-            this.AddItem = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
-            this.ExportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.ExportPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Search
@@ -137,6 +137,34 @@
             this.Borrow_Return_System.UseVisualStyleBackColor = true;
             this.Borrow_Return_System.Click += new System.EventHandler(this.Borrow_Return_System_Click);
             // 
+            // AddItem
+            // 
+            this.AddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddItem.AutoSize = true;
+            this.AddItem.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.addbutton1;
+            this.AddItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.AddItem.Location = new System.Drawing.Point(2, 3);
+            this.AddItem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.AddItem.Name = "AddItem";
+            this.AddItem.Size = new System.Drawing.Size(400, 100);
+            this.AddItem.TabIndex = 0;
+            this.AddItem.UseVisualStyleBackColor = true;
+            this.AddItem.Click += new System.EventHandler(this.AddItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.InitialImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.DrawLine;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 332);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(398, 2);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -158,9 +186,9 @@
             this.label2.Font = new System.Drawing.Font("TH Sarabun New", 12F);
             this.label2.Location = new System.Drawing.Point(364, 582);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 27);
+            this.label2.Size = new System.Drawing.Size(52, 27);
             this.label2.TabIndex = 5;
-            this.label2.Text = "V.1.3.5";
+            this.label2.Text = "V.1.3.6";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ExportPanel
@@ -195,34 +223,6 @@
             this.Settings.UseVisualStyleBackColor = true;
             this.Settings.Click += new System.EventHandler(this.Settings_Click);
             // 
-            // AddItem
-            // 
-            this.AddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddItem.AutoSize = true;
-            this.AddItem.BackgroundImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.addbutton1;
-            this.AddItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AddItem.Font = new System.Drawing.Font("TH Sarabun New", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.AddItem.Location = new System.Drawing.Point(2, 3);
-            this.AddItem.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.AddItem.Name = "AddItem";
-            this.AddItem.Size = new System.Drawing.Size(400, 100);
-            this.AddItem.TabIndex = 0;
-            this.AddItem.UseVisualStyleBackColor = true;
-            this.AddItem.Click += new System.EventHandler(this.AddItem_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.InitialImage = global::USB_Barcode_Scanner_Tutorial___C_Sharp.Properties.Resources.DrawLine;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 332);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(398, 2);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -242,9 +242,9 @@
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ExportPanel.ResumeLayout(false);
             this.ExportPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
